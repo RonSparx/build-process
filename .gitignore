@@ -1,0 +1,28 @@
+node_modules
+# Logs
+logs
+*.log
+
+# Dependency directory
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
+node_modules
+
+# Debug log from npm
+npm-debug.log
+
+# OSX hidden files
+.DS_Store
+
+# VSCODE hidden file
+.vscode
+
+# ENV
+.env
+
+# BUILD FILES
+/assets
+/snippets/vite.liquid
+/config/settings_data.json
+
+
+

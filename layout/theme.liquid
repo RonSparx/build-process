@@ -1,0 +1,34 @@
+<!doctype html>
+<html class="h-full" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <title>{{ shop.name }}</title>
+
+    <meta name="description" content="">
+
+    {%- liquid
+      render 'vite-tag' with 'theme.css'
+      render 'vite-tag' with 'theme.js'
+      render 'vite-tag' with 'greeting.ts'
+      render 'vite-tag' with 'lit-test.ts'
+    -%}
+
+    {{ content_for_header }}
+  </head>
+
+  <body>
+    <simple-greeting name="Hello"></simple-greeting>
+    <h1>Test heading</h1>
+    <p>Test paragraph 1</p>
+    <p>Test paragraph 2</p>
+
+    <main>
+      {{ content_for_layout }}
+    </main>
+  </body>
+</html>
