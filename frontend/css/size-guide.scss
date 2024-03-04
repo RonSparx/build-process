@@ -1,0 +1,383 @@
+.size-guide {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9375rem;
+  line-height: 1.5rem;
+  max-width: 50rem;
+
+
+  .size-guide-title {
+      text-align: center;
+      margin-bottom: 2.5rem;
+  }
+
+  hr {
+    @media only screen and (max-width: 749px) {
+      display: none;
+    }
+  }
+
+  .grid {
+      margin-bottom: 3.75rem;
+      overflow: hidden;
+  }
+
+  .grid .column.column-no-margin {
+      margin: 0;
+  }
+  .one-half.column-no-margin {
+      padding: 0;
+  }
+  .grid .column {
+      float: left;
+  }
+
+
+  .size-m.title-with-level {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    @media only screen and (min-width: 750px) {
+      font-size: 1.625rem;
+      line-height: 2rem;
+    }
+  }
+
+  .size-s.title-with-level {
+    font-size: 0.9375rem;
+    line-height: 1.25rem;
+    font-weight: bold;
+  }
+
+  .multiline-text {
+      word-break: normal;
+  }
+
+  .tabs-header {
+      display: flex;
+      margin: auto;
+      height: 2.8125rem;
+      border-bottom: 0.0625rem solid #e5e5e5;
+      overflow-x: auto;
+      overflow-y: hidden;
+  }
+
+  .tabs-header-item-container {
+      flex: 0 0 auto;
+      margin: auto;
+      cursor: pointer;
+  }
+
+  .tabs-header-item-selected {
+      border-bottom: 0.125rem solid #000000;
+  }
+
+  .tabs-header-item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 2.8125rem;
+      box-sizing: border-box;
+      padding: 0 0.625rem;
+      text-transform: uppercase;
+  }
+
+  .tabs-content {
+      font-size: 0.9375rem;
+      line-height: 1.5rem;
+  }
+
+
+  .margin.text-centered {
+      text-align: center;
+  }
+
+
+  .tab-content th, .tab-content h4, .tab-content h5, .tab-content h6 {
+      font-weight: normal;
+    @media only screen and (max-width: 749px) {
+      font-weight: bold;
+    }
+  }
+
+  .margin-bottom-20 {
+      margin-bottom: 1.25rem;
+  }
+
+  table {
+      text-align: center;
+      text-transform: uppercase;
+      margin: 0 2.5rem 2.5rem;
+      border-collapse: collapse;
+    width: auto;
+    @media only screen and (max-width: 749px) {
+      margin: 0;
+      border-spacing: 0.3125rem 0;
+      border-collapse: separate;
+    }
+  }
+
+  table .border-top td {
+    @media only screen and (max-width: 749px) {
+      border-top: 0.0625rem solid white;
+    }
+  }
+
+  table tr.grey td {
+      background: #f6f6f6;
+  }
+
+  table tr {
+      height: 3.125rem;
+  }
+
+  table th {
+      background: #000;
+      color: #fff;
+  }
+
+  .step {
+      position: relative;
+      top: 0;
+      left: 0;
+      margin: 0 0 1.25rem 5.625rem;
+  }
+
+  .grid .step {
+      margin-left: 0;
+  }
+
+  .step .num {
+      font-size: 3.75rem;
+      color: #cecece;
+  }
+
+  .step .label {
+      position: absolute;
+      top: 0;
+      left: 0.3125rem;
+      margin: 0;
+  }
+
+  .sizes-heel, .sizes-measuring, .sizes-how-to {
+      display: flex;
+      flex-direction: column;
+  }
+
+  .sizes-heel > img, .sizes-measuring > img, .sizes-how-to > img {
+      margin: 1.25rem auto;
+  }
+
+  table.cols-2 th, table.cols-2 td {
+      width: 40.4375rem;
+  }
+
+  table.cols-3 th, table.cols-3 td {
+      width: 20.21875rem;
+  }
+
+  table.cols-4-with-title th, table.cols-4-with-title td {
+      width: 9.84375rem;
+  }
+
+  table.cols-4 th, table.cols-4 td {
+      width: 13.47917rem;
+  }
+
+  table.cols-5-with-title th, table.cols-5-with-title td {
+      width: 7.875rem;
+  }
+
+  table.cols-5 th, table.cols-5 td {
+      width: 10.10938rem;
+  }
+
+  table.cols-6 th, table.cols-6 td {
+      width: 8.0875rem;
+  }
+
+  table.cols-8-with-title th.title, table.cols-8-with-title td.title {
+      width: 6.25rem;
+  }
+
+  table.cols-8-with-title th, table.cols-8-with-title td {
+      width: 4.92188rem;
+  }
+
+  table.cols-17-with-title th, table.cols-17-with-title td {
+      width: 2.31618rem;
+  }
+
+  table.cols-10-with-title th.title, table.cols-10-with-title td.title {
+      width: 6.25rem;
+  }
+
+  table.cols-10-with-title th, table.cols-10-with-title td {
+      width: 3.9375rem;
+  }
+
+  table th.title {
+      text-transform: uppercase;
+  }
+
+  table th.title, table td.title {
+      background: none;
+      color: #000;
+      text-align: left;
+  }
+
+  table tr td.title {
+      background: none;
+      color: #000;
+      text-transform: none;
+  }
+
+  table th.title, table td.title {
+      background: none;
+      color: #000;
+      text-align: left;
+  }
+
+  table th, table td {
+      vertical-align: middle;
+    text-align: center;
+    padding: 0;
+    border: none;
+  }
+
+  table tbody td {
+    @media only screen and (max-width: 749px) {
+      padding: 0.9375rem 0;
+      background: #e5e5e5;
+    }
+  }
+
+  table .size-grid-white {
+      background-color: #fff;
+  }
+
+  table .size-grid-black {
+      background-color: #000;
+      color: #fff;
+  }
+
+  table.active {
+      display: inline-table;
+  }
+
+  table thead {
+      font-size: 0.8125rem;
+  }
+
+  table tbody {
+      font-size: 0.8125rem;
+  }
+
+  .tab-content h4 {
+    @media only screen and (min-width: 750px) {
+      font-size: 1.125rem;
+      text-transform: uppercase;
+      margin: 0 2.5rem 1.875rem;
+      text-align: center;
+    }
+  }
+
+  .tab-content h5 {
+    @media only screen and (min-width: 750px) {
+      font-size: 0.9375rem;
+      text-transform: uppercase;
+      margin: 0 2.5rem 1.25rem;
+      text-align: left;
+    }
+  }
+
+  .tab-content img {
+    @media only screen and (min-width: 750px) {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .helper table img {
+      width: 12.5rem;
+      height: auto;
+    max-width: inherit;
+  }
+
+  .helper table p {
+      text-transform: none;
+  }
+
+  .tab-content p {
+    @media only screen and (min-width: 750px) {
+      margin-bottom: 2.375rem;
+    }
+  }
+
+  table th.border, table td.border {
+      border-right: 0.125rem solid #fff;
+  }
+
+  .margin {
+      margin: 0 5rem 2.5rem;
+      text-align: left;
+  }
+
+  .one-half {
+      width: 50%;
+      padding: 0 0 0 1.25rem;
+      box-sizing: border-box;
+  }
+
+  .size-guide--footer {
+    @media only screen and (max-width: 749px) {
+      display: flex;
+      flex-direction: column;
+      border: 0.0625rem solid #000;
+      border-radius: 0.3125rem;
+      padding: 1.25rem;
+      margin-top: 1.25rem;
+    }
+  }
+
+  .size-guide--footer div {
+      width: 50%;
+      float: left;
+    @media only screen and (max-width: 749px) {
+      width: auto;
+    }
+  }
+
+  .size-guide--footer img {
+      width: auto;
+      margin-right: 0.625rem;
+      float: left;
+  }
+
+
+  .size-guide--footer h5 {
+      margin: 0.125rem 0 1.625rem;
+  }
+
+  .size-guide--footer p {
+      text-align: left;
+      clear: both;
+      margin-bottom: 1.25rem;
+  }
+
+  .tabs-content {
+      display: flex;
+      position: relative;
+      box-sizing: border-box;
+      padding: 1.25rem 1.25rem 0 1.25rem;
+  }
+
+  .tabs-content .content.hidden {
+      width: calc(100% - 2.5rem);
+      height: 1px;
+      visibility: hidden;
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      overflow-y: hidden;
+  }
+}

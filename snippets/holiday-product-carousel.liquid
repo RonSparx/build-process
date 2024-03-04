@@ -1,0 +1,73 @@
+{% if block.settings.product_col != blank %} 
+<div class="loader_new">
+   <div class="loader_inner">
+<div class="loading_block" style="display:block;">
+    <div class="img">{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+    <div class="title"></div>
+    <div class="price"></div>
+  </div>
+   <div class="loading_block" style="display:block;">
+    <div class="img">{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+    <div class="title"></div>
+    <div class="price"></div>
+  </div>
+   <div class="loading_block" style="display:block;">
+    <div class="img">{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+    <div class="title"></div>
+    <div class="price"></div>
+  </div>
+   <div class="loading_block" style="display:block;">
+    <div class="img">{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+    <div class="title"></div>
+    <div class="price"></div>
+  </div>
+     </div>
+  </div> 
+{% else %}
+
+{% endif %}
+
+{% if block.settings.product_col != blank %}
+<div class="holiday_product_slider" style="opacity:0;">   
+  
+{% for product in collections[block.settings.product_col].products %}
+  <li class=" ">
+    {% include 'product-card-grid', max_height: 270, product: product, show_vendor: section.settings.show_vendor %}
+    <div class="list-product-price">
+      {{product.price | money}}
+    </div>
+  </li>
+  {% endfor %}
+  
+</div>
+{% else %}
+        
+<div class="loader_block">
+     
+  <div class="loading_block">
+    <div class="img">{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+    <div class="title"></div>
+    <div class="price"></div>
+  </div>
+  
+    <div class="loading_block">
+    <div class="img">{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+    <div class="title"></div>
+    <div class="price"></div>
+  </div>
+  
+    <div class="loading_block">
+    <div class="img">{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+    <div class="title"></div>
+    <div class="price"></div>
+  </div>
+  
+    <div class="loading_block">
+    <div class="img">{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+    <div class="title"></div>
+    <div class="price"></div>
+  </div>
+  </div>
+
+
+  {% endif %}

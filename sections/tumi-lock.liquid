@@ -1,0 +1,127 @@
+
+<div class="menu-content">
+  <div class="container">
+     <h1>TUMI LOCK</h1>
+  </div>
+</div>
+<div class="tumi-content-wrapper">
+  <div class="container">
+    <ul>
+
+      {% for block in section.blocks %}
+      <li>
+        {% if block.settings.img_lock != blank %}
+        <picture class="image-wrap lazyload">
+          <img src="{{ block.settings.img_lock | img_url:'450x'  }} alt="{{block.settings.title_lock}}" />
+        </picture>
+        {% endif %}
+        <div class="inner_wrapper">
+          {% if block.settings.title_lock != blank %}
+            <div class="category-title">{{block.settings.title_lock}}</div>
+          {% endif %}
+          {% if block.settings.sub_title_lock != blank %}
+            <div class="category-lockName">{{block.settings.sub_title_lock}}</div>
+          {% endif %}  
+          {% if block.settings.button_title != blank %}
+            <div class="category-button">
+              <a href="JavaScript:void(0)" class="button-lock">{{block.settings.button_title}}</a>
+            </div>
+          {% endif %}
+        </div>
+        
+        <div class="tumi-pop-up modal">
+            <div class="modal-backdrop"></div>
+          <div class="modal-dialog-wrap">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                   <div class="modal-header">{{block.settings.popup_title}}  
+                      <button type="button" class="close">×</button>
+                    </div>
+                   {% if block.settings.img_modal != blank %} 
+                    <div class="model-content-inner">
+                        <div class="lock-instructions-list">
+                            <picture class="lock-instructions-img lazyload">
+                              <img src="{{ block.settings.img_modal | img_url:'450x'  }} alt="{{block.settings.img_modal}}" />
+                            </picture>
+                            <div class="lock-instructions-listings">
+                                {{block.settings.popup_content}}
+                            </div>
+                        </div>
+                    </div>
+                     {% endif %}
+                </div>
+            </div>
+          </div>
+        </div>
+
+        
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Tumi Lock",
+    "settings": [],
+    "blocks":[
+      {
+        "name":"tumi lock block",
+        "type":"tumiloack",
+        "settings":[
+          {
+          	"type":"image_picker",
+          	"id":"img_lock",
+          	"label":"Select image"
+           },
+          	{
+          	"type":"text",
+          	"id":"title_lock",
+          	"label":"Title"
+              },
+          	{
+          	"type":"text",
+          	"id":"sub_title_lock",
+          	"label":"Sub Title"
+          },
+          {
+          	"type":"text",
+          	"id":"button_title",
+          	"label":"Enter button name",
+            "default": "View Instructions"
+          },
+          {
+            "type": "header",
+            "content": "Modal content"
+          },
+          {
+          	"type":"text",
+          	"id":"popup_title",
+          	"label":"Modal Title"
+          },
+          {
+          	"type":"image_picker",
+          	"id":"img_modal",
+          	"label":"Select Modal image"
+          },
+          {
+          	"type":"richtext",
+          	"id":"popup_content",
+          	"label":"Modal Content "
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

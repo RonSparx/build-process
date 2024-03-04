@@ -1,0 +1,100 @@
+{% if block.settings.show %}
+<div data-section-id="{{ section.id }}" data-section-type="landing_teaser_slider-section">
+  <div class="landing_teaser_slider_all">
+    <div class="page-width">
+      <div class="landing_teaser_slider_items slider_{{block.id}} landing_carousel_css " data-autoplay="{{ block.settings.autoplay }}" data-autoplaySpeed="{{ block.settings.AutoPlay_sleed }}000" data-arrows="{{ block.settings.show_arrows }}">
+
+{% for i in (1..5) %}
+{% capture var_show %}show_{{i}}{% endcapture %}
+{% if block.settings[var_show] %}
+        <div>
+        {% capture img_position %}img_position_{{i}}{% endcapture %}
+        <div class="item item_{{i}} item_{{i}}_{{block.id}} image_position_{{ block.settings[img_position] }}">
+          {% capture var_link %}link_{{i}}{% endcapture %}
+           <span class="box_text">
+            {% capture title %}title_{{i}}{% endcapture %}
+            {% capture title_ar %}title_ar_{{i}}{% endcapture %}
+            {% capture text %}text_{{i}}{% endcapture %}
+            {% capture text_ar %}text_ar_{{i}}{% endcapture %}
+            {% capture link_text %}link_text_{{i}}{% endcapture %}
+            {% capture link_text_ar %}link_text_ar_{{i}}{% endcapture %}
+
+            {%- if block.settings[title] != blank -%}<span class="title css_EN">{{ block.settings[title] }}</span>{%- endif -%}
+            {%- if block.settings[title_ar] != blank -%}<span class="title css_AR">{{ block.settings[title_ar] }}</span>{%- endif -%}
+            {%- if block.settings[text] != blank -%}<span class="text css_EN">{{ block.settings[text] }}</span>{%- endif -%}
+            {%- if block.settings[text_ar] != blank -%}<span class="text css_AR">{{ block.settings[text_ar] }}</span>{%- endif -%}
+
+            {%- if block.settings[var_link] != blank -%}<a href="{{block.settings[var_link]}}">{%- endif -%}
+            {%- if block.settings[link_text] != blank -%}<span class="button css_EN">{{ block.settings[link_text] }} {% include 'arrow_right' %}</span>{%- endif -%}
+            {%- if block.settings[link_text_ar] != blank -%}<span class="button css_AR">{{ block.settings[link_text_ar] }} {% include 'arrow_right' %}</span>{%- endif -%}
+            {%- if block.settings[var_link] != blank -%}</a>{%- endif -%}
+          </span>
+
+          <span class="image">{%- if block.settings[var_link] != blank -%}<a href="{{block.settings[var_link]}}"></a>{%- endif -%}</span>
+         
+      </div>
+      </div>
+{%- endif -%}
+{% endfor %}
+
+    </div>
+  </div>
+</div><!-- social_all -->
+</div>
+
+
+
+<style>
+{% for i in (1..5) %}
+
+{% capture image_desktop1 %}image_desktop_item{{i}}_1{% endcapture %}
+{% capture image_desktop2 %}image_desktop_item{{i}}_2{% endcapture %}
+{% capture image_tablet %}image_tablet_{{i}}{% endcapture %}
+{% capture image_mob %}image_mob_{{i}}{% endcapture %}
+.landing_teaser_slider_items .item_{{i}}_{{block.id}} .image {background-image: url({{ block.settings[image_desktop1] | img_url: '625x' }});}
+{%- if block.settings[image_desktop2] != blank -%}
+@media screen and (max-width: 1450px) {.landing_teaser_slider_items .item_{{i}}_{{block.id}} .image {background-image: url({{ block.settings[image_desktop2] | img_url: '625x' }});}}
+{%- endif -%}
+{%- if block.settings[image_tablet] != blank -%}
+@media screen and (max-width: 1024px) {.landing_teaser_slider_items .item_{{i}}_{{block.id}} .image {background-image: url({{ block.settings[image_tablet] | img_url: '360x' }});}}
+{%- endif -%}
+{%- if block.settings[image_mob] != blank -%}
+@media screen and (max-width: 768px) {.landing_teaser_slider_items .item_{{i}}_{{block.id}} .image {background-image: url({{ block.settings[image_mob] | img_url: '768x' }});}}
+{%- endif -%}
+
+{% endfor %}
+</style>
+
+
+
+<script>
+$(document).ready(function() {
+  
+  var prod_carousel_items_js_1_autoplay = false;
+  if ( $('.landing_teaser_slider_items.slider_{{block.id}}').attr('data-autoplay') == 'true' ) {
+    prod_carousel_items_js_1_autoplay = true;
+  }
+  var landing_slider_arrows = false;
+  if ( $('.landing_teaser_slider_items.slider_{{block.id}}').attr('data-arrows') == 'true' ) {
+    landing_slider_arrows = true;
+  }
+  $('.landing_teaser_slider_items.slider_{{block.id}}').slick({
+    dots: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: prod_carousel_items_js_1_autoplay,
+    autoplaySpeed: $('.landing_teaser_slider_items.slider_{{block.id}}').attr('data-autoplaySpeed'),
+    arrows: landing_slider_arrows,
+  });
+
+
+
+
+
+
+});
+</script>
+
+
+{% endif %}
+

@@ -1,0 +1,51 @@
+<section class="common-vms explor-section">
+  <div class="custom-container">
+    <ul>
+      {% for block in section.blocks %}
+      <li data-aos="fade-up">
+        <div class="explor-content">
+          <strong>{{ block.settings.text }}</strong>
+          <a class="btn-ab" href="{{  block.settings.btnlink }}">{{  block.settings.btnlabel }}</a>
+        </div>  	
+        <div class="explor-wrapper">
+          <img src="{{ block.settings.desk_img | img_url: "original"}}" alt="banner" style="width:auto;" />
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% schema %}
+  {
+     "name": "tumi-store-8",
+      "blocks": [
+      {
+        "type": "blocks",
+        "name": "text",
+ 		"limit": 2,
+        "settings": [
+        {
+            "type": "image_picker",
+            "id": "desk_img",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Title"
+          },
+          {
+        	"type": "text",
+        	"id": "btnlabel",
+        	"label": "button Label"
+      	},
+	 	{
+        	"type": "url",
+        	"id": "btnlink",
+        	"label": "button Link"
+      	}
+        ]
+      }      
+    ]
+  }
+{% endschema %}

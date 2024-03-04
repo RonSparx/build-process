@@ -1,0 +1,24 @@
+{% comment %} Automatically generated file by Smartzer, do not change {% endcomment %}
+{% assign projectId = section.settings.project_id_by_name %}
+
+{%- unless projectId == blank -%}
+  <section>
+    <div
+      id="{{section.id}}"
+      class="smrtzrEmbed"
+      data-embed="{{ section.settings.embed_method }}"
+      data-lang="{{ localization.language.iso_code }}"
+      data-addtocart="{{ section.settings.add_to_cart_enabled }}"
+      data-autoplay="{{ section.settings.autoplay }}"
+      data-loop="{{ section.settings.loop }}"
+      data-projectid="{{ projectId }}"
+      data-width="{{ section.settings.project_size }}"
+      data-height="{{ section.settings.section_height }}"
+      data-titletext="{{ section.settings.title_text }}"
+      data-triggerpadding="{{ section.settings.trigger_padding }}"
+      data-showbuynow="true"
+      data-inlineawaitconfirmation="true"
+      data-extraurlparams="curr={{ localization.country.currency.iso_code }}"
+    ></div>
+  </section>
+{%- endunless -%}

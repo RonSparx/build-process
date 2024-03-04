@@ -1,0 +1,205 @@
+<style>
+  .product-unit-image {
+      position: relative;
+  }
+  .product-unit-image img {
+      display: block;
+  }
+  .product-unit-image .product-unit-links {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      left: 0;
+  }
+  .product-unit-content {
+      padding: 60px 16px;
+      margin: auto 0;
+      min-height: 450px;
+  }
+  .product-unit-content h3 {
+      font-size: 24px;
+      font-family: 'Proxima Nova';
+      margin-bottom: 12px;
+  }
+  .product-unit-wrap {
+      margin-top: 40px;
+  }
+  .product-unit-description {
+      font-size: 15px;
+      color: #595959;
+      line-height: 1.6;
+  }
+  .product-unit-description p {
+      margin-bottom: 28px;
+  }
+  .product-unit-btn {
+      font-size: 15px;
+      padding: 0 20px;
+      margin: 0;
+      margin-bottom: 12px;
+      min-width: 128px;
+      display: flex;
+      text-align: center;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+  }
+  .product-unit-wrap .owl-dots {
+      display: none;
+  }
+
+  @media(min-width:575px){
+    .product-unit-items {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .product-unit-image {
+        max-width: 50%;
+        width: 100%;
+    }
+    
+    .product-unit-content {
+        max-width: 50%;
+        width: 100%;
+    }
+    .image-align-right {
+      flex-direction: row-reverse;
+    }
+  }
+
+
+  @media(min-width:768px){
+    .product-unit-content {
+        padding: 60px 32px;
+    }
+    .product-unit-wrap .owl-next,
+    .product-unit-wrap .owl-prev
+    {
+       font-size:0px;
+       right:0;
+       position: absolute;
+       top: 50%;
+       width: 30px;
+    }
+    
+    .product-unit-wrap .owl-prev{
+       right: auto;
+       left:10px;
+    }
+    .product-unit-wrap .owl-next:before{
+        width: 20px;
+        height: 12px;
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjEiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAyMSAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0xOS43NTQzIDZIMCIgc3Ryb2tlPSIjRkZGRkZGIi8+DQo8cGF0aCBkPSJNMTQuOTAwNCAxTDE5Ljc1NDggNkwxNC45MDA0IDExIiBzdHJva2U9IiNGRkZGRkYiLz4NCjwvc3ZnPg0K) !important;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        cursor: pointer;
+        content: '';
+            
+    }
+    .product-unit-wrap .owl-prev:before{
+        width: 20px;
+        height: 12px;
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjEiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAyMSAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0xOS43NTQzIDZIMCIgc3Ryb2tlPSIjRkZGRkZGIi8+DQo8cGF0aCBkPSJNMTQuOTAwNCAxTDE5Ljc1NDggNkwxNC45MDA0IDExIiBzdHJva2U9IiNGRkZGRkYiLz4NCjwvc3ZnPg0K) !important;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        cursor: pointer;
+        content: '';
+           transform: scaleX(-1);
+    }
+    .product-unit-wrap .owl-nav {
+        display: block;
+    }
+    .product-unit-wrap .disabled {
+        display: none;
+    }
+    html[lang="ar"] .product-unit-wrap .owl-next {
+        right: auto;
+        left: 10px;
+        transform: scaleX(-1);
+    }
+    html[lang="ar"] .product-unit-wrap .owl-prev {
+        right: 10px;
+        left: auto;
+        transform: scaleX(-1);
+    }
+  }
+
+   @media(min-width:992px){
+     .product-unit-content {
+          padding: 0 120px 0 108px;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+           justify-content: center;
+      }
+     .product-unit-wrap .owl-next {
+          right: 40px;
+      }
+      .product-unit-wrap .owl-prev {
+          left: 40px;
+      }
+     .product-unit-content h3 {
+          font-size: 30px;
+          margin-bottom: 20px;
+      }
+     .product-unit-wrap {
+          margin-top: 60px;
+      }
+
+     html[lang="ar"] .product-unit-wrap .owl-next {
+        left: 40px;
+    }
+    html[lang="ar"] .product-unit-wrap .owl-prev {
+        right: 40px;
+    }
+
+   } 
+  
+</style>
+
+
+{% if product.metafields["custom_fields"]["product_unit_carousel"] != blank %}
+<div class="product-unit-wrap">
+  <div class="owl-carousel product-unit-slider">
+     {% for item in product.metafields["custom_fields"]["product_unit_carousel"] %}
+    <div class="item product-unit-items {% if item["image_position"] != blank %} image-align-{{ item["image_position"] }} {% endif %}" {% if item["background_color"] != blank %} style="background-color:{{ item["background_color"] }}" {% endif %}>
+      {% if item["image"] != blank %}
+      <div class="product-unit-image">
+        {{ item["image"] }}
+        {% if item["collection_url"] != blank %}
+          <a href="{{ item["collection_url"] }}" class="product-unit-links"></a>
+        {% endif %}
+      </div>
+      {% endif %}
+      <div class="product-unit-content">
+        <div>
+        {% if item["heading"] != blank %}
+        <h3 {% if item["heading_color"] != blank %} style="color:{{ item["heading_color"] }}" {% endif %}>{{ item["heading"] }}</h3>
+        {% endif %}
+       {% if item["description"] != blank %}
+        <div class="product-unit-description" {% if item["description_color"] != blank %} style="color:{{ item["description_color"] }}" {% endif %}>
+          {{ item["description"] }}
+        </div>
+        {% endif %}
+        {% if item["button"] != blank %}
+        <div class="product-unit-cta">
+          <a href="{% if item["button_link"] != blank %} {{ item["button_link"] }} {% endif %}"
+            style=" {% if item["button_text_color"] != blank %}  color: {{ item["button_text_color"] }};  {% endif %} {% if item["button_background_color"] != blank %} background-color: {{ item["button_background_color"] }} {% endif %}"
+            class="product-unit-btn">{{ item["button"] }}
+          </a>
+        </div>
+        {% endif %}
+      </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %} 

@@ -1,0 +1,72 @@
+ 
+{% comment %} 
+	<div class="page-width">
+  <div class="grid">
+    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+      <div class="section-header text-center">
+        <h1>{{ page.title }}</h1>
+      </div>
+
+      <div class="rte">
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+</div>
+{% endcomment %}
+
+{% section 'holiday-banner' %}
+{% section 'holiday' %} 
+ 
+<style>
+  #holidays{
+    padding:0 30px;
+  }
+  .slick-prev {
+    left: 0; z-index:9;
+  }
+  .slick-next{
+    right:0px; z-index:9;
+  }
+   
+
+
+
+</style>
+ 
+ 
+  <script>
+    $(document).ready(function(){
+ 
+      var sliderCount = 4;
+      
+      if($(window).width() >480 && $(window).width() <767){
+        
+        sliderCount = 3;
+
+} else if ($(window).width() <480) {
+  sliderCount = 1;
+
+} 
+      
+      $('.holiday_product_slider').slick({
+      dots: false,
+      infinite: true,
+      speed: 300,
+      slidesToShow:sliderCount,
+      slidesToScroll: 1, 
+    });
+      
+      // loading content
+setTimeout(function(){
+
+jQuery('.holiday_product_slider').css('opacity',1);
+jQuery('.loader_new').hide();
+
+}, 2000)
+      
+    });
+     
+       
+  
+</script> 

@@ -1,0 +1,320 @@
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
+<script type="text/javascript">
+  var productTags = {{ product.tags | json }},
+    productType = '{{ product.type }}',
+    productImages = {{ product.images | json }},
+    products = {{ product.collection.products['black-dior-and-rimowa-personal-clutch-in-aluminum-and-grained-calfskin'] | json }};
+</script>
+
+
+{{ 'owl.carousel.min.css' | asset_url | stylesheet_tag }}
+{{ 'jquery.fancybox.min.css' | asset_url | stylesheet_tag }}
+{{ 'pdp-style.css' | asset_url | stylesheet_tag }}
+
+<div class="pdp-main">
+  <div class="custom-container">
+  {% section 'product-template' %}    
+  {% section 'pdp-tabs' %}
+  </div>
+   {% render 'pdp-video' %}
+   {% render 'lifestyle-images' %}
+  <div class="custom-container">
+     {% include 'pro_360' %}
+  {% render 'product-unit-carousel' %}
+  {% section 'included-purchase' %}  
+  {% section 'product-recommendations' %} 
+  {% section 'product-recently-view' %}
+  </div>
+  
+</div>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script src="{{ 'owl.carousel.min.js' | asset_url }}" defer></script>
+<script src="{{ 'jquery.fancybox.min.js' | asset_url }}"></script>
+<script src="{{ 'pdp-script.js' | asset_url }}"></script>
+
+
+
+<script>
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  theme.productStrings = {
+    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  }
+</script>
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<script>
+
+  $AXIS("loadAxisButton", {
+    productId: "{{product.metafields.custom.vertebrae_sku}}",
+    container: "#tumi_axis",
+    alt: 1,
+    initCallback: "axisStyle",
+    enabledCallback: "enabledCallback",
+    clickCallback: "closeToolTip",
+    options: {
+      forcedLanguage: "english",
+    }
+  });
+  //   $AXIS("loadAxisButton", {
+  //   productId: "{{product.metafields.custom.vertebrae_sku}}",
+  //   container: "#axis_player_btn",
+  //   enabledCallback: "enabledCallback",
+  //   clickCallback: "closeToolTip",
+  //   options: {
+  //     forcedLanguage: "english",
+  //   }
+  // });
+  // $AXIS("loadAxisPlayer", {
+  //   productId: "{{product.metafields.custom.vertebrae_sku}}",
+  //   container: "#player_axis",
+  //   enabledCallback: "enabledCallback",
+  //   clickCallback: "closeToolTip",
+  //   options: {
+  //     forcedLanguage: "english",
+  //   }
+  // });
+
+  function axisStyle(){
+    let axisBtn = document.querySelector("#ar-button-container");
+    let pdpQRContainer = document.querySelector(".axis-container");
+    let axisFirstDiv = document.querySelector(".axis-container div:first-child");
+    let axisIframe = document.querySelector(".axis-container div:first-child iframe");
+    if (window.matchMedia("(min-width: 1200px)").matches) {
+      axisFirstDiv.style.marginBottom = "-9rem";
+      axisIframe.style.height = "inherit";
+    } else {
+      axisFirstDiv.style.marginBottom = "-3rem";
+      axisIframe.style.height = "50px";
+    }
+  }
+  let pdpThumb3d = document.querySelector(".product-thumb-3d");
+  let pdpAxis3d = document.querySelector(".axis-player");
+  let pdpFeaturedMedias = document.querySelector(".pdp-gal-view");
+  let skThumb = document.querySelectorAll(".product-single__thumbnails-item");
+
+  let showAxisPlayer = function(){
+    pdpAxis3d.classList.remove("hide");
+    pdpFeaturedMedias.classList.add("hide");
+  }
+  let hideAxisPlayer = function(){
+    pdpAxis3d.classList.add("hide");
+    pdpFeaturedMedias.classList.remove("hide");
+  }
+  skThumb.forEach(function(obj){
+    obj.addEventListener("click", hideAxisPlayer);
+  });
+  pdpThumb3d.addEventListener("click", showAxisPlayer);
+  document.querySelector("#pro_thumb_3d").addEventListener("click",function(e){
+    e.preventDefault();
+  });
+  
+  function closeToolTip() {
+    console.log("clicked!");
+  }
+  function enabledCallbackFunction() {
+    console.log("This fires when the button experience for the selected sku and clientEnvironment exists. It is often used to make furtherpage adjustments with the expectation that"
+    );
+  }
+  
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "url": {{ shop.url | append: product.url | json }},
+  {%- if product.featured_media -%}
+    {%- assign media_size = product.featured_media.preview_image.width | append: 'x' -%}
+    "image": [
+      {{ product.featured_media | img_url: media_size | prepend: "https:" | json }}
+    ],
+  {%- endif -%}
+  "description": {{ product.description | strip_html | json }},
+  {%- if current_variant.sku != blank -%}
+    "sku": {{ current_variant.sku | json }},
+  {%- endif -%}
+  "brand": {
+    "@type": "Thing",
+    "name": {{ product.vendor | json }}
+  },
+  "offers": [
+    {%- for variant in product.variants -%}
+      {
+        "@type" : "Offer",
+        {%- if variant.sku != blank -%}
+          "sku": {{ variant.sku | json }},
+        {%- endif -%}
+        "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+        "price" : {{ variant.price | divided_by: 100.00 | json }},
+        "priceCurrency" : {{ cart.currency.iso_code | json }},
+        "url" : {{ shop.url | append: variant.url | json }}
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+
+<script type="text/javascript">
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+  event: 'Product Detail View',
+  ecommerce: {
+    currencyCode: '{{cart.currency.iso_code}}',
+    detail: {
+      actionField: {
+        list: '{{collection.title}}'
+      },
+      products: [{
+        id: '{{product.id}}',
+        name: '{{product.handle}}',
+        variant: '{{current_variant.sku}}',
+        brand: '{{shop.name}}',
+        category: '{{product.collections|map:"title"|json}}',
+        price: '{{product.price | money_without_currency | remove: ","}}'
+      }]
+    }
+  }
+});
+</script>
+
+
+{% comment %}// sticky Add to cart btn js // {% endcomment %}
+<script>
+
+ let addBtnCta = document.querySelector("button.pdp-atc-btn.btn.add-to-cart");
+addBtnCta.addEventListener("click", () => {
+    let eventCta = addBtnCta.querySelector(".hide");
+    console.log(addBtnCta, "addBtnCta");
+    eventCta.classList.remove("hide");
+    addBtnCta.querySelector("span[data-add-to-cart-text]").style.display = "none";
+
+    const myTimeout = setTimeout(myGreeting, 2000);
+
+    function myGreeting() {
+        eventCta.classList.add("hide");
+        addBtnCta.querySelector("span[data-add-to-cart-text]").style.display = "block";
+    }
+
+});
+window.addEventListener('scroll', function() {
+    let HeaderPdpHeight = document.querySelector("#shopify-section-header").offsetHeight;
+    document.querySelector(".product-sticky-bar").style.top = HeaderPdpHeight + "px";
+})
+window.addEventListener("DOMContentLoaded", (event) => {
+    document.querySelector(".product-sticky-bar").style.display = "none";
+
+    // header height fixes //
+    // window.addEventListener("resize", (event) => {
+    //    HeaderPdpHeight =  document.querySelector("#shopify-section-header").offsetHeight;
+    //    document.querySelector(".product-sticky-bar").style.top = HeaderPdpHeight + "px";
+    // });
+})
+
+
+
+//   function myFunction(mediaScreenW) {
+//   if (mediaScreenW.matches) { // If media query matches
+//     let desktopTop = document.querySelector(".notify_me.btn.product-form__cart-submit").offsetTop;
+//   $(window).scroll(function(){
+//       if ($(this).scrollTop() > desktopTop) {
+//          $('.product-sticky-bar').addClass('sticky-atc');
+//         $(".product-sticky-bar").css("display", "flex")
+//         window.innerWidth > 768 ? $(".sticky-atc").css("display", "flex") : $(".sticky-atc").css("display", "none")
+//       } else {
+//          $('.product-sticky-bar').removeClass('sticky-atc');
+//          $(".product-sticky-bar").css("display", "none")
+//       }
+//   });
+//   }else{
+//       let mobileTop = document.querySelector(".notify_me.btn.product-form__cart-submit").offsetTop;
+//       scrollEvent();
+//       window.addEventListener("resize", (event) => {
+//           if(window.innerWidth <= 749 ){
+//            scrollEvent();
+//             // location.reload();
+//         }
+//     });
+
+//   }
+// }
+
+// var mediaScreenW = window.matchMedia("(min-width: 768px)")
+// myFunction(mediaScreenW) // Call listener function at run time
+// mediaScreenW.addListener(myFunction) // Attach listener function on state changes
+
+//  function scrollEvent(){
+//    $(window).scroll(function(){
+//           if ($(this).scrollTop() > 900) {
+//              $('.product-sticky-bar').addClass('sticky-atc');
+//              $('.product-sticky-bar').addClass('fadeInDown')
+//             $(".product-sticky-bar").css("display", "block")
+//              $(".product-sticky-bar").attr("style", "display:block");
+//           } else {
+//              $('.product-sticky-bar').removeClass('sticky-atc');
+//              $(".product-sticky-bar").css("display", "none")
+//           }
+//       });
+//    }
+
+
+if (window.innerWidth >= 768) {
+    let addToCartBtn = document.querySelector(".tabby-tamara-conatiner");
+    document.querySelector(".product-sticky-bar").style.display = "none";
+    const observerBtn = new IntersectionObserver((item) => {
+        console.log(item[0].isIntersecting);
+        if (item[0].isIntersecting == false) {
+            document.querySelector(".product-sticky-bar").style.display = "flex";
+        } else {
+            document.querySelector(".product-sticky-bar").style.display = "none";
+        }
+    })
+    observerBtn.observe(addToCartBtn);
+}
+
+//  if(window.innerWidth <= 767){
+//   document.querySelector(".product-sticky-bar").style.display = "none";
+//   let addToCartBtnMob = document.querySelector(".product-form__item .product-form__cart-submit");
+//      const observerBtnMob = new IntersectionObserver((item) =>{
+//      console.log(item);
+//       if(item[0].isIntersecting == false){
+//           document.querySelector(".product-sticky-bar").style.display = "block";
+//       }else{
+//            document.querySelector(".product-sticky-bar").style.display = "none";
+//       }
+//     })
+//   observerBtnMob.observe(addToCartBtnMob);
+
+// }
+
+
+if (window.innerWidth <= 767) {
+    $(document).ready(function() {
+        var $stickyButton = $('.product-form__item--submit');
+        var buttonTop = $stickyButton.offset().top; // Button's position from top
+
+        $(window).scroll(function() {
+            var scrollTop = $(window).scrollTop();
+
+            if (scrollTop >= buttonTop) {
+                $(".product-sticky-bar").css("display", "block");
+                // Perform your action here
+            } else {
+                $(".product-sticky-bar").css("display", "none");
+            }
+        });
+    });
+}
+
+
+                     
+</script>
+

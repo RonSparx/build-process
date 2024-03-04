@@ -1,0 +1,196 @@
+<style>
+  .sale-timer ul {
+    background-color: {{ section.settings.color_bg }};
+    text-align: center;
+    padding: 7px 0;
+    min-height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  span.count-text{
+    margin-top: 2px;
+    margin-right: 10px;
+  }
+  .sale-timer ul li:not(:first-child) {
+  	display:none;
+  }
+  .sale-timer ul li,
+  .sale-timer ul li a,
+  span.count-text
+  {
+    font-size: 13px;
+    color: {{ section.settings.color_text }};
+  }
+  .sale-timer ul li a:hover{
+  	color: {{ section.settings.color_text }};
+  }
+  
+  
+  @media(max-width:640px){
+  	.sale-timer ul li{
+        font-size: 11px;
+        margin-right:8px;
+    }
+    .sale-timer ul li a, span.count-text{
+        font-size: 11px;
+    }
+    .sale-timer ul li:last-child{
+      margin-right:0px;
+    }
+    span.count-text{
+      display:none;
+    }
+    
+  }
+  
+  
+  @media(max-width:350px){
+    .sale-timer ul li, 
+    .sale-timer ul li a,
+    span.count-text
+    {
+      font-size: 9px;
+    }
+  }
+  .labels li {
+    text-align: center;
+    display: inline-flex !important;
+    margin-right: 5px;
+}
+  .labels li:last-child{
+    margin-right:0px;
+  }
+.countdown-time {
+    min-width: 18px;
+}
+.countdown-detail {
+  padding-left:1px;
+}
+
+</style>
+
+{%- if section.settings.showconten -%}
+  {% if section.settings != blank %}
+  <div class="sale-timer">
+  <div class="countdown-label-field"> 
+     <ul>
+      {% if section.settings.sale-staring != blank  %}
+        <span class="count-text">{{ section.settings.sale-staring }} </span>
+      {% endif %}
+       <div class="drop-date-static" style="display:none">{{section.settings.coming-date | replace: ".", "."}}</div>
+   
+      <div class="labels">
+          <li>
+            <div id="days" class="countdown-time">00</div>
+            <div class="countdown-detail">Days</div>
+          </li>
+         <li>
+           <div id="hours" class="countdown-time">00</div>
+           <div class="countdown-detail">Hours</div>
+          </li>
+          <li>
+            <div id="minutes" class="countdown-time">00</div>
+            <div class="countdown-detail">Minutes</div>
+          </li>
+          <li>
+            <div id="seconds" class="countdown-time">00</div>
+            <div class="countdown-detail">Seconds</div>
+          </li>
+        
+      </div>
+        </ul>
+     </div>
+  
+  </div>
+  
+  
+  {% endif %}  
+{%- endif -%}
+
+
+<script>
+
+  let newDate2 = document.querySelector('.drop-date-static').innerHTML;
+ newDate2 = newDate2.split('.').join("/");
+ let newDate = (Date.parse(newDate2));
+
+      var timer;
+      var now = new Date();
+      var offset = now.getTimezoneOffset() + 60;
+      var then = new Date(newDate);
+      var compareDate = new Date(then) - now.getDate() - offset * 60 * 1000;
+      timer = setInterval(function () {
+        timeBetweenDates(compareDate);
+      }, 1000);
+
+      function timeBetweenDates(toDate) {
+        var dateEntered = new Date(toDate);
+        var now = new Date();
+        var difference = dateEntered.getTime() - now.getTime();
+
+        if (difference <= 0) {
+          document.querySelector('#days').innerHTML = "0";
+          document.querySelector('#hours').innerHTML = "0";
+          document.querySelector('#minutes').innerHTML = "0";
+          document.querySelector('#seconds').innerHTML = "0";
+        } else {
+          var seconds = Math.floor(difference / 1000);
+          var minutes = Math.floor(seconds / 60);
+          var hours = Math.floor(minutes / 60);
+          var days = Math.floor(hours / 24);
+
+          hours %= 24;
+          minutes %= 60;
+          seconds %= 60;
+
+          document.querySelector('#days').innerHTML = days;
+          document.querySelector('#hours').innerHTML = hours;
+          document.querySelector('#minutes').innerHTML = minutes;
+          document.querySelector('#seconds').innerHTML = seconds;
+        }
+      }
+</script> 
+
+
+{% schema %}
+{ 
+   "settings": [
+       {
+        "type": "checkbox",
+        "id": "showconten",
+        "label": "Show content",
+        "default": false
+       },
+      {
+      "type": "color",
+      "id": "color_bg",
+      "label": {
+      "en": "Bar"
+      },
+      "default": "#dddddd"
+      },
+      {
+      "type": "color",
+      "id": "color_text",
+      "label": {
+      "en": "Text"
+      },
+      "default": "#000000"
+      },
+      {
+       "type":"text",
+        "id":"sale-staring",
+        "label":"Sale Staring text"
+      },
+      {
+        "type": "text",
+        "id": "coming-date",
+        "label": "Date",
+        "default": "01.13.23",
+        "info": "e.g. mm-dd-yyyy"
+        } 
+       
+   ]
+}
+{% endschema %}

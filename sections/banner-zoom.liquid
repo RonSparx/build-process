@@ -1,0 +1,26 @@
+<div id="about-the-gear" data-w-id="1a6a8109-e92e-986f-9a70-6fdc456a553b" class="collab-section">
+  <div data-w-id="1a6a8109-e92e-986f-9a70-6fdc456a5554" class="end-section-wrapper">
+    <img
+         src="{%if section.settings.banner-img != blank%} {{section.settings.banner-img | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c83d97138815b159b0ce7_model-group-30may.jpg {%endif%}"
+         loading="lazy"
+         sizes="100vw"
+         srcset="{%if section.settings.banner-img != blank%} {{section.settings.banner-img | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c83d97138815b159b0ce7_model-group-30may.jpg {%endif%}"
+         alt=""
+         class="end-section-image"
+         style="will-change: width, height; width: 80%; height: 80%;"
+         />
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Banner Zoom",
+    "settings": [
+		{
+			"type": "image_picker",
+			"id": "banner-img",
+			"label": "Image"
+		}
+	]
+  }
+{% endschema %}

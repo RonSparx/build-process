@@ -1,0 +1,24 @@
+<div class="product-recommendations product_recommend-slider-wrapper" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=14&intent=related">
+ {%- if recommendations.performed? and recommendations.products_count > 0 -%}
+    {% if recommendations.intent == 'related' %}
+     <div class="recommend-slider-title"> <h4>You may also like</h4></div>
+    {% endif %}
+
+    <div id="product-recommendation-slider" class="slides owl-carousel">
+     {%- for product in recommendations.products -%}
+       {% render 'product-card', product:product %}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{% javascript %}
+ 
+  
+{% endjavascript %}
+{% schema %}
+  {
+    "name": "Product recommendations",
+    "settings": []
+  }
+{% endschema %}

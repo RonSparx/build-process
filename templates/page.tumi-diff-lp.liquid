@@ -1,0 +1,54 @@
+{% section 'tumi-diff-slideshow' %}
+{% section 'diff-boxes' %}
+{% render 'tumi-diff-loader' %}
+{% section 'diff-design-excellence' %}
+{% section 'tumi-diff__image-slider' %}
+{% section 'diff-technical-innovations-video' %}
+{% section 'tumi-diff_tech-slider' %}
+
+
+{% section 'tumi-diff__image-content' %}
+{% section 'diff-superior-quality-video' %}
+{% section 'diff_before-crossing' %}
+{% section 'diff-at-your-service' %}
+{% section 'diff-at-your-service-slider' %}
+{% section 'diff-innovative' %}
+{% section 'tumi-diff-material-box' %}
+{% section 'tumi-diff-article-slider' %}
+
+
+<script>
+  let circlePlayDesktopBtn = document.querySelectorAll(".design_excellence-video");
+  let displayVideo = document.querySelectorAll(".excellence_playButton.diff_tech_button");
+  console.log("circlePlayDesktopBtn",circlePlayDesktopBtn);
+   for(let item of circlePlayDesktopBtn) {
+      item.addEventListener("click", function(e){
+      //play video
+      var playVideo = item.firstElementChild;
+      let playedvideo = playVideo.play();
+        playVideo.setAttribute("controls","true");
+      // hide button
+        item.lastElementChild.style.display = "none";
+      
+     })
+  }
+  let videoSam = document.querySelectorAll(".excellence-video.diff_tech_video");
+  for(var i=0; i<videoSam.length; i++)
+ videoSam[i].addEventListener('play', function(){pauseAll(this)}, true);
+
+function pauseAll(elem){
+    for(var i=0; i<videoSam.length; i++){
+      console.log(videoSam[i].nextSibling.nextElementSibling);
+       if(videoSam[i] == elem) continue;
+       if(videoSam[i].played.length > 0 && !videoSam[i].paused){
+         videoSam[i].pause();
+       } 
+      if(videoSam[i].paused){
+         videoSam[i].nextSibling.nextElementSibling.style.display = "block";
+         videoSam[i].removeAttribute("controls");
+       }
+
+   }
+}
+
+</script>

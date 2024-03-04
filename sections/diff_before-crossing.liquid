@@ -1,0 +1,80 @@
+{{ 'diff_before-crossing.css'|asset_url|stylesheet_tag }}
+  <div class="image-content-container image-listing-content ">
+    <div class="page-width">
+        <div class="image-box">
+          {% if section.settings.box_image != blank %}
+           <img src="{{ section.settings.box_image | img_url: 'master'}}" alt="">  
+          {% else %}
+           <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/SS23_19DExtTrip_PC_Lilac-and-19DIntlExpCO_Lilac_1965_v1_CMYK_300dpi1.jpg?v=1678256803" />
+          {% endif %}
+        </div>
+      <div class="content-box">
+        <h2>{{ section.settings.box_title }}</h2>
+        <div class="content-des">
+          {{ section.settings.box_des }}
+        </div>
+        <div class="content-listing">
+          <ul>
+            {% for block in section.blocks %}
+              <li>
+                <h3>{{ block.settings.diff_before_title }}</h3>
+                <span>{{ block.settings.diff_before_des }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+     </div>
+  </div>
+
+{% schema %}
+  {
+  "name": "Image listing Content",
+  "settings": [
+    {
+     "type":"image_picker",
+  	 "id":"box_image",
+  	 "label": "Banner Image"
+     },
+    {
+     "type": "text",
+     "id": "box_title",
+     "label": "Title",
+     "default":"Before crossing the finish line"
+   },
+   {
+     "type": "richtext",
+     "id": "box_des",
+     "label": "Description",
+     "default": "<p>At TUMI, all products are put through a combination of 30 unique tests, many of which we pioneered.</p>"
+   }
+  ],
+    "blocks": [
+     {
+       "name": "Innovation",
+       "type": "slide",
+       "settings": [
+         {
+           "type": "text",
+           "id": "diff_before_title",
+           "label": "Title",
+           "default": "Tumble Test"
+         },
+        {
+           "type": "text",
+           "id": "diff_before_des",
+           "label": "Description",
+           "default": "Bags tossed in a tumbler 125 times"
+         }
+        
+       ]
+     }
+   ],
+  "presets": [
+      {
+       "name": "Image-listing-content"
+      }
+    ]
+}
+{% endschema %}
+ 

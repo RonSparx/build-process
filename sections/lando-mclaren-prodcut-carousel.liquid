@@ -1,0 +1,109 @@
+<div class="page-width">
+
+   {% if section.settings.tera_title_collection != blank %}
+  <div class="carousel-title">
+      	<h3>{{ section.settings.tera_title_collection }} </h3>
+  </div>
+   {% endif %}
+
+  <ul class="degree_product" style="opacity:0;">   
+  {% for product in collections[section.settings.product_col].products %}
+    <li class=" ">
+      {% include 'product-card-grid', max_height: 270, product: product, show_vendor: section.settings.show_vendor %}
+      <div class="list-product-price">
+        {{product.price | money}}
+      </div>
+    </li>
+    {% endfor %}
+    
+  </ul>
+</div>
+
+  <script>
+    $(document).ready(function(){
+      var sliderCount = 3;
+      if($(window).width() >480 && $(window).width() <767){
+        sliderCount = 3;
+        } else if ($(window).width() <480) {
+          sliderCount = 2;
+        } 
+      $('.degree_product').slick({
+        dots: false,
+        arrows:true,
+        infinite: true,
+        speed:1300,
+        slidesToShow:sliderCount,
+        slidesToScroll: 1, 
+      });
+      
+      
+      
+      // loading content
+          setTimeout(function(){
+          jQuery('.degree_product').css('opacity',1);
+          jQuery('.loader_new').hide();
+          }, 2000)
+    });
+
+  
+</script> 
+
+<style>
+  .holiday_product_slider{
+    padding:0 30px;
+    margin:30px 0;
+  }
+  .dots{
+    display:none;
+  }
+   .carousel-title{
+     text-align:center;
+      margin-top:30px;
+   }
+  .degree_product{
+    padding:30px 20px 50px;
+  }
+  .degree_product .slick-prev{
+        left:0px;
+  }
+  .degree_product .slick-next{
+        right:0px;
+  }
+/*   .product-card__title, .list-product-price{
+    text-align: left;
+  } */
+  
+
+
+
+</style>
+ 
+ 
+{% schema %}
+    {
+        "name": "lando prodcut carousel",
+        "settings": [
+          {
+            "type":"text",
+            "id":"tera_title_collection",
+            "label": "collection title"
+          },
+          {
+            "type": "collection",
+            "id": "product_col",
+            "label": "Select Collection"
+          }
+        ],
+	"presets": [
+     {
+       "name": "lando prodcut carousel"
+     }
+   ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

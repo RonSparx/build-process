@@ -1,0 +1,231 @@
+
+<style>
+  .hub-feature-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.hub-feature-col {
+    width: calc(33.3% - 15px);
+  margin-bottom: 50px;
+}
+
+.hub-feature-col.hub-feature-media {
+    width: calc(66% - 15px);
+      position: relative;
+      position: relative;
+    padding-top: 45%;
+     
+}
+  .hub-feature-col.hub-feature-media .hub-feature-image{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+} 
+.hub-feature-mobile {
+    display: none;
+}
+
+@media all and (max-width:767px){
+  .hub-feature-col.hub-feature-media {
+      display: none;
+  }
+  .hub-feature-desktop {
+      display: none;
+  }
+  .hub-feature-mobile {
+      display: block;
+  }
+  .hub-feature-slider {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+  .hub-feature-wrap .slick-next {
+    right: -10px;
+}
+
+.hub-feature-wrap .slick-prev {
+    left: -10px;
+    z-index: 1;
+}
+}
+  
+  
+</style>
+
+
+
+
+
+<section class="hub-feature-wrap">
+  <div class="page-width">
+  <div class="hub-feature-row hub-feature-desktop">
+    
+    <div class="hub-feature-col">
+      <div class="hub-feature-product">
+         {% assign product-one = all_products[section.settings.product-one] %}
+         {% include 'product-card-grid', max_height: 270, product: product-one, show_vendor: section.settings.show_vendor %}
+          <div class="list-product-price">
+                {{product-one.price | money}}
+          </div>
+      </div>
+    </div>
+
+    <div class="hub-feature-col">
+      <div class="hub-feature-product">
+         {% assign product-two = all_products[section.settings.product-two] %}
+         {% include 'product-card-grid', max_height: 270, product: product-two, show_vendor: section.settings.show_vendor %}
+          <div class="list-product-price">
+                {{product-two.price | money}}
+          </div>
+      </div>
+    </div>
+
+    <div class="hub-feature-col">
+      <div class="hub-feature-product">
+         {% assign product-three = all_products[section.settings.product-three] %}
+         {% include 'product-card-grid', max_height: 270, product: product-three, show_vendor: section.settings.show_vendor %}
+          <div class="list-product-price">
+                {{product-three.price | money}}
+          </div>
+      </div>
+    </div>
+
+    <div class="hub-feature-col hub-feature-media">
+      <div class="hub-feature-image">
+           {% if section.settings.feature-image != blank %}
+              <img src="{{section.settings.feature-image | img_url:'master' }}" alt="{{feature-image.alt | escape }}"/>
+           {% else %}
+             {{ 'lifestyle-1' | placeholder_svg_tag }}
+           {% endif %}
+      </div>
+        
+    </div>
+
+    <div class="hub-feature-col">
+      <div class="hub-feature-product">
+         {% assign product-four = all_products[section.settings.product-four] %}
+         {% include 'product-card-grid', max_height: 270, product: product-four, show_vendor: section.settings.show_vendor %}
+          <div class="list-product-price">
+                {{product-four.price | money}}
+          </div>
+      </div>
+    </div>
+    
+  </div>
+     <div class="hub-feature-row hub-feature-mobile">
+    <div class="hub-feature-slider">
+    <div class="hub-feature-col">
+      <div class="hub-feature-product">
+         {% assign product-one = all_products[section.settings.product-one] %}
+         {% include 'product-card-grid', max_height: 270, product: product-one, show_vendor: section.settings.show_vendor %}
+          <div class="list-product-price">
+                {{product-one.price | money}}
+          </div>
+      </div>
+    </div>
+
+    <div class="hub-feature-col">
+      <div class="hub-feature-product">
+         {% assign product-two = all_products[section.settings.product-two] %}
+         {% include 'product-card-grid', max_height: 270, product: product-two, show_vendor: section.settings.show_vendor %}
+          <div class="list-product-price">
+                {{product-two.price | money}}
+          </div>
+      </div>
+    </div>
+
+    <div class="hub-feature-col">
+      <div class="hub-feature-product">
+         {% assign product-three = all_products[section.settings.product-three] %}
+         {% include 'product-card-grid', max_height: 270, product: product-three, show_vendor: section.settings.show_vendor %}
+          <div class="list-product-price">
+                {{product-three.price | money}}
+          </div>
+      </div>
+    </div>
+
+
+    <div class="hub-feature-col">
+      <div class="hub-feature-product">
+         {% assign product-four = all_products[section.settings.product-four] %}
+         {% include 'product-card-grid', max_height: 270, product: product-four, show_vendor: section.settings.show_vendor %}
+          <div class="list-product-price">
+                {{product-four.price | money}}
+          </div>
+      </div>
+    </div>
+      </div>
+    
+  </div>
+    </div>
+    </div>
+
+ 
+</section>
+
+
+
+<script>
+    $(document).ready(function(){
+      if ($(window).width() < 767){
+        var sliderCount = 3;
+        if($(window).width() >480 && $(window).width() <767){
+          sliderCount = 3;
+          } else if ($(window).width() <480) {
+            sliderCount = 2;
+          } 
+        $('.hub-feature-slider').slick({
+          dots: false,
+          arrows:true,
+          infinite: false,
+          speed:1300,
+          slidesToShow:sliderCount,
+          slidesToScroll: 1, 
+        });
+      }
+    });
+
+  
+</script> 
+
+      
+{% schema %}
+  {
+    "name": "mclaren hub feature",
+    "settings": [
+      {
+        "type": "product",
+        "id": "product-one",
+        "label": "Product One"
+      },
+      {
+        "type": "product",
+        "id": "product-two",
+        "label": "Product Two"
+      },
+      {
+        "type": "product",
+        "id": "product-three",
+        "label": "Product Three"
+      },
+      {
+        "type": "product",
+        "id": "product-four",
+        "label": "Product Four"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature-image",
+        "label": "Feature Image"
+      }
+     
+      
+    ]
+  } 
+{% endschema %}
+ 

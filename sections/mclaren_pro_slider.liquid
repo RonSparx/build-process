@@ -1,0 +1,46 @@
+ {% assign collection = collections[section.settings.collection_id] %}
+<div class="case_box" data-aos="fade-up" data-aos-offset="200" id="collection_pos">
+  <div class="case_txt_slide">
+    {% for product in collection.products limit: 10 %}
+    <div class="case_txt">
+      <div class="case_wrapper">
+        <b><img src="{{ section.settings.title_img | img_url:'original' }}"></b>
+        <h3>{{ section.settings.title }}<br />{{ product.title }}</h3>
+        <a href="{{ product.url }}">{{ section.settings.btnLabel }}</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="glide_case">
+   {% for product in collection.products limit: 10 %}
+    <img src="{{ product.featured_image | product_img_url: 'master' }}" />
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+  {
+     "name": "product Slider",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "title_img",
+        "label": "title image"
+      },
+	{
+        "type": "text",
+        "id": "title",
+        "label": "title"
+      },
+	{
+        "type": "collection",
+        "id": "collection_id",
+        "label": "collection"
+      },
+		{
+            "type": "text",
+            "id": "btnLabel",
+            "label": "button label"
+          }
+    ]
+  }
+{% endschema %}

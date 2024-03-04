@@ -1,0 +1,472 @@
+<div class="page-width">
+    <div class="grid">
+        <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth contact-us-container">
+            <div class="section-header text-center">
+                <h1>{{ page.title }}</h1>
+              <p>Questions about TUMI products? Feedback and suggestions regarding your recent purchase? Interested to know more? We’re always happy to hear from you. Contact the TUMI Support Team here. </p>
+            
+          <table style="text-align:center;">
+          <tr>
+            <td style="text-align:center;">
+              <strong>TUMI UAE Head Office: </strong><br/>
+Gate 4, Roundabout 6<br/>
+Mina Jebel AliJebel Ali<br/>
+Jebel Ali Freezone<br/>
+Dubai
+
+            </td> 
+            <td style="text-align:center;">
+              <strong>TUMI UAE Telephone Number</strong><br/>
+Dubai:  8008864<br>
+International : 00971 (0)4 8047175
+
+            </td> 
+          </tr>  
+            
+          </table>  
+          
+          </div>
+
+            {% if page.content.size > 0 %}
+            <div class="rte page-short-description">
+                {{ page.content }}
+            </div>
+            {% endif %}
+          
+          {% assign pageurl = content_for_header| split:'"pageurl":"' | last | split:'"' | first %}
+          
+
+            <div class="contact-form form-vertical">
+              
+              {% if pageurl contains 'contact_posted=true' %}
+              <div class="contact__sent-info">
+                <ly-as-276224>Thank you for contacting us. Our team will be in touch as soon as possible.</ly-as-276224>
+              </div>
+              {% else %}
+				{% assign formId = 'ContactForm' %}
+                {% form 'contact', id: formId, class: 'contacts-form' %}
+          			{% include 'form-status', form: form, form_id: formId %}
+                    <!--  ----------------------------------------------------------------------  -->
+                    <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+                    <!--  these lines if you wish to test in debug mode.                          -->
+                    <!--  <input type="hidden" name="debug" value=1>                              -->
+                    <!--  <input type="hidden" name="debugEmail"                                  -->
+                    <!--  value="aoua.simpara@vo2-group.com">                                     -->
+                    <!--  ----------------------------------------------------------------------  -->
+
+                    <div class="your-information-container">
+                        <h2 class="form-heading-h2"><ly-as-276225>YOUR INFORMATION</ly-as-276225></h2>
+
+                        <div class="row">
+                            <div class="form-field col">
+                                <ly-as-276226>* Title:</ly-as-276226>
+                                <select required id="00N1t00000LpcbC" name="contact[title]" title="Title">
+                                    <option value=""><ly-as-276227>--None--</ly-as-276227></option>
+                                    <option value="MS"><ly-as-276228>MISS</ly-as-276228></option>
+                                    <option value="MRS"><ly-as-276229>MRS</ly-as-276229></option>
+                                    <option value="MR"><ly-as-276230>MR</ly-as-276230></option>
+                                </select>
+                            </div>
+                            <div class="form-field col"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-field col">
+                                <ly-as-276231>* Last Name:</ly-as-276231><input required id="00N1t00000Lpcb5" maxlength="50" name="contact[firstname]" size="20" type="text" />
+                            </div>
+                            <div class="form-field col">
+                                <ly-as-276232>* First Name:</ly-as-276232><input required id="00N1t00000Lpcb4" maxlength="50" name="contact[lastname]" size="20" type="text" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-field col">
+                               <ly-as-276233>* Country/Region:</ly-as-276233><select required id="00N1t00000LpcZY" name="contact[country]" title="Country/Region">
+                                <option value=""><ly-as-276227>--None--</ly-as-276227></option>
+                                <option value="AT"><ly-as-276234>Austria</ly-as-276234></option>
+                                <option value="BH"><ly-as-276235>Bahrain</ly-as-276235></option>
+                                <option value="BE"><ly-as-276236>Belgium</ly-as-276236></option>
+                                <option value="CN"><ly-as-276237>China</ly-as-276237></option>
+                                <option value="FR"><ly-as-276238>France</ly-as-276238></option>
+                                <option value="DE"><ly-as-276239>Germany</ly-as-276239></option>
+                                <option value="IT"><ly-as-276240>Italy</ly-as-276240></option>
+                                <option value="JP"><ly-as-276241>Japan</ly-as-276241></option>
+                                <option value="KR"><ly-as-276242>Korea, Republic of</ly-as-276242></option>
+                                <option value="LU"><ly-as-276243>Luxembourg</ly-as-276243></option>
+                                <option value="MO"><ly-as-276244>Macao</ly-as-276244></option>
+                                <option value="MA"><ly-as-276245>Morocco</ly-as-276245></option>
+                                <option value="NL"><ly-as-276246>Netherlands</ly-as-276246></option>
+                                <option value="QA"><ly-as-276247>Qatar</ly-as-276247></option>
+                                <option value="RU"><ly-as-276248>Russian Federation</ly-as-276248></option>
+                                <option value="SA"><ly-as-276249>Saudi Arabia</ly-as-276249></option>
+                                <option value="SG"><ly-as-276250>Singapore</ly-as-276250></option>
+                                <option value="ES"><ly-as-276251>Spain</ly-as-276251></option>
+                                <option value="CH"><ly-as-276252>Switzerland</ly-as-276252></option>
+                                <option value="TW"><ly-as-276253>Taiwan</ly-as-276253></option>
+                                <option value="AE" selected="selected"><ly-as-276254>United Arab Emirates</ly-as-276254></option>
+                                <option value="GB"><ly-as-276255>United Kingdom</ly-as-276255></option>
+                                <option value="US"><ly-as-276256>United States</ly-as-276256></option>
+                                <option value="HK"><ly-as-276257>Hong Kong</ly-as-276257></option>
+                                <option value="AF"><ly-as-276258>Afghanistan</ly-as-276258></option>
+                                <option value="AX"><ly-as-276259>Aland Islands</ly-as-276259></option>
+                                <option value="AL"><ly-as-276260>Albania</ly-as-276260></option>
+                                <option value="DZ"><ly-as-276261>Algeria</ly-as-276261></option>
+                                <option value="AD"><ly-as-276262>Andorra</ly-as-276262></option>
+                                <option value="AO"><ly-as-276263>Angola</ly-as-276263></option>
+                                <option value="AI"><ly-as-276264>Anguilla</ly-as-276264></option>
+                                <option value="AQ"><ly-as-276265>Antarctica</ly-as-276265></option>
+                                <option value="AG"><ly-as-276266>Antigua and Barbuda</ly-as-276266></option>
+                                <option value="AR"><ly-as-276267>Argentina</ly-as-276267></option>
+                                <option value="AM"><ly-as-276268>Armenia</ly-as-276268></option>
+                                <option value="AW"><ly-as-276269>Aruba</ly-as-276269></option>
+                                <option value="AU"><ly-as-276270>Australia</ly-as-276270></option>
+                                <option value="AZ"><ly-as-276271>Azerbaijan</ly-as-276271></option>
+                                <option value="BS"><ly-as-276272>Bahamas</ly-as-276272></option>
+                                <option value="BD"><ly-as-276273>Bangladesh</ly-as-276273></option>
+                                <option value="BB"><ly-as-276274>Barbados</ly-as-276274></option>
+                                <option value="BY"><ly-as-276275>Belarus</ly-as-276275></option>
+                                <option value="BZ"><ly-as-276276>Belize</ly-as-276276></option>
+                                <option value="BJ"><ly-as-276277>Benin</ly-as-276277></option>
+                                <option value="BM"><ly-as-276278>Bermuda</ly-as-276278></option>
+                                <option value="BT"><ly-as-276279>Bhutan</ly-as-276279></option>
+                                <option value="BO"><ly-as-276280>Bolivia, Plurinational State of</ly-as-276280></option>
+                                <option value="BQ"><ly-as-276281>Bonaire, Sint Eustatius and Saba</ly-as-276281></option>
+                                <option value="BA"><ly-as-276282>Bosnia and Herzegovina</ly-as-276282></option>
+                                <option value="BW"><ly-as-276283>Botswana</ly-as-276283></option>
+                                <option value="BV"><ly-as-276284>Bouvet Island</ly-as-276284></option>
+                                <option value="BR"><ly-as-276285>Brazil</ly-as-276285></option>
+                                <option value="IO"><ly-as-276286>British Indian Ocean Territory</ly-as-276286></option>
+                                <option value="BN"><ly-as-276287>Brunei Darussalam</ly-as-276287></option>
+                                <option value="BG"><ly-as-276288>Bulgaria</ly-as-276288></option>
+                                <option value="BF"><ly-as-276289>Burkina Faso</ly-as-276289></option>
+                                <option value="BI"><ly-as-276290>Burundi</ly-as-276290></option>
+                                <option value="KH"><ly-as-276291>Cambodia</ly-as-276291></option>
+                                <option value="CM"><ly-as-276292>Cameroon</ly-as-276292></option>
+                                <option value="CA"><ly-as-276293>Canada</ly-as-276293></option>
+                                <option value="CV"><ly-as-276294>Cape Verde</ly-as-276294></option>
+                                <option value="KY"><ly-as-276295>Cayman Islands</ly-as-276295></option>
+                                <option value="CF"><ly-as-276296>Central African Republic</ly-as-276296></option>
+                                <option value="TD"><ly-as-276297>Chad</ly-as-276297></option>
+                                <option value="CL"><ly-as-276298>Chile</ly-as-276298></option>
+                                <option value="CX"><ly-as-276299>Christmas Island</ly-as-276299></option>
+                                <option value="CC"><ly-as-276300>Cocos (Keeling) Islands</ly-as-276300></option>
+                                <option value="CO"><ly-as-276301>Colombia</ly-as-276301></option>
+                                <option value="KM"><ly-as-276302>Comoros</ly-as-276302></option>
+                                <option value="CG"><ly-as-276303>Congo</ly-as-276303></option>
+                                <option value="CD"><ly-as-276304>Congo, the Democratic Republic of the</ly-as-276304></option>
+                                <option value="CK"><ly-as-276305>Cook Islands</ly-as-276305></option>
+                                <option value="CR"><ly-as-276306>Costa Rica</ly-as-276306></option>
+                                <option value="CI"><ly-as-276307>Cote d’Ivoire</ly-as-276307></option>
+                                <option value="HR"><ly-as-276308>Croatia</ly-as-276308></option>
+                                <option value="CU"><ly-as-276309>Cuba</ly-as-276309></option>
+                                <option value="CW"><ly-as-276310>Curaçao</ly-as-276310></option>
+                                <option value="CY"><ly-as-276311>Cyprus</ly-as-276311></option>
+                                <option value="CZ"><ly-as-276312>Czech Republic</ly-as-276312></option>
+                                <option value="DK"><ly-as-276313>Denmark</ly-as-276313></option>
+                                <option value="DJ"><ly-as-276314>Djibouti</ly-as-276314></option>
+                                <option value="DM"><ly-as-276315>Dominica</ly-as-276315></option>
+                                <option value="DO"><ly-as-276316>Dominican Republic</ly-as-276316></option>
+                                <option value="EC"><ly-as-276317>Ecuador</ly-as-276317></option>
+                                <option value="EG"><ly-as-276318>Egypt</ly-as-276318></option>
+                                <option value="SV"><ly-as-276319>El Salvador</ly-as-276319></option>
+                                <option value="GQ"><ly-as-276320>Equatorial Guinea</ly-as-276320></option>
+                                <option value="ER"><ly-as-276321>Eritrea</ly-as-276321></option>
+                                <option value="EE"><ly-as-276322>Estonia</ly-as-276322></option>
+                                <option value="ET"><ly-as-276323>Ethiopia</ly-as-276323></option>
+                                <option value="FK"><ly-as-276324>Falkland Islands (Malvinas)</ly-as-276324></option>
+                                <option value="FO"><ly-as-276325>Faroe Islands</ly-as-276325></option>
+                                <option value="FJ"><ly-as-276326>Fiji</ly-as-276326></option>
+                                <option value="FI"><ly-as-276327>Finland</ly-as-276327></option>
+                                <option value="GF"><ly-as-276328>French Guiana</ly-as-276328></option>
+                                <option value="PF"><ly-as-276329>French Polynesia</ly-as-276329></option>
+                                <option value="TF"><ly-as-276330>French Southern Territories</ly-as-276330></option>
+                                <option value="GA"><ly-as-276331>Gabon</ly-as-276331></option>
+                                <option value="GM"><ly-as-276332>Gambia</ly-as-276332></option>
+                                <option value="GE"><ly-as-276333>Georgia</ly-as-276333></option>
+                                <option value="GH"><ly-as-276334>Ghana</ly-as-276334></option>
+                                <option value="GI"><ly-as-276335>Gibraltar</ly-as-276335></option>
+                                <option value="GR"><ly-as-276336>Greece</ly-as-276336></option>
+                                <option value="GL"><ly-as-276337>Greenland</ly-as-276337></option>
+                                <option value="GD"><ly-as-276338>Grenada</ly-as-276338></option>
+                                <option value="GP"><ly-as-276339>Guadeloupe</ly-as-276339></option>
+                                <option value="GT"><ly-as-276340>Guatemala</ly-as-276340></option>
+                                <option value="GG"><ly-as-276341>Guernsey</ly-as-276341></option>
+                                <option value="GN"><ly-as-276342>Guinea</ly-as-276342></option>
+                                <option value="GW"><ly-as-276343>Guinea-Bissau</ly-as-276343></option>
+                                <option value="GY"><ly-as-276344>Guyana</ly-as-276344></option>
+                                <option value="HT"><ly-as-276345>Haiti</ly-as-276345></option>
+                                <option value="HM"><ly-as-276346>Heard Island and McDonald Islands</ly-as-276346></option>
+                                <option value="VA"><ly-as-276347>Holy See (Vatican City State)</ly-as-276347></option>
+                                <option value="HN"><ly-as-276348>Honduras</ly-as-276348></option>
+                                <option value="HU"><ly-as-276349>Hungary</ly-as-276349></option>
+                                <option value="IS"><ly-as-276350>Iceland</ly-as-276350></option>
+                                <option value="IN"><ly-as-276351>India</ly-as-276351></option>
+                                <option value="ID"><ly-as-276352>Indonesia</ly-as-276352></option>
+                                <option value="IR"><ly-as-276353>Iran, Islamic Republic of</ly-as-276353></option>
+                                <option value="IQ"><ly-as-276354>Iraq</ly-as-276354></option>
+                                <option value="IE"><ly-as-276355>Ireland</ly-as-276355></option>
+                                <option value="IM"><ly-as-276356>Isle of Man</ly-as-276356></option>
+                                <option value="IL"><ly-as-276357>Israel</ly-as-276357></option>
+                                <option value="JM"><ly-as-276358>Jamaica</ly-as-276358></option>
+                                <option value="JE"><ly-as-276359>Jersey</ly-as-276359></option>
+                                <option value="JO"><ly-as-276360>Jordan</ly-as-276360></option>
+                                <option value="KZ"><ly-as-276361>Kazakhstan</ly-as-276361></option>
+                                <option value="KE"><ly-as-276362>Kenya</ly-as-276362></option>
+                                <option value="KI"><ly-as-276363>Kiribati</ly-as-276363></option>
+                                <option value="KP"><ly-as-276364>Korea, Democratic People’s Republic of</ly-as-276364></option>
+                                <option value="KW"><ly-as-276365>Kuwait</ly-as-276365></option>
+                                <option value="KG"><ly-as-276366>Kyrgyzstan</ly-as-276366></option>
+                                <option value="LA"><ly-as-276367>Lao People’s Democratic Republic</ly-as-276367></option>
+                                <option value="LV"><ly-as-276368>Latvia</ly-as-276368></option>
+                                <option value="LB"><ly-as-276369>Lebanon</ly-as-276369></option>
+                                <option value="LS"><ly-as-276370>Lesotho</ly-as-276370></option>
+                                <option value="LR"><ly-as-276371>Liberia</ly-as-276371></option>
+                                <option value="LY"><ly-as-276372>Libyan Arab Jamahiriya</ly-as-276372></option>
+                                <option value="LI"><ly-as-276373>Liechtenstein</ly-as-276373></option>
+                                <option value="LT"><ly-as-276374>Lithuania</ly-as-276374></option>
+                                <option value="MK"><ly-as-276375>Macedonia, the former Yugoslav Republic of</ly-as-276375></option>
+                                <option value="MG"><ly-as-276376>Madagascar</ly-as-276376></option>
+                                <option value="MW"><ly-as-276377>Malawi</ly-as-276377></option>
+                                <option value="MY"><ly-as-276378>Malaysia</ly-as-276378></option>
+                                <option value="MV"><ly-as-276379>Maldives</ly-as-276379></option>
+                                <option value="ML"><ly-as-276380>Mali</ly-as-276380></option>
+                                <option value="MT"><ly-as-276381>Malta</ly-as-276381></option>
+                                <option value="MQ"><ly-as-276382>Martinique</ly-as-276382></option>
+                                <option value="MR"><ly-as-276383>Mauritania</ly-as-276383></option>
+                                <option value="MU"><ly-as-276384>Mauritius</ly-as-276384></option>
+                                <option value="YT"><ly-as-276385>Mayotte</ly-as-276385></option>
+                                <option value="MX"><ly-as-276386>Mexico</ly-as-276386></option>
+                                <option value="MD"><ly-as-276387>Moldova, Republic of</ly-as-276387></option>
+                                <option value="MC"><ly-as-276388>Monaco</ly-as-276388></option>
+                                <option value="MN"><ly-as-276389>Mongolia</ly-as-276389></option>
+                                <option value="ME"><ly-as-276390>Montenegro</ly-as-276390></option>
+                                <option value="MS"><ly-as-276391>Montserrat</ly-as-276391></option>
+                                <option value="MZ"><ly-as-276392>Mozambique</ly-as-276392></option>
+                                <option value="MM"><ly-as-276393>Myanmar</ly-as-276393></option>
+                                <option value="NA"><ly-as-276394>Namibia</ly-as-276394></option>
+                                <option value="NR"><ly-as-276395>Nauru</ly-as-276395></option>
+                                <option value="NP"><ly-as-276396>Nepal</ly-as-276396></option>
+                                <option value="NC"><ly-as-276397>New Caledonia</ly-as-276397></option>
+                                <option value="NZ"><ly-as-276398>New Zealand</ly-as-276398></option>
+                                <option value="NI"><ly-as-276399>Nicaragua</ly-as-276399></option>
+                                <option value="NE"><ly-as-276400>Niger</ly-as-276400></option>
+                                <option value="NG"><ly-as-276401>Nigeria</ly-as-276401></option>
+                                <option value="NU"><ly-as-276402>Niue</ly-as-276402></option>
+                                <option value="NF"><ly-as-276403>Norfolk Island</ly-as-276403></option>
+                                <option value="NO"><ly-as-276404>Norway</ly-as-276404></option>
+                                <option value="OM"><ly-as-276405>Oman</ly-as-276405></option>
+                                <option value="PK"><ly-as-276406>Pakistan</ly-as-276406></option>
+                                <option value="PS"><ly-as-276407>Palestine</ly-as-276407></option>
+                                <option value="PA"><ly-as-276408>Panama</ly-as-276408></option>
+                                <option value="PG"><ly-as-276409>Papua New Guinea</ly-as-276409></option>
+                                <option value="PY"><ly-as-276410>Paraguay</ly-as-276410></option>
+                                <option value="PE"><ly-as-276411>Peru</ly-as-276411></option>
+                                <option value="PH"><ly-as-276412>Philippines</ly-as-276412></option>
+                                <option value="PN"><ly-as-276413>Pitcairn</ly-as-276413></option>
+                                <option value="PL"><ly-as-276414>Poland</ly-as-276414></option>
+                                <option value="PT"><ly-as-276415>Portugal</ly-as-276415></option>
+                                <option value="RE"><ly-as-276416>Reunion</ly-as-276416></option>
+                                <option value="RO"><ly-as-276417>Romania</ly-as-276417></option>
+                                <option value="RW"><ly-as-276418>Rwanda</ly-as-276418></option>
+                                <option value="BL"><ly-as-276419>Saint Barthélemy</ly-as-276419></option>
+                                <option value="SH"><ly-as-276420>Saint Helena, Ascension and Tristan da Cunha</ly-as-276420></option>
+                                <option value="KN"><ly-as-276421>Saint Kitts and Nevis</ly-as-276421></option>
+                                <option value="LC"><ly-as-276422>Saint Lucia</ly-as-276422></option>
+                                <option value="MF"><ly-as-276423>Saint Martin (French part)</ly-as-276423></option>
+                                <option value="PM"><ly-as-276424>Saint Pierre and Miquelon</ly-as-276424></option>
+                                <option value="VC"><ly-as-276425>Saint Vincent and the Grenadines</ly-as-276425></option>
+                                <option value="WS"><ly-as-276426>Samoa</ly-as-276426></option>
+                                <option value="SM"><ly-as-276427>San Marino</ly-as-276427></option>
+                                <option value="ST"><ly-as-276428>Sao Tome and Principe</ly-as-276428></option>
+                                <option value="SN"><ly-as-276429>Senegal</ly-as-276429></option>
+                                <option value="RS"><ly-as-276430>Serbia</ly-as-276430></option>
+                                <option value="SC"><ly-as-276431>Seychelles</ly-as-276431></option>
+                                <option value="SL"><ly-as-276432>Sierra Leone</ly-as-276432></option>
+                                <option value="SX"><ly-as-276433>Sint Maarten (Dutch part)</ly-as-276433></option>
+                                <option value="SK"><ly-as-276434>Slovakia</ly-as-276434></option>
+                                <option value="SI"><ly-as-276435>Slovenia</ly-as-276435></option>
+                                <option value="SB"><ly-as-276436>Solomon Islands</ly-as-276436></option>
+                                <option value="SO"><ly-as-276437>Somalia</ly-as-276437></option>
+                                <option value="ZA"><ly-as-276438>South Africa</ly-as-276438></option>
+                                <option value="GS"><ly-as-276439>South Georgia and the South Sandwich Islands</ly-as-276439></option>
+                                <option value="SS"><ly-as-276440>South Sudan</ly-as-276440></option>
+                                <option value="LK"><ly-as-276441>Sri Lanka</ly-as-276441></option>
+                                <option value="SD"><ly-as-276442>Sudan</ly-as-276442></option>
+                                <option value="SR"><ly-as-276443>Suriname</ly-as-276443></option>
+                                <option value="SJ"><ly-as-276444>Svalbard and Jan Mayen</ly-as-276444></option>
+                                <option value="SZ"><ly-as-276445>Swaziland</ly-as-276445></option>
+                                <option value="SE"><ly-as-276446>Sweden</ly-as-276446></option>
+                                <option value="SY"><ly-as-276447>Syrian Arab Republic</ly-as-276447></option>
+                                <option value="TJ"><ly-as-276448>Tajikistan</ly-as-276448></option>
+                                <option value="TZ"><ly-as-276449>Tanzania, United Republic of</ly-as-276449></option>
+                                <option value="TH"><ly-as-276450>Thailand</ly-as-276450></option>
+                                <option value="TL"><ly-as-276451>Timor-Leste</ly-as-276451></option>
+                                <option value="TG"><ly-as-276452>Togo</ly-as-276452></option>
+                                <option value="TK"><ly-as-276453>Tokelau</ly-as-276453></option>
+                                <option value="TO"><ly-as-276454>Tonga</ly-as-276454></option>
+                                <option value="TT"><ly-as-276455>Trinidad and Tobago</ly-as-276455></option>
+                                <option value="TN"><ly-as-276456>Tunisia</ly-as-276456></option>
+                                <option value="TR"><ly-as-276457>Turkey</ly-as-276457></option>
+                                <option value="TM"><ly-as-276458>Turkmenistan</ly-as-276458></option>
+                                <option value="TC"><ly-as-276459>Turks and Caicos Islands</ly-as-276459></option>
+                                <option value="TV"><ly-as-276460>Tuvalu</ly-as-276460></option>
+                                <option value="UG"><ly-as-276461>Uganda</ly-as-276461></option>
+                                <option value="UA"><ly-as-276462>Ukraine</ly-as-276462></option>
+                                <option value="UY"><ly-as-276463>Uruguay</ly-as-276463></option>
+                                <option value="UZ"><ly-as-276464>Uzbekistan</ly-as-276464></option>
+                                <option value="VU"><ly-as-276465>Vanuatu</ly-as-276465></option>
+                                <option value="VE"><ly-as-276466>Venezuela, Bolivarian Republic of</ly-as-276466></option>
+                                <option value="VN"><ly-as-276467>Vietnam</ly-as-276467></option>
+                                <option value="VG"><ly-as-276468>Virgin Islands, British</ly-as-276468></option>
+                                <option value="WF"><ly-as-276469>Wallis and Futuna</ly-as-276469></option>
+                                <option value="EH"><ly-as-276470>Western Sahara</ly-as-276470></option>
+                                <option value="YE"><ly-as-276471>Yemen</ly-as-276471></option>
+                                <option value="ZM"><ly-as-276472>Zambia</ly-as-276472></option>
+                                <option value="ZW"><ly-as-276473>Zimbabwe</ly-as-276473></option>
+                            </select>
+                            </div>
+                            <div class="form-field col">
+                                <ly-as-276474>* Language:</ly-as-276474><select required  id="00N1t00000Lpca8" name="contact[language]" title="Language">
+                                <option value=""><ly-as-276227>--None--</ly-as-276227></option>
+                                <option value="AR"><ly-as-276475>Arabic</ly-as-276475></option>
+                                <option value="ZC"><ly-as-276476>Chinese - Cantonese</ly-as-276476></option>
+                                <option value="ZM"><ly-as-276477>Chinese - Mandarin</ly-as-276477></option>
+                                <option value="ZT"><ly-as-276478>Chinese - Taiwanese</ly-as-276478></option>
+                                <option value="NL"><ly-as-276479>Dutch</ly-as-276479></option>
+                                <option value="EN_UK"><ly-as-276480>English UK</ly-as-276480></option>
+                                <option value="EN_US"><ly-as-276481>English US</ly-as-276481></option>
+                                <option value="FR"><ly-as-276482>French</ly-as-276482></option>
+                                <option value="DE"><ly-as-276483>German</ly-as-276483></option>
+                                <option value="IT"><ly-as-276484>Italian</ly-as-276484></option>
+                                <option value="JA"><ly-as-276485>Japanese</ly-as-276485></option>
+                                <option value="KO"><ly-as-276486>Korean</ly-as-276486></option>
+                                <option value="RU"><ly-as-276487>Russian</ly-as-276487></option>
+                                <option value="ES"><ly-as-276488>Spanish</ly-as-276488></option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-field col">
+                                <label for="email"><ly-as-276489>* Email</ly-as-276489></label><input required id="email" maxlength="80" name="contact[email]" size="20" type="text" />
+                            </div>
+                            <div class="form-field col">
+                                <label for="phone"><ly-as-276490>Phone</ly-as-276490></label><input  id="phone" maxlength="40" name="contact[phone]" size="20" type="text" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form__fieldset__separator"></div>
+
+                    <div class="your-request-container">
+                        <h2 class="form-heading-h2"><ly-as-276491>Your Request</ly-as-276491></h2>
+
+                        <div class="row">
+                            <div class="form-field col">
+                                <ly-as-276492>* Subject:</ly-as-276492><select required  id="00N1t00000Lpcb2" name="contact[request]" title="Webform Subject">
+                                <option value=""><ly-as-276227>--None--</ly-as-276227></option>
+                                <option value="Product Information"><ly-as-276493>Product Information</ly-as-276493></option>
+                                <option value="Boutique information"><ly-as-276494>Boutique information</ly-as-276494></option>
+                                <option value="On-line store and website"><ly-as-276495>On-line store and website</ly-as-276495></option>
+                                <option value="After sales support and care"><ly-as-276496>After sales support and care</ly-as-276496></option>
+                              	<option value="Careers"><ly-as-276497>Careers</ly-as-276497></option>
+                                <option value="Privacy – exercise Their rights"><ly-as-276498>Privacy – exercise Their rights</ly-as-276498></option>
+                                <option value="Others"><ly-as-276499>Others</ly-as-276499></option>
+                            </select>
+                            </div>
+                            <div class="form-field col"></div>
+                        </div>
+                        <div class="row">
+                            <div class="form-field col">
+                                <label for="description"><ly-as-276500>* Description</ly-as-276500></label><textarea required id="description" name="contact[description]"></textarea><br>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-action">
+                        <input class="btn submit" type="submit" name="submit" value="{{ 'contact.form.submit' | t }}">
+                    </div>
+                {% endform %}
+              
+              	{% endif %}
+
+                {% comment %}
+                {% assign formId = 'ContactForm' %}
+                {% form 'contact', id: formId %}
+                {% include 'form-status', form: form, form_id: formId %}
+
+                <div class="grid grid--half-gutters">
+                    <div class="grid__item medium-up--one-half">
+                        <input type="text" id="{{ formId }}-name" name="contact[{{ 'contact.form.name' | t }}]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="*Full name">
+                    </div>
+                    <div class="grid__item medium-up--one-half">
+                        <input
+                                type="email"
+                                id="{{ formId }}-email"
+                                name="contact[email]"
+                                placeholder="*Email"
+                                autocorrect="off"
+                                autocapitalize="off"
+                                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                                aria-required="true"
+                                {% if form.errors contains 'email' %}
+                        class="input--error"
+                        aria-invalid="true"
+                        aria-describedby="{{ formId }}-email-error"
+                        {% endif %}
+                        >
+                        {% if form.errors contains 'email' %}
+                        <span id="{{ formId}}-email-error" class="input-error-message">
+                  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                  {% include 'icon-error' %}
+                  <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+                </span>
+                        {% endif %}
+                    </div>
+                </div>
+
+
+                <input placeholder="Phone Number" type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+
+                <textarea placeholder="*Comments" rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+
+                <input type="submit" class="btn" value="{{ 'contact.form.submit' | t }}">
+
+                {% endform %}
+                {% endcomment %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function(){
+        $(document).ready(function () {
+
+            var classes = {
+                inputError: "input--error"
+            };
+
+            var $requiredField = $('#ContactFrom *[required]');
+            var $form = $('#ContactFrom');
+            var $submit = $('.form-action input[type="submit"]');
+
+            $form.on('change paste', 'input, select, textarea', function() {
+                var isValid = true;
+
+                $requiredField.each(function( index, element ) {
+                    console.log($(element).val());
+                    if (!$(element).val()) {
+                        isValid = false;
+                        return;
+                    }
+                });
+
+                if(isValid) {
+                    $submit.removeAttr('disabled');
+                } else {
+                    $submit.attr('disabled');
+                }
+            });
+        })
+    })();
+</script>

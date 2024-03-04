@@ -1,0 +1,247 @@
+<style>
+  .video-conbox .btn-transparent {
+     background-color: transparent;
+     color: #fff;
+     border: 1px solid #fff;
+ }
+ .video-conbox h3 {
+     text-transform: capitalize;
+     font-weight: normal;
+     letter-spacing: 3px;
+ }
+ .video-conbox .banner-desc {
+     display: none;
+ }
+  .banner-picture img {
+    width: 100%;
+    height: auto;
+}
+  section.fullsize-video-bg .video-con {
+    top: 25%;
+}
+/* section.fullsize-video-bg:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(black, #22222100);
+    position: absolute;
+    opacity: .7;
+} */
+
+  .video-conbox .btn-transparent {
+    min-width: 320px;
+}
+
+  .video-conbox h2 {
+    text-transform: unset;
+}
+.gift-banner-items {
+    position: relative;
+}
+.gift-banner-slider {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease;
+    -webkit-transition: opacity .5s ease;
+}
+.gift-banner-slider.slick-initialized {
+    visibility: visible;
+    opacity: 1;    
+}
+section.fullsize-video-bg .banner-picture{
+  position:relative;
+}  
+section.fullsize-video-bg .banner-picture:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(white, #22222100);
+    position: absolute;
+    opacity: .5;
+    z-index: 1;
+}
+section.fullsize-video-bg .video-con {
+    color: #000000;
+}
+  .video-conbox .btn-transparent {
+    color: #000000;
+    border-color: #000000;
+}
+  .video-conbox .btn-transparent:hover {
+    border-color: #fff;
+}
+ @media (min-width: 750px) {
+/*     section.fullsize-video-bg:before {
+        background-image: linear-gradient(to right, #0d0000 , TRANSPARENT);
+    } */
+   div .fullsize-video-bg .video-conbox {
+      margin: 0;
+      left: 36%;
+      max-width: 686px;
+  }
+   section.fullsize-video-bg .video-con {
+      top: 50%;
+  }
+ }
+  
+ 
+ @media (min-width: 767px) {
+     .fullsize-video-bg .video-con {
+         left: 50%;
+     }
+     .video-conbox .banner-desc {
+         display: block;
+     }
+     .fullsize-video-bg .video-conbox {
+         align-items: center;
+         max-width: 500px;
+     }
+     
+ }
+ 
+ @media (min-width: 992px) {
+     .video-conbox h3 {
+         max-width: 355px;
+     }
+ }
+ 
+ @media (min-width: 1200px) {
+     .video-conbox h2 {
+         font-size: 18px;
+         margin-bottom: 16px;
+         max-width: 350px;
+         text-align: left;
+         width: 100%;
+     }
+     .video-conbox h3 {
+        font-size: 50px;
+        text-align: left;
+     }
+     .video-conbox .btn-transparent {
+         width: 100%;
+         max-width: 350px;
+     }
+     section.fullsize-video-bg .banner-picture:before{
+       display:none;
+     }
+ }
+ 
+ </style>
+ 
+ <section class="fullsize-video-bg ">
+  <div class="gift-banner-slider">
+    {% for block in section.blocks %}
+    <div class="gift-banner-items">
+      <div class="banner-picture">
+        <picture>
+            <source media="(min-width:750px)" srcset="{{block.settings.gift_guide_image_desktop | img_url:'master' }}">
+            <img src="{{block.settings.gift_guide_image_mobile | img_url:'master' }}" alt="{{gift_guide_image_mobile.alt | escape }}">
+          </picture>
+      </div>
+       <div class="video-con">
+         <div class="video-conbox">
+           {% if block.settings.gift_guide_sub_heading != blank %}
+           <h2>{{ block.settings.gift_guide_sub_heading }}</h2> 
+           {% endif %}
+           {% if block.settings.gift_guide_banner_sub_heading != blank %}
+           <h3>{{ block.settings.gift_guide_banner_sub_heading }}</h3> 
+           {% endif %}
+         {% if block.settings.gift_guide__btn != blank %}
+           <a href="{{block.settings.gift_guide__btnlink | default: '#'}}" class="btn-transparent">
+             <span class="ben-text">{{block.settings.gift_guide__btn}} </span>
+           </a>
+           {% endif %}
+   
+         </div>
+       </div>
+      </div>
+    {% endfor %}
+    
+    </div>
+   </section>  
+
+
+ <script>
+    $(document).ready(function(){
+      $('.gift-banner-slider').slick({
+        dots: true,
+        arrows:true,
+        infinite: true,
+        speed:1300,
+        autoplay: false,
+        autoplaySpeed: 3000,
+        slidesToShow:1,
+        slidesToScroll: 1, 
+      });
+    });
+</script> 
+
+ 
+   
+ 
+  {% schema %}
+   {
+     "name": "Gift Guide banner",
+     "settings": [
+     ],
+     "blocks":[
+       {
+       "name":"Gift Banner Slider",
+       "type":"gift_banner_slider",
+       "settings":[
+          {
+           "type":"image_picker",
+           "id":"gift_guide_image_desktop",
+           "label":"Desktop Bnaner Image"
+          },
+          {
+           "type":"image_picker",
+           "id":"gift_guide_image_mobile",
+           "label":"Mobile Bnaner Image"
+          },
+          {
+          "type": "header",
+          "content": "Content Box"
+          },
+          {
+           "type":"text",
+           "id":"gift_guide_sub_heading",
+           "label":"Sub heading",
+           "default":"Holiday Gifts "
+          },
+          {
+           "type":"text",
+           "id":"gift_guide_banner_sub_heading",
+           "label":"Banner Sub heading",
+           "default":"For Everyone on Your list"
+          },
+          
+          {
+           "type":"text",
+           "id":"gift_guide__btn",
+           "label":"Button name",
+           "default":"Shop the Collection"
+          },
+          {
+           "type":"url",
+           "id":"gift_guide__btnlink",
+           "label":"Button URL"
+          },
+          {
+          "type": "color",
+          "id": "gift_guide__btn_color",
+          "label": "Button Color",
+          "default": "#fff"
+          },
+          {
+          "type": "color",
+          "id": "gift_guide__btn_txt_color",
+          "label": "Button Text Color",
+          "default": "#000"
+          }
+       ]
+       }
+     ]
+   }
+ {% endschema %}
+   

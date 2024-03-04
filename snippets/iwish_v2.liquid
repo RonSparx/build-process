@@ -1,0 +1,73 @@
+{% if iwish_v2 == 'iwishlink' %}
+<a class="iWishView" href="/apps/iwish"><ly-as-275739>Wishlist (</ly-as-275739><span class="iWishCount">0</span>)</a>
+{% elsif iwish_v2 == 'iwishproduct' %}
+<div class="iwishAddWrap">
+    <a class="iWishAdd wishlist-add-product" href="#" data-product="{{ product.id }}" data-pTitle="{{ product.title | escape }}">
+        <span class="icon wishlist-product-icon">{% include 'wishlist_parism' %}</span>
+    </a>
+</div>
+{% elsif iwish_v2 == 'iwishCollection' %}
+<a class="iWishAddColl iwishcheck wishlist-collection-add" href="#" data-variant="{{ product.variants.first.id }}" data-product="{{ product.id }}" data-pTitle="{{ product.title | escape }}">
+    <span class="icon wishlist-collection-icon">{% include 'wishlist_parism' %}</span>
+</a>
+{% elsif iwish_v2 == 'iwishfooter' %}
+<script type="text/javascript">
+    var heartIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43.3 35.6"><style type="text/css"> .st0_wishlist{fill:currentColor;} </style><path class="st0_wishlist" d="M21.5 34.6L3.6 16.9c-3.7-3.7-3.7-9.8 0-13.5 3.7-3.7 9.8-3.7 13.5 0l4.4 4.4L26 3.4c3.7-3.7 9.8-3.7 13.5 0 3.7 3.7 3.7 9.8 0 13.5l0 0L21.5 34.6zM10.4 2.6C8.4 2.6 6.5 3.4 5 4.8c-1.4 1.4-2.2 3.3-2.2 5.3 0 2 0.8 3.9 2.2 5.3l16.5 16.3 16.5-16.3c1.4-1.4 2.2-3.3 2.2-5.3 0-2-0.8-3.9-2.2-5.3 -2.9-2.9-7.7-2.9-10.7 0l-5.8 5.8 -5.8-5.8C14.2 3.4 12.3 2.6 10.4 2.6z"/></svg>`;
+    var filledHeartIcon = `<svg viewBox="0 0 21 17.2"><path d="M10.7 17.2c-.4 0-.7-.1-1-.4L2.3 9.5c-2.2-2.2-2.2-5.8 0-8 2-2 5.3-2 7.3-.1l1.1 1.1 1.1-1.1c2-2 5.3-2 7.3 0 2.2 2.2 2.3 5.7.1 8l-.2.1-7.5 7.3c-.2.3-.5.4-.8.4z"></path></svg>`;
+    var iwish_shop = "{{ shop.permanent_domain }}";
+    var iwish_pro_template = {% if template contains 'product' %}true{% else %}false{% endif %};
+    var iwish_cid = "{{ customer.id }}";
+    //Add to Wishlist - Product Page Text
+    var iwish_added_txt = `<span class="icon wishlist-product-icon">${filledHeartIcon}</span>`;
+    var iwish_add_txt   = `<span class="icon wishlist-product-icon">${heartIcon}</span>`;
+    //Add to Wishlist - Collection Page Text
+    var iwish_added_txt_col = `<span class="icon wishlist-collection-icon">${filledHeartIcon}</span>`;
+    var iwish_add_txt_col = `<span class="icon wishlist-collection-icon">${heartIcon}</span>`;
+
+    //Quick View - Classes
+    var iwish_qvButton = '.quick_view';
+    var iwish_qvWrapper = '.reveal-modal';
+</script>
+<script src="https://cdn.myshopapps.com/iwish/iwishlist.js"></script>
+<script type="text/javascript">
+    jQuery( document ).ready(function() {
+
+        jQuery(document).on('DOMSubtreeModified', '.iWishCount', function() {
+            if(+$(this).text() === 0) {
+                $(this).html('');
+            }
+        });
+
+        jQuery(document).on("click", "a[href='/apps/iwish']" , function() {
+            if(typeof(Storage) !== "undefined") {
+                e.preventDefault();
+                iWishPost('/apps/iwish',{iwishlist:JSON.stringify(iWishlistmain),cId:iwish_cid});
+            }
+        });
+
+        jQuery(document).on("click", ".iWishAdd" , function() {
+            var iWishvId = jQuery(this).parents(iwishWrapperClass).find(iWishVarSelector).val();
+            iwish_add(jQuery(this), iWishvId);
+            return false;
+        });
+      
+        jQuery(document).on("click", ".iWishAddColl" , function() {
+            var iWishvId = jQuery(this).attr("data-variant");
+            iwish_addCollection(jQuery(this),iWishvId);
+            return false;
+        });
+        iwishCheckColl();
+    });
+    function iwishCheckColl(){
+        if(jQuery(".iwishcheck").length > 0) {
+          
+            jQuery(".iwishcheck").each(function() {
+                var iWishvId = jQuery(this).attr("data-variant");
+                var iWishpId = jQuery(this).attr("data-product");
+                if(isInWishlist(iWishpId,iWishvId)){ jQuery(this).addClass("iwishAdded").html(iwish_added_txt_col); }
+                jQuery(this).removeClass("iwishcheck");
+            });
+        }
+    }
+</script>
+{% endif %}

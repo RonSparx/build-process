@@ -1,0 +1,72 @@
+<style>
+.sc-content-inner p{
+	font-size: 18px;
+    color: #212529;
+  	text-align:center;
+} 
+.sc-content {
+  padding-top:1.5rem;
+  display: flex;
+  justify-content:center;
+}
+@media all and (min-width: 750px){
+  .sc-content-inner{
+  	width: 80%;
+  }  
+}
+@media all and (max-width: 749px){
+  .sc-content-inner{
+  	max-width: 400px;
+    width: 100%;
+  }  
+  .sc-content-inner p {
+    font-size: 14px;
+  }
+  .sc-content-inner h3{
+        font-size: 2em;
+  }
+}
+@media all and (min-width:1024px){
+  div.sc-content{
+    padding-top:3.5rem;
+  } 
+}
+</style>
+<div class="page-width">
+  <div class="sc-content">
+    <div class="sc-content-inner">
+
+        {% if section.settings.juo_tegra_title != blank %}
+      	{{ section.settings.juo_tegra_title }}
+      	{% else %}
+      	<h3>Stories From Our Acclaimed TUMI Crew</h3>
+      	{% endif %}
+
+
+      
+    	{% if section.settings.juo_tegra_paragraph != blank %}
+      	{{ section.settings.juo_tegra_paragraph }}
+      	{% else %}
+      	<p>Debuting this fall, "Built for the Journey," our documentary-style campaign, features short, global films centered on resiliency, protecting what matters and the pursuit of excellence. It showcases the lives of pro footballer Son Heung-min, singer-songwriter Gracie Abrams, actor and musician Anthony Ramos and F1 McLaren driver Lando Norris. </p>
+      	{% endif %}
+    </div>  
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "journey tegra section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "juo_tegra_title",
+      "label": "title"
+    },
+    {
+      "type": "richtext",
+      "id": "juo_tegra_paragraph",
+      "label": "Paragraph"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,557 @@
+<script type="application/ld+json">
+{
+"@context": "http://schema.org",
+"@type": "WebSite",
+  "name": "{{ shop.name }}",
+  "url": "{{ shop.url }}",
+  "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://{{ shop.domain }}/search?q={query}",
+      "query-input": "required name=query"
+ }
+}
+</script>
+ <script type="application/ld+json">
+ {
+ "@context": "http://schema.org",
+ "@type": "Organization",
+ "name": {{ shop.name | json }},
+ "url": "https://{{ shop.domain }}",
+ "contactPoint": [
+      { "@type": "ContactPoint",
+      "telephone": {{ shop.phone | json }},
+      "contactType": "customer service"
+      }
+   ],
+   "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ shop.address.street }}",
+      "addressLocality": "{{ shop.address.city }}",
+      "addressRegion": "{{ shop.address.province }}",
+      "postalCode": "{{ shop.address.zip }}",
+      "addressCountry": "{{ shop.address.country }}"
+   }
+ }
+ </script>
+{% unless template == 'index' or template == 'cart' or template == 'list-collections' or template == '404' %}
+{% assign t = template | split: '.' | first %}
+<nav class="breadcrumbs" role="navigation" aria-label="breadcrumbs">
+   <ol>
+      <li>
+          {% if request.locale.iso_code == 'ar' %}
+         <a href="/ar" title="{{ shop.name }}"><ly-as-275733>Home</ly-as-275733></a>
+{% else  %}
+     <a href="/" title="{{ shop.name }}"><ly-as-275733>Home</ly-as-275733></a>
+    {% endif %}
+      </li>
+      {% case t %}
+      {% when 'page' %}
+      <li>
+         <a href="{{ page.url }}" aria-current="page">{{ page.title }}</a>
+      </li>
+      <script type="application/ld+json">
+         {  
+         "@context":"http://schema.org",
+         "@type":"BreadcrumbList",
+         "itemListElement":[  
+            {  
+               "@type":"ListItem",
+               "position":1,
+               "item":{
+                  "@type":"Organization",
+                  "@id":"{{ shop.url }}",
+                  "name":"{{ shop.name }}",
+                  "image":"{{ 'logo.png' | asset_url }}"
+               }
+            },
+            {  
+               "@type":"ListItem",
+               "position":2,
+               "item":{  
+                  "@context":"http://schema.org/",
+                  "@id":"{{ page.title }}",
+                  "name":"{{ page.title }}",
+                  "description":"{{ page.description }}"
+               }
+            }
+         ]
+         }
+      </script>
+      {% when 'product' %}
+     	{% assign current_variant = product.selected_or_first_available_variant %}
+       {% if collection.url %}
+       <li><a href="{{ collection.url }}">{{ collection.title | split: "-" | first }}</a></li>
+       {% endif %}
+      <li>
+         <a href="{{ product.url }}" aria-current="page">{{ product.title | split: "-" | first }}</a>
+      </li>
+      <script type="application/ld+json">
+         {  
+         "@context":"http://schema.org",
+         "@type":"BreadcrumbList",
+         "itemListElement":[  
+            {  
+               "@type":"ListItem",
+               "position":1,
+               "item":{  
+               	  "@type":"Organization",
+                  "@id":"{{ shop.url }}",
+                  "name":"{{ shop.name }}",
+                  "image":"{{ 'logo.png' | asset_url }}"
+               }
+            }, {% if collection.url %} 
+            {  
+               "@type":"ListItem",
+               "position":2,
+               "item":{  
+               	  "@type":"Collection",
+                  "@id":"{{ collection.url }}",
+                  "name":"{{ collection.title }}",
+                  "image":"{{ collection.image }}"
+               }
+            },{% endif %}
+            {  
+               "@type":"ListItem",
+               "position":{% if collection.url %}3{% else %}2{% endif %},
+               "name": {{ product.title | json }},
+               "item": {{ product.url | within: collection | prepend: shop.url | json }}
+            }
+         ]
+         }
+     </script>
+     <script type="application/ld+json">
+         {
+         	"@context": "http://schema.org",
+         	"@type": "Product",
+         	"brand": {
+         		"@type": "Brand",
+         		"name": {{ product.vendor | json }}
+         	},
+         	 "sku": {{ product.selected_or_first_available_variant.sku | default: product.selected_or_first_available_variant.id | json }},
+            "mpn": {{ product.selected_or_first_available_variant.sku | default: product.selected_or_first_available_variant.id | json }},
+            "gtin13": {{ current_variant.barcode | json }},
+         	"description": {{ product.description | strip_html | escape |truncatewords: 50 | json }},
+         	"url": "{{ product.url | within: collection | prepend: shop.url }}",
+         	"name": {{ product.title | json }},
+         	"image": "https:{{ product.featured_image | product_img_url: 'x100' }}",
+            {% if product.metafields.yotpo.reviews_count and product.metafields.yotpo.reviews_count != "0" %}
+            "aggregateRating": {
+               "@type": "AggregateRating",
+                  "ratingValue": "{{ product.metafields.yotpo.reviews_average }}",
+                  "bestRating": "{{ product.metafields.yotpo.reviews_count }}"
+               },
+            {% elsif product.metafields.opinew_metafields.reviews_count and product.metafields.opinew_metafields.reviews_count != "0" %}
+            "aggregateRating": {
+               "@type": "AggregateRating",
+                  "ratingValue": "{{ product.metafields.opinew_metafields.reviews_average }}",
+                  "bestRating": "{{ product.metafields.opinew_metafields.reviews_average }}",
+                  "ratingCount": "{{ product.metafields.opinew_metafields.reviews_count }}"
+               },
+            {% elsif shop.metafields.judgeme.all_reviews_count and shop.metafields.judgeme.all_reviews_count !='0' %}
+                         "aggregateRating": {
+                         "@type": "AggregateRating",
+                            "ratingValue": "{{ shop.metafields.judgeme.all_reviews_rating }}",
+                            "reviewCount": "{{ shop.metafields.judgeme.all_reviews_count }}"
+                         },
+                         {% capture review %}
+                      {{product.metafields.judgeme.widget | replace: "</p>", "[tab]" }}
+                      {% endcapture %}
+                      {% assign cacao = review | split: ")" | last  %}
+  					{% assign items = cacao | split: "[tab]"  %}
+                      "review": [
+                      {% for i in items %}
+                      {
+                               "@type": "Review",
+                               "reviewRating": {
+                                  "@type": "Rating",
+                                  "ratingValue": "{{ shop.metafields.judgeme.all_reviews_rating }}"
+                               },
+                               "author": {
+                                  "@type": "Person",
+                                  "name": "{{ i | strip_html | split: ". " | first }}"
+                               },
+                               "reviewBody": "{{ i | strip_html | strip }}" 
+                               }{% unless forloop.last %},{% endunless %}
+                      {% endfor %}
+                            ],
+            {% elsif product.metafields.stamped.reviews_count and product.metafields.stamped.reviews_count != 0 %}
+                  "aggregateRating": {
+                     "@type": "AggregateRating",
+                        "ratingValue": "{{ product.metafields.stamped.reviews_average }}",
+                        "reviewCount": "{{ product.metafields.stamped.reviews_count }}"
+                     },
+            {% elsif product.metafields.loox.num_reviews and product.metafields.loox.num_reviews != 0 %}
+                     "aggregateRating": {
+                        "@type": "AggregateRating",
+                        "ratingCount": {{ product.metafields.loox.num_reviews }},
+                        "ratingValue": {{ product.metafields.loox.avg_rating }}
+                        },
+            {% elsif product.metafields.reevio.reviews_count and product.metafields.reevio.reviews_count !=0 %}
+                   "aggregateRating": {
+                     "@type": "AggregateRating",
+                        "ratingValue": "{{ product.metafields.reevio.reviews_average }}",
+                        "reviewCount": "{{ product.metafields.reevio.reviews_count }}"
+                     },
+                     "review": {
+                           "@type": "Review",
+                           "reviewRating": {
+                              "@type": "Rating",
+                              "ratingValue": "{{ product.metafields.reevio.reviews_average }}"
+                           },
+                           "author": {
+                              "@type": "Person",
+                              "name": ""
+                           },
+                           "reviewBody": " "
+                        },
+            {% endif %}
+         	"offers": [
+                        {% for FDOVXCRYEW in product.variants %}
+                           {
+                              "@type": "Offer",
+                              {% if FDOVXCRYEW.available == true %}
+                              {% assign FUJRMKBSQH = "InStock" %}
+                              {% else %}
+                              {% assign FUJRMKBSQH = "OutOfStock" %}
+                              {% endif %}
+                              "availability": "https://schema.org/{{FUJRMKBSQH}}",
+                              "priceCurrency": "{{ shop.currency }}",
+                              "price": "{{ FDOVXCRYEW.price | money_without_currency | replace: ",", "." }}",
+                              "priceValidUntil": {{ "today" | date: '%s' | plus: 31536000 | date: "%Y-%m-%d" | json }},
+                              "itemCondition": "https://schema.org/NewCondition",
+                              "url": {{ canonical_url | append: FDOVXCRYEW.url | json }},
+                              "image": "https:{{ FDOVXCRYEW.image | default: product.featured_image | img_url: 'master' }}",
+                              "mpn": {{ FDOVXCRYEW.sku | default: FDOVXCRYEW.id | json }},
+                              {% if FDOVXCRYEW.sku != blank %}
+                              "sku": {{ FDOVXCRYEW.sku | json }},
+                              {% else %}
+                              "sku": "{{ FDOVXCRYEW.id }}",
+                              {% endif %}
+                              {% if FDOVXCRYEW.barcode.size == 12 %}
+                              "gtin12": {{ FDOVXCRYEW.barcode | json }},
+                              {% endif %}
+                              {% if FDOVXCRYEW.barcode.size == 13 %}
+                              "gtin13": {{ FDOVXCRYEW.barcode | json }},
+                              {% endif %}
+                              {% if FDOVXCRYEW.barcode.size == 14 %}
+                              "gtin14": {{ FDOVXCRYEW.barcode | json }},
+                              {% endif %}
+                              "seller": {
+                              "@type": "Organization",
+                              "name": {{ shop.name | json }}
+                              }
+                           }
+                           {% unless forloop.last %},{% endunless %}
+                        {% endfor %}
+                  ]
+         }
+      </script>
+      {% when 'collection' and collection.handle %}
+      <li>
+         <a href="{{ collection.url }}" aria-current="page">{{ collection.title | split: "-" | first }}</a>
+      </li>
+      <script type="application/ld+json">
+         {  
+         "@context":"http://schema.org",
+         "@type":"BreadcrumbList",
+         "itemListElement":[  
+            {  
+               "@type":"ListItem",
+               "position":1,
+               "item":{
+                  "@type":"Organization",
+                  "@id":"{{ shop.url }}",
+                  "name":"{{ shop.name }}",
+                  "image":"{{ 'logo.png' | asset_url }}"
+               }
+            },
+            {  
+               "@type":"ListItem",
+               "position":2,
+               "item":{  
+                  "@context":"http://schema.org/",
+                  "@type":"Collection",
+                  "@id":"{{ collection.title }}",
+                  "name":"{{ collection.title }}",
+                  "description":"{{ collection.description | strip_html | escape |truncatewords: 35 }}"
+               }
+            }
+         ]
+         }
+      </script>
+      <script type="application/ld+json">
+            {
+                "@context" : "http://schema.org",
+                "@type": "CollectionPage",
+                "name": "{{ collection.title}}",
+                "url": "{{ shop.url | append: collection.url }}",
+                  "image": "{{ collection.image | img_url: "master" }}"
+            }{% if collection.products != empty %},{% endif %}
+            {% for product in collection.products %}
+            {
+                "@context" : "http://schema.org",
+                "@type" : "Product",
+                "name" : "{{ product.title | strip_newlines | strip_html | escape_once | replace: "\", "\\\\\\\\" }}",
+                "image": "{{ product.featured_image.src | img_url: "master" | prepend : "https:" }}",
+                "url" : "{{ shop.url | append: "/products/" | append: product.handle }}",
+                "offers" : {
+                    "@type" : "Offer",
+                    "price" : {{ product.price | money_without_currency | split: "" | reverse | join: "" | remove_first: "00." | split: "" | reverse | join: "" | replace: ",", "" }},
+                    "priceCurrency" : "{{ shop.currency }}"
+                }
+            }{% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+    </script>
+    {% if collection.products != empty %}
+     <script type="application/ld+json">
+     {
+     	"@context" : "http://schema.org/",
+        "@type": "ItemList",
+        "itemListOrder": "http://schema.org/ItemListOrderDescending",
+        "itemListElement": [
+        	{% for product in collection.products %}
+            {
+            "@type":"ListItem",
+            "@id": {{ product.title | json }},
+            "position":{{ forloop.index }},
+            "url": "{{ shop.url | append: "/products/" | append: product.handle }}",
+            "description": {{ product.description | strip_html | json }},
+            "image": "{{ product.featured_image.src | img_url: "master" | prepend : "https:" }}",
+            "sameAs": "{{ shop.url | append: "/products/" | append: product.handle }}"
+            }{% unless forloop.last %},{% endunless %}
+            {% endfor %}
+        ]
+     }
+     </script>
+     {% endif %}
+      {% when 'blog' %}
+      <li>
+         <a href="{{ blog.url }}" aria-current="page">{{ blog.title }}</a>
+      </li>
+      <script type="application/ld+json">
+         {  
+         "@context":"http://schema.org",
+         "@type":"BreadcrumbList",
+         "itemListElement":[  
+            {  
+               "@type":"ListItem",
+               "position":1,
+               "item":{  
+                  "@type":"Organization",
+                  "@id":"{{ shop.url }}",
+                  "name":"{{ shop.name }}",
+                  "image":"{{ 'logo.png' | asset_url }}"
+               }
+            },
+            {  
+               "@type":"ListItem",
+               "position":2,
+               "item":{  
+                  "@context":"http://schema.org/",
+                  "@type":"Blog",
+                  "@id":"{{ blog.title }}",
+                  "name":"{{ blog.title }}",
+                  "description":"{{ blog.title }}"
+               }
+            }
+         ]
+         }
+      </script>
+      {% when 'article' %}
+      <li>{{ blog.title | link_to: blog.url }}</li>
+      <li>
+         <a href="{{ article.url }}" aria-current="page">{{ article.title }}</a>
+      </li>
+      <script type="application/ld+json">
+         {
+         	"@context": "http://schema.org",
+         	"@type": "BlogPosting",
+         	"mainEntityOfPage": {{ canonical_url | json }},
+         	"headline": {{ article.title | json }},
+         	"author": {
+            	"@type": "Person",
+            	"name": {{ article.author | json }}
+         	},
+         	"publisher": {
+         			"@type": "Organization",
+         			"name": {{ shop.name | json }},
+                        "logo": {
+                                  "@type": "ImageObject",
+                                  "name": "Logo",
+                                  "height": "60",
+                                  "url": "{{ 'logo.png' | asset_url }}"
+                              }
+         	},
+         	"image": {
+         		"@type": "ImageObject",
+         		{% if article.image %}
+         			"url": "https:{{ article | img_url: '1024x1024' }}",
+         {% else %} {% assign ZFWSKEEWXF = article.content | escape %} {% if ZFWSKEEWXF contains '&lt;img' %} {% assign ZFWSKEEWXF = ZFWSKEEWXF | split: 'src=&quot;' %} {% assign ZFWSKEEWXF = ZFWSKEEWXF[1] | split: '&quot;' %} {% assign ZFWSKEEWXF = ZFWSKEEWXF[0] | remove: '//cdn' %} {% assign ZFWSKEEWXF = ZFWSKEEWXF | remove: 'http:http://' %} {% assign ZFWSKEEWXF = ZFWSKEEWXF | remove: 'https:' %} {% assign ZFWSKEEWXF = ZFWSKEEWXF | prepend: 'https://cdn' %} {% capture QSGMYKOWFQ %}_1024x1024.{% endcapture %} {% assign QUGEOYMPTW = 'pico icon thumb small compact medium large grande 1024x1024 2048x2048' | split:' ' %} {% for EMWIDMOYQI in QUGEOYMPTW %} {% capture GFDHKYYEOT %}_{{ EMWIDMOYQI }}.{% endcapture %} {% assign ZFWSKEEWXF = ZFWSKEEWXF | replace:search,replacement %} {% endfor %}
+         				"url": "{{ ZFWSKEEWXF }}",
+         			{% else %}
+         				"url": "https://cdn.shopify.com/s/images/admin/no-image-grande.gif",
+         			{% endif %}
+         		{% endif %}
+         		"height": "1024",
+         		"width": "1024"
+         	},
+         	"datePublished": "{{ article.created_at }}",
+         	"dateModified": "{{ article.published_at }}",
+         	"description": {{ article.excerpt_or_content | strip_html | json  }},
+         	"articleBody": {{ article.content | strip_html | json  }}
+         }
+      </script>
+     
+      <script type="application/ld+json">
+         {  
+         "@context":"http://schema.org",
+         "@type":"BreadcrumbList",
+         "itemListElement":[  
+            {  
+               "@type":"ListItem",
+               "position":1,
+               "item":{  
+                  "@type":"Organization",
+                  "@id":"{{ shop.url }}",
+                  "name":"{{ shop.name }}",
+                  "image":"{{ 'logo.png' | asset_url }}"
+               }
+            },
+            {  
+               "@type":"ListItem",
+               "position":2,
+               "item":{  
+                  "@context":"http://schema.org/",
+                  "@type":"Blog",
+                  "@id":"{{ blog.title }}",
+                  "name":"{{ blog.title }}",
+                  "description":"{{ blog.title }}"
+               }
+            },
+            {  
+               "@type":"ListItem",
+               "position":3,
+               "item":{  
+                  "@context":"http://schema.org/",
+                  "@type":"Article",
+                  "@id":"{{ artile.title }}",
+                  "name":"{{ article.title }}",
+                  "headline": {{ article.title | json }},
+                  "author": {
+                  "@type": "Person",
+                  "name": {{ article.author | json }}
+                  },
+                  "mainEntityOfPage": {
+                     "@type": "WebPage",
+                     "@id": "{{ article.url }}"
+                  },
+                  "publisher": {
+                          "@type": "Organization",
+                          "name": {{ shop.name | json }},
+                          "logo": {
+                                    "@type": "ImageObject",
+                                    "name": "Logo",
+                                    "height": "60",
+                                    "url": "{{ 'logo.png' | asset_url }}"
+                                }
+                  },
+                  "image": {
+                      "@type": "ImageObject",
+                      {% if article.image %}
+                          "url": "https:{{ article.image | img_url: '1024x1024' }}",
+          {% else %} {% assign ZFWSKEEWXF = article.content | escape %} {% if ZFWSKEEWXF contains '&lt;img' %} {% assign ZFWSKEEWXF = ZFWSKEEWXF | split: 'src=&quot;' %} {% assign ZFWSKEEWXF = ZFWSKEEWXF[1] | split: '&quot;' %} {% assign ZFWSKEEWXF = ZFWSKEEWXF[0] | remove: '//cdn' %} {% assign ZFWSKEEWXF = ZFWSKEEWXF | remove: 'http:http://' %} {% assign ZFWSKEEWXF = ZFWSKEEWXF | remove: 'https:' %} {% assign ZFWSKEEWXF = ZFWSKEEWXF | prepend: 'https://cdn' %} {% capture QSGMYKOWFQ %}_1024x1024.{% endcapture %} {% assign QUGEOYMPTW = 'pico icon thumb small compact medium large grande 1024x1024 2048x2048' | split:' ' %} {% for EMWIDMOYQI in QUGEOYMPTW %} {% capture GFDHKYYEOT %}_{{ EMWIDMOYQI }}.{% endcapture %} {% assign ZFWSKEEWXF = ZFWSKEEWXF | replace:search,replacement %} {% endfor %}
+                              "url": "{{ ZFWSKEEWXF }}",
+                          {% else %}
+                              "url": "https://cdn.shopify.com/s/images/admin/no-image-grande.gif",
+                          {% endif %}
+                      {% endif %}
+                      "height": "1024",
+                      "width": "1024"
+                  },
+                  "datePublished": "{{ article.created_at }}",
+                  "dateModified": "{{ article.published_at }}",
+                  "description": {{ article.excerpt_or_content | strip_html | json  }},
+                  "articleBody": {{ article.content | strip_html | json  }}
+               }
+            }
+         ]
+         }
+      </script>
+      {% else %}
+      <li aria-current="page">
+         <a href="{{ request.path }}" aria-current="page">
+           {% if template == "search" %}
+           <ly-as-275734>SEARCH:</ly-as-275734> <span class="custom-instock"></span>RESULTS FOUND FOR "{{search.terms}}"
+           {%else%}
+           {{ page_title }}
+           {%endif%}
+        </a>
+      </li>
+      {% endcase %}
+   </ol>
+</nav>
+{% endunless %}
+<style>
+   .breadcrumbs {
+   font-size: 13px;
+   margin: 0 2em 2em;
+   text-align: center;
+   text-transform: uppercase;
+   color: #989898;
+   letter-spacing: 1px;
+   }
+   .breadcrumbs ol {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   }
+   .breadcrumbs li {
+   display: inline-block;
+   }
+   .breadcrumbs a {
+   position: relative;
+   color: #989898;
+   text-decoration: none !important;
+   transition: 0.3s;
+   padding: 10px 0;
+   }
+   .breadcrumbs a:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 5px;
+    left: 0;
+    background-color: #989898;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+   }
+   .breadcrumbs a:hover{
+   color:#C0C0C0;
+   }
+  .breadcrumbs a:hover:before{
+   background-color: #C0C0C0;
+   visibility: visible;
+   width: 100%;
+   }
+   .breadcrumbs ol li:last-of-type {
+   pointer-events: none;
+   }
+   .breadcrumbs ol li:not(:last-of-type):after {
+   content: "›\00a0";
+   display: inline-block;
+   padding-left: .25ch;
+   speak: none;
+   font-size: 20px;
+   margin-right: -0.5ch;
+   }
+   .breadcrumbs [aria-current="page"] {
+   color: inherit;
+   font-weight: normal;
+   text-decoration: none;
+   }
+   .breadcrumbs [aria-current="page"]:hover,
+   .breadcrumbs [aria-current="page"]:focus {
+   text-decoration: underline;
+   }
+</style>

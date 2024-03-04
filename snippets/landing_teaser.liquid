@@ -1,0 +1,53 @@
+{% if block.settings.show %}
+  <div class="landing_teaser_flex_all landing_teaser_flex_all_100">
+  <div class="page-width">
+
+    <div class="mosaic_wrapper">
+
+      <div class="mosaic mosaic_{{ block.id }} width_100 image_position_{{ block.settings.image_position }}">
+        <span class="mosaic_image_preload preload_img_mini">
+        <span class="mosaic_image"></span>
+        </span>
+        <span class="mosaic_text_all">
+          <span class="mosaic_text">
+            {%- if block.settings.title_block != blank -%}
+            <span class="title css_EN">{{ block.settings.title_block }}</span>
+            <span class="title css_AR">{{ block.settings.title_block_ar }}</span>
+            {%- endif -%}
+            {%- if block.settings.text_block != blank -%}
+            <span class="text css_EN">{{ block.settings.text_block }}</span>
+            <span class="text css_AR">{{ block.settings.text_block_ar }}</span>
+            {%- endif -%}
+            {%- if block.settings.link_text != blank -%}
+            <span class="link css_EN">{{ block.settings.link_text }}</span>
+            <span class="link css_AR">{{ block.settings.link_text_ar }}</span>
+            {%- endif -%}
+          </span>
+        </span>
+        {%- if block.settings.link != blank -%}<a href="{{block.settings.link}}" class="a_url"></a>{%- endif -%}
+      </div>
+<style>
+{% capture w_img %}850x{% endcapture %}
+.mosaic_{{ block.id }} .mosaic_image {background-image: url({{ block.settings.image_1_Desktop_1 | img_url: w_img }});}
+
+@media screen and (max-width: 1450px) {
+  {% capture w_img %}650x{% endcapture %}
+  .mosaic_{{ block.id }} .mosaic_image {background-image: url({{ block.settings.image_1_Desktop_2 | img_url: w_img }});}
+}
+@media screen and (max-width: 1024px) {
+  {% capture w_img %}500x{% endcapture %}
+  .mosaic_{{ block.id }} .mosaic_image {background-image: url({{ block.settings.image_tablet_1 | img_url: w_img }});}
+}
+@media screen and (max-width: 768px) {
+  {% capture w_img %}768x{% endcapture %}
+  .mosaic_{{ block.id }} .mosaic_image {background-image: url({{ block.settings.image_mobile_1 | img_url: w_img }});}
+}
+</style>
+
+
+
+
+</div>
+</div>
+</div>
+{%- endif -%}

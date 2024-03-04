@@ -1,0 +1,86 @@
+<section class="fullsize-video-bg">
+    <div id="video-viewport">
+      <div class="fallback-img">
+        {% if section.settings.image != blank %}
+        <img src="{{section.settings.image | img_url:'master' }}" alt="{{image.alt | escape }}"/>
+        {% else %}
+        <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/01-alphabravo-landingpage-hero-desktop_00000.jpg" alt="img"/>
+     	{% endif %}
+      </div>
+      <video width="100%" height="auto" autoplay muted loop>
+        {% if section.settings.video != blank %}
+        <source src="{{section.settings.video}}" type="video/mp4" />
+        {% else %}
+        <source src="https://cdn.media.amplience.net/v/tumi/01-alphabravo-landingpage-hero-desktop/mp4_720p" type="video/mp4" />
+        {% endif %}
+      </video>
+    </div>
+
+    <div class="video-con">
+      <div class="video-conbox">
+        <h1>{{section.settings.heading}}</h1>
+        <h2>{{section.settings.sub_heading}}</h2> 
+         {{section.settings.content}} 
+		{% if section.settings.btn != blank %}
+        <a href="{{section.settings.btnlink | default: '#'}}" class="btn-transparent">
+          <span class="ben-text">{{section.settings.btn}} </span>
+        </a>
+        {% endif %}
+
+      </div>
+    </div>
+
+  </section>  
+
+{% schema %}
+  {
+    "name": "Alpha Full width video",
+    "settings": [
+			{
+	"type":"image_picker",
+	"id":"image",
+	"label":"Video poster"
+},
+{
+	"type":"url",
+	"id":"link",
+	"label":"Video URL"
+},
+{
+	"type":"text",
+	"id":"heading",
+	"label":"Heading",
+	"default":"ALPHA BRAVO"
+},
+{
+	"type":"text",
+	"id":"sub_heading",
+	"label":"Sub heading",
+	"default":"Life in forward Motion"
+},
+{
+	"type":"richtext",
+	"id":"content",
+	"label":"Content",
+	"default":"<p>Celebrating over a decade of innovation and utilitarian inspiration, the latest generation of Alpha Bravo pushes the collection forward as the go-to for a non-stop life.</p>"
+},
+{
+	"type":"text",
+	"id":"btn",
+	"label":"Button name",
+	"default":"Shop the Collection"
+},
+{
+	"type":"url",
+	"id":"btnlink",
+	"label":"Button URL"
+}
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

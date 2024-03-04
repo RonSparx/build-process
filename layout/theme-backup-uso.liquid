@@ -1,0 +1,385 @@
+{% comment %}ly_liquid_scripts_begin{% endcomment %}{% capture ly_liquid_content %}{% comment %}ly_liquid_scripts_end{% endcomment %}<!doctype html>
+<html class="no-js" lang="{{ shop.locale }}">
+  <head>
+{% include 'limespot' %}
+    <script
+        src="https://www.datadoghq-browser-agent.com/datadog-rum.js"
+        type="text/javascript">
+    </script>
+    <script>
+        window.DD_RUM && window.DD_RUM.init({
+            applicationId: '7b12c758-06d6-47ca-939e-6cb87e6edb8a',
+            clientToken: 'pub99f9de0eeca726533b60a4dce142f1ab',
+            site: 'datadoghq.eu',
+            service:'tumi-ae',
+            env:'production',
+            // Specify a version number to identify the deployed version of your application in Datadog 
+            // version: '1.0.0',
+            sampleRate: 100,
+            trackInteractions: true
+        });
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                                                          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                                })(window,document,'script','dataLayer','GTM-PGVB6JB');</script>
+    <!-- End Google Tag Manager -->
+    
+    
+    <!-- Hotjar Tracking Code for https://www.tumi.ae/ -->
+<script>
+(function(h,o,t,j,a,r){
+h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+h._hjSettings={hjid:2021096,hjsv:6};
+a=o.getElementsByTagName('head')[0];
+r=o.createElement('script');r.async=1;
+r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+    <meta name="google-site-verification" content="4834IGPqwlrlj_O0-m42S_O4DNa-Y2BMZZblEH3Uk8Q" />
+    <meta name="facebook-domain-verification" content="h7pcatx2vj387zlxckxj75icw2vch2 " />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_button }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon != blank -%}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+    {%- endif -%}
+
+    {%- capture seo_title -%}
+    {%- if request.page_type == 'search' and search.performed == true -%}
+    {{ 'general.search.heading' | t: count: search.results_count }}: {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+    {%- else -%}
+    {{ page_title }}
+    {%- endif -%}
+    {%- if current_tags -%}
+    {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+    {%- endif -%}
+    {%- if current_page != 1 -%}
+    &ndash; {{ 'general.meta.page' | t: page: current_page }}
+    {%- endif -%}
+    {%- assign escaped_page_title = page_title | escape -%}
+    {%- unless escaped_page_title contains shop.name -%}
+    &ndash; {{ shop.name }}
+    {%- endunless -%}
+    {%- endcapture -%}
+    <title>{{ page_title }}</title>
+
+    {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {% include 'social-meta-tags' %}
+   {% if template != 'page.mclaren' %}
+       <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+   {% endif %} 
+    {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+    
+    {{ 'custom-s.scss.css' | asset_url | stylesheet_tag }}
+    {{ 'custom-r.scss.css' | asset_url | stylesheet_tag }}
+    {{ 'custom-g.scss.css' | asset_url | stylesheet_tag }}
+    
+    {{ 'custom.scss.css' | asset_url | stylesheet_tag }}
+    {{ 'landing.scss.css' | asset_url | stylesheet_tag }}
+    {{ 'custom-landing.scss.css' | asset_url | stylesheet_tag }}
+{% if template == 'page.mclaren' %}
+    {{ 'animate.min.css' | asset_url | stylesheet_tag }}
+     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    {{ 'slick.css' | asset_url | stylesheet_tag }}
+    {{ 'slick-theme.min.css' | asset_url | stylesheet_tag }}
+    {{ 'mclaren.css' | asset_url | stylesheet_tag }}
+{% endif %}    
+    {% comment %}
+    <!-- Cross Sell custom code start. Do not change -->
+    {%include 'cross-sell-custom'%}
+    <!-- Cross Sell custom code end. Do not change -->
+    {% endcomment %}  
+
+
+    
+
+    <script>
+      var theme = {
+        breakpoints: {
+          medium: 750,
+          large: 990,
+          widescreen: 1400
+        },
+        strings: {
+          addToCart: {{ 'products.product.add_to_cart' | t | json }},
+          soldOut: {{ 'products.product.sold_out' | t | json }},
+          unavailable: {{ 'products.product.unavailable' | t | json }},
+          regularPrice: {{ 'products.product.regular_price' | t | json }},
+          salePrice: {{ 'products.product.sale_price' | t | json }},
+          sale: {{ 'products.product.on_sale' | t | json }},
+          fromLowestPrice: {{ 'products.product.from_lowest_price_html' | t: lowest_price: '[price]' | json }},
+          vendor: {{'products.product.vendor' | t | json }},
+          showMore: {{ 'general.filters.show_more' | t | json }},
+          showLess: {{ 'general.filters.show_less' | t | json }},
+          searchFor: {{ 'general.search.search_for' | t | json }},
+          addressError: {{ 'sections.map.address_error' | t | json }},
+          addressNoResults: {{ 'sections.map.address_no_results' | t | json }},
+          addressQueryLimit: {{ 'sections.map.address_query_limit_html' | t | json }},
+          authError: {{ 'sections.map.auth_error_html' | t | json }},
+          newWindow: {{ 'general.accessibility.link_messages.new_window' | t | json }},
+          external: {{ 'general.accessibility.link_messages.external' | t | json }},
+          newWindowExternal: {{ 'general.accessibility.link_messages.new_window_and_external' | t | json }},
+          removeLabel: {{ 'cart.label.remove' | t: product: '[product]' | json }},
+          update: {{ 'cart.label.update' | t | json }},
+          quantity: {{ 'cart.label.quantity' | t | json }},
+          discountedTotal: {{ 'cart.label.discounted_total' | t | json }},
+          regularTotal: {{ 'cart.label.regular_total' | t | json }},
+          priceColumn: {{ 'cart.label.price_column' | t | json }},
+          quantityMinimumMessage: {{ 'products.product.quantity_minimum_message' | t | json }},
+          cartError: {{ 'cart.general.cart_error' | t | json }},
+          removedItemMessage: {{ 'cart.general.removed_item_html' | t: quantity: '[quantity]', link: '[link]' | json }},
+          unitPrice: {{ 'products.product.unit_price_label' | t | json }},
+          unitPriceSeparator: {{ 'general.accessibility.unit_price_separator' | t | json }},
+          oneCartCount: {{ 'cart.popup.cart_count' | t: count: 1 | json }},
+          otherCartCount: {{ 'cart.popup.cart_count' | t: count: '[count]' | json }},
+          quantityLabel: {{ 'cart.popup.quantity_label' | t: quantity_count: '[count]' | json }},
+          products: {{ 'general.search.products' | t | json }},
+          loading: {{ 'general.search.loading' | t | json }},
+          number_of_results: {{ 'general.search.number_of_results' | t: result_number: '[result_number]', results_count: '[results_count]' | json }},
+          number_of_results_found: {{ 'general.search.number_of_results_found' | t: results_count: '[results_count]' | json }},
+          one_result_found: {{ 'general.search.one_result_found' | t | json }}
+        },
+        moneyFormat: {{ shop.money_format | json }},
+        moneyFormatWithCurrency: {{ shop.money_with_currency_format | json }},
+        settings: {
+        predictiveSearchEnabled: {{ settings.predictive_search_enabled | json }},
+        predictiveSearchShowPrice: {{ settings.predictive_search_show_price | json }},
+        predictiveSearchShowVendor: {{ settings.predictive_search_show_vendor | json }}
+      }
+      }
+
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+
+    {%- if request.page_type contains 'customers/' -%}
+    <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+    {%- endif -%}
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
+    <script src="{{ 'fontawesome.js' | asset_url }}" defer="async"></script>
+    <script src="{{ 'vendor.js' | asset_url }}" defer="async"></script>
+    <script src="{{ 'theme.js' | asset_url }}" defer="async"></script>
+    <script src="{{ 'custom.js' | asset_url }}" defer="async"></script>
+    
+    
+    
+    
+
+    {% if template contains 'product' %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" rel="stylesheet" />
+
+
+
+
+    {% endif %}
+
+    <!-- starapps_scripts_start -->
+    <!-- This code is automatically managed by StarApps Studio -->
+    <!-- Please contact support@starapps.studio for any help -->
+    {% include "starapps-language-meta" %}
+    {% unless template contains 'index' %}
+
+
+    
+    
+<script type="text/javascript" src="https://bcdn.starapps.studio/apps/vsk/tumi-uae/script-1615887976.js?shop={{shop.permanent_domain}}" async></script>
+<!-- starapps_scripts_end -->
+    {% endunless %}  
+    {{ content_for_header }}
+    <script>
+      var userEmail = "{{customer.email}}"
+    </script>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <script>
+
+
+
+      jQuery(window).on("load", function (e) {
+
+        jQuery(".collectionlink").each(function() {
+          var collurl = jQuery(this).attr("href");
+          var newcollurl = collurl.split('/').slice(3).join('/');
+
+          jQuery(this).attr("onclick", "location.href='https://www.tumi.ae/"+newcollurl+"'");
+
+          jQuery(this).attr("href","https://www.tumi.ae/"+newcollurl);
+        });
+
+
+        jQuery( "#gf_pagination_wrap" ).on( "click", function() {
+
+
+          jQuery(".collectionlink").each(function() {
+            var collurl = jQuery(this).attr("href");
+            var newcollurl = collurl.split('/').slice(3).join('/');
+
+            jQuery(this).attr("onclick", "location.href='https://www.tumi.ae/"+newcollurl+"'");
+
+            jQuery(this).attr("href","https://www.tumi.ae/"+newcollurl);
+          });
+
+
+          location.reload();
+
+  });
+
+   });
+
+   </script>
+    <style>
+      #shopify-section-161295020912cbf1be{padding-bottom:220px !important;}
+      #shopify-section-161295020912cbf1be h3{font-size:22px !important;}
+      @media only screen and (max-width: 749px) {
+        #shopify-section-161295020912cbf1be > div > div.custom-content > div.custom__item.custom__item--html.custom__item--4b17cae1-b8cf-4ec4-b034-8cb8743d62a8.small--one-half.medium-up--one-quarter{margin-bottom:150px !important;}
+      }
+
+
+      #shopify-section-1612951493d7e7fae8{padding-top:100px !important;}
+    </style>
+
+  </head>
+
+
+  {% if template == "index" %}
+  <div class='popup-onload'>
+    <div class='cnt223'>
+      <ul>
+        <li>
+          <img src="{{ 'pop-pup.jpg' | asset_img_url: 'original'}}" alt="image">
+        </li>
+        <li>
+          <p>EXPLORE THE TUMI VIRTUAL EXPERIENCE</p>
+          <div class="banner-buton">
+            <a class="btn-ab" target="_blank" href="https://virtualstore.tumi-asia.com/" aria-describedby="a11y-new-window-external-message" rel="noopener" tabindex="0">Enter the store</a>
+          </div>
+        </li>
+      </ul>
+      <a href='' class='close'>{% include 'icon-close' %}</a>
+    </div>
+  </div>
+  {%endif%}
+
+
+  <body class="template-{{ request.page_type | handle }} {%if page.handle == "store"%}store-cms{%endif%} {%if page.handle == "virtual-store"%}virtual-store{%endif%} {% if template == 'page.mclaren' %}mclarenBody{% endif %}">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGVB6JB"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+    {%- if settings.enable_ajax -%}
+    {% include 'cart-popup' %}
+    {%- endif -%}
+
+    {% section 'header' %}
+
+    <div class="page-container drawer-page-content" id="PageContainer">
+
+      <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
+        {{ content_for_layout }}
+<limespot></limespot>
+      </main>
+
+      {% section 'footer' %}
+
+      <div id="slideshow-info" class="visually-hidden" aria-hidden="true">
+        {{- 'sections.slideshow.navigation_instructions' | t -}}
+      </div>
+
+    </div>
+
+    <ul hidden>
+      <li id="a11y-refresh-page-message">{{ 'general.accessibility.refresh_page' | t }}</li>
+      <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
+    </ul>
+    <script src="{{ 'dropdown.js' | asset_url }}"></script>
+    <div id="oc-modal">
+      <div class="oc-modal__wrapper">
+        <div class="oc-modal__close" data-close-oc-modal>
+          {% include 'icon-close' %}
+        </div>
+        <div class="oc-modal__body"></div>
+      </div>
+    </div>
+    {% if template contains 'collection' %}    
+    {% include 'iwish_v2' with 'iwishfooter' %}
+    {% endif %}   
+
+    {% include 'oc-cookie-consent' %}
+
+
+    
+
+
+    {% if template contains 'product' %} 
+    <script>
+      if ($(window).width() < 768) {
+        $('.bxslider').bxSlider({
+          mode: 'horizontal',
+          minSlides: 3,
+          maxSlides: 3,
+          //  slideWidth: 156,
+          //  slideMargin: 12,
+          moveSlides: 1,
+          // slideMargin: 10,
+          infiniteLoop: false,
+          pager: false,
+          prevText: "",
+          nextText: ""
+          // hideControlOnEnd: true
+        });
+      }
+      else {
+        $('.bxslider').bxSlider({
+          mode: 'vertical',         
+          // minSlides: 4,
+          //mode: 'horizontal',
+          minSlides: 5,
+          maxSlides: 5,
+          //  slideWidth: 156,
+          //  slideMargin: 12,
+          moveSlides: 1,
+          // slideMargin: 10,
+          infiniteLoop: false,
+          pager: false,
+          prevText: "",
+          nextText: ""
+          // hideControlOnEnd: true
+        });
+      }
+    </script>
+    {% endif %}  
+    {{ '//cdn.shopify.com/s/files/1/0194/1736/6592/t/1/assets/booster-page-speed-optimizer.js?23' | script_tag }}
+  <!-- langify-v2-scripts-begin -->{% comment %}ly_liquid_scripts_begin{% endcomment %}{% endcapture %}{% render 'ly-liquid-scripts' content: ly_liquid_content %}{% comment %}ly_liquid_scripts_end{% endcomment %}{% comment %}ly_core_scripts_begin{% endcomment %}{% render 'ly-core-scripts' %}{% comment %}ly_core_scripts_end{% endcomment %}{% comment %}ly_switcher_factory_begin{% endcomment %}{% render 'ly-switcher-factory' %}{% comment %}ly_switcher_factory_end{% endcomment %}<!-- langify-v2-scripts-end -->
+
+    
+    {% if template contains 'page.mclaren' %}
+     	 <script src="{{ 'modernizr-3.11.2.min.js' | asset_url }}" async="async"></script>
+    	 <script src="{{ 'zenscroll-min.js' | asset_url }}" async="async"></script>	
+<!--     	 <script src="{{ 'jquery.min.js' | asset_url }}" async="async"></script> -->
+    	 <script src="{{ 'slick.min.js' | asset_url }}" async="async"></script>
+    	 <script src="{{ 'mclaren.js' | asset_url }}" async="async"></script>
+
+  {% endif %}
+    {% include 'globo.filter.action' %}
+	</body>
+</html>

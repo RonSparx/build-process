@@ -1,0 +1,173 @@
+<!-- ShopifyExplorer - Add an EU cookies banner to your website without app -->
+<!-- Details in: http://easycodeguide.com/shopify-add-eu-cookies-banner-website-without-app.html -->
+{% comment %}Define variables{% endcomment %}
+{% assign text = "By continuing browsing this website you accept the use of TUMI or third parties' cookies and other technologies to improve your user and shopping experience,<br/> to provide you with personalized content and offers tailored to your interest. For more information click " %}
+{% assign more_info = "here" %}
+{% assign privacy_url = "/pages/data-protection#cookie-management" %}
+{% assign button_text = "Accept Cookies" %}
+
+<style type="text/css">
+    @-webkit-keyframes slideUp{
+        0%{
+            -webkit-transform:translateY(66px);
+            transform:translateY(66px)
+        }
+        100%{
+            -webkit-transform:translateY(0);
+            transform:translateY(0)
+        }
+    }
+    @keyframes slideUp{
+        0%{
+            -webkit-transform:translateY(66px);
+            -ms-transform:translateY(66px);
+            transform:translateY(66px)
+        }
+        100%{
+            -webkit-transform:translateY(0);
+            -ms-transform:translateY(0);
+            transform:translateY(0)
+        }
+    }
+  
+  	.cta-container {
+    	margin: 4px;
+    }
+
+    #se-cookies-message {
+        color: #000; /* Change text color here */
+        padding: 10px;
+        position: fixed;
+        background-color: #F6F6F6 !important;
+        bottom:0px;
+        left:0;
+        right:0;
+        z-index: 100000;
+        box-shadow: 0 0 5px rgba(0,0,0,0.4);
+        opacity: 0;
+      	font-weight: 500;
+        visibility: hidden;
+        font-size: 13px;
+    }
+    #se-cookies-message.se-cookies-message-open {
+        opacity: 1;
+        visibility: visible;
+
+        animation-duration:0.8s;
+        -webkit-animation-duration:0.8s;
+        -moz-animation-duration:0.8s;
+        -o-animation-duration:0.8s;
+        -webkit-animation-name:slideUp;
+        animation-name:slideUp;
+
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+      	flex-direction: column;
+
+        -webkit-align-items: flex-end;
+        -moz-align-items: flex-end;
+        -ms-align-items: flex-end;
+        -o-align-items: flex-end;
+        -ms-flex-align: flex-end;
+        align-items: flex-end;
+
+        -webkit-justify-content: space-between;
+        -moz-justify-content: space-between;
+        -ms-justify-content: space-between;
+        -o-justify-content: space-between;
+        justify-content: space-between;
+    }
+    #se-accept-cookies-checkbox {
+        color: #fff; /* Change button text color here */
+        background-color: #000; /* Change button background color here */
+        transition: background 200ms ease-in-out,color 200ms ease-in-out,box-shadow 200ms ease-in-out;
+        -webkit-transition: background 200ms ease-in-out,color 200ms ease-in-out,box-shadow 200ms ease-in-out;
+        text-decoration: none;
+        font-size: 13px;
+      	font-weight: bold;
+      	margin-right: 1.3rem;
+        padding: 8px 15px;
+      	display: inline-block;
+    }
+    #se-accept-cookies-checkbox:hover {
+        opacity: 0.8;
+    }
+    .se-cookies-text {
+        padding-right: 15px;
+    }
+    @media screen and (min-width: 768px) {
+        #se-cookies-message.se-cookies-message-open {
+            padding: 15px 15px 15px 45px;
+          	flex-direction: row;
+
+            -webkit-align-items: center;
+            -moz-align-items: center;
+            -ms-align-items: center;
+            -o-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        #se-accept-cookies-checkbox {
+            padding: 8px 25px;
+        }
+        .se-cookies-text {
+            padding-right: 0;
+          margin: 0;
+        }
+    }
+</style>
+
+<div id="se-cookies-message-container">
+    <div id="se-cookies-message">
+        <p class="se-cookies-text">
+            {{text}} <a href="{{privacy_url}}"><u>{{more_info}}</u></a>
+        </p>
+      <div class="cta-container">
+        <a href="javascript:SE_AcceptAndClose();" id="se-accept-cookies-checkbox">{{button_text}}</a>
+      	<a href="javascript:SE_CloseCookiesWindow();">{% include 'icon-close' %}</a>
+      </div>      
+    </div>
+</div>
+
+<script type="text/javascript">
+  function SE_setCookie (name, value, days) {
+    var expires = "";
+    if (days) {
+      var date = new Date();
+      date.setTime(date.getTime() + (days*24*60*60*1000));
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+  }
+
+  function SE_getCookie (name) {
+    var pair = document.cookie.match(new RegExp(name + '=([^;]+)'));
+    return !!pair ? pair[1] : null;
+  }
+
+  var cookiesName = 'cookies_accepted';
+
+  function SE_CheckCookies () {
+    if(!SE_getCookie(cookiesName)) {
+      var cookies_message = document.getElementById("se-cookies-message");
+      cookies_message.className += " se-cookies-message-open";
+    }
+  }
+  
+  function SE_AcceptAndClose() {
+  	SE_setCookie(cookiesName, true, 9999);
+	SE_CloseCookiesWindow();
+  }
+  
+
+  function SE_CloseCookiesWindow () {
+    document.getElementById("se-cookies-message-container").removeChild(document.getElementById("se-cookies-message"));
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    SE_CheckCookies();
+  });
+</script>

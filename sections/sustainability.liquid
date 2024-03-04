@@ -1,0 +1,446 @@
+<div class="custom-page-banner">
+  <div class="desk-banner">
+    {% if section.settings.banner_img != blank %}
+    <img src="{{section.settings.banner_img | img_url: "original"}}">
+    {%else%}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%endif%}
+  </div>
+  <div class="mob-banner">
+    {% if section.settings.mobbanner_img != blank %}
+    <img src="{{section.settings.mobbanner_img | img_url: "original"}}">
+    {%else%}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%endif%}
+  </div>
+  <div class="bannertext-wrap">
+    <div class="bannertop-head">
+      <div class="head-one">
+        {{section.settings.bannerheading1 | default: "Innovative"}}
+      </div>
+      <div class="head-two">
+        {{section.settings.bannerheading2 | default: "By nature"}}
+      </div>
+    </div>
+    {% if section.settings.banner_middleimg != blank %}
+    <img src="{{section.settings.banner_middleimg | img_url: "original"}}">
+    {%else%}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%endif%}
+    <div class="bannerbtom-head">
+      <div class="head-one">
+        {{section.settings.bannerheading3 | default: "Sustainable"}}
+      </div>
+      <div class="head-two">
+        {{section.settings.bannerheading4 | default: "By choice"}}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="page-width">
+  
+  <div class="planet-travel">
+    <h2> 
+      {{section.settings.heading1 | default: "TUMI protects the things that matter most,"}}
+      <br class="hide-on-mobile">{{section.settings.headingsub | default: "the things you own and the planet you travel to see."}}
+    </h2>
+    <p>{{section.settings.description1 | default: "Our planet is an astonishing place and we believe it’s our responsibility to preserve it for travelers of the future. By putting excellence and quality first, we ensure that every TUMI product has lifelong purpose, supported by our rigorous testing standards, exploration of recycled materials, and global repair network."}}</p>
+    <ul>
+      <li>
+        {% if section.settings.icon1 != blank %}
+        <img src="{{section.settings.icon1 | img_url: "original"}}">
+        {%else%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%endif%}
+        <h4>{{section.settings.icon1_heading | default:"Built To Last"}}</h4>
+        <p>{{section.settings.icon1_desc | default:"TUMI quality and durability standards are paramount – our product is built to stay on the road. Our products made with recycled fabric will meet the same standards as any TUMI product."}}</p>
+      </li>
+      <li>
+        {% if section.settings.icon2 != blank %}
+        <img src="{{section.settings.icon2 | img_url: "original"}}">
+        {%else%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%endif%}
+        <h4>{{section.settings.icon2_heading | default:"Built To Last"}}</h4>
+        <p>{{section.settings.icon2_desc | default:"TUMI quality and durability standards are paramount – our product is built to stay on the road. Our products made with recycled fabric will meet the same standards as any TUMI product."}}</p>
+      </li>
+      <li>
+        {% if section.settings.icon3 != blank %}
+        <img src="{{section.settings.icon3 | img_url: "original"}}">
+        {%else%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%endif%}
+        <h4>{{section.settings.icon3_heading | default: "Built To Last"}}</h4>
+        <p>{{section.settings.icon3_desc | default: "TUMI quality and durability standards are paramount – our product is built to stay on the road. Our products made with recycled fabric will meet the same standards as any TUMI product."}}</p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="protecting-matters">
+    <div class="side-by-side-p-left">
+      <h2>{{section.settings.block2_heading | default: "Protecting what matters."}}</h2>
+      <p>{{section.settings.block2_desc | default: "TUMI protects the things that matter most, the things you own and the planet you travel to see. Durability is our promise – to keep your belongings safe and respect the world's resources, because our planet is an astonishing place and we believe it’s our responsibility to preserve it for travelers of the future."}}</p>
+    </div>
+    <picture class="side-by-side-image-right">
+      {% if section.settings.block2 != blank %}
+        <img src="{{section.settings.block2 | img_url: "original"}}">
+        {%else%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%endif%}
+    </picture>
+  </div>
+  
+  <div class="protecting-matters">
+    <div class="side-by-side-p-left full-width">
+      <h2>{{section.settings.block3 | default: "Sustainability is woven into the fabric of everything we do."}}</h2>
+      {{section.settings.block3description | default: "<p>You are our inspiration. Your passion for travel reminds us how important it is to protect the things and places you love.</p><p>We want to keep the world traveling by creating products that last, by working within our planet’s limits and by protecting the rights and wellbeing of everyone we work with.</p><p>Sustainability affects all of our operations and so we’ve created a roadmap to help us on the journey. It has four areas: Innovative Products, Carbon Action, Thriving Supply Chains, People Focused.</p>"}}
+    </div>
+  </div>
+  
+  <div class="protecting-matters">
+    <picture class="side-by-side-image-right pd-0">
+      {% if section.settings.block4 != blank %}
+        <img src="{{section.settings.block4 | img_url: "original"}}">
+        {%else%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%endif%}
+    </picture>
+    <div class="side-by-side-p-left pd-0">
+      <h3>{{section.settings.block4_heading | default: "1. Innovative Products"}}</h3>
+      {{section.settings.block4_desc | default: "<p>TUMI is — and has always been — committed to creating durable products that last. We’ll protect your belongings wherever you travel — we design for durability and test every bag 30 different ways. We’ll create the highest quality products using responsible and environmentally-friendly materials and production methods.</p><p>Our luggage is designed to keep you on the road, and in the event of accidental damage we’ll repair it, wherever in the world that may be. By increasing the lifespan of your bag, we’re decreasing the load on landfill.</p>"}}
+      </div>
+  </div>
+  
+  {% assign col_handle = section.settings.pro_collection %}
+  <div class="custom-pro-slider">
+    <div class="custom-slider-title">
+      {{section.settings.slider_title | default: "Recycled Collection"}}
+    </div>
+    <div class="wrap-pro-slider">
+      <ul class="custom-pro-loop" id="sustainablity-slid">
+        {%- for product in collections[col_handle].products -%}
+          <li class="pro-data">
+            {% include 'product-card-grid', max_height: 360, product: product %}
+            <div class="list-product-price">
+              {{product.price | money}}
+            </div>
+          </li>
+        {%endfor%}
+      </ul>
+    </div>
+    <div class="pro-slider-btn">
+      <a href="{{section.settings.block5_btnurl | default: "#"}}">{{section.settings.block5_btn | default: "Shop the Collection"}}</a>
+    </div>
+  </div>
+  
+  <div class="protecting-matters">
+    <div class="side-by-side-p-left">
+      <h3>{{section.settings.block6heading | default: "2. Carbon Action"}}</h3>
+      {{section.settings.block6description | default: "<p>TUMI is — and has always been — committed to creating durable products that last. We’ll protect your belongings wherever you travel — we design for durability and test every bag 30 different ways. We’ll create the highest quality products using responsible and environmentally-friendly materials and production methods.</p><p>Our luggage is designed to keep you on the road, and in the event of accidental damage we’ll repair it, wherever in the world that may be. By increasing the lifespan of your bag, we’re decreasing the load on landfill.</p>"}}
+    </div>
+    <picture class="side-by-side-image-right">
+      {% if section.settings.block6 != blank %}
+        <img src="{{section.settings.block6 | img_url: "original"}}">
+        {%else%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%endif%}
+    </picture>
+  </div>
+  
+  <div class="protecting-matters">
+    <picture class="side-by-side-image-right pd-0">
+      {% if section.settings.block7 != blank %}
+        <img src="{{section.settings.block7 | img_url: "original"}}">
+        {%else%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%endif%}
+    </picture>
+    <div class="side-by-side-p-left pd-0">
+      <h3>{{section.settings.block7heading | default: "3. Innovative Products"}}</h3>
+      {{section.settings.block7description | default: "<p>TUMI is — and has always been — committed to creating durable products that last. We’ll protect your belongings wherever you travel — we design for durability and test every bag 30 different ways. We’ll create the highest quality products using responsible and environmentally-friendly materials and production methods.</p><p>Our luggage is designed to keep you on the road, and in the event of accidental damage we’ll repair it, wherever in the world that may be. By increasing the lifespan of your bag, we’re decreasing the load on landfill.</p>"}}
+    </div>
+  </div>
+  
+  <div class="protecting-matters">
+    <div class="side-by-side-p-left">
+      <h3>{{section.settings.block8heading | default: "4. People Focused"}}</h3>
+      {{section.settings.block8description | default: "<p>Our journey is powered by people, our greatest asset. It’s their passion and commitment that will help us make the world’s most sustainable luggage.</p><p>We make a difference to our communities wherever we can. Working with exceptional partners like St Jude Children’s Research Hospital, All Hands & Hearts, and Waves for Water, we strive to make tough journeys lead to better places.</p>"}}
+      <a href="{{section.settings.block8_btnurl | default: "#"}}" class="td-btn"><strong>{{section.settings.block8_btn | default: "LEARN MORE"}}</strong></a>	
+    </div>
+    <picture class="side-by-side-image-right">
+      {% if section.settings.block8 != blank %}
+        <img src="{{section.settings.block8 | img_url: "original"}}">
+        {%else%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%endif%}
+    </picture>
+  </div>
+
+</div>
+
+
+{% schema %}
+  {
+    "name": "Body Section",
+    "settings": [
+	{
+	"type": "header",
+	"content": "Banner"
+	},
+	{
+	"type": "image_picker",
+	"id": "banner_img",
+	"label": "Desktop Banner Img"
+	},
+	{
+	"type": "image_picker",
+	"id": "mobbanner_img",
+	"label": "Mobile Banner Img"
+	},
+	{
+	"type": "text",
+	"id": "bannerheading1",
+	"label": "Banner heading1"
+	},
+	{
+	"type": "text",
+	"id": "bannerheading2",
+	"label": "Banner heading2"
+	},
+	{
+	"type": "image_picker",
+	"id": "banner_middleimg",
+	"label": "Banner Middle Icon"
+	},
+	{
+	"type": "text",
+	"id": "bannerheading3",
+	"label": "Banner Bottom heading1"
+	},
+	{
+	"type": "text",
+	"id": "bannerheading4",
+	"label": "Banner Bottom heading2"
+	},
+	{
+	"type": "header",
+	"content": "Block 1"
+	},
+	{
+	"type": "text",
+	"id": "heading1",
+	"label": "Heading 1"
+	},
+	{
+	"type": "text",
+	"id": "headingsub",
+	"label": "Heading Sub"
+	},
+	{
+	"type": "textarea",
+	"id": "description1",
+	"label": "Description 1"
+	},
+	{
+	"type": "image_picker",
+	"id": "icon1",
+	"label": "Icon 1"
+	},
+	{
+	"type": "text",
+	"id": "icon1_heading",
+	"label": "Icon1 Heading"
+	},
+	{
+	"type": "textarea",
+	"id": "icon1_desc",
+	"label": "Icon1 Description"
+	},
+	{
+	"type": "image_picker",
+	"id": "icon2",
+	"label": "Icon 2"
+	},
+	{
+	"type": "text",
+	"id": "icon2_heading",
+	"label": "Icon2 Heading"
+	},
+	{
+	"type": "textarea",
+	"id": "icon2_desc",
+	"label": "Icon2 Description"
+	},
+	{
+	"type": "image_picker",
+	"id": "icon3",
+	"label": "Icon 3"
+	},
+	{
+	"type": "text",
+	"id": "icon3_heading",
+	"label": "Icon3 Heading"
+	},
+	{
+	"type": "textarea",
+	"id": "icon3_desc",
+	"label": "Icon3 Description"
+	},
+	{
+	"type": "header",
+	"content": "Block 2"
+	},
+	{
+	"type": "text",
+	"id": "block2_heading",
+	"label": "Blcok2 Heading"
+	},
+	{
+	"type": "html",
+	"id": "block2_desc",
+	"label": "Block2 Description"
+	},
+	{
+	"type": "image_picker",
+	"id": "block2",
+	"label": "Block 2"
+	},
+	{
+	"type": "header",
+	"content": "Block 3"
+	},
+	{
+	"type": "text",
+	"id": "block3",
+	"label": "Block3 Heading"
+	},
+	{
+	"type": "html",
+	"id": "block3description",
+	"label": "Block3 Description"
+	},
+	{
+	"type": "header",
+	"content": "Block 4"
+	},
+	{
+	"type": "image_picker",
+	"id": "block4",
+	"label": "Block 4"
+	},
+	{
+	"type": "text",
+	"id": "block4_heading",
+	"label": "Blcok4 Heading"
+	},
+	{
+	"type": "html",
+	"id": "block4_desc",
+	"label": "Block4 Description"
+	},
+	{
+	"type": "header",
+	"content": "Product Slider Block 5"
+	},
+	{
+	"type": "text",
+	"id": "slider_title",
+	"label": "Section title"
+	},
+	{
+	"type": "collection",
+	"id": "pro_collection",
+	"label": "Select Collection"
+	},
+	{
+	"type": "text",
+	"id": "block5_btn",
+	"label": "Button Label"
+	},
+	{
+	"type": "url",
+	"id": "block5_btnurl",
+	"label": "Button Url"
+	},
+	{
+	"type": "header",
+	"content": "Block 6"
+	},
+	{
+	"type": "text",
+	"id": "block6heading",
+	"label": "Block6 Heading"
+	},
+	{
+	"type": "html",
+	"id": "block6description",
+	"label": "Block6 Description"
+	},
+	{
+	"type": "image_picker",
+	"id": "block6",
+	"label": "Block 6"
+	},
+	
+	{
+	"type": "header",
+	"content": "Block 7"
+	},
+	{
+	"type": "image_picker",
+	"id": "block7",
+	"label": "Block 7"
+	},
+	{
+	"type": "text",
+	"id": "block7heading",
+	"label": "Block7 Heading"
+	},
+	{
+	"type": "html",
+	"id": "block7description",
+	"label": "Block7 Description"
+	},
+	
+	{
+	"type": "header",
+	"content": "Block 8"
+	},
+	{
+	"type": "text",
+	"id": "block8heading",
+	"label": "Block8 Heading"
+	},
+	{
+	"type": "html",
+	"id": "block8description",
+	"label": "Block8 Description"
+	},
+	{
+	"type": "text",
+	"id": "block8_btn",
+	"label": "Button Label"
+	},
+	{
+	"type": "url",
+	"id": "block8_btnurl",
+	"label": "Button Url"
+	},
+	{
+	"type": "image_picker",
+	"id": "block8",
+	"label": "Block 8"
+	}
+	
+	
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

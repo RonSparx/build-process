@@ -1,0 +1,70 @@
+<style>
+  .video-section iframe {
+      height: 56vw;
+  }
+  .video-section {
+      margin: 30px 0 10px 0;
+  }
+  @media(min-width:768px){
+    .video-section {
+        padding: 0 15px;
+        margin: 1% 0;
+    }
+    
+  }
+  @media(min-width:1200px){
+    .video-section {
+        padding: 0 72px;
+        margin:12px 0;
+    }
+  }
+  @media(min-width:1400px){
+      .video-section {
+        max-width: 1408px;
+        margin: 0 auto;
+        padding: 0 72px;
+    }
+    .video-section iframe {
+        height: 45vw;
+    }
+  }
+  @media(min-width:1600px){
+    .video-section iframe {
+        height: 40vw;
+    }
+  }
+</style>
+
+
+{% if product.metafields["custom_fields"]["product_video"] != blank %}
+  <div class="video-section pdp_video">
+    <iframe id="vimeo-pdp" width="115%" height="110%" frameborder="0" allow="autoplay" src="{{ product.metafields["custom_fields"]["product_video"] }}" ></iframe>
+  </div>
+  
+  <script>
+     var options = {
+      id: '{{ product.metafields["custom_fields"]["product_video"] }}',
+      autoplay: false
+    };
+
+    var videoplayer;
+    var videoSection = document.querySelector('.video-section');
+
+    function startVideo() {
+      videoplayer = new Vimeo.Player('vimeo-pdp', options);
+      videoplayer.play();
+      window.removeEventListener('scroll', startVideo);
+    }
+
+    var observerVideo = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        startVideo();
+      }
+    });
+    observerVideo.observe(videoSection);
+    window.addEventListener('scroll', startVideo);
+
+  </script>
+  {% endif %}
+
+

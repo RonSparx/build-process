@@ -1,0 +1,172 @@
+{{ 'store-address.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .store-media-inner {
+      padding-top: calc(386 / 539 * 100%);
+      background: #f5f5f5;
+      position: relative;
+  }
+  @media(min-width:749px){
+     padding-top: calc(716 / 1000 * 100%);
+  }
+</style>
+
+<div class="page-width">
+  <div class="store-heading">
+    {% if section.settings.store-heading != blank %}
+      <h1>{{ section.settings.store-heading }}</h1>
+    {% endif %}
+  </div>
+  <div class="store-row">
+    <div class="store-media">
+      <div class="store-media-inner">
+        {% if section.settings.store-desktop and section.settings.store-mobile != blank  %}
+        <picture>
+          <source media="(min-width:749px)" srcset="{{ section.settings.store-desktop | img_url: ''  }}">
+          <img loading="lazy" src="{{ section.settings.store-mobile | img_url: ''  }}" alt="{{ section.settings.store-mobile.alt}}">
+        </picture>
+        {% else %}
+          {{ 'image' | placeholder_svg_tag }}
+        {% endif %}
+      </div>
+    </div>
+    <div class="store-details">
+        <h3 class="store-name">{{ section.settings.store-name }}</h3>
+        <div class="store-address">
+           {{ section.settings.store-address }}
+        </div>
+        <div class="office-timing">
+            <ul>
+              {% if section.settings.store-time-text != blank or section.settings.store-time != blank %}
+                <li>
+                    <span>{{ section.settings.store-time-text }}</span>
+                    <strong>{{ section.settings.store-time }}</strong>
+                </li>
+              {% endif %}
+              {% if section.settings.store-time-text-2 != blank or section.settings.store-time2 != blank %}
+                <li>
+                    <span>{{ section.settings.store-time-text-2 }}</span>
+                    <strong>{{ section.settings.store-time2 }}</strong>
+                </li>
+              {% endif %}
+              {% if section.settings.phone-number-text != blank or section.settings.store-phone != blank %}
+                <li>
+                    <span>{{ section.settings.phone-number-text }}</span>
+                    <strong><a href="tel:{{ section.settings.store-phone }}">+{{ section.settings.store-phone }}</a></strong>
+                </li>
+              {% endif %}
+              {% if section.settings.whatsapp-number-text != blank or section.settings.store-whatsapp != blank %}
+                <li>
+                    <span>{{ section.settings.whatsapp-number-text }}</span>
+                    <strong> <a href="https://api.whatsapp.com/send?phone={{ section.settings.store-whatsapp }}" target="_blank" aria-describedby="a11y-new-window-external-message" rel="noopener"> +{{ section.settings.store-whatsapp }} </a> </strong>
+                </li>
+              {% endif %}
+            </ul>
+        </div>
+        {% if section.settings.store-map != blank %}
+          <div class="store-map">
+            {{ section.settings.store-map }}
+          </div>
+        {% endif %}
+    </div>
+</div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Store Address",
+    "settings": [
+      {
+        "type": "text",
+        "id": "store-heading",
+        "label": "Store Heading",
+        "default": "AL MARYAH CENTRAL STORE"
+      },
+      {
+        "type": "image_picker",
+        "id": "store-mobile",
+        "label": "Mobile Image"
+      },
+       {
+        "type": "image_picker",
+        "id": "store-desktop",
+        "label": "Dekstop Image"
+      },
+      {
+        "type": "text",
+        "id": "store-name",
+        "label": "Store Name",
+        "default": "TUMI - AL MARYAH CENTRAL"
+      },
+      {
+        "type": "richtext",
+        "id": "store-address",
+        "label": "Store Address",
+        "default": "<p>The Galleria Mall, Al Maryah Island 2293 AD-U.A.E Abu Dhabi</p>"
+      },
+      {
+        "type": "header",
+        "content": "Office Timing"
+      },
+      {
+        "type": "text",
+        "id": "store-time-text",
+        "label": "Store Time Text",
+        "default": "Saturday to Wednesday"
+      },
+      {
+        "type": "text",
+        "id": "store-time",
+        "label": "Store Timing",
+        "default": "10:00 AM - 10:00 PM"
+      },
+      {
+        "type": "text",
+        "id": "store-time-text-2",
+        "label": "Store Time Text 2",
+        "default": "Thursday to Saturday"
+      },
+      {
+        "type": "text",
+        "id": "store-time2",
+        "label": "Store Timing 2",
+        "default": "10:00 AM - 12:00 AM"
+      },
+       {
+        "type": "text",
+        "id": "phone-number-text",
+        "label": "Phone Text",
+        "default": "Phone Number"
+      }, 
+       {
+        "type": "text",
+        "id": "store-phone",
+        "label": "Phone Number",
+        "default": "97124412038"
+      },
+      {
+        "type": "text",
+        "id": "whatsapp-number-text",
+        "label": "whatsapp Number text",
+        "default": "whatsapp Number"
+      },
+      {
+        "type": "text",
+        "id": "store-whatsapp",
+        "label": "whatsapp Number",
+        "default": "97153817490"
+      },
+      {
+        "type": "html",
+        "id": "store-map",
+        "label": "Google map"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Store Address"
+      }
+    ]
+  }
+{% endschema %}

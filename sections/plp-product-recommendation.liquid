@@ -1,0 +1,28 @@
+<div class="plp-product_recommendations product_recommend-slider-wrapper">
+  <div class="plp-product_recommendation slider_container page-width">
+    {% assign collectionM = collection.metafields.custom.you_may_also_like.value %}
+    {%- assign collection_size = 0 -%}
+    {%- for product in collectionM.products -%}
+      {%- assign collection_size = collection_size | plus: 1 -%}
+    {%- endfor -%}
+    {% if collection_size >=1  %}
+        <div class="recommend-slider-title " data="{{ collection_size }}"> 
+          <h4>You may also like</h4>
+        </div>
+          <div id="plp-recommendation_slider" class="slides">
+            {% render 'plp-product-card', product:product %}
+          </div>
+      {% endif %}
+</div>
+</div>
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+

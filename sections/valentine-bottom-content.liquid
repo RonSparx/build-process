@@ -1,0 +1,66 @@
+ <section class="valentine_gift-bottom-content page-width">
+  <div class="valentine_gift-bottom-wrapper">
+    {% for block in section.blocks %}
+    <div class="gift-banner-items">
+       <div class="valentine_gift-bottom-text ">
+         <div class="valentine_gift-bottom-text-content">
+           {% if block.settings.gift_guide_bottom_heading != blank %}
+           <h2 class="banner_content-heading">{{ block.settings.gift_guide_bottom_heading }}</h2> 
+           {% endif %}
+           {% if block.settings.gift_guide_bottom_content != blank %}
+           <span class="banner_content-text">{{ block.settings.gift_guide_bottom_content }}</span>
+           {% endif %}
+           {% if block.settings.gift_guide_bottom_content_2 != blank %}
+           <p class="banner_content-text">{{ block.settings.gift_guide_bottom_content_2 }}</p>
+           {% endif %}
+         </div>
+       </div>
+      </div>
+    {% endfor %}
+    
+    </div>
+   </section>  
+ 
+  {% schema %}
+   {
+     "name": "Valentine Gift Text",
+     "settings": [],
+     "blocks":[
+       {
+       "name":"Valentine Content",
+       "type":"gift_banner_slider",
+       "settings":[
+          {
+          "type": "header",
+          "content": "Content Box"
+          },
+          {
+           "type":"text",
+           "id":"gift_guide_bottom_heading",
+           "label":"Heading",
+           "default":"Premium Gifts With Premium Service "
+          },
+          {
+           "type":"textarea",
+           "id":"gift_guide_bottom_content",
+           "label":"Text content",
+           "default":"For Everyone on Your list"
+          },
+         {
+           "type": "textarea",
+           "id": "gift_guide_bottom_content_2",
+           "label":"Second Text",
+           "default":"Have a first-class flier on your list? Explore our selection of premium gifts to find travel gift ideas that reflect their love of the finer things. Our elevated luggage, travel bags and accessories will see them through any journey in style."
+         }
+         
+       ]
+       }
+     ]
+   }
+ {% endschema %}
+   
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

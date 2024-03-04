@@ -1,0 +1,166 @@
+<section class="gift-sec" id="gifts-for-him">
+{% if section.settings.desk_img != blank %}
+  
+  <div class="sec-top">
+      <div class="gift-hero">
+      <picture>
+        <source
+            media="(min-width: 1280px)"
+            id="banner1"
+            srcset="
+                {{section.settings.desk_img | img_url:'1920x'}}
+            "
+        />
+        <source
+            media="(max-width: 768px)"
+            id="banner1M"
+            srcset="
+                {{section.settings.mob_img | img_url:'800x'}}
+            "
+        />
+        <img
+            class="hero-picture"
+            id="banner1"
+            src="{{section.settings.desk_img | img_url:'1920x'}}"
+            alt=""
+            title=""
+        />
+    </picture>
+
+    </div>
+    <div class="gift-hero-content">
+      <div class="gift-con-row">
+        <div class="gift-con-col">
+          <h2 class="gift-hero-title">
+              {{section.settings.heading}}
+          </h2>
+          <a href="{{section.settings.link}}" class="gift-hero-link">
+              {{section.settings.btn_name}}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="sec-top">
+      <div class="gift-hero">
+      <picture>
+        <source
+            media="(min-width: 1280px)"
+            id="banner1"
+            srcset="
+                https://www.tumi-hk.com/medias/hk-ss21image-ss21-giftidea-him-pc-20210708?context=bWFzdGVyfFNTMjFJbWFnZXw5MzI0MXxpbWFnZS9qcGVnfGgyOC9oZGEvOTE3MTk1NzUxNDI3MC9oay1zczIxaW1hZ2Utc3MyMS1naWZ0aWRlYS1oaW0tcGMtMjAyMTA3MDh8OTNlYTgyYjBiMDcxMzZlZjcxZTY3MTY4ZWE4ZmY2ZWFlOTY5YjY2OTBkZjk4NTk1MDU5NDYwMjliNDU4NDE4ZA
+            "
+        />
+        <source
+            media="(max-width: 768px)"
+            id="banner1M"
+            srcset="
+                https://www.tumi-hk.com/medias/hk-ss21image-ss21-giftidea-him-mb-20210708?context=bWFzdGVyfFNTMjFJbWFnZXwxNDA0Nzd8aW1hZ2UvanBlZ3xoM2EvaGRkLzkxNzE5NTc0NDg3MzQvaGstc3MyMWltYWdlLXNzMjEtZ2lmdGlkZWEtaGltLW1iLTIwMjEwNzA4fDAwOWJmMmRmYjIwYzAyNzAyNGJlMWZjMTg2ZDRjODBkM2JkZmU0MTAzYjc1MDU2YTYyNzc2ZmI0ZWM4ZDIxNTQ
+            "
+        />
+        <img
+            class="hero-picture"
+            id="banner1"
+            src="https://www.tumi-hk.com/medias/hk-ss21image-ss21-giftidea-him-pc-20210708?context=bWFzdGVyfFNTMjFJbWFnZXw5MzI0MXxpbWFnZS9qcGVnfGgyOC9oZGEvOTE3MTk1NzUxNDI3MC9oay1zczIxaW1hZ2Utc3MyMS1naWZ0aWRlYS1oaW0tcGMtMjAyMTA3MDh8OTNlYTgyYjBiMDcxMzZlZjcxZTY3MTY4ZWE4ZmY2ZWFlOTY5YjY2OTBkZjk4NTk1MDU5NDYwMjliNDU4NDE4ZA"
+            alt=""
+            title=""
+        />
+    </picture>
+
+    </div>
+    <div class="gift-hero-content">
+      <div class="gift-con-row">
+        <div class="gift-con-col">
+          <h2 class="gift-hero-title">
+              Gifts For Him
+          </h2>
+          <a href="#" class="gift-hero-link">
+              SHOP NOW 
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+  
+  {% endif %}
+ 
+  
+</section>
+
+{% if section.settings.enable_product_carousel != false %}
+<div class="gift-carousel-wrap">
+
+
+
+<div class="carousel_slider gift-for-him">
+
+  {% for product in collections[section.settings.coll_id].products %}
+<div class="gift-item">
+  
+  <div class="product-card-ctm">
+  {% assign image  = product.featured_media.preview_image %}
+    <div class="gift-pro-img">
+      <a class="" href="{{ product.url }}">
+      <img class="card-img-top" src={{ image | img_url: 'x400' }} />
+      </a>
+	</div>
+    <div class="gift-pro-content">
+  		{% include 'product-card-grid-2' %} 
+    </div>
+    </div>
+  
+  </div>
+{% endfor %}
+  
+</div>
+  
+  </div>
+{% endif %}
+
+
+{% schema %}
+  {
+    "name": "Gifts for him",
+    "settings": [
+{
+ "type":"image_picker",
+ "id":"desk_img",
+ "label":"Desktop banner"
+},
+{
+ "type":"image_picker",
+ "id":"mob_img",
+ "label":"Mobile banner"
+},
+{
+ "type":"text",
+ "id":"heading",
+ "label":"Heading"
+},
+{
+ "type":"text",
+ "id":"btn_name",
+ "label":"Button name",
+"default":"Shop Now"
+},
+{
+ "type":"url",
+ "id":"link",
+ "label":"Button link"
+},
+  {
+  "type":"checkbox",
+  "id":"enable_product_carousel",
+  "label":"Enable product carousel",
+  "default":true
+  },
+  {
+  "type": "collection",
+  "id": "coll_id",
+  "label": "Select collection"
+  }
+    ]
+  }
+{% endschema %}

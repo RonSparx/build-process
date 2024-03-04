@@ -1,0 +1,74 @@
+  {% if section.settings.show_shipping %}
+                {{ 'expected_shipping.css' | asset_url | stylesheet_tag }}
+                {{ 'expected_shipping.js' | asset_url | script_tag  }} 
+                  <div class="expected_shipping">
+                      <div class="expected_shipping_cityselector">
+                        <div class="shipingselector_container">
+                          <label for="shipcityselector">{{ section.settings.expected-shipping_heading }}</label>
+                          <div id="shipcityselectorbox" class="shipcityselectorbox">
+                            <div class="shipcityselectorbox_main">
+                              <span class="shipcityselectorbox_value">
+                               {% assign setdefault = false %}
+                                 {% for block in section.blocks %}
+                                   {% if  block.type == 'expected_shipping' %}
+                                       {% if setdefault == false and block.settings.set_default %} {% assign setdefault = true %} {% assign defaultcity = block.settings.city %} 
+                                          <span selected cutoff="{{-  block.settings.cutoff  -}}"  value="{{- block.settings.city | handleize -}}">{{ block.settings.city }}</span>
+                                       {% break %}
+                                    {% endif %}
+                                   {% endif %}
+                                 {% endfor %}
+                              </span>
+                              <span class="shipcityselectorbox_arrow">
+                                    <svg xmlns="http://www.w3.org/2000/svg"width="18px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                              </span>
+                            </div>
+                            <div class="shipcityselectorbox_options">
+                              <div class="shipcityselectorbox_options_container">
+                                 {% assign setdefault = false %}
+                                 {% for block in section.blocks %}
+                                   {% if  block.type == 'expected_shipping' %}
+                                       {% if setdefault == false and block.settings.set_default %} {% assign setdefault = true %} {% assign defaultcity = block.settings.city %} 
+                                          <span selected cutoff="{{-  block.settings.cutoff  -}}" data-value="{{ block.settings.city }}" value="{{- block.settings.city | handleize -}}">{{ block.settings.city }}</span>
+                                           {% else %}
+                                          <span cutoff="{{-  block.settings.cutoff  -}}" data-value="{{ block.settings.city }}" value="{{- block.settings.city | handleize -}}">{{ block.settings.city }}</span>
+                                       {% endif %}
+                                   {% endif %}
+                                 {% endfor %}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                     <select id="shipcityselector" style="display: none ;">
+                         {% assign setdefault = false %}
+                         {% for block in section.blocks %}
+                           {% if  block.type == 'expected_shipping' %}
+                               {% if setdefault == false and block.settings.set_default %} {% assign setdefault = true %} {% assign defaultcity = block.settings.city %} 
+                                  <option selected cutoff="{{-  block.settings.cutoff  -}}" value="{{- block.settings.city | handleize -}}">{{ block.settings.city }}</option>
+                                   {% else %}
+                                  <option cutoff="{{-  block.settings.cutoff  -}}" value="{{- block.settings.city | handleize -}}">{{ block.settings.city }}</option>
+                               {% endif %}
+                           {% endif %}
+                         {% endfor %}
+                    </select>
+                      </div>
+                      <div class="excepted_shipping_message" {% if section.settings.friday_off %}firday_off="true"{% endif %} delivery_min="{{ section.settings.shipping_min_day }}" delivery_max="{{ section.settings.shipping_max_day }}">
+                          {% for block in section.blocks %}
+                            <div class="area_messages" city="{{- block.settings.city | handleize -}}" style="display:none ;" >
+                             {% if block.settings.express_delivery_before != blank %}
+                               <div class="shipping_title__">Express Delivery</div>
+                                <p class="expected-delivery-time expressdelivery beforecutoff"  city="{{- block.settings.city | handleize -}}" style="display: none ;">{{ block.settings.express_delivery_before }}</p>
+                             {% endif %}
+                             {% if block.settings.express_delivery_after != blank %}
+                               <p class="expected-delivery-time expressdelivery aftercutoff " city="{{- block.settings.city | handleize -}}" style="display: none ;">{{ block.settings.express_delivery_after }}</p>
+                             {% endif %}
+                             {% if block.settings.standard_delivery != blank %}
+                                <div class="shipping_title__">Standard Delivery</div>
+                               <p class="expected-delivery-time standarddelivery" city="{{- block.settings.city | handleize -}}">{{ block.settings.standard_delivery }} <span class="between_days"></span></p>
+                             {% endif %}
+                             </div>
+                            {% endfor %}
+                      </div>
+                  </div>
+             {% endif %}

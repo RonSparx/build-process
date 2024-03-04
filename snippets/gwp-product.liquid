@@ -1,0 +1,101 @@
+<script>
+  $(document).on('click', 'button.gwp_product.btn.product-form__cart-submit', function(){
+   
+     setTimeout(function () { 
+   let sample = [];
+   let cart_total = {{cart.total_price}};
+    let item_html = '';    
+
+   
+    {% assign sample_one = settings.sample_collection.handle %}
+ 
+ {% for product in collections[sample_one].products %}
+         {% assign free_products = product.selected_or_first_available_variant.id %}
+    sample.push({{ free_products }});
+ {% endfor %}
+   
+    let addItems = (items, i)=>{
+       //console.log(items, 'aaaaaaaaaaaaaaaaaaaaaa');
+         if (items.length > i) {
+             $.ajax({
+                 type: 'POST',
+                 url: '/cart/add.js',
+                 data: {
+                     id: items[i],
+                     quantity: 1
+                 },
+                 dataType: 'json',
+                 success: function(item) {
+                  // console.log('item',item);
+                   item_html+=` 
+                   <div class="cart-popup-item">
+                              <div class="cart-popup-item__image-wrapper" data-cart-popup-image-wrapper="">
+                                <div class="cart-popup-item__image cart-popup-item__image--placeholder" data-cart-popup-image-placeholder="">
+                                  <div data-placeholder-size=""><img src="cart-popup-item" alt="" class="cart-popup-item__image" data-cart-popup-image=""></div>
+                                  <div class="placeholder-background placeholder-background--animation"></div>
+                                </div>
+                              </div>
+                              <div class="cart-popup-item__description">
+                                <div>
+                                  <div class="cart-popup-item__title" data-cart-popup-title=""> ${item.product_title}</div>
+								  <div class="cart-product-type"> ${item.product_type}</div>
+								  <div class="cart-product-price">Free</div>
+                                  
+                                </div>
+                                <div class="cart-popup-item__quantity">
+                                  
+                                  <span class="visually-hidden" data-cart-popup-quantity-label=""></span>
+                                  <span aria-hidden="true"><span>Qty</span>: <span>1</span></span>
+                                  <span aria-hidden="true" data-cart-popup-quantity=""></span>
+                                  <div class="product-quantity__buttons" data-cart-item-quantity="1" data-mini-cart-item="1" data-mini-cart-item-handle="barnes-brief">
+                                    <button aria-label="Decrease quantity Barnes Brief" aria-disabled="true" data-cart-quantity-action="decrease" disabled="">
+                                        <span class="icon css-avaj45 ej69fo90" color="black" role="img"><svg viewBox="0 0 288 288"><path d="M0 136h288v16H0v-16z"></path></svg></span>
+                                    </button>
+                                    <button aria-label="Increase quantity Barnes Brief" aria-disabled="false" data-cart-quantity-action="increase">
+                                       <span class="icon css-avaj45 ej69fo90" color="black" role="img"><svg viewBox="0 0 18 18"><path d="M8.47 8.47V0h1.06v8.47H18v1.06H9.53V18H8.47V9.53H0V8.47h8.47z"></path></svg></span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                   `;
+                     addItems(items, ++i);
+                 }
+             });
+         } else {
+       $('.cart-popup-item-list').append(item_html);
+         //$( '.chanel-header-cart-button').trigger( "click" );
+     
+         }
+    }  
+       jQuery.ajax({
+         type:"GET",
+         cache:false,
+         url:"/cart.js",
+         dataType:'json',
+         success:function(cart) {
+            let items = cart.items;
+           let sample_item_product = true;
+   // console.log(sample, 'kkkkkkkkkkkkkkkk');
+     // console.log(items, 'oooooooooo');
+      for(var i=0; i<items.length; i++){  
+      // console.log('patel',items[i].title);
+        if(sample.indexOf(items[i].variant_id)>=0){
+          sample_item_product = false;
+            break;
+        }
+       
+      }
+           console.log(sample_item_product,'sample_item_productsample_item_productsample_item_product')
+       // console.log(addz);
+      if(sample_item_product){
+        console.log(sample);
+      addItems(sample, 0);
+      }
+           
+         }
+       })
+   
+      }, 500);
+  })
+</script> 

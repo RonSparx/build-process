@@ -1,0 +1,303 @@
+<div class="clear"></div>
+<section class="diff-tabwrap">
+    <div class="diff-row">
+        <div class="diff-top">
+            <div class="diff-headermob">
+                <h2>
+                  {% if section.settings.heading != blank %}
+                  	{{ section.settings.heading }}
+                  {% else %}
+                  FUNCTIONAL SUPERIORITY
+              {% endif %}
+              </h2>
+            </div>
+            <div class="diff-media">
+              {% if section.settings.img != blank %}
+               <img src="{{section.settings.img | img_url:'800x'}}" />
+              {% else %}
+              {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }} 
+              {% endif %}
+               
+            </div>
+            <div class="diff-content">
+                <h2 class="diff-title">
+                   {% if section.settings.heading != blank %}
+                  	{{ section.settings.heading }}
+                  {% else %}
+                    Heading
+                  {% endif %}
+                </h2>
+                <hr class="gray-divider" />
+                <h3 class="diff-subtitle">
+                   {% if section.settings.sub_heading != blank %}
+                  	{{ section.settings.sub_heading }}
+                  {% else %}
+                    Sub Heading
+                  {% endif %}
+                    
+                </h3>
+                <p>
+                  {% if section.settings.content != blank %}
+                  	{{ section.settings.content }}
+                  {% else %}
+                    In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available
+              {% endif %} 
+              </p>
+                <hr class="gray-dividerlong" />
+            </div>
+        </div>
+      
+     {% if section.blocks != blank %}
+      <div class="diff-bottom">
+            <div class="diff-tab">
+                <ul class="tabs tabs-mobile">
+                  {% assign count = 0 %}
+{%- for block in section.blocks -%}
+	{% assign count = count | plus: 1 %}
+                  <li class="tab-link" data-tab="tab-{{count}}"><span> <span class="hide-mob">{{block.settings.tab_name}} # </span> {{count}} </span> <span class="arrrow-down"></span></li>
+                 
+             {% endfor %}
+              </ul> 
+               {% assign count_tab = 0 %}
+              {%- for block in section.blocks -%}
+	{% assign count_tab = count_tab | plus: 1 %}
+              <div id="tab-{{count_tab}}" class="tab-content">
+                 
+                 
+                    <div class="tab-content-box">
+                        <div class="num-image">
+                          {% if block.settings.count_img != blank %}
+                            <img src="{{block.settings.count_img | img_url:'300x'}}" />
+                          {% else %}
+                          <div class="placeholcer-50">
+                          {{  'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                          </div>
+                          {% endif %}
+                          
+                        </div>
+                        <div class="diff-content"> 
+                            <h2 class="diff-title">
+                                {{block.settings.heading}}
+                            </h2>
+                            <h3 class="diff-subtitle">
+                                SOLUTION: {{block.settings.sub_heading}}
+                            </h3>
+                            <p>
+                                {{block.settings.content}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tab-media-box">
+                      {% if block.settings.img != blank %}
+                      	  <img src="{{block.settings.img | img_url: '400x' }}" />
+                      {% else %}
+                      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {% endif %}
+                        
+                    </div>
+
+                </div>
+    {% endfor %}
+        </div>
+      </div>
+     {% else %}
+      
+      
+        <div class="diff-bottom">
+            <div class="diff-tab">
+                <ul class="tabs tabs-mobile">
+                  <li class="tab-link current" data-tab="tab-1"><span> <span class="hide-mob">Tab # </span> 1 </span> <span class="arrrow-down"></span></li>
+                  <li class="tab-link" data-tab="tab-2"><span> <span class="hide-mob"> Tab # </span> 2 </span> <span class="arrrow-down"></span></li>
+                  <li class="tab-link" data-tab="tab-3"><span> <span class="hide-mob"> Tab # </span> 3 </span> <span class="arrrow-down"></span></li>
+                  <li class="tab-link" data-tab="tab-4"><span> <span class="hide-mob"> Tab # </span> 4 </span> <span class="arrrow-down"></span></li>
+                </ul>
+                
+
+                <div id="tab-1" class="tab-content current">
+                    <div class="tab-content-box">
+                        <div class="num-image">
+                            <img
+                                src="https://www.tumi-hk.com/medias/TUMIDifference-1-168x168.jpg?context=bWFzdGVyfHJvb3R8MTUwNHxpbWFnZS9qcGVnfGgwOC9oMmEvODg3MzgwOTAxODkxMC5qcGd8YTU3ODM3YTY5ODcxODkwZjE2ZTFjYzVjNTFkMDQ5MzkzODFlZmY3MWZjNjRkZjFiMjllYjQwYzg0ZmRkNTQyYw"
+                            />
+                        </div>
+                        <div class="diff-content">
+                            <h2 class="diff-title">
+                               Heading Title
+                            </h2>
+                            <h3 class="diff-subtitle">
+                               Sub Heading
+                            </h3>
+                            <p>
+                               Lorem Ipsum dummy content
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tab-media-box">
+                        {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                </div>
+
+                <div id="tab-2" class="tab-content">
+                    <div class="tab-content-box">
+                        <div class="num-image">
+                            <img
+                                src="https://www.tumi-hk.com/medias/TUMIDifference-2-168x168.jpg?context=bWFzdGVyfHJvb3R8MTg5MXxpbWFnZS9qcGVnfGhmMi9oMzEvODg3MzgwOTM0NjU5MC5qcGd8NzBhNTExOGEyNDU5Y2M1MTFkOWRiZmI1ZGY0Y2I5ZGE3MjE3NzY4M2E1MDMzMDYwZDBhOGE1YzRjNWZmMmIzMg"
+                                alt=""
+                            />
+                        </div>
+                        <div class="diff-content">
+                            <h2 class="diff-title">
+                               Heading Title -2
+                            </h2>
+                            <h3 class="diff-subtitle">
+                                Sub Heading
+                            </h3>
+                            <p>
+                               Lorem Ipsum dummy content
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tab-media-box">
+                        {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                </div>
+
+                <div id="tab-3" class="tab-content">
+                    <div class="tab-content-box">
+                        <div class="num-image">
+                            <img
+                                src="https://www.tumi-hk.com/medias/TUMIDifference-3-168x168.jpg?context=bWFzdGVyfHJvb3R8MTk0MHxpbWFnZS9qcGVnfGg2NC9oNTcvODg3MzgwOTYwODczNC5qcGd8ODFkZDU0ZTJjYzIwMTgwZDNjNjA4MGRjNzYxMjY3ZDQ0ZTkwNjM5ZmNlNGYzZThjYTAzNzU1MWY4YzYwOWYwMw"
+                                alt=""
+                            />
+                        </div>
+                         <div class="diff-content">
+                            <h2 class="diff-title">
+                               Heading Title -3
+                            </h2>
+                            <h3 class="diff-subtitle">
+                                Sub Heading
+                            </h3>
+                            <p>
+                               Lorem Ipsum dummy content
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tab-media-box">
+                        {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                </div>
+
+                <div id="tab-4" class="tab-content">
+                    <div class="tab-content-box">
+                        <div class="num-image">
+                            <img
+                                src="https://www.tumi-hk.com/medias/TUMIDifference-4-168x168.jpg?context=bWFzdGVyfHJvb3R8MTgwN3xpbWFnZS9qcGVnfGg1My9oM2EvODg3MzgwOTczOTgwNi5qcGd8NzM5NjY3ZjEzYjQ5ZjU1ODNjMzQwMzE3OWNlMDI1YjMwNmY3YzJjMDM1NDlkZmRhZGNkZTU1ZmVlYjU1MjhjZg"
+                                alt=""
+                            />
+                        </div>
+                         <div class="diff-content">
+                            <h2 class="diff-title">
+                               Heading Title -4
+                            </h2>
+                            <h3 class="diff-subtitle">
+                                Sub Heading
+                            </h3>
+                            <p>
+                               Lorem Ipsum dummy content
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tab-media-box">
+                       {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+       {% endif %}
+      
+    </div>
+</section>
+
+{% assign count = 0 %}
+{%- for block in section.blocks -%}
+	{% assign count = count | plus: 1 %}
+<div class="abc-{{count}}"></div>
+{% endfor %}
+
+
+
+{% schema %}
+  {
+    "name": "Functional Superiority",
+	"max_blocks":4,
+    "settings": [
+{
+    "type":"image_picker",
+    "id":"img",
+    "label":"Select Image"
+    },
+	{
+    "type":"text",
+    "id":"heading",
+    "label":"Heading"
+    },
+{
+    "type":"text",
+    "id":"sub_heading",
+    "label":"Sub Heading"
+    },
+{
+    "type":"textarea",
+    "id":"content",
+    "label":"Content"
+    }
+	
+	],
+"blocks":[
+      {
+      "type":"block",
+       "name":"Tab Blocks",
+  "settings":[
+    {
+    "type":"text",
+    "id":"tab_name",
+    "label":"Tab Name"
+    },
+{
+    "type":"text",
+    "id":"heading",
+    "label":"Heading"
+    },
+{
+    "type":"text",
+    "id":"sub_heading",
+    "label":"Sub Heading"
+    },
+{
+    "type":"textarea",
+    "id":"content",
+    "label":"Content"
+    },
+{
+    "type":"image_picker",
+    "id":"img",
+    "label":"Select Image"
+    },
+{
+    "type":"image_picker",
+    "id":"count_img",
+    "label":"Count Image"
+    }
+
+]
+      }
+    
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

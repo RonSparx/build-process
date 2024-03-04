@@ -1,0 +1,38 @@
+  <section class="gallery_con" data-aos="fade-up" data-aos-delay="200">
+            <div class="glide">
+              {% for block in section.blocks %}
+                <img src="{{ block.settings.image | img_url:'original' }}" alt="g1" />
+              {% endfor %} 
+    		</div>
+            <p class="car_box_zoom" data-aos="fade" data-aos-id="zoom-img">
+                <img class="car_box zoom-img" src="{{ section.settings.title_img | img_url:'master' }}" />
+            </p>
+        </section>
+{% schema %}
+  {
+     "name": "img Slider",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "title_img",
+        "label": "car image"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "slider",
+        "name": "slider",
+        "settings": [
+          {
+          "type":"image_picker",
+          "id":"image",
+          "label":"image"
+          }
+        ]
+      }
+
+      
+    ]
+  }
+{% endschema %}
+

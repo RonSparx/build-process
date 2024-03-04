@@ -1,0 +1,78 @@
+<div class="airline"> 
+    <div class="page-width"> 
+        <h1>{{ page.title }}</h1> 
+  </div> 
+</div>
+<div class="airline_inner-top">
+  <div class="grid">
+    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth"> 
+<div class="page-width">
+  <div class="airline_inner">
+      <div class="rte">
+        {{ page.content }}
+      </div>
+  </div>
+  </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.airline {
+    background: #222;
+    color: #fff;
+    padding: 35px 0px;
+    margin-bottom: 30px;
+    margin-top: -30px;
+}
+  .airline_inner .rte table { table-layout:auto;}
+.airline h1 {
+    margin: 0;
+}
+
+.airline+.grid p { text-align:left !important; }
+}
+.airline {
+    background: #222;
+    color: #fff;
+    padding: 35px 0px;
+    margin-bottom: 30px;
+    margin-top: -30px;
+}
+
+.airline h1 {
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.airline+.grid p { text-align:left !important; } 
+  .airline_inner table tr {
+    border-top: 1px solid #dee2e6;
+}
+.airline_inner table tr td {border:none;font-size: 14px;color: #555;padding: 10.5px; text-align:center;     line-height: normal;}
+.airline_inner table tr:nth-child(even) {
+     background-color: rgba(0,0,0,0.05); border-top:1px solid #dee2e6;
+}
+  .airline_inner-top .page-width { 
+    padding: 0;
+}
+ 
+  .airline_inner-top .page-width .table-new p { 
+    font-size: 16px;
+    text-align: left !important;
+}
+  @media(max-width:767px) {
+    .airline { padding:0px 0px}
+    .airline h1 {
+    margin: 0;
+    text-transform: uppercase;
+    padding: 69px;
+    text-align: center;
+    font-size: 25px;
+}
+  
+    	.airline_inner-top .page-width .table-new p {
+    padding: 10px 60px 30px;
+        }
+  }
+</style>

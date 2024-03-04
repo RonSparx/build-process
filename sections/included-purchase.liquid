@@ -1,0 +1,163 @@
+<style>
+  .included-purchase {
+      margin: 20px 0;
+  }
+  .included-head {
+      text-align: center;
+  }
+  .included-head h2 {
+          font-size: 24px;
+          font-weight: 300;
+          text-align: center;
+          text-transform: capitalize;
+          margin-bottom: 18px;
+          color: #1b1c1e;
+          line-height: 24px;
+          font-family: 'Proxima Nova';
+          letter-spacing: 0;
+  }
+  .included-description {
+      font-size: 15px;
+      line-height: 20px;
+      text-align: center;
+      margin: 0 auto 40px;
+      max-width: 343px;
+  }
+  .included-body {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+  }
+  
+  .included-items {
+      flex: 0 0 146px;
+      max-width: 146px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  .included-icon {
+      margin-bottom: 15px;
+      max-width: 32px;
+  }
+  .included-heading {
+      font-size: 14px;
+      color: #1b1c1e;
+      line-height: 1.4;
+      text-align: center;
+  }
+  .included-purchase {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      margin: 20px auto;
+  }
+
+  @media(min-width:768px){
+    .included-purchase {
+        margin-top: 90px;
+    }
+    .included-head h2 {
+        margin-bottom: 12px;
+    }
+  }
+
+   @media(min-width:992px){
+    
+     .included-head h2 {
+             margin-bottom: 20px;
+    font-size: 30px;
+      }
+      .included-purchase {
+        max-width: 850px;
+          margin: 100px auto;
+      }
+     .included-description {
+          max-width: 508px;
+      }
+   }
+
+  
+</style>
+
+
+  {% if product.tags contains 'field-product' or  product.tags contains 'Carry-On Luggage' or product.available  %}
+  <div class="included-purchase">
+     {% if product.tags contains 'field-product' or product.available %}
+      <div class="included-head">
+        <h2>{{ section.settings.block-heading }}</h2>
+         <div class="included-description">
+           {{ section.settings.block-description }}
+        </div>
+      </div>
+    {% endif %}
+    <div class="included-body">
+      {% if product.available %}
+        <div class="included-items">
+          <div class="included-icon">
+            <img src="{{ section.settings.shipping-icon | img_url: '' }}" alt="{{ section.settings.shipping-icon.alt}}">
+          </div>
+          <div class="included-heading">
+            {{ section.settings.shipping-label}}
+          </div>
+        </div>
+        {% endif %}
+
+     {% if product.tags contains 'field-product' %}
+      <div class="included-items">
+        <div class="included-icon">
+          <img src="{{ section.settings.monogram-icon | img_url: '' }}" alt="{{ section.settings.monogram-icon.alt}}">
+        </div>
+        <div class="included-heading">
+         {{ section.settings.monogram-label}}
+        </div>
+      </div>
+      {% endif %}
+      
+    </div>
+    
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Included Purchase",
+    "settings": [
+      {
+        "type": "text",
+        "id": "block-heading",
+        "label": "Block Heading",
+        "default": "Included With This Purchase"
+      },
+      {
+        "type": "richtext",
+        "id": "block-description",
+        "label": "Block Description",
+        "default": "<p>An outstanding ownership experience with TUMI’s comprehensive product coverage, perks and our commitment to your ongoing satisfaction</p>"
+      },
+      {
+        "type": "image_picker",
+        "id": "shipping-icon",
+        "label": "Shipping Icon"
+      },
+      {
+        "type": "text",
+        "id": "shipping-label",
+        "label": "Shipping label",
+        "default": "Free Shipping and Returns"
+      },
+      {
+        "type": "image_picker",
+        "id": "monogram-icon",
+        "label": "Monogram Icon"
+      },
+      {
+        "type": "text",
+        "id": "monogram-label",
+        "label": "Monogram label",
+        "default": "Classic Monogram"
+      }
+    ]
+  }
+{% endschema %}

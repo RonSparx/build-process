@@ -1,0 +1,518 @@
+<div class="compare-page-wrapper">
+    <div class="compare-page-header">
+        <a class="compare-title" href="#">Compare selected products</a>
+        <div class="share-block pull-right">
+            <ul>
+                <li>
+                    <a class="btn-share-email" href="mailto:customercare.tumi@mailmac.net">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <span>Mail result</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="btn-print" href="JavaScript:void(0)">
+                        <i class="fa fa-print" aria-hidden="true"></i>
+                        <span>Print the result</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="product__comparison">
+        <div class="label-col">
+          <div class="back-to-wrapper">
+              <a class="link-back-to-shop" href="JavaScript:void(0)" id="link-back">
+                  Continue shopping
+              </a>
+          </div>
+        </div>
+        <div class="product-col product-compare-selected" id="prod1"></div>
+        <div class="product-col product-compare-selected" id="prod2"></div>
+        <div class="product-col product-compare-selected" id="prod3"></div>
+      
+    </div>
+
+  
+<div class="compare_details">
+  
+<div class="product-attributes">
+  {%- assign page_url = content_for_header | split:'"pageurl":"' | last | split:'"' | first | split: request.host | last | replace:'\/','/' | replace:'%20',' ' | replace:'\u0026','&'  -%}
+  {% assign param = blank %}
+  {%- for i in (1..1) -%}
+    <div class="row row-attribute-monogrammable">
+    <div class="label-col" data-handle={{  prod_handle }}><div class="attribute-label">Monogrammable</div></div>
+      {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+      {%- assign query_string = page_url | split:'?' | last -%}
+      {%- assign qry_parts= query_string | split:'&' -%} 
+      {%- for part in qry_parts -%}
+      {%- assign key_and_value = part | split:'=' -%}
+      {%- if key_and_value.size > 1 -%}
+      {% assign prod_handle =  key_and_value[1] %} 
+      
+   
+      {% assign compare_luggage_features_meta = all_products[{{prod_handle}}] %}
+      {% if compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] != blank %}
+      {% assign data_attr = shop.metafields._cf_products["compare_products"].data_attr %}
+      {% for item in compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] %}  
+        <div class="product-col col-border compare-value monogrammable">
+            {{ item["monogrammable"] }}
+        </div>
+      {% endfor %} 
+       {% else %}
+        <div class="product-col col-border compare-value monogrammable">--</div>
+      {% endif %}
+    {%- endif -%}
+    {%- endfor -%}
+    </div>
+<!-- end tr -->
+
+
+    <div class="row row-attribute-monogrammable">
+      <div class="label-col" data-handle={{  prod_handle }}><div class="attribute-label">Gift Box</div></div>
+      {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+      {%- assign query_string = page_url | split:'?' | last -%}
+      {%- assign qry_parts= query_string | split:'&' -%} 
+      {%- for part in qry_parts -%}
+      {%- assign key_and_value = part | split:'=' -%}
+      {%- if key_and_value.size > 1 -%}
+      {% assign prod_handle =  key_and_value[1] %} 
+  
+      {% assign compare_luggage_features_meta = all_products[{{prod_handle}}] %}
+      {% if compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] != blank %}
+      {% assign data_attr = shop.metafields._cf_products["compare_products"].data_attr %}
+        {% for item in compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] %}  
+          <div class="product-col col-border compare-value monogrammable">{{ item["gift_box"] }}</div>
+        {% endfor %}   
+        {% else %}
+        <div class="product-col col-border compare-value monogrammable">--</div>
+      {% endif %}
+      {%- endif -%}
+      {%- endfor -%}
+    </div>
+<!-- end tr -->
+
+    
+    <div class="row row-attribute-monogrammable">
+      <div class="label-col" data-handle={{  prod_handle }}><div class="attribute-label">Material</div></div>
+      {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+      {%- assign query_string = page_url | split:'?' | last -%}
+      {%- assign qry_parts= query_string | split:'&' -%} 
+      {%- for part in qry_parts -%}
+      {%- assign key_and_value = part | split:'=' -%}
+      {%- if key_and_value.size > 1 -%}
+      {% assign prod_handle =  key_and_value[1] %} 
+      {% assign compare_luggage_features_meta = all_products[{{prod_handle}}] %}
+      {% if compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] != blank %}
+      {% assign data_attr = shop.metafields._cf_products["compare_products"].data_attr %}
+        {% for item in compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] %}  
+          <div class="product-col col-border compare-value monogrammable">{{ item["material"] }}</div>
+        {% endfor %}  
+        {% else %}
+        <div class="product-col col-border compare-value monogrammable">--</div>
+      {% endif %}
+      {%- endif -%}
+      {%- endfor -%}
+    </div>
+    <!-- end tr -->
+
+   <div class="row row-attribute-monogrammable">
+      <div class="label-col" data-handle={{  prod_handle }}><div class="attribute-label">Colour</div></div>
+      {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+      {%- assign query_string = page_url | split:'?' | last -%}
+      {%- assign qry_parts= query_string | split:'&' -%} 
+      {%- for part in qry_parts -%}
+      {%- assign key_and_value = part | split:'=' -%}
+      {%- if key_and_value.size > 1 -%}
+      {% assign prod_handle =  key_and_value[1] %} 
+      
+  
+      {% assign compare_luggage_features_meta = all_products[{{prod_handle}}] %}
+      {% if compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] != blank %}
+      {% assign data_attr = shop.metafields._cf_products["compare_products"].data_attr %}
+      {% for item in compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] %}  
+        <div class="product-col col-border compare-value monogrammable">{{ item["colour"] }}</div>
+      {% endfor %}  
+      {% else %}
+      <div class="product-col col-border compare-value monogrammable">--</div>
+      {% endif %}
+      {%- endif -%}
+      {%- endfor -%}
+    </div>
+<!-- end tr -->
+
+    <div class="row row-attribute-monogrammable">
+      <div class="label-col" data-handle={{  prod_handle }}><div class="attribute-label">Dimension</div></div>
+      {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+      {%- assign query_string = page_url | split:'?' | last -%}
+      {%- assign qry_parts= query_string | split:'&' -%} 
+      {%- for part in qry_parts -%}
+      {%- assign key_and_value = part | split:'=' -%}
+      {%- if key_and_value.size > 1 -%}
+      {% assign prod_handle =  key_and_value[1] %} 
+      
+  
+      {% assign compare_luggage_features_meta = all_products[{{prod_handle}}] %}
+      {% if compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] != blank %}
+      {% assign data_attr = shop.metafields._cf_products["compare_products"].data_attr %}
+      {% for item in compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] %}  
+        <div class="product-col col-border compare-value monogrammable">{{ item["dimension"] }}</div>
+      {% endfor %}  
+        {% else %}
+        <div class="product-col col-border compare-value monogrammable">--</div>
+      {% endif %}
+      {%- endif -%}
+      {%- endfor -%}
+    </div>
+<!-- end tr -->
+
+    <div class="row row-attribute-monogrammable">
+      <div class="label-col" data-handle={{  prod_handle }}><div class="attribute-label">Dimension Height</div></div>
+      {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+      {%- assign query_string = page_url | split:'?' | last -%}
+      {%- assign qry_parts= query_string | split:'&' -%} 
+      {%- for part in qry_parts -%}
+      {%- assign key_and_value = part | split:'=' -%}
+      {%- if key_and_value.size > 1 -%}
+      {% assign prod_handle =  key_and_value[1] %} 
+      
+  
+      {% assign compare_luggage_features_meta = all_products[{{prod_handle}}] %}
+      {% if compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] != blank %}
+      {% assign data_attr = shop.metafields._cf_products["compare_products"].data_attr %}
+      {% for item in compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] %}  
+        <div class="product-col col-border compare-value monogrammable">{{ item["dimension_height"] }}</div>
+      {% endfor %}   
+        {% else %}
+        <div class="product-col col-border compare-value monogrammable">--</div>
+      {% endif %}
+      {%- endif -%}
+      {%- endfor -%}
+    </div>
+<!-- end tr -->
+
+     <div class="row row-attribute-monogrammable">
+      <div class="label-col" data-handle={{  prod_handle }}><div class="attribute-label">Dimension Length</div></div>
+      {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+      {%- assign query_string = page_url | split:'?' | last -%}
+      {%- assign qry_parts= query_string | split:'&' -%} 
+      {%- for part in qry_parts -%}
+      {%- assign key_and_value = part | split:'=' -%}
+      {%- if key_and_value.size > 1 -%}
+      {% assign prod_handle =  key_and_value[1] %} 
+      
+  
+      {% assign compare_luggage_features_meta = all_products[{{prod_handle}}] %}
+      {% if compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] != blank %}
+      {% assign data_attr = shop.metafields._cf_products["compare_products"].data_attr %}
+      {% for item in compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] %}  
+        <div class="product-col col-border compare-value monogrammable">{{ item["dimension_length"] }}</div>
+      {% endfor %}  
+        {% else %}
+        <div class="product-col col-border compare-value monogrammable">--</div>
+      {% endif %}
+      {%- endif -%}
+      {%- endfor -%}
+    </div>
+<!-- end tr -->
+
+    <div class="row row-attribute-monogrammable">
+      <div class="label-col" data-handle={{  prod_handle }}><div class="attribute-label">Dimension Width</div></div>
+      {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+      {%- assign query_string = page_url | split:'?' | last -%}
+      {%- assign qry_parts= query_string | split:'&' -%} 
+      {%- for part in qry_parts -%}
+      {%- assign key_and_value = part | split:'=' -%}
+      {%- if key_and_value.size > 1 -%}
+      {% assign prod_handle =  key_and_value[1] %} 
+      
+  
+      {% assign compare_luggage_features_meta = all_products[{{prod_handle}}] %}
+      {% if compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] != blank %}
+      {% assign data_attr = shop.metafields._cf_products["compare_products"].data_attr %}
+      {% for item in compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] %}  
+        <div class="product-col col-border compare-value monogrammable">{{ item["dimension_width"] }}</div>
+      {% endfor %} 
+        {% else %}
+        <div class="product-col col-border compare-value monogrammable">--</div>
+      {% endif %}
+      {%- endif -%}
+      {%- endfor -%}
+    </div>
+<!-- end tr -->
+
+     <div class="row row-attribute-monogrammable">
+      <div class="label-col" data-handle={{  prod_handle }}><div class="attribute-label">Volume</div></div>
+      {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+      {%- assign query_string = page_url | split:'?' | last -%}
+      {%- assign qry_parts= query_string | split:'&' -%} 
+      {%- for part in qry_parts -%}
+      {%- assign key_and_value = part | split:'=' -%}
+      {%- if key_and_value.size > 1 -%}
+      {% assign prod_handle =  key_and_value[1] %} 
+      
+  
+      {% assign compare_luggage_features_meta = all_products[{{prod_handle}}] %}
+      {% if compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] != blank %}
+      {% assign data_attr = shop.metafields._cf_products["compare_products"].data_attr %}
+      {% for item in compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] %}  
+        <div class="product-col col-border compare-value monogrammable">{{ item["volume"] }}</div>
+      {% endfor %}   
+        {% else %}
+        <div class="product-col col-border compare-value monogrammable">--</div>
+      {% endif %}
+      {%- endif -%}
+      {%- endfor -%}
+    </div>
+<!-- end tr -->
+
+    <div class="row row-attribute-monogrammable">
+      <div class="label-col" data-handle={{  prod_handle }}><div class="attribute-label">Weight</div></div>
+      {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+      {%- assign query_string = page_url | split:'?' | last -%}
+      {%- assign qry_parts= query_string | split:'&' -%} 
+      {%- for part in qry_parts -%}
+      {%- assign key_and_value = part | split:'=' -%}
+      {%- if key_and_value.size > 1 -%}
+      {% assign prod_handle =  key_and_value[1] %} 
+      
+  
+      {% assign compare_luggage_features_meta = all_products[{{prod_handle}}] %}
+      {% if compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] != blank %}
+      {% assign data_attr = shop.metafields._cf_products["compare_products"].data_attr %}
+      {% for item in compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] %}  
+        <div class="product-col col-border compare-value monogrammable">{{ item["weight"] }}</div>
+      {% endfor %}   
+        {% else %}
+        <div class="product-col col-border compare-value monogrammable">--</div>
+      {% endif %}
+      {%- endif -%}
+      {%- endfor -%}
+    </div>
+<!-- end tr -->
+
+     <div class="row row-attribute-monogrammable">
+      <div class="label-col" data-handle={{  prod_handle }}><div class="attribute-label">Wheel</div></div>
+      {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+      {%- assign query_string = page_url | split:'?' | last -%}
+      {%- assign qry_parts= query_string | split:'&' -%} 
+      {%- for part in qry_parts -%}
+      {%- assign key_and_value = part | split:'=' -%}
+      {%- if key_and_value.size > 1 -%}
+      {% assign prod_handle =  key_and_value[1] %} 
+      
+  
+      {% assign compare_luggage_features_meta = all_products[{{prod_handle}}] %}
+      {% if compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] != blank %}
+      {% assign data_attr = shop.metafields._cf_products["compare_products"].data_attr %}
+      {% for item in compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] %}  
+        <div class="product-col col-border compare-value monogrammable">{{ item["wheel"] }}</div>
+      {% endfor %}   
+        {% else %}
+        <div class="product-col col-border compare-value monogrammable">--</div>
+      {% endif %}
+      {%- endif -%}
+      {%- endfor -%}
+    </div>
+<!-- end tr -->
+
+   <div class="row row-attribute-monogrammable">
+      <div class="label-col" data-handle={{  prod_handle }}><div class="attribute-label">Primary Material</div></div>
+      {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+      {%- assign query_string = page_url | split:'?' | last -%}
+      {%- assign qry_parts= query_string | split:'&' -%} 
+      {%- for part in qry_parts -%}
+      {%- assign key_and_value = part | split:'=' -%}
+      {%- if key_and_value.size > 1 -%}
+      {% assign prod_handle =  key_and_value[1] %} 
+      
+  
+      {% assign compare_luggage_features_meta = all_products[{{prod_handle}}] %}
+      {% if compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] != blank %}
+      {% assign data_attr = shop.metafields._cf_products["compare_products"].data_attr %}
+      {% for item in compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] %}  
+        <div class="product-col col-border compare-value monogrammable"> 
+        {{ item["primary_material"] }}</div>
+      {% endfor %}   
+        {% else %}
+        <div class="product-col col-border compare-value monogrammable">--</div>
+      {% endif %}
+      {%- endif -%}
+      {%- endfor -%}
+    </div>
+<!-- end tr -->
+
+   <div class="row row-attribute-monogrammable">
+      <div class="label-col" data-handle={{  prod_handle }}><div class="attribute-label">TUMI - iCon Code</div></div>
+      {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+      {%- assign query_string = page_url | split:'?' | last -%}
+      {%- assign qry_parts= query_string | split:'&' -%} 
+      {%- for part in qry_parts -%}
+      {%- assign key_and_value = part | split:'=' -%}
+      {%- if key_and_value.size > 1 -%}
+      {% assign prod_handle =  key_and_value[1] %} 
+      
+  
+      {% assign compare_luggage_features_meta = all_products[{{prod_handle}}] %}
+      {% if compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] != blank %}
+      {% assign data_attr = shop.metafields._cf_products["compare_products"].data_attr %}
+      {% for item in compare_luggage_features_meta.metafields["custom_fields"]["compare_products"] %}  
+        <div class="product-col col-border compare-value monogrammable"> 
+          <div class="fc-repeater-field-item">
+          {% for compare_luggage_features_meta in item["tumi_-_icon_code"] %}
+             <div class="child-fc-item">
+               {% if compare_luggage_features_meta["icon_image"] != blank %}
+                 <div class="fc-field field__icon-image field-type--image">
+                   <div class="custom-field--value">
+                     {{ compare_luggage_features_meta["icon_image"] }}
+                   </div>
+                 </div>
+               {% endif %}
+               {% if compare_luggage_features_meta["icon_title"] != blank %}
+                 <div class="fc-field field__icon-title field-type--text">
+                   <div class="custom-field--value">
+                     {{ compare_luggage_features_meta["icon_title"] }}
+                   </div>
+                 </div>
+               {% endif %}
+             </div>
+           {% endfor %}
+          </div>
+          
+        </div>
+      {% endfor %}   
+        {% else %}
+        <div class="product-col col-border compare-value monogrammable">--</div>
+      {% endif %}
+      {%- endif -%}
+      {%- endfor -%}
+    </div>
+<!-- end tr -->
+
+    
+   
+    <!-- end tr -->
+
+{%- endfor -%}
+</div>
+  
+ 
+</div>
+
+
+  
+ 
+</div>
+<script>
+  let url = new URL(window.location.href);
+  let url_data = [];
+for(let [name,value] of url.searchParams) {
+  url_data.push(value);
+}
+  console.log(url_data);
+function currency_format(money_format){ 
+let money = money_format.toLocaleString()
+return money
+}
+  function removeItemClick () {
+    document.querySelectorAll(".btn-remove").forEach(function(ele) {
+      ele.addEventListener("click", function() {
+        console.log(document.querySelectorAll(".btn-remove").length);
+        let handle = ele.closest('.remove-section').getAttribute('data-handle');
+        let currentUrl = new URL(window.location.href);
+        let newUrl = new URL(window.location.href.split('?')[0]);
+        for(let [name,value] of currentUrl.searchParams) {
+          if(value !== handle)
+            newUrl.searchParams.set(name, value);
+        }
+        console.log(newUrl);
+        window.location.href = newUrl.href;
+      });
+    })
+  }
+  function compare_product(i, url_data){
+    let str = '';
+      if(url_data.length > i){
+        fetch(`{{shop.url | append: request.locale.root_url }}/products/${url_data[i]}.json`)
+          .then(res=>{
+            return res.json();
+          }).then((res)=>{
+            str += `
+             <div class="remove-section" data-handle="${res.product.handle}">
+                <a href="#" class="btn btn-remove"></a>
+            </div>
+            <div class="product__comparison-tile">
+                <div class="image-wrapper">
+                    <a href="${res.product.handle}">
+                        <img
+                            class="tile-image"
+                            src="${res.product.image.src}"
+                            alt="${res.product.title}"
+                            title="${res.product.title}"
+                        />
+                    </a>
+                </div>
+
+                <div class="product__comparison-message">
+                    <div class="product-collection">
+                        <h4>
+                            <a class="link" href="#">
+                                ${res.product.title}
+                            </a>
+                        </h4>
+                    </div>
+                    <a class="link compare-product-type" href="#">${res.product.product_type}</a>
+
+                    <div class="price">
+                        <span class="value"> 
+                            Dhs. ${currency_format(res.product.variants[0].price)}
+                        </span>
+                    </div>
+                    <button class="add-to-cart btn btn-primary" onclick="window.compareBuyNow(${res.product.variants[0].id},1)" data-add-to-cart>
+                        <i class="fa fa-shopping-bag"></i>
+                        Add to Cart
+                    </button>
+                    <div class="product-style">
+                        STYLE#:
+                        <span class="product-compare-style">988241776</span>
+                    </div>
+                </div>
+            </div>`;
+            i==0?(document.getElementById('prod1').innerHTML = str):i==1?(document.getElementById('prod2').innerHTML = str):(document.getElementById('prod3').innerHTML = str) 
+            console.log(res,'ressss', res.title);
+            compare_product(++i, url_data)
+          })
+      }else{
+        console.log('completed');
+        removeItemClick();
+      }
+  }
+  compare_product(0,url_data)
+ 
+</script>
+<script>
+$(window).scroll(function(){
+  let outerhight = $(".product__comparison").outerHeight();
+  if($(this).scrollTop()>=$(".product__comparison").outerHeight()){
+    $(".product__comparison").addClass("sticky-header");
+    $(".compare_details").css("padding-top", outerhight);
+  } else {
+    $(".product__comparison").removeClass("sticky-header");
+    $(".compare_details").css("padding-top", 0);
+  };
+});
+$('.btn-print').click(function() {
+    window.print();
+    return false;
+});  
+
+  
+const backButton = document.getElementById('link-back');
+backButton.onclick = () => {
+  history.back();
+};  
+
+</script>
+
+ 

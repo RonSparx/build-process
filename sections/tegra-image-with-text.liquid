@@ -1,0 +1,264 @@
+<style>
+  .degree-button .btn-transparent{
+    background-color: #000000;
+    display: inline-block;
+    padding: 15px 20px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0;
+    letter-spacing: .0125em;
+    text-decoration: none;
+    max-width: 100%;
+    width: 80%;
+  }
+  .degree-button .fa-caret-right:before{
+    content:none;
+  }
+</style>
+
+<section  id="aplhatwo" class="degree-button">
+    <div class="page-width">
+      <div class="discover-wrap">
+        {% if section.settings.tegra_heading!= blank and  section.settings.tegra_sub_heading != blank %}
+        <div class="header-block">
+          <span class="subtitle">{{section.settings.tegra_heading}}</span>
+          <h2 class="block_title">
+            {{section.settings.tegra_sub_heading}}
+          </h2>
+        </div>
+        {% endif %}
+          
+        <div class="discover-aplha">
+           <div class="discover-item">
+             <div class="video-desc">
+              <div class="backpack-con">
+                <h2>{{section.settings.tegra_title}}</h2>
+                {{section.settings.tegra_content}}
+                
+                {% if section.settings.tegra_btn != blank %}
+                <a href="{{section.settings.tegra_link | default:'#'}}" class="btn-transparent">
+                  <span class="ben-text">{{section.settings.tegra_btn}} </span>
+                  <i class="fas fa-caret-right" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+              </div>
+            </div>
+            <div class="video-col">
+              <div class="video-discover">
+                {%  if section.settings.tegra_vertical_alignment_top == "image_top" %}
+                <div class="fallback-img">
+                  {% if section.settings.tegra_img != blank %}
+                  	<img src="{{section.settings.tegra_img | img_url:'600x'}}" />
+                  {% else %}
+                  <img src="https://cdn.media.amplience.net/i/tumi/lp-19-degree-aluminum-son" alt="img"/>
+                  {% endif %}
+                </div>
+                {%  else %}
+                  
+                 {% if section.settings.tegra_video != blank %}
+                <video width="100%" height="auto" media="(min-width:650px)" autoplay muted loop>
+                  <source class="desktop_view" src="{{section.settings.tegra_video}}"/>
+                </video>
+                 <video class="mobile_view" width="100%" height="auto" autoplay muted loop>
+                  <source src="{{section.settings.tegra_video_mob}}"/>
+                </video>
+                   
+                {% else %}
+                <video width="100%" height="auto" autoplay muted loop>
+                  <source src="https://cdn.media.amplience.net/v/tumi/lp-tegra-lite-durability/mp4_1440p"/>
+                </video>
+                {% endif %}
+                {% endif %}
+              </div>
+            </div>
+            
+          </div>
+          <div class="discover-item">
+            <div class="video-desc">
+              <div class="backpack-con">
+                <h2>{{section.settings.tegra_title2}}</h2>
+                {{section.settings.tegra_content2}}
+                {% if section.settings.tegra_btn2 != blank %}
+                <a href="{{section.settings.tegra_link2 | default:'#'}}" class="btn-transparent">
+                  <span class="ben-text">{{section.settings.tegra_btn2}} </span>
+                  <i class="fas fa-caret-right" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+              </div>
+            </div>
+            <div class="video-col">
+              <div class="video-discover">
+                {%  if section.settings.block_vertical_alignment == "image" %}
+                <div class="fallback-img">
+                  {% if section.settings.tegra_img2 != blank %}
+                  <img src="{{section.settings.tegra_img2 | img_url:'600x'}}" alt="{{section.settings.tegra_title2}}"/>
+                  {% else %}
+                  <img src="https://cdn.media.amplience.net/i/tumi/lp-tegra-lite-dual-access_1" alt="img"/>
+                  {% endif %}
+                </div>
+                {% else %}
+                {% if section.settings.tegra_video2 != blank %}
+                <video class="desktop_view" width="100%" media="(min-width:650px)" height="auto" autoplay muted loop >
+                      <source src="{{section.settings.tegra_video2}}"/>
+                </video>
+                <video class="mobile_view" width="100%" height="auto" autoplay muted loop>
+                      <source src="{{section.settings.tegra_video2_mob}}"/>
+                </video>
+                {% else %}
+                <video width="100%" height="auto" autoplay muted loop>
+                  <source src="https://cdn.media.amplience.net/v/tumi/lp-19-degree-aluminum-expandable-v2/mp4_1440p"/>
+                </video>
+                {% endif %}
+                  {% endif %}
+                
+              </div>
+            </div>
+            
+          </div>   
+        </div>
+      </div>
+ 
+
+    </div>
+  </section>
+{% schema %}
+  {
+    "name": "tegra images with text",
+    "settings": [
+	{
+	"type":"text",
+	"id":"tegra_heading",
+	"label":"Heading"
+},
+{
+	"type":"text",
+	"id":"tegra_sub_heading",
+	"label":"Sub Heading"
+},
+{
+	"type":"header",
+	"content":"Block -1"
+},
+{
+  "type": "select",
+  "id": "tegra_vertical_alignment",
+  "label": "Vertical alignment",
+  "options": [
+    {
+      "value": "image",
+      "label": "Image"
+    },
+    {
+      "value": "video",
+      "label": "Video"
+    }
+  ],
+  "default": "image"
+},      
+{
+	"type":"image_picker",
+	"id":"tegra_img",
+	"label":"Fallback image"
+		},
+{
+	"type":"url",
+	"id":"tegra_video",
+	"label":"Video URL"
+},
+      {
+	"type":"url",
+	"id":"tegra_video_mob",
+	"label":"Mobile Video URL"
+},
+{
+	"type":"text",
+	"id":"tegra_title",
+	"label":"Title",
+	"default":"Built to Last"
+		},
+{
+	"type":"richtext",
+	"id":"tegra_content",
+	"label":"Content",
+	"default":"<p>Tegris®, a revolutionary high-tension polypropylene thermoplastic lightweight composite yarn known for strength and exceptional impact performance, is the cornerstone of each piece, epitomizing strength and durability.</p>"
+		},
+{
+"type":"text",
+"id":"tegra_btn",
+"label":"Button name",
+"default":"Shop the collection"
+},
+{
+"type":"url",
+"id":"tegra_link",
+"label":"Button URL"
+},
+{
+"type":"header",
+"content":"Block 2"
+},
+{
+  "type": "select",
+  "id": "block_vertical_alignment",
+  "label": "Vertical alignment",
+  "options": [
+    {
+      "value": "image",
+      "label": "Image"
+    },
+    {
+      "value": "video",
+      "label": "Video"
+    }
+  ],
+  "default": "image"
+},      
+{
+	"type":"image_picker",
+	"id":"tegra_img2",
+	"label":"Fallback image"
+		},
+{
+	"type":"url",
+	"id":"tegra_video2",
+	"label":"Video URL"
+},
+{
+	"type":"url",
+	"id":"tegra_video2_mob",
+	"label":"Mobile Video URL"
+},
+{
+	"type":"text",
+	"id":"tegra_title2",
+	"label":"Heading",
+	"default":"Easy Dual Access"
+		},
+{
+	"type":"richtext",
+	"id":"tegra_content2",
+	"label":"Content",
+	"default":"<p>These hardside cases feature an innovative dual entry to the main compartment, allowing you quick access to your belongings through the front lid. </p>"
+		},
+{
+"type":"text",
+"id":"tegra_btn2",
+"label":"Button name",
+"default":"Shop the Collection"
+},
+{
+"type":"url",
+"id":"tegra_link2",
+"label":"Button URL"
+}
+
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

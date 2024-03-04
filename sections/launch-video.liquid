@@ -1,0 +1,79 @@
+<div data-w-id="b82f1b27-c9ab-a885-d293-13139821487b" class="lp-hero-container">
+  <div
+       data-poster-url="{%if section.settings.desktop-poster != blank%} {{section.settings.desktop-poster | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/62732235160a55f16b313bcd_video1a-poster-00001.jpg {%endif%}"
+       data-video-urls="{%if section.settings.desk-video != blank%} {{section.settings.desk-video}} {% else %}https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/62732235160a55f16b313bcd_video1a-transcode.mp4{%endif%}"
+       data-autoplay="true"
+       data-loop="true"
+       data-wf-ignore="true"
+       data-beta-bgvideo-upgrade="false"
+       class="lp-hero-wrapper-video drop-lp w-background-video w-background-video-atom"
+       >
+    <video
+           id="b82f1b27-c9ab-a885-d293-13139821487e-video"
+           autoplay=""
+           loop=""
+           style="background-image: url('{%if section.settings.desktop-poster != blank%} {{section.settings.desktop-poster | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/62732235160a55f16b313bcd_video1a-poster-00001.jpg {%endif%}');"
+           muted=""
+           playsinline=""
+           data-wf-ignore="true"
+           data-object-fit="cover"
+           >
+      <source src="{%if section.settings.desk-video != blank%} {{section.settings.desk-video}} {% else %}https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/62732235160a55f16b313bcd_video1a-transcode.mp4{%endif%}" data-wf-ignore="true" />
+    </video>
+  </div>
+  <div class="lp-hero-section drop-lp">
+    <div class="lp-hero-wrapper">
+      <img src="{{ 'tumi-razer-logo.svg' | asset_url  }}" loading="lazy" alt="" class="hero-logo bottom-margin-40 hide" />
+      <img src="{{ 'tumi-razer-logo.svg' | asset_url  }}" loading="lazy" alt="" class="tumi-razer-logo drop-hero" />
+      <h1 class="main-hero-heading drop-hero"> {{ section.settings.heading }} </h1>
+      <div class="hero-sub-heading drop-hero">
+        {{ section.settings.description }}
+      </div>
+      <a href="{{ section.settings.button-link }}" class="hero-button">{{ section.settings.button }}</a>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "launch Video",
+    "settings": [
+		{
+			"type": "image_picker",
+			"id": "desktop-poster",
+			"label": "Video Poster"
+		},
+		{
+			"type": "text",
+			"id": "desk-video",
+			"label": "Video Url"
+		},
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading",
+			"default": "CARRY HARD"
+		},
+		{
+			"type": "richtext",
+			"id": "description",
+			"label": "Description",
+			"default": "<p>For those destined to go places, set your sights on a new exploration in lifestyle and travel for the modern gamer. Rise to the occasion and bring the team to victory with the TUMI | Razer collection.</p>"
+		},
+		{
+			"type": "text",
+			"id": "button",
+			"label": "Button",
+			"default": "SHOP NOW"
+		},
+		{
+			"type": "url",
+			"id": "button-link",
+			"label": "Button link"
+		}
+	
+	
+	]
+  }
+{% endschema %}

@@ -1,0 +1,63 @@
+<section class="bravo-navbar">
+    <div class="page-width">
+      <div class="bravo-navbarRow">
+        <ul>
+          
+          <li>
+            <a href="#aplhaone">
+              <span class="text">{{section.settings.btn_one}}</span>
+              <i class="fas fa-sort-down"></i>
+            </a>
+          </li>
+
+          <li>
+            <a href="#aplhatwo">
+              <span class="text">{{section.settings.btn_two}}</span>
+              <i class="fas fa-sort-down"></i>
+            </a>
+          </li>
+
+          <li>
+            <a href="#aplhathree">
+              <span class="text">{{section.settings.btn_three}}</span>
+              <i class="fas fa-sort-down"></i>
+            </a>
+          </li>
+          
+
+        </ul>
+      </div>
+    </div>
+  </section>
+
+{% schema %}
+  {
+    "name": "Alpha Navbar",
+    "settings": [
+        {
+        "type":"text",
+        "id":"btn_one",
+        "label":"Button Name",
+		"default":"Lando’s Journey"
+        },
+        {
+        "type":"text",
+        "id":"btn_two",
+        "label":"Button Name",
+		"default":"ALPHA BRAVO FEATURES"
+        },
+        {
+        "type":"text",
+        "id":"btn_three",
+        "label":"Button Name",
+		"default":"TUMI+ TRAVEL ACCESSORIES"
+        }
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

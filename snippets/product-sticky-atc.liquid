@@ -1,0 +1,216 @@
+<div class="product-sticky-bar hide-sticky" style="display:none">
+{% if product.collections.size > 0 %}
+   <div class="collection-name"> 
+      {% assign matched = false %}
+      {% for collection in collections %}
+       {% assign colTitle = collection.title | downcase %}
+       {% assign prodType = product.type | downcase %}
+       {% if colTitle == prodType %}
+         {% assign matched = true %}
+         <a href="{{ collection.url }}"><p class="collection-title">{{ collection.title }}</p></a>
+      {% endif %}
+      {% endfor %}
+      {% unless matched %}
+      <p class="collection-title collection-type">{{ product.type }}</p>
+      {% endunless %}
+       <div class="product-names">
+         <p>{{ product.title }}</p>
+       </div>
+   </div>
+  {% endif %}
+   {% for variant in product.variants %}
+          {% if variant.available %}
+        {% assign variantAvail = variant %}
+     {% endif %}
+  {% endfor %}
+  <div class="ATC-btn btn-primary animate__fadeInUp" id="sticky-add-to-cart">
+        {% assign current_variant = product.selected_or_first_available_variant %}
+<form method="post" action="/cart/add">
+  <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+  <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+  <button type="submit" value="Add to cart" {% unless current_variant.available %} aria-disabled="true" {% else %}
+                      {% if current_variant.inventory_quantity > 1 %} {% else %}aria-disabled="true"{% endif %}{% endunless %}
+                      aria-label="{% unless current_variant.available %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}"
+                      class="{{ variantAvail.available }} {% unless current_variant.inventory_quantity == 0 %}notify_me {% endunless %} pdp-atc-btn btn add-to-cart {% if section.settings.enable_payment_button %} btn--secondary-accent{% endif %}"
+                      data-add-to-cart> 
+     <span data-add-to-cart-text>
+          {% unless current_variant.available %}
+          {% comment %}{{ 'products.product.sold_out' | t }}{% endcomment %}
+             {{ 'NOTIFY ME WHEN AVAILABLE' }}
+          {% else %}
+          {% if current_variant.inventory_quantity > 1 %}
+          {{ 'products.product.add_to_cart' | t }} ( {{ product.price | money }} )
+          {% else %}
+          {% comment %}{{ 'products.product.sold_out' | t }}{% endcomment %}
+             {{ 'NOTIFY ME WHEN AVAILABLE' }}
+          {% endif %}
+          {% endunless %}
+       </span>
+      <span class="hide" data-loader>
+                  {% render 'icon-spinner' %}
+                </span>
+</button>
+</form>
+
+     </div>
+</div>
+
+<style>
+  @keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+.animate__fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+}
+  .collection-name {
+    flex-direction: column;
+    padding: 5px 5px;
+}
+
+   .ATC-btn.btn-primary .btn {
+    width: 100%;
+    border:none; 
+    background-color:#000;
+ }
+  button.add-to-cart.btn {
+    font-family: 'Proxima Nova Rg';
+    font-size: 14px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    height: 100%;
+    text-transform: capitalize;
+    font-weight: 100;
+}
+.product-sticky-bar .collection-title {
+    text-transform: uppercase;
+    color: #595959;
+    
+}
+
+.product-sticky-bar .product-names{
+    font-weight: 400;
+    margin-top: 0.3rem;
+    color: #1b1c1e;
+    font-size: 1.2rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+.product-sticky-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 60px;
+    bottom: auto;
+    background-color: #fff;
+    z-index: 2;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+  @media(min-width:768px){
+  .product-sticky-bar {
+    display: flex;
+    justify-content: space-between;
+    top: 60px;
+    padding: 20px 30px 20px 30px;
+   }
+    .ATC-btn.btn-primary .btn {
+    width: 100%;
+    min-width: 245px;
+    height:39.1px;
+    text-align:center;
+    padding:0;
+    background-color:#000;
+    border:none; 
+    margin: 0;
+ }
+ 
+  .product-sticky-bar .collection-name {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0;
+    width: 100%;
+    max-width: max-content;
+    flex-direction: unset;
+   
+  }
+ .product-sticky-bar .collection-name .product-names{
+   font-size: 13px !important;
+    text-transform: capitalize;
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+    margin-top: 0.5rem !important;
+    padding-left: 18px;
+    border-left: 1px solid #959595;
+ }
+
+   html[lang="ar"]  .product-sticky-bar .collection-name .product-names{
+    padding-left: 0px;
+    padding-right: 18px;
+    border-left: none;
+    border-right: 1px solid #959595;
+ }
+  
+  .product-sticky-bar .collection-name > a {
+     padding-top:0.5rem;
+  }
+      .product-sticky-bar .collection-title {
+      padding-right: 18px;
+      font-size: 13px;
+      line-height: 20px;
+      -webkit-font-smoothing: antialiased;
+      text-transform: capitalize;
+  }
+  html[lang="ar"] .product-sticky-bar .collection-title {
+    padding-right: 0;
+    padding-left: 18px;
+}
+    
+
+  }
+ @media(min-width:1024px){
+    .product-sticky-bar {
+      display: flex;
+      justify-content: space-between;
+      top: 134px;
+  }
+}
+@media(min-width:1200px){
+    .product-sticky-bar {
+      display: flex;
+      justify-content: space-between;
+      top: 59px;
+  }
+} 
+/* @media(max-width:749px){
+  .product-sticky-bar{
+    display:none !important;
+  }
+} */
+
+</style>
+    
+<script>
+
+// prevent the cart btn to be reloaded. 
+let variantID = {{product.variants.first.id}};
+document.querySelector("button.pdp-atc-btn").addEventListener("click",(e)=>{
+    e.preventDefault();
+document.querySelector("button.notify_me.btn.product-form__cart-submit").click();
+  
+ 
+
+});
+</script>
+
+
+

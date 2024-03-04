@@ -1,0 +1,30 @@
+{% assign modal_template = false %}
+  {% if product.type == 'Homme' %}
+    {% if product.tags contains 'T-shirts' or product.tags contains 'Polo shirts' or product.tags contains 'Sweatshirts' or product.tags contains 'Shirts' or product.tags contains 'Jackets' or product.tags contains 'Coats' or product.tags contains 'Sweaters' or product.tags contains 'Suit Jackets' %}
+     {% assign modal_template = 'size-chart-men-tops' %}
+	{% elsif product.tags contains 'Chaussures' %}
+     {% assign modal_template = 'size-chart-men-shoes' %}
+    {% elsif product.tags contains 'Jeans' or product.tags contains 'Trousers' %}
+     {% assign modal_template = 'size-chart-men-belts' %}
+    {% endif %}
+  {% elsif product.type == 'Femme' %}
+	{% if product.tags contains 'T-shirts' or product.tags contains 'Polo shirts' or product.tags contains 'Sweatshirts' or product.tags contains 'Shirts' or product.tags contains 'Jackets' or product.tags contains 'Coats' or product.tags contains 'Sweaters' or product.tags contains 'Suit Jackets' %} 
+      {% assign modal_template = 'size-chart-women-tops' %}
+	{% elsif product.tags contains 'Chaussures' or product.tags contains 'Shoes' or product.tags contains 'Sandales' or product.tags contains 'Sneakers' or product.tags contains 'Souliers' or product.tags contains 'Escarpins'%}
+     {% assign modal_template = 'size-chart-women-shoes' %}
+    {% elsif product.tags contains 'Jeans' or product.tags contains 'Trousers' or product.tags contains 'Skirts' or product.tags contains 'Dresses' or product.tags contains 'Jumpers' or product.tags contains 'Skirts'%}
+     {% assign modal_template = 'size-chart-women-belts' %}
+    {% elsif product.tags contains 'Bijoux' %}
+     {% assign modal_template = 'size-chart-women-rings' %}
+    {% elsif product.tags contains 'Prêt-à-porter' %}
+     {% assign modal_template = 'size-chart-women-rtw' %}
+    {% endif %}
+  {% endif %}
+{% if modal_template %}
+<script type="text/template" id="SizeGuide">
+	<div class="size-guide">
+        {% include modal_template %}
+  	</div>
+</script>
+{{ 'size-guide.scss.css' | asset_url | stylesheet_tag }}
+{% endif %}

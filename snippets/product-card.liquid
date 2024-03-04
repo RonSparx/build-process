@@ -1,0 +1,71 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- for variant in product.variants -%}
+      {% assign Inventory_qtn = variant.inventory_quantity %}
+    {%- endfor -%}
+<div class="grid__item product-card item" >
+     <div class="card-wrapper underline-links-hover">
+      <div class="card card--standard card--media ">
+        <div class="card__inner color-background-2 gradient ratio">
+         <div style="position:relative" class="card__media recommendation-product">
+         <div class="media media--transparent media--hover-effect product-images"><a href="{{ product.url }}">
+    	  <img class="motion-reduce" src="{{ product.featured_image | img_url:'master'}}" alt="{{ product.featured_image.alt }}"  loading="lazy" />
+              <span class="gray-overlay"></span> </a>
+          </div>
+          <div class="recent_atc-btn">
+          <button type="button" value="Add to cart" {% unless current_variant.available %} aria-disabled="true" {% else %}
+                              {% if current_variant.inventory_quantity > 1 %} {% else %}aria-disabled="true"{% endif %}{% endunless %}
+                              aria-label="{% unless Inventory_qtn == 0 %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}"
+                              class="{% if Inventory_qtn >= 1 %}available{% endif %} {% unless Inventory_qtn == 0 %}notify_me product-recommendation_btn{% endunless %} recommendation-atc pdp-atc-btn btn add-to-cart {% if section.settings.enable_payment_button %} btn--secondary-accent{% endif %}"
+                              data-add-to-cart data-variant={{ product.selected_or_first_available_variant.id }}> 
+                    {% if Inventory_qtn >= 1 %}     
+                     <span data-add-to-cart-text>
+                        {{ 'products.product.add_to_cart' | t }}
+                             </span>
+                     <span class="hide load-spinner" data-loader>
+                                {% render 'icon-spinner' %}
+                         </span>
+                    {% else %}
+                     <a href="{{ product.url }}"><span notify-me-text>
+                       {{ 'NOTIFY ME WHEN AVAILABLE' }}
+                      </span> </a>     
+                  {% endif %}
+            </button>
+                   <button id="BIS_trigger" type="button" style="display: none;">Notify me</button>
+
+         </div>
+        </div>
+       </div>
+
+        <div class="recommend-product-vendor">
+          {% assign matched = false %}
+          {% for collection in collections %}
+           {% assign colTitle = collection.title | downcase %}
+           {% assign prodType = product.type | downcase %}
+           {% if colTitle == prodType %}
+             {% assign matched = true %}
+            <a href="{{ collection.url }}">{{ collection.title }}</a>
+          {% endif %}
+          {% endfor %}
+          {% unless matched %}
+          {{ product.type }}
+          {% endunless %}
+         </div>
+       <div class="card__content">
+       <div class="card__information">
+       <h3 class="card__heading h5 recommend-product-title">
+       <a class="full-unstyled-link" href="{{ product.url }}">{{ product.title }}</a></h3>
+         <div class="card-information">
+           <div class="price ">
+             <div class="price__container">
+               <div class="price-item price-item--regular">
+                  {{ product.price | money }}
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       </div>
+       
+       </div>
+       </div>
+    </div>

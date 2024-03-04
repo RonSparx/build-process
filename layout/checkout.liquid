@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head>
+    {% include 'limespot' %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0"
+    >
+    <meta name="referrer" content="origin">
+    {%- if settings.favicon != blank -%}
+      <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+    {%- endif -%}
+
+    <title>{{ page_title }}</title>
+
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+    <script src="{{ 'vendor.js' | asset_url }}"></script>
+    <script src="{{ 'checkout_scripts_custom.js' | asset_url }}"></script>
+
+    <script type="text/javascript">
+      if(Shopify.Checkout.step){
+        if(Shopify.Checkout.step.length > 0){
+          if (Shopify.Checkout.step === 'contact_information'){
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'Customer Information',
+              ecommerce: {
+                checkout: {
+                  actionField: {
+                    step: 2
+                  },
+                  products: [{% for line_item in checkout.line_items %}{
+                    id: '{{line_item.product_id}}',
+                    name: '{{line_item.product.handle}}',
+                    variant: '{{line_item.variant_id}}',
+                    brand: '{{shop.name}}',
+                    category: '{{product.collections|map:"title"|json}}',
+                    quantity: '{{line_item.quantity}}',
+                    price: '{{line_item.price | money_without_currency| remove: ","}}'
+                  },{% endfor %}]
+                }
+              }
+            });
+          }else if (Shopify.Checkout.step === 'shipping_method'){
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'Shipping Information',
+              ecommerce: {
+                checkout: {
+                  actionField: {
+                    step: 3
+                  },
+                  products: [{% for line_item in checkout.line_items %}{
+                    id: '{{line_item.product_id}}',
+                    name: '{{line_item.product.handle}}',
+                    variant: '{{line_item.variant_id}}',
+                    brand: '{{shop.name}}',
+                    category: '{{product.collections|map:"title"|json}}',
+                    quantity: '{{line_item.quantity}}',
+                    price: '{{line_item.price | money_without_currency| remove: ","}}'
+                  },{% endfor %}]
+                }
+              }
+            });
+          }else if( Shopify.Checkout.step === "payment_method" ){
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'Add Payment Info',
+              ecommerce: {
+                checkout: {
+                  actionField: {
+                    step: 4
+                  },
+                  products: [{% for line_item in checkout.line_items %}{
+                    id: '{{line_item.product_id}}',
+                    name: '{{line_item.product.handle}}',
+                    variant: '{{line_item.variant_id}}',
+                    brand: '{{shop.name}}',
+                    category: '{{product.collections|map:"title"|json}}',
+                    quantity: '{{line_item.quantity}}',
+                    price: '{{line_item.price | money_without_currency| remove: ","}}'
+                  },{% endfor %}]
+                }
+              }
+            });
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    {{ skip_to_content_link }}
+
+    <header class="banner" data-header role="banner">
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </header>
+
+    {{ order_summary_toggle }}
+    <div class="content" data-content>
+      <div class="wrap">
+        <div class="main">
+          <header class="main__header" role="banner">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+            {{ alternative_payment_methods }}
+          </header>
+          <main class="main__content" role="main">
+            {{ content_for_layout }}
+          </main>
+          <footer class="main__footer" role="contentinfo">
+            {{ content_for_footer }}
+          </footer>
+        </div>
+        <aside class="sidebar" role="complementary">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+          <div class="sidebar__content">
+            <limespot></limespot>
+            {{ content_for_order_summary }}
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    {{ tracking_code }}
+  </body>
+</html>

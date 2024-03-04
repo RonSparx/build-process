@@ -1,0 +1,43 @@
+<div class="top_banner">
+  <div class="image">
+    {% if section.settings.image != blank %}
+    	<img src="{{ section.settings.image | img_url:'1920x' }}" alt="{{section.settings.page_title}}" />
+    {% else %}
+    {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+  	
+  </div>
+  <div class="page_title">
+     <div class="inner_title"> 
+       {% if section.settings.page_title != blank %}
+    <h3>{{section.settings.page_title }}</h3> 
+       {% else %}
+       <h3>Page Title</h3> 
+       {% endif %}
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Top Banner Brand",
+    "settings": [
+	{
+         "type":"text",
+         "id":"page_title",
+         "label":"Page Heading"
+      },
+{
+         "type":"image_picker",
+         "id":"image",
+         "label":"Select Image"
+      }
+		
+		]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

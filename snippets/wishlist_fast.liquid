@@ -1,0 +1,106 @@
+<div class="fast_wishlist_position">
+  <div class="fast_wishlist_all fast_wishlist_flex">
+    {% if customer %}
+
+{% assign fast_wishlist_show = "customer_full" %}
+{% if customer.metafields["global"]["wishlist"] == blank or customer.metafields["global"]["wishlist"] == '-' %}
+{% assign fast_wishlist_show = "customer_empty" %}
+{% endif %}
+    
+
+{% comment %}FULL{% endcomment %}
+    <div class="left customer_true" {% if fast_wishlist_show != "customer_full" %}style="display: none;"{% endif %}>
+      <div class="title"><ly-as-275964>Wishlist</ly-as-275964></div>
+      
+		{% assign wishlist_arr = customer.metafields["global"]["wishlist"] | split: ',' %} 
+        {% for product_item in wishlist_arr %}
+        {% if product != "" and product != "-" %}
+      	{% if forloop.last %}
+			{% assign product_last = product_item %} 
+      	{% endif %}
+      	{% endif %}
+      	{% endfor %}
+      
+			<div class="fast_wishlist_items">
+
+				<div class="fast_wishlist_item" >
+					<div class="fast_wishlist_item_image">
+						<a href="{{ all_products[product_last].url }}"><img src="{{ all_products[product_last] | img_url: '165x165' }}" alt="product"></a>
+					</div>
+					<div class="fast_wishlist_item_info">
+						<div class="fast_wishlist_item_title"><a href="{{ all_products[product_last].url }}">{{ all_products[product_last].title }}</a></div>
+
+						<div class="fast_wishlist_item_info_list">
+							{% assign item_handle = all_products[product_last].url | replace:'/products/', '' | split: '?variant=' %}
+
+							{% assign material = false %}
+							{% assign colour = false %}
+							{% for tag in all_products[item_handle[0]].tags %}
+							{% if tag contains "colour_" %}
+							{% assign colour = tag | replace:'colour_','' %}
+							{% endif %}
+
+							{% if tag contains "material_" %}
+							{% assign material = tag | replace:'material_','' %}
+							{% endif %}
+							{% endfor %}
+							{% if colour != false %}
+							<div><span>{{ header.cart.colour }}</span> {{colour}}</div>
+							{% endif %}
+							{% if material != false %}
+							<div><span>{{ header.cart.material }}</span> {{material}}</div>
+							{% endif %}
+
+
+							{% if all_products[product_last].variants.size == 1 %}
+							{% if all_products[product_last].variants[0].metafields["global"]["Article_no"] != blank %}
+							<div>
+								<span><ly-as-275965>Article no.:</ly-as-275965></span>{{ all_products[product_last].variants[0].metafields["global"]["Article_no"] }}
+							</div>
+							{% assign product_detalis_Show = true %}
+							{% endif %}
+							{% endif %}
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+      
+      
+      
+      
+    </div>
+    <div class="right customer_true" {% if fast_wishlist_show != "customer_full" %}style="display: none;"{% endif %}>
+      <div class="buttoms">
+        <a class="btn buttom" href="/">{{ header.header.continue_shopping }}</a>
+        <a class="btn buttom blue" href="/pages/wishlist">{{ header.wishlist.see_wish_list }}<span class="d_i_b">(<span class="header_wishlist_num_js">0</span>)</span></a>
+      </div>
+    </div>
+
+
+{% comment %}EMPTY - CUSTOMER TRUE{% endcomment %}
+    <div class="left customer_true" {% if fast_wishlist_show != "customer_empty" %}style="display: none;"{% endif %}>
+      <div class="title">{{ header.wishlist.title_empty_2 }}</div>
+      <div class="text"><p>{{ header.wishlist.text_empty }}</p></div>
+    </div>
+    <div class="right customer_true" {% if fast_wishlist_show != "customer_empty" %}style="display: none;"{% endif %}>
+      <div class="image">
+			{% if section.settings.fast_wishlist_image_empty != blank %}
+			<img src="{{ section.settings.fast_wishlist_image_empty | img_url: '370x' }}"  alt="" />
+			{% endif %}
+      </div>
+    </div>
+
+
+    {% else %}
+{% comment %}EMPTY - CUSTOMER FALSE{% endcomment %}
+
+    <div class="left customer_false">
+      <div class="title">{{ header.wishlist.title_empty }}</div>
+    </div>
+
+
+    {% endif %}
+  </div>
+</div>

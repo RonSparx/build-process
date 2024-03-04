@@ -1,0 +1,111 @@
+<section class="common-vms vister-section">
+  <div class="custom-container">
+    <ul>
+    
+      <li data-aos="fade-up"  data-aos="fade-up">
+        <div class="span-wrapper">
+          <img src="{{ section.settings.desk_img | img_url: "original"}}" alt="banner" style="width:auto;" />
+        </div>
+        <div class="span-content">
+          <strong>{{ section.settings.text }}</strong>
+          <a class="btn-ab" target="_blank" href="{{  section.settings.btnlink }}">{{  section.settings.btnlabel }}</a>
+        </div>  	
+      </li>
+      <li data-aos="fade-up"  data-aos="fade-up" data-aos-delay="200">
+        <div class="span-wrapper">
+          <img src="{{ section.settings.desk_img2 | img_url: "original"}}" alt="banner" style="width:auto;" />
+        </div>
+        <div class="span-content">
+          <strong>{{ section.settings.text2 }}</strong>
+          <a class="btn-ab" target="_blank" href="{{  section.settings.btnlink2 }}">{{  section.settings.btnlabel2 }}</a>
+        </div>  	
+      </li>
+      <li data-aos="fade-up"  data-aos="fade-up" data-aos-delay="400">
+        <div class="span-wrapper">
+          <img src="{{ section.settings.desk_img3 | img_url: "original"}}" alt="banner" style="width:auto;" />
+        </div>
+        <div class="span-content">
+          <strong>{{ section.settings.text3 }}</strong>
+          <a class="btn-ab" target="_blank" href="{{  section.settings.btnlink3 }}">{{  section.settings.btnlabel3 }}</a>
+        </div>  	
+      </li>
+      
+    </ul>
+  </div>
+</section>
+{% schema %}
+ 
+
+{
+"settings": [
+{
+	"type": "header",
+	"content": "Seven section"
+},
+		{
+            "type": "image_picker",
+            "id": "desk_img",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Title"
+          },
+          {
+        	"type": "text",
+        	"id": "btnlabel",
+        	"label": "button Label"
+      	},
+	 	{
+        	"type": "url",
+        	"id": "btnlink",
+        	"label": "button Link"
+      	},
+
+		{
+            "type": "image_picker",
+            "id": "desk_img2",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "text2",
+            "label": "Title"
+          },
+          {
+        	"type": "text",
+        	"id": "btnlabel2",
+        	"label": "button Label"
+      	},
+	 	{
+        	"type": "url",
+        	"id": "btnlink2",
+        	"label": "button Link"
+      	},
+
+		{
+            "type": "image_picker",
+            "id": "desk_img3",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "text3",
+            "label": "Title"
+          },
+          {
+        	"type": "text",
+        	"id": "btnlabel3",
+        	"label": "button Label"
+      	},
+	 	{
+        	"type": "url",
+        	"id": "btnlink3",
+        	"label": "button Link"
+      	}
+
+		
+]
+}
+{% endschema %}

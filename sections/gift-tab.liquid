@@ -1,0 +1,62 @@
+<section class="gift-navwrap">
+  <div class="gift-navrow">
+    <ul class="gift-nav">
+    	<li>
+          <a href="#gifts-for-him">
+          {{section.settings.tabOne}}
+          {% if section.settings.imgOne != blank %}
+            <img class="scrollIcon" src="{{section.settings.imgOne | img_url: '25x'}}">
+            {% else %}
+            <img class="scrollIcon" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/t/60/assets/arrow-down-ic.png">
+            {% endif %}
+          </a>
+      	</li>
+    	<li>
+          <a href="#gifts-for-her">
+          	{{section.settings.tabTwo}}
+            {% if section.settings.imgTwo != blank %}
+            <img class="scrollIcon" src="{{section.settings.imgTwo | img_url: '25x'}}">
+            {% else %}
+            <img class="scrollIcon" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/t/60/assets/arrow-down-ic.png">
+            {% endif %}
+          </a>
+      	</li>
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Gift tab",
+    "settings": [
+	{
+  "type": "text",
+  "id": "tabOne",
+  "label": "Tab One",
+  "default": "Tab one"
+},
+{
+  "type": "image_picker",
+  "id": "imgOne",
+  "label": "Tab one image"
+},
+{
+  "type": "text",
+  "id": "tabTwo",
+  "label": "Tab One",
+  "default": "Tab two"
+},
+{
+  "type": "image_picker",
+  "id": "imgTwo",
+  "label": "Tab two image"
+}
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

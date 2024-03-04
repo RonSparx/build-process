@@ -1,0 +1,91 @@
+{{ 'diff-innovative.css'|asset_url|stylesheet_tag }}
+<div class="innovative-wrap bg-color">
+  <div class="page-width">
+    <span class="sustain">{{ section.settings.diff_subtitle }}</span>
+     <h1>{{ section.settings.diff_title }}</h1>
+    <div class="para">{{ section.settings.diff_des }}</div>
+    <div class="innovative-icons-wrap">
+      {% for block in section.blocks %}
+      <div class="innovative-icons-blog">
+        <div class="innovative-icon">
+        {% if block.settings.diff_svg != blank %}
+          <img src="{{ block.settings.diff_svg | img_url: 'master' }}" >
+          {% else %}
+          <img src="https://www.tumi.sg/on/demandware.static/-/Library-Sites-TumiSharedLibrary/default/dwe1c65b70/images/content/2023-tumi-difference/circle-1.jpg"/>
+          {% endif %}
+        </div>
+        <h3>{{ block.settings.diff_bottom_title }}</h3>
+        <div class="innovation_des">{{ block.settings.diff_bottom_des }}</div>
+      </div>
+    {% endfor %}
+    </div>
+    <div class="image-box">
+      {% if section.settings.banner_image != banner %}
+      <img src="{{ section.settings.banner_image | img_url: 'master' }}" alt="" >
+      {% else %}
+         <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/TUMI_Ramadan_Desktop_English_Banner.jpg?v=1679029907" />
+        {% endif %}
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+  "name": "Innovative",
+  "settings": [
+    {
+     "type":"image_picker",
+  	 "id":"banner_image",
+  	 "label": "Banner Image"
+     },
+    {
+     "type": "html",
+     "id": "diff_title",
+     "label": "Title",
+     "default":"Innovative by Nature </br> Sustainable by Choice"
+   },
+   {
+     "type": "text",
+     "id": "diff_subtitle",
+     "label": "Subtitle",
+     "default":"SUSTAINABILITY"
+   },
+   {
+     "type": "richtext",
+     "id": "diff_des",
+     "label": "Description",
+     "default": "<p>TUMI products protect your belongings when you travel. Our planet is an astonishing place,and we believe it’s our responsibility to preserve it for travelers of the future.</p>"
+   }
+],
+  "max_blocks": 3,
+  "blocks": [
+     {
+       "name": "Innovation",
+       "type": "slide",
+       "settings": [
+         {
+           "type": "text",
+           "id": "diff_bottom_title",
+           "label": "Title",
+           "default": "Built to Last"
+         },
+        {
+           "type": "image_picker",
+           "id": "diff_svg",
+           "label": "Add Image"
+         },
+        {
+           "type": "richtext",
+           "id": "diff_bottom_des",
+           "label": "Description",
+           "default": "<p>Exceptional quality and unparalleled durability are paramount to every piece TUMI creates, including those made with recycled materials.</p>"
+         }
+       ]
+     }
+   ],
+  "presets": [
+      {
+       "name": "Innovative"
+      }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,75 @@
+<section class="valentine_gift-banner">
+  <div class="alentine_gift-banner-wrapper">
+    {% for block in section.blocks %}
+    <div class="gift-banner-items">
+      <div class="banner-picture">
+        <picture>
+            <source media="(min-width:750px)" srcset="{{block.settings.gift_guide_image_desktop | img_url:'master' }}">
+            <img src="{{block.settings.gift_guide_image_mobile | img_url:'master' }}" alt="{{gift_guide_image_mobile.alt | escape }}">
+          </picture>
+      </div>
+       <div class="valentine_gift-banner-text page-width">
+         <div class="valentine_gift-banner-text-content">
+           {% if block.settings.gift_guide_sub_heading != blank %}
+           <h2 class="banner_content-heading">{{ block.settings.gift_guide_sub_heading }}</h2> 
+           {% endif %}
+           {% if block.settings.gift_guide_banner_sub_heading != blank %}
+           <span class="banner_content-text">{{ block.settings.gift_guide_banner_sub_heading }}</span>
+           {% endif %}
+         </div>
+       </div>
+      </div>
+    {% endfor %}
+    
+    </div>
+   </section>  
+ 
+  {% schema %}
+   {
+     "name": "Valentine Gift banner",
+     "settings": [
+     ],
+     "max_blocks": 1,
+     "blocks":[
+       {
+       "name":"Valentine Gift Banner",
+       "type":"gift_banner_slider",
+       "settings":[
+          {
+           "type":"image_picker",
+           "id":"gift_guide_image_desktop",
+           "label":"Desktop Bnaner Image"
+          },
+          {
+           "type":"image_picker",
+           "id":"gift_guide_image_mobile",
+           "label":"Mobile Bnaner Image"
+          },
+          {
+          "type": "header",
+          "content": "Content Box"
+          },
+          {
+           "type":"text",
+           "id":"gift_guide_sub_heading",
+           "label":"Banner heading",
+           "default":"Premium Gifts With Premium Service "
+          },
+          {
+           "type":"text",
+           "id":"gift_guide_banner_sub_heading",
+           "label":"Banner Text",
+           "default":"Complete the gifting experience with special touches like Monogramming and gift boxing. It celebrates style and adds an elevated element to each present."
+          }
+         
+       ]
+       }
+     ]
+   }
+ {% endschema %}
+   
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

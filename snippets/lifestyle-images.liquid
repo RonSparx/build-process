@@ -1,0 +1,56 @@
+<style>
+  .lisfestyle-section {
+      margin: 40px 0 0;
+  }
+  .lisfestyle-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  }
+  .lisfestyle-column img {
+      display: block;
+      margin: 0 auto;
+  }
+
+  @media(min-width:768px){
+    .lisfestyle-row {
+        flex-direction: row;
+        padding: 0 15px;
+    }
+  }
+
+  @media(min-width:1200px){
+    .lisfestyle-section {
+        margin: 50px 0 0;
+        padding: 0 72px;
+    }
+    .lisfestyle-row {
+        padding: 0;
+    }
+  }
+
+   @media(min-width:1400px){
+    .lisfestyle-section {
+          max-width: 1408px;
+          margin: 50px auto 0;
+      }
+   }
+  
+  
+  
+</style>
+
+
+{% if product.metafields["custom_fields"]["lifestyle_images"] != blank %}
+  <div class="lisfestyle-section">
+    <div class="lisfestyle-row">
+         {% for item in product.metafields["custom_fields"]["lifestyle_images"] %}
+          <div class="lisfestyle-column">
+             {{ item["lifestyle_images"] }}
+           </div>
+         {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+

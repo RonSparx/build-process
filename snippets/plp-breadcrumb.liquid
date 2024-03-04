@@ -1,0 +1,33 @@
+{%- unless template == 'index' or template == 'cart' or template == 'list-collections' or template == '404' -%}
+{%- assign t = template | split: '.' | first -%}
+
+<nav class="breadcrumbsss plp-item" role="navigation" aria-label="breadcrumbs">
+  <ol class="breadcrumbs__list">
+    <li class="breadcrumbs__itemss">
+      <a class="breadcrumbs__link" href="/">Home</a>
+    </li>
+    {%- case t -%}
+      {%- when 'collection' and collection.handle -%}
+    <li class="breadcrumbs__itemss">
+      <a class="breadcrumbs__link" href="/">collections</a>
+    </li>
+        {%- if current_tags -%}
+          <li class="breadcrumbs__itemss">
+            / {{ collection.title | link_to: collection.url }}
+          </li>
+          <li class="breadcrumbs__itemss">
+            {%- capture tag_url -%}{{ collection.url }}/{{ current_tags | join: "+"}}{%- endcapture -%}
+            <a class="breadcrumbs__link" href="{{ tag_url }}" aria-current="page">{{ current_tags | join: " + "}}</a>
+          </li>
+        {%- else -%}
+          <li class="breadcrumbs__itemss">
+            <a class="breadcrumbs__link" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
+          </li>
+        {%- endif -%}
+    {%- endcase -%}
+  </ol>
+     <h1 class="plp-title">{{ collection.title }}</h1>
+</nav>
+{%- endunless -%}
+
+ 

@@ -1,0 +1,83 @@
+	  <!-- Intro -->
+	 <section class="intro_con" data-aos="fade" data-aos-delay="200" id="about_pos" data-aos-id="car_box">
+            <div class="line line1"></div>
+            <img src="{{ section.settings.imgage | img_url:'master' }}" data-aos="fade-left" class="intro_d" data-aos-delay="500" />
+            <img src="{{ section.settings.imgage_mbl | img_url:'original' }}" data-aos="fade-left" class="intro_m" data-aos-delay="500" />
+            <div class="intro_txt" data-aos="fade" data-aos-id="car_slide">
+                <div class="p15 wrapper">
+                  <div class="grid">
+                    <div class="grid__item  medium-up--one-third">
+                    	<span>{{ section.settings.title }}</span>
+						<h2>{{ section.settings.sub_title }}</h2>
+						<p>{{ section.settings.text }}</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="line line2 animate__delay-1s"></div>
+	</section>
+  	
+  	<!-- Slogan -->
+		<section class="slogan_con" data-aos="fade-up" data-aos-delay="200">
+          <div class="slogan_box">
+			<span>{{ section.settings.title_rich }}</span>
+            <h3>{{ section.settings.sub_title_rich }}</h3>
+            <p>{{ section.settings.text_rich }} </p>
+          </div>
+        </section>
+
+{% schema %}
+  {
+    "name": "banner or richtext",
+    "settings": [
+	{
+        "type": "header",
+        "content": "Banner"
+      },
+	{
+        "type": "image_picker",
+        "id": "imgage",
+        "label": "banner image"
+      },
+	{
+        "type": "image_picker",
+        "id": "imgage_mbl",
+        "label": "mobile banner image"
+      },
+	 {
+        "type": "text",
+        "id": "title",
+        "label": "title"
+      },
+	{
+        "type": "text",
+        "id": "sub_title",
+        "label": "Sub-title"
+      },
+	{
+        "type": "textarea",
+        "id": "text",
+        "label": "text"
+      },
+	{
+        "type": "header",
+        "content": "Richtext"
+      },
+	{
+        "type": "text",
+        "id": "title_rich",
+        "label": "title"
+      },
+	{
+        "type": "text",
+        "id": "sub_title_rich",
+        "label": "Heading"
+      },
+	{
+        "type": "textarea",
+        "id": "text_rich",
+        "label": "text"
+      }
+]
+  }
+{% endschema %}

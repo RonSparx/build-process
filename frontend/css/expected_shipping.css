@@ -1,0 +1,99 @@
+
+.shipping_title__{
+  font-family: "Proxima Nova Rg";
+   font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.expected_shipping_cityselector {
+    margin-bottom: 12px;
+}
+
+
+.expected-delivery-time {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.area_messages h6 , 
+.area_messages .between_days{
+  font-weight: 600 ;
+}
+
+.shipcityselectorbox_main {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 2px solid #bb2131;
+    padding-bottom: 2px;
+    width: max-content;
+    position: relative ;
+    color: #bb2131 
+}
+
+.shipcityselectorbox_options {
+    position: absolute;
+    background: white;
+    z-index : 1000 ;
+    max-height: 174px;
+    overflow-y: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    box-shadow: rgb(0 0 0 / 25%) 0 0 12px 0;
+    border-radius: 2px;
+    display: none ;
+}
+
+.shipcityselectorbox_options_container {
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+}
+
+.shipcityselectorbox_options_container span {
+    padding: 2px 24px;
+    cursor: pointer;
+    margin: 4px 0;
+}
+
+span.shipcityselectorbox_arrow {
+    display: flex;
+    margin: 0px 5px;
+}
+
+.shipingselector_container {
+    display: flex;
+  margin-bottom: 12px 
+}
+
+  .shipingselector_container label {
+        font-weight: 800;
+}
+
+div#shipcityselectorbox {margin: 0 10px;}
+
+.expected_shipping {
+    padding: 14px;
+    border: 1px solid #cecece;
+  margin-bottom: 12px ;
+
+}
+
+.shipcityselectorbox_options_container span[selected] {
+    color: #bb2131;
+}
+
+@media screen and (min-width: 769px) {
+    .expected-delivery-time {
+      font-size: 14px;
+  }
+}
+
+#shipcityselector {
+  width : 100% ;
+}
+
+@media screen and (min-width: 480px) {
+.expected_shipping {
+    max-width:400px ;
+}
+}

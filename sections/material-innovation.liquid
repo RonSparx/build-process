@@ -1,0 +1,65 @@
+<div class="page-width">
+  <div class="block-wrap">
+    <div class="block-title">
+      {{section.settings.section_title | default: "material innovation" }}
+    </div>
+    <div class="block-slide">
+      <ul class="custom-pro-loop">
+        {% for block in section.blocks %}
+        <li class="slide-data">
+          {% if block.settings.slide_img != blank %}
+          <img src="{{block.settings.slide_img | img_url: "original"}}">
+          {%else%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%endif%}
+          <h2>{{block.settings.slide_title | default: "Water-based Poly Fabric"}}</h2>
+          <p>{{block.settings.slide_desc | default: "We use a water-based polyurethane coating process for the fabrics in our bags instead of using a solvent-based coating process, resulting in less contaminants in the water supply."}}</p>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+"name": "Material Innovation",
+"settings": [
+{
+"type": "text",
+"id": "section_title",
+"label": "Section title"
+}
+],
+"blocks": [
+{
+"type": "text_block",
+"name": "Slides",
+"settings": [
+{
+"type": "image_picker",
+"id": "slide_img",
+"label": "Slide Image"
+},
+{
+"type": "text",
+"id": "slide_title",
+"label": "Slide title"
+},
+{
+"type": "html",
+"id": "slide_desc",
+"label": "Slide Description"
+}
+
+]
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

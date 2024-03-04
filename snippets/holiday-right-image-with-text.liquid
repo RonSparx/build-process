@@ -1,0 +1,30 @@
+<div class="image-block right-alignment" id="{{block.settings.tab | remove:' '}}">
+     <div class="right-content">
+       {% if block.settings.image != blank %}
+          	<img src="{{block.settings.image | img_url:'600x'}}" />
+       {% else %}
+           {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+       {% endif %}
+          </div>
+          <div class="left-content">
+            <div class="section-header text-center">
+              {% if block.settings.heading != blank %}
+              <h2>{{block.settings.heading}} </h2>
+              {% else %}
+            <h2>Heading title</h2>
+              {% endif %}
+          </div>
+            {% if block.settings.content != blank %}
+            <p>{{block.settings.content}}</p>
+            {% else %}
+            <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown ...</p>
+           
+            {% endif %}
+            {% if block.settings.btnlabel != blank %}
+                <a href="{{block.settings.link}}">{{block.settings.btnlabel}}</a>
+            {% else %}
+            <a href="#">Button Name</a>            
+            {% endif %}
+
+          </div> 
+ 		 </div>

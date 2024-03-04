@@ -1,0 +1,198 @@
+{%- for block in section.blocks -%}
+    {%- if block.settings.collection == collection.handle -%}
+      {% assign products_count = collection.products_count %}
+          {% if block.settings.position <= products_count %}{% assign positionData = block.settings.position %} {% else %}{% assign positionData = 0 %}{% endif %}
+          {% if block.settings.position_2 <= products_count %}{% assign positionData2 = block.settings.position_2 %} {% else %}{% assign positionData2 = 0 %}{% endif %}
+          {% if block.settings.position_3 <= products_count %}{% assign positionData3 = block.settings.position_3 %} {% else %}{% assign positionData3 = 0 %}{% endif %}
+     {% else %}
+      {% assign positionData = 0 %}
+      {% assign positionData2 = 0 %}
+      {% assign positionData3 = 0 %}
+    {% endif %}
+  
+{% endfor %}
+ 
+  <style>
+.collection-unique-banner>.caption {
+    position: absolute;
+    top: 73.2%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 100%;
+    color: white;
+    text-align: center;
+    z-index: 1;
+}
+    .collection-unique-banner, .collection-unique-banner>picture, .collection-unique-banner>picture>img{
+      height:100%;
+    }
+
+  .collection-unique-banner {
+    background: #000;
+    padding: 10px;
+    position: relative;
+}
+
+.banner_overlay {
+    position: absolute;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0.2%, rgba(0, 0, 0, 0));
+    z-index: 1;
+}
+  .caption-content {
+    max-width:200px;
+    margin: 0 auto;
+}
+
+button.plp-caption_btn {
+    background: #fff;
+    color: #000;
+    display: inline-block;
+    padding: 6px 15px;
+  font-family: 'Proxima Nova Rg';
+}
+  .collection-unique-banner picture img {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+}
+  </style>
+<script>
+  let data1 = [
+   `{%- for block in section.blocks -%}
+    {%- if block.settings.collection == collection.handle -%}
+      {%- if block.type == 'small-megapush-banner' -%}
+       {%- if block.settings.selectbox_1 -%}
+       {% if block.settings.image != blank %}
+         <div class="spf-col-xl-4 spf-col-lg-4 spf-col-md-6 spf-col-sm-6 spf-col-6 megapush-banner" data-position="{{block.settings.position}}">
+          <div class="spf-product-card spf-product-card__ spf-product-card__template-2">
+           <div class="prouct-card-wrapper">
+            <div class="collection-unique-banner">
+            <div class="banner_overlay"></div>
+             {% if block.settings.image == blank %}
+             <iframe src="{{ block.settings.video_link | escape }}?background=1&amp;autoplay=1&amp;loop=1&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen="" class="fluidvids-item"></iframe>
+           {% else %}
+             <picture>
+                <source media="(min-width:750px)" srcset="{{ block.settings.image | img_url:'1092x' }}">
+                <img src="{{ block.settings.image_mob | img_url:'600x' }}"/>
+              </picture>
+             {% endif %}
+              <div class="caption">
+                <div class="caption-content">
+                <h3>{{block.settings.heading}}</h3>
+                <div class="caption-desc">{{ block.settings.content }}</div>
+                <a href="{{ block.settings.button_link }}"><button class="plp-caption_btn">{{ block.settings.button_text }}</button></a>
+              </div>
+              </div>
+            </div>
+            <div>
+          </div>
+        </div>
+          {%- endif -%}
+        {%- endif -%}
+    {%- endif -%}
+          {%- endif -%}
+  {%- endfor -%}
+`];
+
+    let data2 = [
+   `{%- for block in section.blocks -%}
+    {%- if block.settings.collection == collection.handle -%}
+      {%- if block.type == 'small-megapush-banner' -%}
+        {%- if block.settings.selectbox_2 -%}
+        {% if block.settings.image_2 != blank %}
+         <div class="spf-col-xl-4 spf-col-lg-4 spf-col-md-6 spf-col-sm-6 spf-col-6 megapush-banner" data-position="{{block.settings.position_2}}">
+          <div class="spf-product-card spf-product-card__ spf-product-card__template-2">
+           <div class="prouct-card-wrapper">
+            <div class="collection-unique-banner">
+           <div class="banner_overlay"></div>
+            {% if block.settings.image_2 == blank %}
+             <iframe src="{{ block.settings.video_link_2 | escape }}?background=1&amp;autoplay=1&amp;loop=1&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen="" class="fluidvids-item"></iframe>
+             {% else %}
+             <picture>
+                <source media="(min-width:750px)" srcset="{{ block.settings.image_2 | img_url:'1092x' }}">
+                <img src="{{ block.settings.image_mob_2 | img_url:'600x' }}"/>
+              </picture>
+             {% endif %}
+              <div class="caption">
+                <div class="caption-content">
+                <h3>{{block.settings.heading_2}}</h3>
+                <div class="caption-desc">{{ block.settings.content_2 }}</div>
+                <a href="{{ block.settings.button_link_2 }}"><button class="plp-caption_btn">{{ block.settings.button_text_2 }}</button></a>
+              </div>
+              </div>
+            </div>
+            <div>
+          </div>
+        </div>
+         {%- endif -%}
+        {%- endif -%}
+    {%- endif -%}
+   {% endif %}
+  {%- endfor -%}
+`];
+
+
+    let data3 = [
+   `{%- for block in section.blocks -%}
+    {%- if block.settings.collection == collection.handle -%}
+      {%- if block.type == 'small-megapush-banner' -%}
+        {%- if block.settings.selectbox_3 -%}
+          {% if block.settings.image_3 != blank %}
+         <div class="spf-col-xl-4 spf-col-lg-4 spf-col-md-6 spf-col-sm-6 spf-col-6 megapush-banner">
+          <div class="spf-product-card spf-product-card__ spf-product-card__template-2">
+           <div class="prouct-card-wrapper">
+            <div class="collection-unique-banner">
+           <div class="banner_overlay"></div>
+           {% if block.settings.image_3 == blank %}
+             <iframe src="{{ block.settings.video_link_3 | escape }}?background=1&amp;autoplay=1&amp;loop=1&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen="" class="fluidvids-item"></iframe>
+           {% else %}
+             <picture>
+                <source media="(min-width:750px)" srcset="{{ block.settings.image_3 | img_url:'1092x' }}">
+                <img src="{{ block.settings.image_mob_3 | img_url:'600x' }}"/>
+              </picture>
+             {% endif %}
+              <div class="caption">
+                <div class="caption-content">
+                <h3>{{block.settings.heading_3}}</h3>
+                <div class="caption-desc">{{ block.settings.content_3 }}</div>
+                <a href="{{ block.settings.button_link_3 }}"><button class="plp-caption_btn">{{ block.settings.button_text_3 }}</button></a>
+              </div>
+              </div>
+            </div>
+            <div>
+          </div>
+        </div>
+         {%- endif -%}
+    {%- endif -%}
+         {%- endif -%}
+        {%- endif -%}
+  {%- endfor -%}
+`];
+
+setTimeout(()=>{ 
+   let position = {{ positionData }};
+  if(position){
+    let boostProductItems = document.querySelectorAll(".spf-col-xl-4.spf-col-lg-4.spf-col-md-6.spf-col-sm-6.spf-col-6");
+    boostProductItems[position - 1].insertAdjacentHTML("beforebegin", data1);
+  }
+
+    let position2 = {{ positionData2 }};
+  if(position2){
+    let boostProductItems2 = document.querySelectorAll(".spf-col-xl-4.spf-col-lg-4.spf-col-md-6.spf-col-sm-6.spf-col-6");
+    boostProductItems2[position2 - 1].insertAdjacentHTML("beforebegin", data2);
+  }
+  
+   let position3 = {{ positionData3 }};
+  if(position3 >= 1){
+    let boostProductItems3 = document.querySelectorAll(".spf-col-xl-4.spf-col-lg-4.spf-col-md-6.spf-col-sm-6.spf-col-6");
+    boostProductItems3[position3 - 1].insertAdjacentHTML("beforebegin", data3);
+  }
+},4000)
+  
+
+</script> 

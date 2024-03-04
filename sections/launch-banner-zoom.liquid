@@ -1,0 +1,67 @@
+<div id="carry-hard" data-w-id="1a6a8109-e92e-986f-9a70-6fdc456a553b" class="collab-section">
+  <div class="write-up-wrapper drop-lp">
+    <img src="{{ 'tumi-razer-logo.svg' | asset_url  }}" loading="lazy" alt="" class="tumi-razer-logo collab" />
+    <h2 data-w-id="1a6a8109-e92e-986f-9a70-6fdc456a553f" style="opacity: 1;" class="h2 green">{{ section.settings.heading }}</h2>
+    <div class="paragraph write-up">
+      {{ section.settings.description }}
+    </div>
+    <div data-w-id="1a6a8109-e92e-986f-9a70-6fdc456a5547" style="opacity: 0;" class="line-graphics-wrapper-left">
+      <div class="line-graphics _1a"></div>
+      <div class="line-graphics _1b"></div>
+      <div class="line-graphics _1c"></div>
+      <div class="line-graphics _1d"></div>
+    </div>
+    <div
+         data-w-id="1a6a8109-e92e-986f-9a70-6fdc456a554c"
+         style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+         class="line-graphics-wrapper-right"
+         >
+      <div class="line-graphics _2a"></div>
+      <div class="line-graphics _2b"></div>
+      <div class="line-graphics _2c"></div>
+      <div class="line-graphics _2d"></div>
+    </div>
+  </div>
+  <div data-w-id="1a6a8109-e92e-986f-9a70-6fdc456a5554" class="end-section-wrapper">
+    <img
+         src="{%if section.settings.banner-img != blank%} {{section.settings.banner-img | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c8a023704eb4f4e95ab88_model-group-3june.jpg {%endif%}"
+         loading="lazy"
+         sizes="100vw"
+         srcset="{%if section.settings.banner-img != blank%} {{section.settings.banner-img | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c8a023704eb4f4e95ab88_model-group-3june.jpg {%endif%}"
+         alt=""
+         class="end-section-image"
+         style="will-change: width, height; width: 80%; height: 80%;"
+         />
+    <a href="#" class="end-video-button-wrapper hide w-inline-block">
+      <img src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd465ab3a94aa_play.png" loading="lazy" alt="" class="end-video-icon" />
+      <div class="end-video-text">{{ section.settings.watch-video }}</div>
+    </a>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Launch Banner Zoom",
+    "settings": [
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading",
+			"default": "CARRY HARD"
+		},
+		{
+			"type": "richtext",
+			"id": "description",
+			"label": "Description",
+			"default": "<p>For those destined to go places, set your sights on a new exploration in lifestyle and travel for the modern gamer. Rise to the occasion and bring the team to victory with the TUMI | Razer collection.</p>"
+		},
+		{
+			"type": "image_picker",
+			"id": "banner-img",
+			"label": "Image"
+		}
+		
+	]
+  }
+{% endschema %}
+

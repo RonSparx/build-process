@@ -1,0 +1,136 @@
+<style>
+  .landing-product-selector {
+    width: 100%;
+    padding-top: 2rem;
+  }
+  .landing-product-selector-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .landing-pro-select-block {
+    text-align: center;
+    width: 100%;
+  }
+  .bullet-product-selector .lps-link a {
+    position: relative;
+    color: #003d76 !important;
+    font-weight: 600;
+  }
+  .bullet-product-selector .lps-link a:hover{
+    color: #000 !important;
+  }
+  .bullet-product-selector  .lps-link a:after {
+    content: "\2023";
+    font-size: 25px;
+    position: absolute;
+    top: -8px;
+    margin-left: 10px;
+  }
+  .lps-img img {
+    width: 100%;
+  }
+  .lps-link {
+    padding: 10px 0;
+  }
+  @media all and (min-width:640px){
+    .landing-pro-select-block {
+      width: calc(50% - 1.5rem);
+    }
+  }
+  @media all and (min-width:768px){
+    .landing-pro-select-block {
+      width: calc(33.33% - 1.5rem);
+    }
+    .landing-product-selector-inner{
+      justify-content: space-between;
+    }
+  }
+
+</style>
+
+
+
+<div class="page-width">
+  <div class="landing-product-selector bullet-product-selector">
+    <div class="landing-product-selector-inner">
+      {% if section.blocks != blank %}
+      {% for block in section.blocks %}
+      <div class="landing-pro-select-block">
+        {% if block.settings.image != blank %}
+        <div class="lps-img">
+          <img src="{{ block.settings.image | img_url: '400x' }}">
+        </div>
+        {% endif %}
+        {% if block.settings.btn_text != blank %}
+        <div class="lps-link">
+          <a href="{{ block.settings.product_link }}">{{ block.settings.btn_text }}</a>
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+      {% else %}
+      {% for i in (1..3) %}
+      <div class="landing-pro-select-block">
+        <div class="lps-img">
+          <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/lp-Bullet-Train_Behind-the-scenes-case-exploded_1080x1080_5cea6356-6a7d-4aa1-9dd3-faa95f481b35.jpg?v=1658213338">
+        </div>
+        <div class="lps-link">
+          <a href="#">Shop Now</a>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+"name": "Bullet Landing Product",
+"max_blocks": 3, 
+"settings": [],
+"blocks": [
+{
+"name": "Slide",
+"type": "slide",
+"settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+},
+{
+"type": "url",
+"id": "product_link",
+"label": "Product link"
+},
+{
+"type": "text",
+"id": "btn_text",
+"label": "Button Text",
+"default": "Shop Now"
+}
+]
+}
+],
+"presets": [
+{
+"name": "Bullet Landing Product",
+"blocks": [
+{
+"type": "slide"
+},
+{
+"type": "slide"
+},
+{
+"type": "slide"
+}
+]
+}
+]
+}
+{% endschema %}

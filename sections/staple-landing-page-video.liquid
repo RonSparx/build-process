@@ -1,0 +1,51 @@
+
+<div class="page-width">
+  <div class="landing-video">
+    <div class="landing-video-inner">
+      {% if section.settings.video_embed != blank %}
+      <iframe allowfullscreen src="{{ section.settings.video_embed }}{% if section.settings.autoplay == true %}?autoplay=1{% else %}?autoplay=0{% endif %}{% if section.settings.mute == true %}&mute=1{% else %}&mute=0{% endif %}">
+      </iframe>
+      {% else %}
+      <iframe allowfullscreen src="https://www.youtube.com/embed/b1o8P9HIseM{% if section.settings.autoplay == true %}?autoplay=1{% else %}?autoplay=0{% endif %}{% if section.settings.mute == true %}&mute=1{% else %}&mute=0{% endif %}">
+      </iframe>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Landing Video",
+    "settings": [
+		{
+          "type": "url",
+          "id": "video_embed",
+          "label": "Video Url",
+		  "info": "Demo URL: https://www.youtube.com/embed/b1o8P9HIseM"
+        },
+        {
+          "type": "checkbox",
+          "id": "autoplay",
+          "label": "AutoPlay",
+          "default": true
+        },
+		{
+          "type": "checkbox",
+          "id": "mute",
+          "label": "Mute Video",
+          "default": true
+        }
+	],
+	"presets": [
+     {
+       "name": "Staple Landing Video"
+     }
+   ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

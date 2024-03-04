@@ -1,0 +1,94 @@
+{%- if block.settings.show -%}
+{%- assign block_id = block.id -%}
+  <div class="landing_teaser_flex_all custflex">
+    <div class="page-width ">
+      <div class="mosaic_wrapper">
+      {%- for i in (1..4) -%}
+        {%- assign block_show = "show_" | append: i -%}
+        {%- if block.settings[block_show] -%}
+        {%- assign block_width = "width_" | append: i -%}
+        {%- assign block_width = block.settings[block_width] -%}
+        {%- assign image_position = "image_position_" | append: i -%}
+        {%- assign image_position = block.settings[image_position] -%}
+        {%- assign title_block_default = "title_block_" | append: i -%}
+        {%- assign title_block_default = block.settings[title_block_default] -%}
+        {%- assign title_block_ar = "title_block_ar_" | append: i -%}
+        {%- assign title_block_ar = block.settings[title_block_ar] -%}
+        {%- assign link_text = "link_text_" | append: i -%}
+        {%- assign link_text = block.settings[link_text] -%}
+        {%- assign link_text_ar = "link_text_ar_" | append: i -%} 
+        {%- assign link_text_ar = block.settings[link_text_ar] -%}
+        {%- assign anchor_link = "link_" | append: i -%}
+        {%- assign anchor_link = block.settings[anchor_link] -%}
+        {%- assign image_desktop = "image_" | append: i -%}
+        {%- assign image_desktop_1 = image_desktop | append: "_Desktop_1" -%}
+        {%- assign image_desktop_2 = image_desktop | append: "_Desktop_2" -%}
+        {%- assign image_tablet = "image_tablet_" | append: i -%}
+        {%- assign image_mobile = "image_mobile_" | append: i -%}
+        {% comment %} __{{ i }}__ {% endcomment %}
+          <div class="mosaic mosaic_{{ block_id }}_{{i}} width_{{ block_width }} image_position_{{ image_position }}">
+            <span class="mosaic_image_preload preload_img_mini">
+            <span class="mosaic_image"></span>
+            </span>
+            <span class="mosaic_text_all">
+              <span class="mosaic_text">
+                {%- if title_block_default != blank -%}
+                <span class="flextitle css_EN h3">{{ title_block_default }}</span>
+                <span class="flextitle css_AR">{{ title_block_ar }}</span>
+                {%- endif -%}
+                {%- if link_text != blank -%}
+                <span class="link css_EN">{{ link_text }}</span>
+                <span class="link css_AR">{{ link_text_ar }}</span>
+                {%- endif -%}
+              </span>
+            </span>
+            {%- if anchor_link != blank -%}<a href="{{anchor_link}}" class="a_url"></a>{%- endif -%}
+          </div>
+          <style>
+            {%- if block_width == "100" -%}
+              {%- assign w_img = "850x" -%}
+            {%- elsif block_width== "50" -%}
+              {%- assign w_img = "625x" -%}
+            {%- else -%}
+              {%- assign w_img = "320x" -%}
+            {%- endif -%}
+            .mosaic_{{ block_id }}_{{i}} .mosaic_image {background-image: url({{ block.settings[image_desktop_1] | img_url: w_img }});}
+
+            @media screen and (max-width: 1450px) {
+              {%- if block_width == "100" -%}
+                {%- assign w_img = "650x" -%}
+              {%- elsif block_width== "50" -%}
+                {%- assign w_img = "500x" -%}
+              {%- else -%}
+                {%- assign w_img = "250x" -%}
+              {%- endif -%}
+              .mosaic_{{ block_id }}_{{i}} .mosaic_image {background-image: url({{ block.settings[image_desktop_2] | img_url: w_img }});}
+            }
+
+            @media screen and (max-width: 1024px) {
+              {%- if block_width== "100" -%}
+                {%- assign w_img = "500x" -%}
+              {%- elsif block_width== "50" -%}
+                {%- assign w_img = "360x" -%}
+              {%- else -%}
+                {%- assign w_img = "190x" -%}
+              {%- endif -%}
+              .mosaic_{{ block_id }}_{{i}} .mosaic_image {background-image: url({{ block.settings[image_tablet] | img_url: w_img }});}
+            }
+
+            @media screen and (max-width: 768px) {
+              {% assign w_img = "768x" %}
+              .mosaic_{{ block_id }}_{{i}} .mosaic_image {background-image: url({{ block.settings[image_mobile] | img_url: w_img }});}
+            }
+
+            @media screen and (max-width: 420px) {
+              {% assign w_img = "500x" %}
+              .mosaic_{{ block_id }}_{{i}} .mosaic_image {background-image: url({{ block.settings[image_mobile] | img_url: w_img }});}
+            }
+          </style>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{%- endif -%}

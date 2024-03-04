@@ -1,0 +1,89 @@
+<style>
+  .tamara-placeholder {
+      border: 1px solid #e5e5e5;
+      border-radius: 10px;
+  }
+  .tamara-widgets-container {
+      margin-top: 10px;
+      position: relative;
+  }
+  
+  .tamara-widget {
+      position: absolute;
+      top: 0px;
+  }
+  img.tamara-logo {
+      width: 70px !important;
+      height: auto !important;
+  }
+  
+  .tamara-widget {
+      width: 100%;
+  }
+  .tabbyPromo-placeholder br {
+      display: none;
+  }
+  
+  @media screen and (max-width: 749px) {
+      /*  .tamara-widgets-container img.tamara-logo
+    {
+        width: 50px !important;
+        height: auto !important;
+    } */
+      .tamara-widgets-container {
+          padding-bottom: 20px;
+      }
+  }
+
+</style>
+
+<!-- tamara widdgets start here  -->
+{% assign productPrice = product.price | divided_by:100 %}
+<div class="tamara-widgets-container {% if productPrice > 3000 %} hide{% endif %}" data="{{ product.price | divided_by:100}}">
+    <div class="tamara-placeholder">
+        {% if request.locale.iso_code == 'ar' %}
+        <div class="tamara-placeholder-row">
+            <div class="tamara-placeholder-content">
+                <span>
+                    أو قسمها على 4 دفعات شهرية <br />
+                    بقيمة <span class="price-devide"> {{ product.price | divided_by: 4 }} Dhs. </span> <span class="learn-more">لمعرفة المزيد</span>
+                </span>
+            </div>
+
+            <div class="tamara-placeholder-content">
+                <img src="{{ 'tamara-arabic-logo.png' | asset_img_url: '' }}" />
+            </div>
+        </div>
+        {%else%}
+
+        <div class="tamara-placeholder-row">
+            <div class="tamara-placeholder-content">
+                <span> or Split it into 3 payments of <span class="price-devide"> AED {{ product.price | divided_by: 3 }} </span> interest-free <span class="learn-more">Learn more</span> </span>
+            </div>
+
+            <div class="tamara-placeholder-content">
+                <img src="{{ 'tamara-logo.png' | asset_img_url: '' }}" />
+            </div>
+        </div>
+
+        {%endif%}
+    </div>
+
+    <div class="tamara-widget">
+        {% assign tamara_lang = request.path | slice: 1,2 %} {% if tamara_lang != 'ar' %} {% assign tamara_lang = 'en' %} {% endif %}
+        <div class="tamara-product-widget" data-price="{{product.price | money_without_currency | remove: ','}}" data-currency="{{shop.currency}}" data-payment-type="installment" data-lang="{{ tamara_lang }}"></div>
+
+        <script charset="utf-8" src="https://cdn.tamara.co/widget/product-widget.min.js"></script>
+        <script>
+            setTimeout(() => {
+                if (window.TamaraProductWidget) {
+                    window.TamaraProductWidget.init({ lang: "en" });
+                    window.TamaraProductWidget.render();
+                }
+            }, 300);
+        </script>
+    </div>
+</div>
+
+<!-- tamara widdgets end here  -->
+ 

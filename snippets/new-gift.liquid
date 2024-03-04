@@ -1,0 +1,168 @@
+<style>
+
+// cart gift message css start
+  .gift_msg {
+  display: none;
+  }
+  .giftmessage textarea:disabled {
+  background: #eee;
+  overflow: hidden;
+  }
+  
+  
+  .cart-gift-message .cart-note__label {
+  font-size: 16px;
+  font-weight: normal;
+  color: #000000;
+  margin-bottom: 20px;
+  display: block;
+  }
+  
+  .cart-gift-message .radio-group input {
+  position: absolute;
+  left: -9999px;
+  }
+  .cart-gift-message .radio-group label {
+  margin: 0 0 10px;
+  padding: 0 30px 0 24px;
+  position: relative;
+  cursor: pointer;
+  display: block;
+  color: #868b95;
+  font-size: 14px;
+  }
+  
+  .cart-gift-message .radio-group label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #143fa0;
+  }
+  
+  .cart-gift-message .radio-group label:after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: #143fa0;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  transition: all 0.4s ease;
+  }
+  
+  .cart-gift-message .radio-group input:not(:checked) + label:after {
+  opacity: 0;
+  transform: rotate(45deg) scale(0);
+  }
+  
+  textarea#CartSpecialInstructions {
+  padding: 6px 10px 38px 8px;
+  border: solid 1px #ccc;
+  min-height: 89px;
+  line-height: 1.43;
+  font-size: 14px;
+  color: #000;
+  font-weight: 400;
+  outline: none;
+  width: 100%;
+  }
+  span#countcharacter {
+  text-align: right;
+  display: block;
+  }
+</style> 
+
+<div class="cart-gift-wrapping">
+    <div class="gift-wrappings">
+
+      
+      <div class="gift-wrapping" id="gift-first">
+        <div class="inner-action">
+          <div class="gift-action">
+            <div class="gift-toggle"> Add Gift Wrap </div>
+          </div>
+          <div class="gift-message first-gift-message"> Enjoy complimentary gift wrapping with your order </div>
+        </div>
+        <div class="gift-message-checkbox">
+          <label for="cartform-ms_chk_gift_msg" class="cart-note__label">
+             <input class="giftyes" type="checkbox" id="cartform-ms_chk_gift_msg" name="choice-giftmessage" /> Hide price?
+            <textarea name="note" id="CartNote" style="display:none">{{ cart.note }}</textarea>
+          </label>
+        </div>
+     </div>
+
+
+      
+    <div id="gift-sec" style="display:none;" class="cart-note__input dvPassmessage">
+        <div class="gift-wrapping">
+            <div class="gift-message complimentary-text"> Enjoy complimentary gift wrapping with your order </div>
+            <div class="gift-message second-gift-message">Customize your gift with a personal message (Optional)</div>
+        </div>
+        <div class="gift-message-checkbox">
+          <textarea id="CartSpecialInstructions" class="cart-note__input cart-note__input-change" placeholder="Please enter a message up to 250 characters (including spaces)*" value="None" data-name="Gift message"> </textarea>
+          <label for="cartform-ms_chk_gift_msg" class="cart-note__label">
+              <input class="giftyes" type="checkbox" id="cartform-ms_chk_gift_msg" name="choice-giftmessage" /> Hide price?
+            </label>
+        </div> 
+      </div>  
+      
+  </div>
+</div> 
+
+
+
+
+
+
+
+<script>
+    $(".cart-note__input-change").on('keyup', function() {
+    var Gift_Message  = $(this).val().trim();
+    var Hide_Price = $('.giftyes').is(':checked')? 'Yes':'No' ;
+    var gift_Box = $(".gift-toggle").hasClass("open") ? 'Yes': 'No';
+    $('#CartNote').text(`Gift Box:${gift_Box}\nGift Message :${Gift_Message}\nHide Price : ${Hide_Price}`);
+    
+});
+
+$(".gift-toggle").on("click",function() {
+    if($(this).hasClass("open")){
+      $(this).removeClass("open");
+    } else {
+      $(this).addClass("open");
+      var Gift_Message  = $(".cart-note__input-change").val().trim();
+      var Hide_Price = $('.giftyes').is(':checked')? 'Yes':'No' ;
+      var gift_Box = $(".gift-toggle").hasClass("open") ? 'Yes': 'No';
+      $('#CartNote').text(`Gift Box:${gift_Box}\nGift Message :${Gift_Message}\nHide Price : ${Hide_Price}`);
+    }      
+});
+  
+$('.giftyes').change(function() {
+  
+   var Gift_Message  = $(".cart-note__input-change").val().trim();
+    var Hide_Price = $('.giftyes').is(':checked')? 'Yes':'No' ;
+    var gift_Box = $(".gift-toggle").hasClass("open") ? 'Yes': 'No';
+    $('#CartNote').text(`Gift Box:${gift_Box}\nGift Message :${Gift_Message}\nHide Price : ${Hide_Price}`);
+  
+    if($(this).is(':checked')) {
+      $(".cart-note__label").addClass("check");
+      
+    } else {
+      $(".cart-note__label").removeClass("check");
+    }
+  
+});
+$(function() {
+    $("#-ms_chk_gift_msg").click(function() {
+        if ($(this).is(":checked")) {
+            $("#CartSpecialInstructions").removeAttr("disabled");
+            $("#CartSpecialInstructions").focus();
+        } else {
+            $("#CartSpecialInstructions").attr("disabled", "disabled");
+        }
+    });
+});
+
+</script>

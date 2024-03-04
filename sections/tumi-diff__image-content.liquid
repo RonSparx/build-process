@@ -1,0 +1,77 @@
+{{ 'tumi-diff__image-content.css'|asset_url|stylesheet_tag }}
+ {% for block in section.blocks %}
+  <div class="image-content-container bg-color {% if block.settings.Img_alignment=='right' %}content-blogs-reverse {% endif %}">
+    <div class="page-width">
+      <div class="content-box">
+        <h2>{{ block.settings.img_cont_text }}</h2>
+        <div class="content-box-des">
+          {{ block.settings.img_cont_des }}
+        </div>
+      </div>
+      <div class="image-box">
+        {% if block.settings.img_cont_image != blank %}
+          <img src="{{ block.settings.img_cont_image | img_url: 'master'}}">
+          {% else %}
+          <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/SS23_19DExtTrip_PC_Lilac-and-19DIntlExpCO_Lilac_1965_v1_CMYK_300dpi1.jpg?v=1678256803" />
+       {% endif %}
+      </div>
+    </div>
+  </div>
+{% endfor %}
+{% schema %}
+  {
+  "name": "Image with Text",
+  "settings": [],
+  "blocks": [
+     {
+       "name": "Image with Text",
+       "type": "Image",
+       "settings": [
+          {
+            "type":"header",
+            "content":"Image with Text"
+          },
+          {
+          "type": "select",
+          "id": "Img_alignment",
+          "label": "Image alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "right"
+        },
+         {
+           "type": "image_picker",
+           "id": "img_cont_image",
+           "label": "Image Desktop"
+         },        
+         {
+           "type": "text",
+           "id": "img_cont_text",
+           "label": "Title",
+           "default": "Functional Superiority"
+         },
+         {
+           "type": "richtext",
+           "id": "img_cont_des",
+           "label": "Description",
+           "default": "<p>Our innovation doesn’t happen in a vacuum. People inspire everything we do. That is why we take every product out into the real world to be assessed in multiple scenarios. Our products are put through comprehensive testing to ensure they will perform and endure. And, in the unlikely event you have an issue — we'll fix it.</p>"
+         }
+       ]
+     }
+   ],
+   "presets": [
+      {
+       "name": "image-content"
+      }
+    ]
+}
+{% endschema %}
+ 

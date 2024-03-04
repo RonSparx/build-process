@@ -1,0 +1,80 @@
+<div class="s-collection">
+  {% if section.settings.tera_title_collection != blank %}
+    <div class="page-width">
+      <div class="carousel-title section-header">
+          	<h2>{{ section.settings.tera_title_collection }}</h2>
+      </div>
+    </div>
+ {% endif %}
+  {% if section.blocks.size > 0  %}
+  <div class="gift-carousel-wrap">
+    <div class="carousel_slider {% if section.settings.enable_collection_carousel %}gift-for-him {% endif %}">
+      {% for block in section.blocks %}
+      {% assign collection = collections[block.settings.coll_id] %}
+      <div class="gift-item">
+        <div class="product-card-ctm">
+          <div class="gift-pro-img">
+            <a class="" href="{{ collection.url }}">
+              <img class="card-img-top" src="{{ collection.image.src | collection_img_url: 'large' }}" alt="{{ collection.title | escape }}" />
+            </a>
+            <div class="gift-pro-content">
+              <a class="" href="{{ collection.url }}">
+                {{ collection.title | escape }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+<style>
+  
+   .carousel-title{
+     text-align:center;
+      margin-top:30px;
+   }
+  .degree_product{
+    padding:30px 20px 50px;
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "collection with banner",
+    "settings": [
+           {
+            "type":"text",
+            "id":"tera_title_collection",
+            "label": "collection title"
+          },
+          {
+          "type":"checkbox",
+          "id":"enable_collection_carousel",
+          "label":"Enable collection carousel",
+          "default":true
+        }
+	],
+	"blocks": [
+		{
+          "type": "collection",
+          "name": "collection",
+          "settings": [
+              {
+                  "type": "collection",
+                  "id": "coll_id",
+                  "label": "Select collection"
+                }
+              
+          ]
+		}
+	],
+    "presets": [
+      {
+        "name": "collection with banner"
+      }
+    ]
+  }
+{% endschema %}

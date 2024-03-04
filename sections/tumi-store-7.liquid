@@ -1,0 +1,51 @@
+<section class="common-vms vister-section">
+  <div class="custom-container">
+    <ul>
+    {% for block in section.blocks %}
+      <li>
+        <div class="span-wrapper">
+          <img src="{{ block.settings.desk_img | img_url: "original"}}" alt="banner" style="width:auto;" />
+        </div>
+        <div class="span-content">
+          <strong>{{ block.settings.text }}</strong>
+          <a class="btn-ab" target="_blank" href="{{  block.settings.btnlink }}">{{  block.settings.btnlabel }}</a>
+        </div>  	
+      </li>
+       {% endfor %}
+    </ul>
+  </div>
+</section>
+{% schema %}
+  {
+     "name": "tumi-store-7",
+      "blocks": [
+      {
+        "type": "blocks",
+        "name": "text",
+ 		"limit": 3,
+        "settings": [
+        {
+            "type": "image_picker",
+            "id": "desk_img",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Title"
+          },
+          {
+        	"type": "text",
+        	"id": "btnlabel",
+        	"label": "button Label"
+      	},
+	 	{
+        	"type": "url",
+        	"id": "btnlink",
+        	"label": "button Link"
+      	}
+        ]
+      }      
+    ]
+  }
+{% endschema %}

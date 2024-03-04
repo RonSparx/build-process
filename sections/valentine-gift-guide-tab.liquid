@@ -1,0 +1,185 @@
+<style>
+  .gift-guide-tabs .tabs li.tab-link {
+    width: 50%;
+    padding: 0 !important;
+  }
+  .gift-guide-tabs .tabs li.tab-link>span {
+    background: transparent;
+    font-weight: 400;
+    font-size: 14px;
+  }
+  .gift-guide-tabs .tabs li.tab-link.current>span {
+    background: transparent;
+    color: #000000;
+    font-weight: bold;
+  }
+  .gift-guide-tabs .gift-tab-collections {
+    width: 100%;
+  }
+  .gift-guide-tabs .tab-content {
+    display: block;
+    height: 0;
+    overflow: hidden;
+  }
+  .gift-guide-tabs .tab-content.current {
+      height: auto;
+  }
+  .gift-guide-tabs button.slick-prev {
+      left: 0;
+      z-index: 1;
+  }
+  .gift-guide-tabs button.slick-next {
+      right: 0;
+  }
+  .gift-guide-tabs {
+      margin: 40px 0 20px 0;
+  }
+  .gift_slider_item {
+      padding: 0 10px;
+  }
+  ul.gift_slider_wrap.slick-initialized.slick-slider .slick-list {
+      margin: 0 -10px;
+  }
+  .gift_grid_col .gift_grid_title {
+      padding: 20px 0 0;
+      text-align: center;
+  }
+  .gift_grid_col .gift_grid_title a.gift_grid_cta {
+      font-family: Proxima Nova Rg;
+      color: #000;
+      font-size: 16px;
+      font-weight: 700;
+  }
+  .gift-guide-tabs .tabs li.tab-link>span {
+        border-bottom: 2px solid #f5f5f5;
+        padding: 8px 0;
+    }
+    .gift-guide-tabs .tabs li.tab-link.current>span {
+        border-bottom-color: #000000;
+    }
+  
+  @media all and (min-width:749px){
+    .gift-guide-tabs .tabs li.tab-link>span {
+        font-size: 16px;
+    }
+   .gift-guide-tabs {
+      margin: 40px 0 30px 0;
+  }
+  }
+  
+</style>
+
+
+{% if section.blocks != blank %}
+
+<div class="page-width">
+<div class="valentine_gift-tab diff-bottom gift-guide-tabs">
+    <div class="diff-tab">
+        <ul class="tabs tabs-mobile">
+            {% assign count = 0 %} {%- for block in section.blocks -%} {% assign count = count | plus: 1 %}
+            <li class="tab-link" data-tab="tab-{{count}}">
+               <span data-toggle="tab">{{block.settings.tab_name}}</span>
+            </li>
+
+            {% endfor %}
+        </ul>
+        {% assign count_tab = 0 %} {%- for block in section.blocks -%} {% assign count_tab = count_tab | plus: 1 %}
+        <div id="tab-{{count_tab}}" class="tab-content">
+          <div class="gift-tab-collections">
+            <ul class="gift_slider_wrap">   
+                {% for product in collections[block.settings.gift-tab-collections].products limit: 6 %}
+                  <li class="gift_slider_item">
+                    {% include 'product-card-grid', max_height: 270, product: product, show_vendor: section.settings.show_vendor %}
+                    <div class="list-product-price">
+                      {{product.price | money}}
+                    </div>
+                  </li>
+                  {% endfor %}
+                  
+                </ul>
+          </div>
+         <div class="view_all_collection_btn">
+           <li class="tab-link view_all_collection" data-tab="tab-{{count_tab}} " id="tab-{{count_tab}}">
+               <a href="{{block.settings.gift-tab-collections}}" data-toggle="tab">{{block.settings.collection_text}}</a>
+            </li>
+         </div>
+        </div>
+    
+        {% endfor %}
+
+    </div>
+
+  
+ </div> 
+</div>
+
+{% endif %}
+
+
+
+<script>
+$(document).ready(function(){
+      // var sliderCountTab = 3;
+      // if($(window).width() >480 && $(window).width() <767){
+      //   sliderCountTab = 3;
+      //   } else if ($(window).width() <480) {
+      //     sliderCountTab = 2;
+      //   } 
+      // $('.gift_slider_wrapsss').slick({
+      //   dots: false,
+      //   arrows:false,
+      //   infinite: false,
+      //   speed:1300,
+      //   slidesToShow:sliderCountTab,
+        
+      // });
+
+    // gift tabs js
+
+    $('ul.tabs.tabs-mobile li:nth-child(1)').addClass('current');
+    $('div#tab-1').addClass('current');
+    $('.diff-tab ul.tabs li').click(function(){ 
+      $('div#tab-1').removeClass('show');
+        var tab_id = $(this).attr('data-tab');
+    
+        $('ul.tabs li').removeClass('current');
+        $('.tab-content').removeClass('current');
+    
+        $(this).addClass('current');
+        $("#"+tab_id).addClass('current');
+    })
+});
+</script>
+
+
+{% schema %}
+{
+"name": "Gift Guide Tabs",
+"max_blocks":2,
+"settings": [],
+"blocks":[
+      {
+      "type":"guid-tabs-item",
+      "name":"Guide Tabs Item",
+      "settings":[
+        {
+            "type":"text",
+            "id":"tab_name",
+            "label":"Tab Name"
+        },
+        {
+            "type": "collection",
+            "id": "gift-tab-collections",
+            "label": "Select Collection"
+        },
+        {
+          "type": "text",
+          "id": "collection_text",
+          "label": "Enter URL Text"
+        }
+      ]
+      }
+    
+    ]
+} 
+{% endschema %}

@@ -1,0 +1,101 @@
+<style>
+  .btn-assortment{
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #fff;
+    color: #222;
+    font-weight: 600;
+    font-size: 15px;
+    margin: 30px 0 0;
+    letter-spacing: .0125em;
+    text-decoration: none;
+    min-width: 124px;
+    background-color: {{ section.settings.btn_bg_color }};
+    color: {{ section.settings.btn_text_color }};
+  }
+  .btn-assortment:hover {
+    background-color: #fff;
+    color: #000!important;
+  }
+</style>
+
+<div class="product-assortment-wrap">
+  <div class="page-width">
+    <div class="assortment-row">
+      <div class="assortment-image">
+        {% if section.settings.product-desktop != blank %}
+        <img src="{{section.settings.product-desktop | img_url: '430x' }}" alt="{{product-desktop.alt | escape }}"/>
+        {% else %}
+        <img src="https://cdn.shopify.com/s/files/1/0573/8954/7702/files/lp-Bullet-Train_19-degree-aluminum-briefcase-mobile_1080x1080_68b56f9a-c110-469e-8253-344b8c1a0e22.jpg?v=1657800688" alt="img"/>
+        {% endif %}
+      </div>
+      <div class="assortment-content">
+        {% if section.settings.heading != blank %}
+        <h3>{{ section.settings.heading }}</h3>
+        {% endif %}
+        {% if section.settings.paragraph != blank %}
+        <div class="assortment-desc">{{ section.settings.paragraph }}<div>
+          {% endif %}
+          {% if section.settings.btn != blank %}
+          <a href="{{section.settings.btnlink | default: '#'}}" class="btn-assortment">
+            <span class="ben-text">{{section.settings.btn}} </span>
+          </a>
+          {% endif %}
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+{% schema %}
+{
+"name": "Product Assortment",
+"settings": [
+{
+"type": "image_picker",
+"id": "product-desktop",
+"label": "Product Image"
+},
+{
+"type": "text",
+"id": "heading",
+"label": "Heading",
+"default": "A LIMITED-EDITION DESIGN"
+},
+{
+"type": "richtext",
+"id": "paragraph",
+"label": "Content",
+"default": "<p>It’s your turn to get your hands on the limitededition 19 Degree Briefcase. Hotly pursued in the new movie, Bullet Train, it’s equipped for every journey—even the ones that didn’t go as planned. See Bullet Train exclusively in theaters <b>August 4th </b></p>"
+},
+{
+"type":"text",
+"id":"btn",
+"label":"Button name",
+"default": "Shop the Briefcase"
+},
+{
+"type":"url",
+"id":"btnlink",
+"label":"Button URL"
+},
+{
+"type": "color",
+"id": "btn_bg_color",
+"label": "Button Color",
+"default": "#000"
+},
+{
+"type": "color",
+"id": "btn_text_color",
+"label": "Button Text Color",
+"default": "#fff"
+}
+]
+}
+{% endschema %} 

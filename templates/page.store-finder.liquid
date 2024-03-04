@@ -1,0 +1,336 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="page-width map-custom">
+  <div class="grid">
+    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+      <div class="section-header text-center">
+        <h6>{{ page.title }}</h6>
+        
+      </div>
+	  <div style="text-align:center;max-width:700px;margin:auto;">
+        <h1>Store Finder </h1>
+        <p>See, feel and try out the carefully thought-out structure and features of each TUMI piece when you visit one of our physical stores in the UAE. Our personal shoppers will be more than happy to assist you and provide recommendations tailored just for you. </p>
+      </div>  
+      <div class="rte">
+        
+        {{ page.content }}
+      </div>
+
+      {% comment %}start here{% endcomment %}
+
+      <div id="googleMap-wrapper">
+        <div id="googleMap" style="position: relative; overflow: hidden;">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d3630.564033713369!2d54.387064114470476!3d24.50055806562265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x3e5e6654bca023b9%3A0xbeb708bfe365a541!2sTumi%2C%20The%20Galleria%20Al%20Maryah%20Island%2C%20Al%20Maqam%20Tower%20-%20Al%20Falah%20St%20-%20Jazeerat%20Al%20MaryahSowwah%20Square%20-%20Abu%20Dhabi%20-%20United%20Arab%20Emirates!3m2!1d24.5005532!2d54.389252799999994!5e0!3m2!1sen!2sin!4v1606212045882!5m2!1sen!2sin" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        </div>
+
+        <div id="searchpanel">
+          <h2 id="page-title"><ly-as-276841>Store locator</ly-as-276841></h2>
+          <div class="searchbox">
+            <form action="https://www.tumi.co.th/en/stores/" method="post" id="dwfrm_storelocator" novalidate="novalidate">
+              <fieldset>
+                <div class="searchwrapper">
+                  <div class="form-row   required " aria-required="true">
+                    <label for="dwfrm_storelocator_address">
+                      <span>
+                      </span>
+                      <span class="required-indicator">*</span>
+                    </label>
+                    <input class="input-text   required" id="dwfrm_storelocator_address" type="text" name="dwfrm_storelocator_address" value="" maxlength="2147483647" placeholder="Find by location" aria-required="true">
+                    <span class="form-caption "></span>
+                  </div>
+                  <button class="button searchbutton" type="button" name="dwfrm_storelocator_findbyadd" value="Search">
+                    <i class="button-search"></i>
+                  </button>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div class="store-types">
+                  <h3 class="block-title"><ly-as-276842>Store types</ly-as-276842></h3>
+                  <div class="form-row   ">
+                    <input class="input-checkbox " type="checkbox" name="dwfrm_storelocator_tumistores" id="dwfrm_storelocator_tumistores" value="true">
+                    <label for="dwfrm_storelocator_tumistores">
+                      <ly-as-276843>Tumi stores</ly-as-276843>
+                    </label>
+                  </div>
+                  <div class="form-row   ">
+                    <input class="input-checkbox " type="checkbox" name="dwfrm_storelocator_retailers" id="dwfrm_storelocator_retailers" value="true">
+                    <label for="dwfrm_storelocator_retailers">
+                      <ly-as-276844>Tumi retailers</ly-as-276844>
+                    </label>
+                  </div>
+                  <div class="form-row   ">
+                    <input class="input-checkbox " type="checkbox" name="dwfrm_storelocator_tumioutlets" id="dwfrm_storelocator_tumioutlets" value="true">
+                    <label for="dwfrm_storelocator_tumioutlets">
+                      <ly-as-276845>Tumi outlets</ly-as-276845>
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <div class="map-mobile">
+          </div>
+          <h3 class="block-title title-result"><ly-as-276846>Nearby stores</ly-as-276846></h3>
+          <div class="results">
+            <div class="resultitem tumistores" data-info="[13.746461,100.531563,&quot;TUMI SIAM DISCOVERY&quot;,&quot;SIAM DISCOVERY, 989 ROOM M04, M FLOOR, RAMA 1 ROAD, null, BANGKOK, 10330, TH&quot;,&quot;02 251 7988&quot;,&quot;tumistores&quot;]">
+              <div class="store-icon">
+              </div>
+              <div class="storeinfo">
+                <span class="store-type"><ly-as-276847>Tumi Store</ly-as-276847></span>
+                <h3 class="store-name"><ly-as-276848>TUMI - AL MARYAH CENTRAL</ly-as-276848></h3>
+                <p class="store-address">
+                  <span><ly-as-276849>The Galleria Mall, Al Maryah Island</ly-as-276849></span>
+                  <span>
+                    <span>2293</span>
+                    <span><ly-as-276850>AD-U.A.E</ly-as-276850></span>
+                    <span><ly-as-276851>Abu Dhabi</ly-as-276851></span>
+                  </span></p>
+                
+                <div class="office-timing">
+                  <ul>
+                    <li>
+                      <span><ly-as-276852>Sunday to Wednesday</ly-as-276852></span>
+                      <strong><ly-as-276853>10:00 AM - 10:00 PM</ly-as-276853></strong>
+                    </li>
+                    <li>
+                      <span><ly-as-276854>Thursday to Saturday</ly-as-276854></span>
+                      <strong><ly-as-276855>10:00 AM - 12:00 AM</ly-as-276855></strong>
+                    </li>
+                    <li>
+                      <span><ly-as-276856>Phone Number</ly-as-276856></span>
+                      <strong>+971 24412038</strong>
+                    </li>
+                    <li>
+                      <span><ly-as-276856>Whatsapp Number</ly-as-276856></span>
+                      <strong> <a href="https://api.whatsapp.com/send?phone=97153817490" target="_blank"> +971 53817490  </a> </strong>
+                    </li>
+                    <li>
+                      <a href="/pages/al-maryah-central" class="store-link">
+                        See more information
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                
+<!--                 <div class="store-phone show-mobile">
+                  <a class="btn btn-white" href="tel:02 251 7988"><ly-as-276857>Call: 02 251 7988</ly-as-276857></a>
+                </div> -->
+              </div>
+            </div>
+            <div class="resultitem tumistores" data-info="[13.744478,100.544071,&quot;CDS TUMI CHILDLOM&quot;,&quot;CENTRAL CHIDLOM, 4th FLOOR, BAGS &amp; LUGGAGE DEPARTMENT, 1027 PLOENJIT ROAD, null, BANGKOK, 10330, TH&quot;,&quot;02 761 9998&quot;,&quot;tumistores&quot;]">
+              <div class="store-icon">
+              </div>
+              <div class="storeinfo">
+                <span class="store-type"><ly-as-276847>Tumi Store</ly-as-276847></span>
+                <h3 class="store-name"><ly-as-276858>TUMI - YAS MALL</ly-as-276858></h3>
+                <p class="store-address">
+                  <span><ly-as-276859>Yas Mall</ly-as-276859></span>
+                  <span>
+                    <span>,</span>
+                    <span><ly-as-276860> Ground Floor - Yas Island</ly-as-276860></span>
+                    <span> 30069</span>
+                    <span><ly-as-276861>, Abu Dhabi, U.A.E</ly-as-276861></span>
+                  </span></p>
+                <div class="office-timing">
+                  <ul>
+                  
+                    <li>
+                      <span><ly-as-276862>Sunday to Thursday</ly-as-276862></span>
+                      <strong><ly-as-276863>10:00 AM - 10:00 PM</ly-as-276863></strong>
+                    </li>
+                    <li>
+                      <span><ly-as-276854>Friday & Saturday</ly-as-276854></span>
+                      <strong><ly-as-276855>10:00 AM - 12:00 AM</ly-as-276855></strong>
+                    </li>
+                    <li>
+                      <span><ly-as-276856>Phone Number</ly-as-276856></span>
+                      <strong>+971 25549091</strong>
+                    </li>
+                    <li>
+                      <span><ly-as-276856>Whatsapp Number</ly-as-276856></span>
+                      <strong> <a href="https://api.whatsapp.com/send?phone=971545817626" target="_blank"> +971 545817626  </a> </strong>
+                    </li>
+                    <li>
+                      <a href="/pages/yas-mall" class="store-link">
+                        See more information
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+<!--                 <div class="store-phone show-mobile">
+                  <a class="btn btn-white" href="tel:02 761 9998"><ly-as-276864>Call: 02 761 9998</ly-as-276864></a>
+                </div> -->
+              </div>
+            </div>
+           
+            <div class="resultitem tumistores" data-info="[13.744478,100.544071,&quot;CDS TUMI CHILDLOM&quot;,&quot;CENTRAL CHIDLOM, 4th FLOOR, BAGS &amp; LUGGAGE DEPARTMENT, 1027 PLOENJIT ROAD, null, BANGKOK, 10330, TH&quot;,&quot;02 761 9998&quot;,&quot;tumistores&quot;]">
+              <div class="store-icon">
+              </div>
+              <div class="storeinfo">
+                <span class="store-type"><ly-as-276847>Tumi Store</ly-as-276847></span>
+                <h3 class="store-name"><ly-as-276858>TUMI - DUBAI MALL</ly-as-276858></h3>
+                <p class="store-address">
+                  <span><ly-as-276859>Financial Center Road</ly-as-276859></span>
+                  <span>
+                    <span>,</span>
+                    <span><ly-as-276860>Downtown Dubai</ly-as-276860></span>
+                    <span> 30069</span>
+                    <span><ly-as-276861>,Dubai</ly-as-276861></span>
+                  </span></p>
+                <div class="office-timing">
+                  <ul>
+                    
+                    <li>
+                      <span><ly-as-276862>Sunday to Wednesday</ly-as-276862></span>
+                      <strong><ly-as-276863>10:00 AM - 11:00 PM</ly-as-276863></strong>
+                    </li>
+                    <li>
+                      <span><ly-as-276854>Thursday to Saturday</ly-as-276854></span>
+                      <strong><ly-as-276855>10:00 AM - 12:00 AM</ly-as-276855></strong>
+                    </li>
+                    <li>
+                      <span><ly-as-276856>Phone Number</ly-as-276856></span>
+                      <strong>+971 43398536</strong>
+                    </li>
+                    <li>
+                      <span><ly-as-276856>Whatsapp Number</ly-as-276856></span>
+                      <strong> <a href="https://api.whatsapp.com/send?phone=971503818544" target="_blank"> +971 503818544  </a> </strong>
+                    </li>
+                    <li>
+                      <a href="/pages/dubai-mall" class="store-link">
+                        See more information
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+<!--                 <div class="store-phone show-mobile">
+                  <a class="btn btn-white" href="tel:02 761 9998"><ly-as-276864>Call: 02 761 9998</ly-as-276864></a>
+                </div> -->
+              </div>
+            </div>
+            <div class="resultitem tumistores active" data-info="[13.746545,100.535138,&quot;TUMI SIAM PARAGON&quot;,&quot;SIAM PARAGON, 991 ROOM 128B, 1ST FLOOR, RAMA 1 ROAD, null, BANGKOK, 10330, TH&quot;,&quot;02 129 4366&quot;,&quot;tumistores&quot;]">
+              <div class="store-icon">
+              </div>
+              <div class="storeinfo">
+                <span class="store-type"><ly-as-276847>Tumi Store</ly-as-276847></span>
+                <h3 class="store-name"><ly-as-276865>TUMI - MALL OF EMIRATES</ly-as-276865></h3>
+                <p class="store-address">
+                  <span><ly-as-276866>Mall Of The Emirates - Level 1</ly-as-276866> </span>
+                  <span>
+                    <span>,</span>
+                    <span>30069</span>
+                    <span><ly-as-276867>,United Arab Emirates</ly-as-276867> </span>
+                  </span></p>
+                <div class="office-timing">
+                  <ul>
+                   
+                    <li>
+                      <span><ly-as-276862>Sunday to Wednesday</ly-as-276862></span>
+                      <strong><ly-as-276868>10:00 AM - 10:00 PM</ly-as-276868></strong>
+                    </li>
+                    <li>
+                      <span><ly-as-276854>Thursday to Saturday</ly-as-276854></span>
+                      <strong><ly-as-276869>10:00 AM - 12:00 AM</ly-as-276869></strong>
+                    </li>
+                    <li>
+                      <span><ly-as-276856>Phone Number</ly-as-276856></span>
+                      <strong>+971 45645387</strong>
+                    </li>
+                    <li>
+                      <span><ly-as-276856>Whatsapp Number</ly-as-276856></span>
+                      <strong> <a href="https://api.whatsapp.com/send?phone=97153817535" target="_blank"> +971 53817535  </a> </strong>
+                    </li>
+                    <li>
+                      <a href="/pages/mall-of-emirates" class="store-link">
+                        See more information
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+<!--                 <div class="store-phone show-mobile">
+                  <a class="btn btn-white" href="tel:02 129 4366"><ly-as-276870>Call: 02 129 4366</ly-as-276870></a>
+                </div> -->
+              </div>
+            </div>
+            <div class="resultitem tumistores" style="display:none">
+              <div class="store-icon">
+              </div>
+              <div class="storeinfo">
+                <span class="store-type"><ly-as-276847>Tumi Store</ly-as-276847></span>
+                <h3 class="store-name"><ly-as-276865>TUMI - MALL OF DHARAN - DHAHRAN</ly-as-276865></h3>
+                <p class="store-address">
+                  <span><ly-as-276866>Mall of Dharan, Ground floor, Gate 13, Al Dawhah Al Janubiyah, Dhahran</ly-as-276866> </span>
+                  <span>
+                    <span>,</span>
+                    <span>34457</span>
+                    <span><ly-as-276867>,Saudi Arabia</ly-as-276867> </span>
+                  </span></p>
+                <div class="office-timing">
+                  <ul>
+                     <p>
+                    <li>
+                      <span>RAMADAN HOURS</span>
+                      <strong>11:30 AM - 2:30 AM</strong>
+                    </li>
+                   </p>
+
+                    <li>
+                      <span><ly-as-276862>Saturday to Thursday</ly-as-276862></span>
+                      <strong><ly-as-276868>09:00 AM - 11:00 PM</ly-as-276868></strong>
+                    </li>
+                    <li>
+                      <span><ly-as-276854>Friday</ly-as-276854></span>
+                      <strong><ly-as-276869>02:00 PM - 11:00 PM</ly-as-276869></strong>
+                    </li>
+                    
+                  </ul>
+                </div>
+              </div>
+            </div>
+            {% comment %}
+            <div class="resultitem tumistores" data-info="[13.74625,100.539722,&quot;Central World Plaza&quot;,&quot;Central World Plaza 1st fl, Atrium zone RAMA1 ROAD, null, BANGKOK, 10330, TH&quot;,&quot;+662 108 9822&quot;,&quot;tumistores&quot;]">
+              <div class="store-icon">
+              </div>
+              <div class="storeinfo">
+                <span class="store-type"><ly-as-276847>Tumi Store</ly-as-276847></span>
+                <h3 class="store-name"><ly-as-276871>TUMI - MIRDIFF CITY CENTER</ly-as-276871></h3>
+                <p class="store-address">
+                  <span><ly-as-276872>Sheikh Mohammed Bin Zayed Road, Mirdiff</ly-as-276872></span>
+                  <span>
+                    <span>,</span>
+                    <span><ly-as-276873>Level 1,G001/2</ly-as-276873></span>
+                    <span>30069</span>
+                    <span><ly-as-276874>United Arab Emirates</ly-as-276874> </span>
+                  </span></p>
+                <div class="office-timing">
+                  <ul>
+                    <li>
+                      <span><ly-as-276862>Sunday to Wednesday</ly-as-276862></span>
+                      <strong><ly-as-276868>10:00 AM - 22:00 PM</ly-as-276868></strong>
+                    </li>
+                    <li>
+                      <span><ly-as-276854>Thursday to Saturday</ly-as-276854></span>
+                      <strong><ly-as-276869>10:00 AM - 12:00 AM</ly-as-276869></strong>
+                    </li>
+                    <li>
+                      <span><ly-as-276856>Phone Number</ly-as-276856></span>
+                      <strong>+971 42363408</strong>
+                    </li>
+                  </ul>
+                </div>
+                
+<!--                 <div class="store-phone show-mobile">
+                  <a class="btn btn-white" href="tel:+662 108 9822"><ly-as-276875>Call: +662 108 9822</ly-as-276875></a>
+                </div> -->
+              </div>
+            </div>
+            {% endcomment %}
+          </div>
+        </div>
+      </div>
+
+
+      {% comment %}end here {% endcomment %}
+
+    </div>
+  </div>
+</div>

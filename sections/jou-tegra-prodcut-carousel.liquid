@@ -1,0 +1,109 @@
+
+<div class="page-width">
+
+   {% if section.settings.jou_title_collection != blank %}
+  <div class="carousel-title">
+      	{{ section.settings.jou_title_collection }}
+  </div>
+   {% endif %}
+
+  <ul class="degree_product" style="opacity:0;">   
+  {% for product in collections[section.settings.jou_product_col].products %}
+    <li class=" ">
+      {% include 'product-card-grid', max_height: 270, product: product, show_vendor: section.settings.show_vendor %}
+      <div class="list-product-price">
+        {{product.price | money}}
+      </div>
+    </li>
+    {% endfor %}
+    
+  </ul>
+</div>
+
+  <script>
+    $(document).ready(function(){
+      var sliderCount = 3;
+      var centerMode = false;
+      if($(window).width() >480 && $(window).width() <767){
+        sliderCount = 3;
+        } else if ($(window).width() <480) {
+          sliderCount = 1.20; 
+        } 
+      $('.degree_product').slick({
+        dots: false,
+        arrows:true,
+        infinite: true,
+        speed:1300,
+        slidesToShow:sliderCount,
+        slidesToScroll: 1, 
+      });
+      
+      
+      
+      // loading content
+          setTimeout(function(){
+          jQuery('.degree_product').css('opacity',1);
+          jQuery('.loader_new').hide();
+          }, 2000)
+    });
+
+  
+</script> 
+
+<style>
+  .holiday_product_slider{
+    padding:0 30px;
+    margin:30px 0;
+  }
+  .dots{
+    display:none;
+  }
+   .carousel-title{
+     text-align:center;
+      margin-top:30px;
+   }
+  .degree_product{
+    padding:30px 20px 50px;
+  }
+  .degree_product .slick-prev{
+        left:0px;
+  }
+  .degree_product .slick-next{
+        right:0px;
+  }
+ @media (max-width:480px){
+    .journey-tegra .degree_product .slick-arrow{display:none !important}
+   .journey-tegra .degree_product {padding: 30px 0px 50px;}
+  }
+
+</style>
+ 
+ 
+{% schema %}
+    {
+        "name": "Journey Product Carousel",
+        "settings": [
+          {
+            "type":"text",
+            "id":"jou_title_collection",
+            "label": "collection title"
+          },
+          {
+            "type": "collection",
+            "id": "jou_product_col",
+            "label": "Select Collection"
+          }
+        ],
+	"presets": [
+     {
+       "name": "Journey Product Carousel"
+     }
+   ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

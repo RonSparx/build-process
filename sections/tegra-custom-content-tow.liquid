@@ -1,0 +1,69 @@
+<style>
+.sc-content-inner p{
+	font-size: 18px;
+    color: #212529;
+  	text-align: center;
+} 
+.sc-content {
+  padding-top:1.5rem;
+  display: flex;
+  justify-content:center;
+}
+@media all and (min-width: 750px){
+  .sc-content-inner{
+  	width: 80%;
+  }  
+}
+@media all and (max-width: 749px){
+  .sc-content-inner{
+  	max-width: 400px;
+    width: 100%;
+  }  
+  .sc-content-inner p {
+    font-size: 14px;
+  }
+}
+ @media all and (min-width:1024px){
+  div.sc-content{
+    padding-top:3.5rem;
+  } 
+} 
+</style>
+<div class="page-width">
+  <div class="sc-content">
+    <div class="sc-content-inner">
+
+        {% if section.settings.tegra_title != blank %}
+      	{{ section.settings.tegra_title }}
+      	{% else %}
+        <h3>Anthony Ramos’ Travel Journey</h3>
+      	{% endif %}
+
+
+      
+    	{% if section.settings.tegra_paragraph != blank %}
+      	{{ section.settings.tegra_paragraph }}
+      	{% else %}
+      	<p>Actor and musician Anthony Ramos’ campaign features his self-discovery journey to Puerto Rico and the special connection he felt to his family’s homeland. He securely packed meaningful mementos representative of his heritage in TEGRA-LITE® pieces and, inspired by his travels, recorded an exclusive song titled “Maleta” which means bag in Spanish.</p>
+      	{% endif %}
+    </div>  
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "tegra Custom Content",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "tegra_title",
+      "label": "title"
+    },
+    {
+      "type": "richtext",
+      "id": "tegra_paragraph",
+      "label": "Paragraph"
+    }
+  ]
+}
+{% endschema %}

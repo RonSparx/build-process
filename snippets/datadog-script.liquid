@@ -1,0 +1,22 @@
+{% if request.host == "www.tumi.ae" %}
+
+<script>
+  (function(h,o,u,n,d) {
+    h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
+    d=o.createElement(u);d.async=1;d.src=n
+    n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
+  })(window,document,'script','https://www.datadoghq-browser-agent.com/datadog-rum-v4.js','DD_RUM')
+  DD_RUM.onReady(function() {
+    DD_RUM.init({
+      clientToken: 'pub99f9de0eeca726533b60a4dce142f1ab',
+      applicationId: '7b12c758-06d6-47ca-939e-6cb87e6edb8a',
+      site: 'datadoghq.eu',
+      service: 'tumi-ae',
+      sampleRate: 40,
+      premiumSampleRate: 0,
+      trackInteractions: true,
+      defaultPrivacyLevel: 'mask-user-input',
+    });
+  })
+</script>
+{% endif %}

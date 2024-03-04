@@ -1,0 +1,36 @@
+<style>
+.lifestyle {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     align-items: center; margin-top:60px;
+}
+.lifestyle .img:nth-child(2) {
+    margin: 0px 10px;
+}
+
+.lifestyle img, .lifestyle .img {
+    width: 100%;
+    margin: auto;
+} 
+
+@media(max-width:767px) {
+ .lifestyle {
+   display: block; }	
+  .lifestyle .img:nth-child(2) {
+    margin: 0px 0px;
+}
+}
+</style>
+
+{% if product.metafields.custom_fields["image_section"] != blank %}
+<div class="page-width">
+  <div class="lifestyle">
+   {% for item in product.metafields.custom_fields["image_section"] %}
+    <div class="img"> {{ item["image_section"] }} </div>
+  {% endfor %}
+     </div>
+    
+     
+</div>
+{% endif %}

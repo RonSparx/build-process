@@ -1,0 +1,211 @@
+<style>
+.lps-link a {
+position: relative;
+color: #000;
+font-weight: 600;
+}
+.lps-link a:after {
+      content: '';
+    font-size: 25px;
+    position: absolute;
+    top: -24px;
+    display: inline-block;
+    margin: 30px auto;
+    width: 9px;
+    height: 9px;
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
+    transform: rotate(135deg);
+    right: -13px;
+}
+.lps-img img {
+width: 100%;
+}
+.lps-link {
+  padding: 10px 0;
+}
+.text-section{
+  padding:30px;
+  text-align:left;
+  background:#000;
+  margin:20px 0; 
+  display: flex;
+    align-items: center;
+    min-height:300px;
+}
+.text-section p{
+  text-align:left;
+  color:#fff;
+}
+@media all and (min-width:750px){
+.landing-wrapper{
+  display: flex;
+  grid-gap: 25px;
+  padding-bottom: 30px !important;
+}
+.landing-select-block{
+  width: 50%;
+}
+.text-section{
+       margin: 0 0 25px 0px;
+    width: 100%;
+    height: calc(100% - 50%);
+}
+.second-block{
+     display: flex;
+    flex-wrap: wrap; 
+}  
+.lps-img{
+  width:100%;
+}
+.second-block .lps-img {
+    width: 100%;
+  position:relative;
+  padding-top: 89%;
+}
+  .lps-img{
+    font-size: 0;
+  }
+.second-block .lps-img img{
+    width: 100%;
+  position:absolute;
+  top:0px;
+  left:0px;
+  height:100%;
+  
+}
+  
+}
+@media all and (min-width:992px){
+  .second-block .lps-img {
+    padding-top:92.4%;
+  }
+}
+  @media all and (min-width:1024px){
+  .landing-wrapper {
+    padding:30px;
+}
+  .lps-img{
+    font-size: 0;
+  }
+  .second-block .lps-img {
+    padding-top: 92%;
+  }
+}
+@media all and (min-width:1200px){
+  .landing-wrapper {
+    padding: 0 147px;
+   
+  }
+  .second-block .lps-img {
+    padding-top: 91.3%;
+  }
+}
+
+</style>
+
+
+
+<div class="page-width">
+<div class="landing-wrapper">
+<div class="landing-select-block">
+  {% if section.settings.tegra_image_one != blank %}
+  <div class="lps-img">
+      <img src="{{ section.settings.tegra_image_one | img_url: '400x' }}">
+  </div>
+  {% else %}
+  <div class="lps-img">
+      <img src="https://cdn.media.amplience.net/i/tumi/lp-tegra-lite-anthony" width="400">
+  </div>
+  
+  {% endif %}
+  
+  {% if section.settings.tegra_product_link_one != blank and  section.settings.tegra_btn_text_one != blank %}
+  <div class="lps-link">
+    <a href="{{ section.settings.tegra_product_link_one }}">{{ section.settings.tegra_btn_text_one }}</a>
+  </div>
+  {% endif %}
+</div>
+
+<div class="landing-select-block second-block">
+<div class="text-section">
+    <p>
+      {{ section.settings.tegra_text_block_two }}
+    </p>
+</div>
+
+{% if section.settings.tegra_image_two != blank %}
+<div class="lps-img">
+    <img src="{{ section.settings.tegra_image_two | img_url: '400x' }}">
+</div>
+  
+  {% else %}
+  <div class="lps-img">
+      <img src="https://cdn.media.amplience.net/i/tumi/lp-tegra-lite-anthony-luggage" width="400">
+  </div>
+  
+{% endif %}
+{% if section.settings.tegra_product_link_two!= blank and  section.settings.tegra_btn_text_two != blank %}
+<div class="lps-link">
+  <a href="{{ section.settings.tegra_product_link_two }}">{{ section.settings.tegra_btn_text_two }}</a>
+</div>
+{% endif %}
+
+</div>
+</div>
+  </div>
+
+
+
+
+{% schema %}
+{
+"name": "tegra images collection",
+"settings": [
+{
+     "type": "image_picker",
+     "id": "tegra_image_one",
+     "label": "Image"
+   },
+   {
+     "type": "url",
+     "id": "tegra_product_link_one",
+     "label": "Product link"
+   },
+   {
+     "type": "text",
+     "id": "tegra_btn_text_one",
+     "label": "Button Text",
+     "default": "Shop Now"
+   },
+  {
+     "type": "text",
+     "id": "tegra_text_block_two",
+     "label": "Text block",
+      "default":"TEGRA-LITE® is an evolution of a TUMI icon, modernized for today’s travelers with elevated features, upgraded design details and sustainability."
+   },
+  {
+     "type": "image_picker",
+     "id": "tegra_image_two",
+     "label": "Image block two"
+   },
+   {
+     "type": "url",
+     "id": "tegra_product_link_two",
+     "label": "Product link"
+   },
+   {
+     "type": "text",
+     "id": "tegra_btn_text_two",
+     "label": "Button Text",
+     "default": "Shop Now"
+   }
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

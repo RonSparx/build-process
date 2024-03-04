@@ -1,0 +1,82 @@
+<section class="common-vms play-section" data-aos="fade">
+  <div class="custom-container">
+    <ul>
+      <li>
+        <div class="view-content"  data-aos="fade-up" data-aos-delay="300">
+          <h2>{{ section.settings.heading }}</h2>
+          <p>{{ section.settings.text }}</p>
+          <a class="btn-ab" href="{{ section.settings.btnlink }}">{{ section.settings.btnlabel }}</a>
+        </div>  	
+      </li>
+      <li >
+        <div class="play-wrapper mobile-ply" data-aos="fade-up">
+          <picture>
+            <source media="(min-width:750px)" srcset="{{ section.settings.desk_img | img_url: "original"}}">
+            <img src="{{section.settings.mbl_img | img_url: "original"}}" alt="icon" style="width:auto;">
+          </picture>
+        </div>
+        <div class="play-wrapper deesktop" data-aos="fade-up">
+          <div class="slide-one-gif">
+            <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/riht-gif.png?v=1611564931" alt="icon" style="width:auto;">
+            {% comment %}<img class="hover-one-gif" src="{{ section.settings.gif_img_1 | img_url:'original' }}" alt="gif-rotate" style="width:auto;">{% endcomment %}
+          </div>
+          <div class="slide-gif-tow">
+            <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/left-gif.png?v=1611564931" alt="icon" style="width:auto;">
+            {%comment %}
+            <img class="hover-one-gif" src="{{ section.settings.gif_img_2 | img_url:'original' }}" alt="gif-rotate" style="width:auto;">
+
+            {%endcomment %}
+            <img src="{{"game-forest-one.gif" | asset_img_url: "original"}}" alt="mobile-gif" style="width:auto;" class="hover-one-gif" >
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+{% schema %}
+{
+"name": "tumi-store-5",
+"settings": [
+{
+"type": "image_picker",
+"id": "desk_img",
+"label": "Desktop Image"
+},
+{
+"type": "image_picker",
+"id": "mbl_img",
+"label": "Mobile Image"
+},
+{
+"type": "image_picker",
+"id": "gif_img_1",
+"label": "Gif Image 1"
+},
+{
+"type": "image_picker",
+"id": "gif_img_2",
+"label": "Gif Image 2"
+},
+{
+"type": "text",
+"id": "heading",
+"label": "Heading"
+},
+{
+"type": "textarea",
+"id": "text",
+"label": "text"
+},
+{
+"type": "text",
+"id": "btnlabel",
+"label": "button Label"
+},
+{
+"type": "url",
+"id": "btnlink",
+"label": "button Link"
+}
+]
+}
+{% endschema %}

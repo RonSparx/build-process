@@ -1,0 +1,50 @@
+<div class="func_con">
+    <div class="custom-grid">
+      {% for block in section.blocks %}
+        <div class="grid_half">
+            <img src="{{ block.settings.image | img_url:'original' }}" />     
+            <div>
+                <p>{{ block.settings.title}}</p>
+                <a href="{{ block.settings.btnLink}}" data-aos="fade-up" {% if forloop.last == true %}data-aos-delay="200" {% endif %}>{{ block.settings.btnLabel}}</a>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+</div> 
+
+{% schema %}
+  {
+     "name": "image with text",
+    "blocks": [
+      {
+        "type": "text",
+        "name": "image with text",
+		"limit": 2,
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "title"
+          },
+          {
+          "type":"image_picker",
+          "id":"image",
+          "label":"image"
+          },
+		{
+            "type": "text",
+            "id": "btnLabel",
+            "label": "button label"
+          },
+		{
+            "type": "url",
+            "id": "btnLink",
+            "label": "button Link"
+          }
+        ]
+      }
+
+      
+    ]
+  }
+{% endschema %}

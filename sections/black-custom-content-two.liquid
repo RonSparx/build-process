@@ -1,0 +1,101 @@
+<style>
+.sc-content-inner p{
+	font-size: 18px;
+    color: #212529;
+  	text-align:center;
+} 
+.sc-content {
+  padding-top:1.5rem;
+  display: flex;
+  justify-content:center;
+}
+.black-content .sc-content-inner{
+  text-align:center;
+}
+.black-content .btn-transparent {
+    width: 100%;
+    max-width: 285px;
+    border: 1px solid #000000;
+    background-color: transparent;
+    display: inline-block;
+    padding: 15px 20px;
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0;
+    letter-spacing: .0125em;
+    text-decoration: none;
+    text-align: center;
+    margin: 0 auto 20px;
+}
+@media all and (min-width: 750px){
+  .sc-content-inner{
+  	width: 80%;
+  }  
+}
+@media all and (max-width: 749px){
+  .sc-content-inner{
+  	max-width: 400px;
+    width: 100%;
+  }  
+  .sc-content-inner p {
+    font-size: 14px;
+  }
+  .sc-content-inner h3{
+        font-size: 2em;
+  }
+}
+@media all and (min-width:1024px){
+  .black-content .sc-content-inner{
+    padding-top:0px;
+  }
+}
+</style>
+<div class="page-width sc-content-wrapper black-content">
+  <div class="sc-content">
+    <div class="sc-content-inner">
+
+        {% if section.settings.black_title-two != blank %}
+        	{{ section.settings.black_title-two }}
+      	{% endif %}
+      
+    	{% if section.settings.black_paragraph-two != blank %}
+        	{{ section.settings.black_paragraph-two }}
+      	{% endif %}
+      
+        {% if section.settings.black_btn != blank %}
+        <a href="{{section.settings.black_btnlink | default: '#'}}" class="btn-transparent">
+          <span class="ben-text">{{section.settings.black_btn}} </span>
+        </a>
+        {% endif %}
+    </div>  
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "black collectons content",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "black_title-two",
+      "label": "title"
+    },
+    {
+      "type": "richtext",
+      "id": "black_paragraph-two",
+      "label": "Paragraph",
+      "default":"<p>OK, so you’ve missed our biggest Black Friday deal ever and, we’re not gonna lie, it was really something. But, there’s plenty more to look out for from right now until Black Friday 2022! We’re talking daily drops of new-season styles from 850+ of the biggest brands in the world. For a sneak peek at some of the best of the best clothing, shoes and accessories, check out the New In edits below. Plus, for year-round discounts, head to Outlet. You won’t be disappointed...</p>"
+    },
+    {
+          "type":"text",
+          "id":"black_btn",
+          "label":"Button name"
+      },
+      {
+          "type":"url",
+          "id":"black_btnlink",
+          "label":"Button URL"
+      }
+  ]
+}
+{% endschema %}

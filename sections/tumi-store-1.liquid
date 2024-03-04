@@ -1,0 +1,160 @@
+<section class="slider_con common-vms banner-section" data-aos="fade-up">
+  <div class="custom-container" id="slider-landing">
+
+    {% comment %}
+    <div class="banner-wraper">
+      <picture>
+        <source class="ful-width" media="(min-width:750px)" srcset="{{ section.settings.desk_img | img_url: "original"}}">
+        <img src="{{ section.settings.mbl_img | img_url: "original"}}" alt="icon" style="width:auto;">
+      </picture>
+
+
+      <div class="explore-section">
+        <div class="explore-inner-section" data-aos="fade-up" data-aos-delay="300">
+          <h2>{{ section.settings.heading }}</h2>
+          <div class="banner-buton">
+            <a class="btn-ab" target="_blank" href="{{ section.settings.store-link }}">{{ section.settings.store}}</a>
+          </div>
+          <div class="gif-icon">
+            <picture>
+              <source media="(min-width:750px)" srcset="{{"Desktop-Icon.gif" | asset_img_url: "original"}}">
+              <img src="{{"Mobile-Icon.gif" | asset_img_url: "original"}}" alt="icon" style="width:auto;">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endcomment %}
+
+    <div class="banner-wraper">
+      <picture>
+        <source class="ful-width" media="(min-width:750px)" srcset="{{ section.settings.desk_img | img_url: "original"}}">
+        <img src="{{ section.settings.mbl_img | img_url: "original"}}" alt="icon" style="width:auto;">
+      </picture>
+      <div class="explore-section">
+        <div class="explore-inner-section" data-aos="fade-up" data-aos-delay="300">
+          <h2>{{ section.settings.heading }}</h2>
+          <div class="banner-buton">
+            <a class="btn-ab" target="_blank" href="{{ section.settings.store-link }}">{{ section.settings.store}}</a>
+          </div>
+          <div class="gif-icon">
+            <picture>
+              <source media="(min-width:750px)" srcset="{{"Desktop-Icon.gif" | asset_img_url: "original"}}">
+              <img src="{{"Mobile-Icon.gif" | asset_img_url: "original"}}" alt="icon" style="width:auto;">
+            </picture>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="down-arow" >
+    <a href="#video" class="btn_arrow" data-scroll>
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve">
+        <path id="XMLID_225_" d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393
+                                 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393
+                                 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z" /><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+    </a>
+  </div>
+</section>
+<!-- <div class="banner-nav">
+<ul>
+{% for block in section.blocks %}
+<li><a href="{{ block.settings.link }}">{{ block.settings.navtex }}</a></li>
+{% endfor %}
+</ul>
+</div> -->
+
+
+<!-- <script>
+  $( document ).ready(function() {
+    $('#slider-landing').slick({
+      draggable: true,
+      arrows: false,
+      dots: false,
+      fade: false,
+      speed: 900,
+      autoplay: true,
+      autoplaySpeed:2000,
+      infinite: true,
+      cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)',
+      touchThreshold: 100
+    })
+  });
+</script> -->
+
+<script>
+  $(window).scroll(function(){
+    if ($(window).scrollTop() >= 300) {
+      $('.banner-nav').addClass('fixed-header');
+    }
+    else {
+      $('.banner-nav').removeClass('fixed-header');
+    }
+  });
+</script>
+
+
+{% schema %}
+{
+"name": "tumi-store-1",
+"settings": [
+{
+"type": "image_picker",
+"id": "desk_img",
+"label": "Desktop Image"
+},
+{
+"type": "image_picker",
+"id": "mbl_img",
+"label": "Mobile Image"
+},
+{
+"type": "text",
+"id": "heading",
+"label": "Heading"
+},
+{
+"type": "text",
+"id": "btnlabel",
+"label": "button Label"
+},
+{
+"type": "url",
+"id": "btnlink",
+"label": "button Link"
+},
+{
+"type": "text",
+"id": "store",
+"label": "Enter the store lable"
+},
+{
+"type": "url",
+"id": "store-link",
+"label": "Store Url"
+}
+],
+"blocks": [
+{
+"type": "Navigation",
+"name": "Nav text",
+"settings": [
+{
+"type": "text",
+"id": "navtex",
+"label": "Nav text"
+},
+{
+"type":"url",
+"id":"link",
+"label":"Link"
+}
+]
+}      
+]
+}
+{% endschema %}

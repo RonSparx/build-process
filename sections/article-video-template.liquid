@@ -1,0 +1,260 @@
+<div class="page-width">
+
+  <section class="video-detail">
+    <div class="video-col">
+      <div class="video-box">
+        {{ article.content }}
+      </div>
+      <div class="videocol-description">
+        <div class="videocol-subtitle">
+          {{ article.content }}
+        </div>
+        <h2 class="title">
+          {{ article.title }}
+        </h2>
+
+        <div class="publish-date">
+          Date: {{ article.published_at | date: "%d-%m-%Y" }}
+        </div>
+      </div>
+    </div>
+
+    <div class="video-rec">
+      <h2>Recommended for you</h2>
+      {% if article.metafields.custom_fields["select_collection"] != blank %}
+      {% assign collection_ref = collections[article.metafields.custom_fields["select_collection"]] %}
+
+      {% assign products = collection_ref.products %}
+      <div class="pslider-wrap">
+      <ul class="video-pslider">
+        {% for item in products %}
+        <li>
+          <a href="{{item.url}}">
+            <div class="pslider-image">
+              <img src="{{ item.images[0] | img_url: '300x' }}" alt="{{item.images[0].alt}}" />
+            </div>
+            <div class="pslider-content">
+
+              <h3>{{ item.title | link_to: product_ref.url }}</h3>
+              <h4>{{ item.type  }}</h4>
+            </div>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+        <div class="pslider-prev">
+           <img class="lazy" src="{{ 'psarrow-up.svg' | asset_url }}" width="14" />
+        </div>
+         <div class="pslider-next">
+           <img class="lazy" src="{{ 'psarrow-down.svg' | asset_url }}" width="14" />
+        </div>
+      </div>
+      
+       
+      
+      {% endif %}
+
+
+    </div>
+  </section>
+
+{% assign fDivart = '' %}
+  {% assign article_handle = article.handle %}
+  
+  {% comment %}
+   {% for article in blog.articles  %}
+      {{ article.title | link_to: article.url }} <br>
+  {% endfor %}
+  {% endcomment %}
+   
+  <section class="related-blogs" >
+    <ul class="video-slider" id="related-carousel">
+      {% for article in blog.articles  %}
+      
+       {% unless article.handle ==  article_handle %}
+       {% assign fDivart = article.handle %}
+      <li class="videos-items"  >
+        <div class="videos-item-content">
+          <a href="{{ article.url }}">
+            {%- if article.image -%}
+            <div class="blog-image">
+              {{ article | img_url: '390x', scale: 2 | img_tag: '' }} 
+              <i class="video-play-btn"></i>
+              {% comment %}
+              <div class="video-duration">00:30</div>
+
+              {% endcomment %}
+            </div>
+            {%- endif -%}
+            <div class="blog-content">
+              <h3>
+                {{ article.content}}
+              </h3>
+
+              <h2>{{ article.title | link_to: article.url }}</h2>
+              <span class="publish-date">Date: {{ article.published_at | date: "%d-%m-%Y" }}</span>
+            </div>
+          </a>
+        </div>
+      </li>
+       {% break %}
+      {% endunless%}
+      {% endfor %}
+       {% for article in blog.articles  %}
+      {% if article.handle ==  article_handle %}
+          <li class="videos-items  current-artilce"  >
+            <div class="videos-item-content">
+              <a href="{{ article.url }}">
+                {%- if article.image -%}
+                <div class="blog-image">
+                  {{ article | img_url: '390x', scale: 2 | img_tag: '' }} 
+                  <i class="video-play-btn"></i>
+                  {% comment %}
+                  <div class="video-duration">00:30</div>
+
+                  {% endcomment %}
+                </div>
+                {%- endif -%}
+                <div class="blog-content">
+                  <h3>
+                    {{ article.content}}
+                  </h3>
+
+                  <h2>{{ article.title | link_to: article.url }}</h2>
+                  <span class="publish-date">Date: {{ article.published_at | date: "%d-%m-%Y" }}</span>
+                </div>
+              </a>
+            </div>
+          </li>
+       {% endif %}
+      {% endfor %}
+  
+       {% for article in blog.articles  %}
+       {% unless article.handle ==  article_handle or article.handle == fDivart %}
+      <li class="videos-items {% if article.handle ==  article_handle %} current-artilce {% endif %}"  >
+        <div class="videos-item-content">
+          <a href="{{ article.url }}">
+            {%- if article.image -%}
+            <div class="blog-image">
+              {{ article | img_url: '390x', scale: 2 | img_tag: '' }} 
+              <i class="video-play-btn"></i>
+              {% comment %}
+              <div class="video-duration">00:30</div>
+
+              {% endcomment %}
+            </div>
+            {%- endif -%}
+            <div class="blog-content">
+              <h3>
+                {{ article.content}}
+              </h3>
+
+              <h2>{{ article.title | link_to: article.url }}</h2>
+              <span class="publish-date">Date: {{ article.published_at | date: "%d-%m-%Y" }}</span>
+            </div>
+          </a>
+        </div>
+      </li>
+       {% endunless%}
+      {% endfor %}
+    </ul>
+  </section>
+
+ 
+</div>
+
+
+ 
+
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+$('.video-pslider').slick({
+  vertical: true,
+  verticalSwiping: true,
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  prevArrow: $('.pslider-prev'),
+  nextArrow: $('.pslider-next'),
+  responsive: [
+    {
+      breakpoint: 1200,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        vertical: false,
+  		verticalSwiping: false
+      }
+    },
+    {
+      breakpoint: 767,
+      settings: {
+         slidesToShow: 2,
+        slidesToScroll: 1,
+        vertical: false,
+  		verticalSwiping: false
+      }
+    }
+  ]
+});
+  
+  
+
+
+  
+  
+  
+  
+$('#related-carousel').slick({
+  centerMode: false,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  infinite: false,
+  arrows:false,
+  draggable: false,
+  responsive: [
+    {
+      breakpoint: 767,
+      settings: {
+        draggable: true,
+        infinite: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        centerMode: true,
+         initialSlide:1,
+      }
+    }
+  ]
+});
+//   $('#related-carousel').slick("slickGoTo",1);
+  
+  
+ 
+   
+   
+  
+
+  
+  
+
+  
+
+  
+</script> 
+
+
+
+
+{% schema %}
+  {
+    "name": "Article video template",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+ 

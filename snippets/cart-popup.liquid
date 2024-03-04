@@ -1,0 +1,62 @@
+{% style %}
+  {% assign cart_popup_box_shadow = settings.color_borders | color_modify: 'alpha', 0.5 %}
+
+  .cart-popup {
+    box-shadow: 1px 1px 10px 2px {{ cart_popup_box_shadow }};
+  }
+{% endstyle %}
+
+<div class="cart-popup-wrapper cart-popup-wrapper--hidden" role="dialog" aria-modal="true" aria-labelledby="CartPopupHeading" data-cart-popup-wrapper>
+  <div class="cart-popup" data-cart-popup tabindex="-1">
+    <div class="cart-popup__header">
+      <h2 id="CartPopupHeading" class="cart-popup__heading">
+        {{ 'cart.popup.basket' | t }}  {%comment%}Shopping Cart{%endcomment%}
+        {%comment%}(<span data-cart-popup-cart-quantity></span>){%endcomment%}
+      </h2>
+      <button class="cart-popup__close" aria-label="{{ 'general.accessibility.close_modal' | t }}" data-cart-popup-close>{% include 'icon-close' %}</button>
+    </div>
+    
+    <div class="cart-popup__scrollable-content">
+    
+          <div class="cart-popup-item-list"></div>
+
+    <div class="cart-popup__actions">
+      
+      <div class="grid__item cart-note mini-cart-note">
+        <label for="CartSpecialInstructions" class="cart-note__label small--text-center">{{ 'cart.general.note' | t }}</label>
+        <textarea maxlength="360" name="note" id="CartSpecialInstructions" class="cart-note__input" data-mini-cart-note>{{ cart.note }}</textarea>
+      </div>
+
+      <a href="{% if routes.root_url != '/' %}{{ routes.root_url }}{% endif %}/cart" aria-label="Go to Cart" class="btn product-form__cart-submit btn--primary view-more-mkt">
+        <span>
+          <ly-as-275735>View Cart</ly-as-275735>
+        </span>
+      </a>
+      <a href="{% if routes.root_url != '/' %}{{ routes.root_url }}{% endif %}/checkout" aria-label="Go to checkout" class="btn product-form__cart-submit btn--primary">
+        <span>
+          {{ 'cart.general.checkout' | t }}
+        </span>
+      </a>
+    </div>
+    
+    <div class="cart-popup__empty">
+    	<p class="cart--empty-message">{{ 'cart.general.empty' | t }}</p>
+    </div>
+
+    <div class="cart-popup__dismiss">
+      <button class="cart-popup__dismiss-button text-link text-link--accent" data-cart-popup-dismiss>
+        {{ 'cart.general.continue_shopping' | t }}
+      </button>
+    </div>
+    
+    <div class="cart-popup__loading" style="display: none">
+      <img src="{{ 'ajax-loader.gif' | asset_url }}">
+      <p><ly-as-275736>Loading...</ly-as-275736></p>
+    </div>
+    </div>
+    
+
+    
+    
+  </div>
+</div>
