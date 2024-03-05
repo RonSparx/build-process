@@ -1,0 +1,525 @@
+<style>
+  /* form  css start  */
+.popup-form input[type="submit"] {
+    padding: 10px 15px;
+    width: 100%;
+}
+.popup-form {
+    max-width: 470px;
+    margin: 0 auto;
+}
+.popup-form-field {
+    width: 48%;
+    margin-bottom: 20px;
+}
+.popup-form-cta {
+       display: flex;
+    align-items: center;
+}
+.popup-form-field input {
+    width: 100%;
+}
+.popup-form .form-group {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.popup-form .form-group-full .popup-form-field {
+    width: 100%;
+}
+
+.popup-form input[type="checkbox"] {
+    position: relative;
+    cursor: pointer;
+    border: none;
+    width: 30px;
+    padding: 0;
+}
+.popup-form input[type="checkbox"]:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: 3px;
+    left: 0;
+    border: 1px solid #cecece;
+    border-radius: 2px;
+    background-color: white;
+}
+.popup-form input[type="checkbox"]:checked:after {
+    content: "";
+    display: block;
+    width: 4px;
+    height: 7px;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    top: 6px;
+    left: 6px;
+}
+
+.popup-form .form-field-flex {
+    display: flex;
+}
+
+.popup-form .form-field-flex label {
+    font-size: 12px;
+      margin-left: 10px;
+}
+
+.popup-form .form-field-flex label a {
+    text-decoration: underline;
+    font-weight: 700;
+}
+.popup-form-field select {
+    width: 100%;
+}
+
+.popup-form-field input, .popup-form-field select {
+    font-size: 12px !important;
+}
+.popup-form-cta input.btn {
+    width: auto;
+}
+.form-sucess {
+    font-size: 14px;
+    margin-left: 30px;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+span.loader {
+    position: absolute;
+    padding: 14px 20px;
+    background-color: #bb2131;
+    border: 1px solid #bb2131;
+    color: #fff;
+      line-height: normal;
+}
+  span.error {
+    color: #f00;
+    font-size: 12px;
+}
+  #workshop-time{
+    display:none;
+  }
+  input#dob {
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+
+.popup-form-field select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 24px;
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='iso-8859-1'%3F%3E%3C!-- Uploaded to: SVG Repo  www.svgrepo.com  Generator: SVG Repo Mixer Tools --%3E%3Csvg fill='%23000000' height='800px' width='800px' version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'  viewBox='0 0 330 330' xml:space='preserve'%3E%3Cpath id='XMLID_225_' d='M325.607 79.393c-5.857-5.857-15.355-5.858-21.213 0.001l-139.39 139.393L25.607 79.393c-5.857-5.857-15.355-5.858-21.213 0.001c-5.858 5.858-5.858 15.355 0 21.213l150.004 150c2.813 2.813 6.628 4.393 10.606 4.393s7.794-1.581 10.606-4.394l149.996-150C331.465 94.749 331.465 85.251 325.607 79.393z'/%3E%3C/svg%3E");
+    background-size: 8px;
+    background-repeat: no-repeat;
+}
+html[lang="ar"] .popup-form-field select {
+    background-position: 10px;
+}
+
+
+  
+@media all and (max-width: 749px) {
+    .popup-form {
+        padding: 0 15px;
+    }
+    .popup-form-field {
+        width: 100%;
+    }
+    .popup-form input[type="submit"] {
+        padding: 8px 15px;
+    }
+  .popup-form-cta {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+  .form-sucess {
+      margin: 10px 0 0;
+  }
+} 
+/* form css end  */
+</style>
+
+
+
+
+<div class="popup-form">
+    <form id="rsvp">
+       <div class="form-group">
+            <div class="popup-form-field"> 
+                <label for="title">Title</label>
+                <select name="title" id="title">
+                  <option value="mr">Mr</option>
+                  <option value="mrs">Mrs</option>
+                  <option value="miss">Miss</option>
+                  <option value="ms">Ms</option> 
+                </select>
+            </div>
+            <div class="popup-form-field">
+                <label for="title">First Name*</label>
+                <input type="text" id="firstname" name="firstname" placeholder="First Name" required />
+                <span class="error hide">First Name is required</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="popup-form-field">
+                <label for="title">Last Name*</label>
+                <input type="text" id="lastname" name="lastname" placeholder="Last Name" required />
+              <span class="error hide">Last Name is required</span>
+            </div>
+            <div class="popup-form-field">
+                <label for="title">Nationality</label>
+                <select name="nationality" id="nationality">
+                <option value="">-- select one --</option>
+                <option value="afghan">Afghan</option>
+                <option value="albanian">Albanian</option>
+                <option value="algerian">Algerian</option>
+                <option value="american">American</option>
+                <option value="andorran">Andorran</option>
+                <option value="angolan">Angolan</option>
+                <option value="antiguans">Antiguans</option>
+                <option value="argentinean">Argentinean</option>
+                <option value="armenian">Armenian</option>
+                <option value="australian">Australian</option>
+                <option value="austrian">Austrian</option>
+                <option value="azerbaijani">Azerbaijani</option>
+                <option value="bahamian">Bahamian</option>
+                <option value="bahraini">Bahraini</option>
+                <option value="bangladeshi">Bangladeshi</option>
+                <option value="barbadian">Barbadian</option>
+                <option value="barbudans">Barbudans</option>
+                <option value="batswana">Batswana</option>
+                <option value="belarusian">Belarusian</option>
+                <option value="belgian">Belgian</option>
+                <option value="belizean">Belizean</option>
+                <option value="beninese">Beninese</option>
+                <option value="bhutanese">Bhutanese</option>
+                <option value="bolivian">Bolivian</option>
+                <option value="bosnian">Bosnian</option>
+                <option value="brazilian">Brazilian</option>
+                <option value="british">British</option>
+                <option value="bruneian">Bruneian</option>
+                <option value="bulgarian">Bulgarian</option>
+                <option value="burkinabe">Burkinabe</option>
+                <option value="burmese">Burmese</option>
+                <option value="burundian">Burundian</option>
+                <option value="cambodian">Cambodian</option>
+                <option value="cameroonian">Cameroonian</option>
+                <option value="canadian">Canadian</option>
+                <option value="cape verdean">Cape Verdean</option>
+                <option value="central african">Central African</option>
+                <option value="chadian">Chadian</option>
+                <option value="chilean">Chilean</option>
+                <option value="chinese">Chinese</option>
+                <option value="colombian">Colombian</option>
+                <option value="comoran">Comoran</option>
+                <option value="congolese">Congolese</option>
+                <option value="costa rican">Costa Rican</option>
+                <option value="croatian">Croatian</option>
+                <option value="cuban">Cuban</option>
+                <option value="cypriot">Cypriot</option>
+                <option value="czech">Czech</option>
+                <option value="danish">Danish</option>
+                <option value="djibouti">Djibouti</option>
+                <option value="dominican">Dominican</option>
+                <option value="dutch">Dutch</option>
+                <option value="east timorese">East Timorese</option>
+                <option value="ecuadorean">Ecuadorean</option>
+                <option value="egyptian">Egyptian</option>
+                <option value="emirian">Emirian</option>
+                <option value="equatorial guinean">Equatorial Guinean</option>
+                <option value="eritrean">Eritrean</option>
+                <option value="estonian">Estonian</option>
+                <option value="ethiopian">Ethiopian</option>
+                <option value="fijian">Fijian</option>
+                <option value="filipino">Filipino</option>
+                <option value="finnish">Finnish</option>
+                <option value="french">French</option>
+                <option value="gabonese">Gabonese</option>
+                <option value="gambian">Gambian</option>
+                <option value="georgian">Georgian</option>
+                <option value="german">German</option>
+                <option value="ghanaian">Ghanaian</option>
+                <option value="greek">Greek</option>
+                <option value="grenadian">Grenadian</option>
+                <option value="guatemalan">Guatemalan</option>
+                <option value="guinea-bissauan">Guinea-Bissauan</option>
+                <option value="guinean">Guinean</option>
+                <option value="guyanese">Guyanese</option>
+                <option value="haitian">Haitian</option>
+                <option value="herzegovinian">Herzegovinian</option>
+                <option value="honduran">Honduran</option>
+                <option value="hungarian">Hungarian</option>
+                <option value="icelander">Icelander</option>
+                <option value="indian">Indian</option>
+                <option value="indonesian">Indonesian</option>
+                <option value="iranian">Iranian</option>
+                <option value="iraqi">Iraqi</option>
+                <option value="irish">Irish</option>
+                <option value="israeli">Israeli</option>
+                <option value="italian">Italian</option>
+                <option value="ivorian">Ivorian</option>
+                <option value="jamaican">Jamaican</option>
+                <option value="japanese">Japanese</option>
+                <option value="jordanian">Jordanian</option>
+                <option value="kazakhstani">Kazakhstani</option>
+                <option value="kenyan">Kenyan</option>
+                <option value="kittian and nevisian">Kittian and Nevisian</option>
+                <option value="kuwaiti">Kuwaiti</option>
+                <option value="kyrgyz">Kyrgyz</option>
+                <option value="laotian">Laotian</option>
+                <option value="latvian">Latvian</option>
+                <option value="lebanese">Lebanese</option>
+                <option value="liberian">Liberian</option>
+                <option value="libyan">Libyan</option>
+                <option value="liechtensteiner">Liechtensteiner</option>
+                <option value="lithuanian">Lithuanian</option>
+                <option value="luxembourger">Luxembourger</option>
+                <option value="macedonian">Macedonian</option>
+                <option value="malagasy">Malagasy</option>
+                <option value="malawian">Malawian</option>
+                <option value="malaysian">Malaysian</option>
+                <option value="maldivan">Maldivan</option>
+                <option value="malian">Malian</option>
+                <option value="maltese">Maltese</option>
+                <option value="marshallese">Marshallese</option>
+                <option value="mauritanian">Mauritanian</option>
+                <option value="mauritian">Mauritian</option>
+                <option value="mexican">Mexican</option>
+                <option value="micronesian">Micronesian</option>
+                <option value="moldovan">Moldovan</option>
+                <option value="monacan">Monacan</option>
+                <option value="mongolian">Mongolian</option>
+                <option value="moroccan">Moroccan</option>
+                <option value="mosotho">Mosotho</option>
+                <option value="motswana">Motswana</option>
+                <option value="mozambican">Mozambican</option>
+                <option value="namibian">Namibian</option>
+                <option value="nauruan">Nauruan</option>
+                <option value="nepalese">Nepalese</option>
+                <option value="new zealander">New Zealander</option>
+                <option value="ni-vanuatu">Ni-Vanuatu</option>
+                <option value="nicaraguan">Nicaraguan</option>
+                <option value="nigerien">Nigerien</option>
+                <option value="north korean">North Korean</option>
+                <option value="northern irish">Northern Irish</option>
+                <option value="norwegian">Norwegian</option>
+                <option value="omani">Omani</option>
+                <option value="pakistani">Pakistani</option>
+                <option value="palauan">Palauan</option>
+                <option value="panamanian">Panamanian</option>
+                <option value="papua new guinean">Papua New Guinean</option>
+                <option value="paraguayan">Paraguayan</option>
+                <option value="peruvian">Peruvian</option>
+                <option value="polish">Polish</option>
+                <option value="portuguese">Portuguese</option>
+                <option value="qatari">Qatari</option>
+                <option value="romanian">Romanian</option>
+                <option value="russian">Russian</option>
+                <option value="rwandan">Rwandan</option>
+                <option value="saint lucian">Saint Lucian</option>
+                <option value="salvadoran">Salvadoran</option>
+                <option value="samoan">Samoan</option>
+                <option value="san marinese">San Marinese</option>
+                <option value="sao tomean">Sao Tomean</option>
+                <option value="saudi">Saudi</option>
+                <option value="scottish">Scottish</option>
+                <option value="senegalese">Senegalese</option>
+                <option value="serbian">Serbian</option>
+                <option value="seychellois">Seychellois</option>
+                <option value="sierra leonean">Sierra Leonean</option>
+                <option value="singaporean">Singaporean</option>
+                <option value="slovakian">Slovakian</option>
+                <option value="slovenian">Slovenian</option>
+                <option value="solomon islander">Solomon Islander</option>
+                <option value="somali">Somali</option>
+                <option value="south african">South African</option>
+                <option value="south korean">South Korean</option>
+                <option value="spanish">Spanish</option>
+                <option value="sri lankan">Sri Lankan</option>
+                <option value="sudanese">Sudanese</option>
+                <option value="surinamer">Surinamer</option>
+                <option value="swazi">Swazi</option>
+                <option value="swedish">Swedish</option>
+                <option value="swiss">Swiss</option>
+                <option value="syrian">Syrian</option>
+                <option value="taiwanese">Taiwanese</option>
+                <option value="tajik">Tajik</option>
+                <option value="tanzanian">Tanzanian</option>
+                <option value="thai">Thai</option>
+                <option value="togolese">Togolese</option>
+                <option value="tongan">Tongan</option>
+                <option value="trinidadian or tobagonian">Trinidadian or Tobagonian</option>
+                <option value="tunisian">Tunisian</option>
+                <option value="turkish">Turkish</option>
+                <option value="tuvaluan">Tuvaluan</option>
+                <option value="ugandan">Ugandan</option>
+                <option value="ukrainian">Ukrainian</option>
+                <option value="uruguayan">Uruguayan</option>
+                <option value="uzbekistani">Uzbekistani</option>
+                <option value="venezuelan">Venezuelan</option>
+                <option value="vietnamese">Vietnamese</option>
+                <option value="welsh">Welsh</option>
+                <option value="yemenite">Yemenite</option>
+                <option value="zambian">Zambian</option>
+                <option value="zimbabwean">Zimbabwean</option>
+              </select>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="popup-form-field">
+                <label for="title">Date Of Birth</label>
+                <input type="date" id="dob" name="dob" placeholder="MM/DD/YYYY" />
+            </div>
+            <div class="popup-form-field">
+              <label for="title">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="Phone number" maxlength="10">
+            </div>
+        </div>
+        <div class="form-group form-group-full">
+            <div class="popup-form-field">
+               <label for="title">Email Address*</label>
+                <input type="email" id="email" name="email" placeholder="Email Address" required />
+              <span class="error hide">Email Address is required</span>
+              <span class="error valid-email hide">Email Address is not valid</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="popup-form-field">
+               <label for="purpose-visit">Purpose of your visit</label>
+               <select name="purpose-visit" id="purpose-visit">
+                  <option value="pop-up visit">Pop-up visit</option>
+                  <option value="pack your bag workshop">Pack your bag workshop</option>
+                </select>
+            </div>
+            <div class="popup-form-field" id="workshop-time">
+               <label for="workshop">Workshop time slots</label>
+               <select name="workshop" id="workshop">
+                  <option value="">-- select one --</option>
+                  <option value="workshop saturday 11: 3-5pm">Workshop Saturday 11: 3-5pm</option>
+                  <option value="workshop sunday 12: 3-5pm">Workshop Sunday 12: 3-5pm</option>
+                  <option value="workshop wednesday 15: 3-5pm">Workshop Wednesday 15: 3-5pm</option>
+                  <option value="workshop saturday 18: 3-5pm">Workshop Saturday 18: 3-5pm</option>
+                  <option value="workshop sunday 19: 3-5pm">Workshop Sunday 19: 3-5pm</option>
+                </select>
+            </div>
+          
+        </div>
+        <div class="form-group form-group-full">
+            <div class="popup-form-field form-field-flex">
+               <input type="checkbox" id="popup-privacy" name="popup-privacy" value="popup-privacy">
+               <label for="popup-privacy">By checking this box , you agree to receive communications for TUMI and agree with the <a href="https://image.tumime.com/lib/fe39157075640575771076/m/2/df76851e-ab11-42fd-abea-06bcf65ad14d.pdf" target="_blank">Privacy Policy </a></label>
+            </div>
+        </div>
+        <div class="popup-form-cta">
+            <input type="button" id="RSVPPopupFormSubmitButton" class="btn" value="Submit" />
+          <span class="loader hide">Loading...</span>
+            <div class="form-sucess hide" >
+              Thank you for submitting your details
+            </div> 
+        </div>
+    </form>
+</div>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.25.0/axios.min.js" integrity="sha512-/Q6t3CASm04EliI1QyIDAA/nDo9R8FQ/BULoUFyN4n/BDdyIxeH7u++Z+eobdmr11gG5D/6nPFyDlnisDwhpYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+document.getElementById('purpose-visit').addEventListener('change', function () {
+    let style = this.value == 'pack your bag workshop' ? 'block' : 'none';
+    document.getElementById('workshop-time').style.display = style;
+    if(this.value == 'pop-up visit'){
+      document.getElementById('workshop').value = "";
+    }
+});
+
+document.getElementById('RSVPPopupFormSubmitButton').addEventListener('click', async (e)=>{
+    e.preventDefault();    
+    let title = document.getElementById('title').value;
+    let nationality = document.getElementById('nationality').value;
+    let firstname = document.getElementById('firstname').value;
+    let lastname = document.getElementById('lastname').value;
+    let dob = document.getElementById('dob').value;
+    let phone = document.getElementById('phone').value;
+    let email = document.getElementById('email').value;
+    let purposevisit = document.getElementById('purpose-visit').value;
+    let workshop = document.getElementById('workshop').value;
+    let emailregex = new RegExp('[a-z0-9]+@[a-z]+\\.[a-z]{2,3}');
+
+    let flag = false;
+  
+  //for validation
+  if(firstname.trim() == ''){
+    document.getElementById('firstname').closest('.popup-form-field').querySelector('.error').classList.remove('hide');
+    flag = true;
+  } else {
+    document.getElementById('firstname').closest('.popup-form-field').querySelector('.error').classList.add('hide');
+  }
+  if(lastname.trim() == ''){
+    document.getElementById('lastname').closest('.popup-form-field').querySelector('.error').classList.remove('hide');
+    flag = true;
+  }
+   else {
+    document.getElementById('lastname').closest('.popup-form-field').querySelector('.error').classList.add('hide');
+  }
+  if(email.trim() == ''){
+    document.getElementById('email').closest('.popup-form-field').querySelector('.error').classList.remove('hide');
+    flag = true;
+  }else if(!email.match(emailregex)){
+    document.getElementById('email').closest('.popup-form-field').querySelector('.valid-email').classList.remove('hide');
+    document.getElementById('email').closest('.popup-form-field').querySelector('.error').classList.add('hide');
+    flag = true;
+  }
+ else {
+   document.getElementById('email').closest('.popup-form-field').querySelector('.valid-email').classList.add('hide');
+   document.getElementById('email').closest('.popup-form-field').querySelector('.error').classList.add('hide');
+  }
+  if(flag)
+  return 
+  document.getElementsByClassName('loader')[0].classList.remove('hide');
+    const customerData = {
+        EmailAddress: email,
+        PhoneNumber: phone,
+        Title: title,
+        FirstName: firstname,
+        LastName: lastname,
+        Birthday: dob,
+        Nationality : nationality,
+        Purposevisit : purposevisit,
+        Workshop : workshop
+    } 
+   console.log(customerData)
+    
+    try {
+      const optinResult = await axios.get('https://europe-west1-chb-ecomm-apps-d001.cloudfunctions.net/tumi-rsvp-popup-landing-page', {params: customerData}, {
+          headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          }
+      })
+            
+      if(optinResult?.data?.status == 'success'){
+        document.querySelector('.form-sucess').classList.remove('hide');
+        document.getElementsByClassName('loader')[0].classList.add('hide');
+        document.getElementById('rsvp').reset();
+        document.getElementById('workshop-time').classList.add('hide');
+      } 
+      
+    }catch(error) {
+      console.log("ERROR!")
+      console.log("MESSAGE: ", error.message);
+    }
+
+
+  })
+</script> 

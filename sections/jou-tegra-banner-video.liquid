@@ -1,0 +1,197 @@
+<style>
+  .video-conbox .btn-transparent{
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+  }
+  .video-conbox h3{
+        text-transform: capitalize;
+        font-weight:600;
+        letter-spacing: 3px;
+    }
+  @media (max-width:749px){
+    .video-conbox p{
+      display:none;
+    }
+  }
+  @media (min-width: 1200px){
+    .video-conbox h2 {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+    .video-conbox h3{
+        font-size: 50px;
+      padding:0 70px;
+    }
+    .video-conbox .btn-transparent{
+    width: 100%;
+    max-width: 285px;
+  }
+  }
+</style>
+
+<section class="fullsize-video-bg">
+    <div id="video-viewport" class="desktop">
+      <div class="fallback-img">
+        {% if section.settings.jou_image_desktop != blank %}
+        <img src="{{section.settings.jou_image_desktop | img_url:'master' }}" alt="{{jou_image_desktop.alt | escape }}"/>
+        {% else %}
+        <img src="https://cdn.media.amplience.net/i/tumi/STAPLE-homepage-hero-desktop-fallback.jpeg" alt="img"/>
+     	{% endif %}
+      </div>
+      <video width="100%" height="auto" autoplay muted loop>
+        {% if section.settings.jou_link_desktop != blank %}
+        <source src="{{section.settings.jou_link_desktop}}" type="video/mp4" />
+        {% else %}
+        <source src="https://cdn.media.amplience.net/v/tumi/lp-built-for-the-journey-hero-desktop/mp4_1440p" type="video/mp4" />
+        {% endif %}
+      </video>
+    </div>
+  
+  	<div id="video-viewport" class="mobile">
+      <div class="fallback-img">
+        {% if section.settings.jou_image_mobile != blank %}
+        <img src="{{section.settings.jou_image_mobile | img_url:'master' }}" alt="{{jou_image_mobile.alt | escape }}"/>
+        {% else %}
+        <img src="https://cdn.media.amplience.net/i/tumi/STAPLE-homepage-hero-mobile-fallback.jpeg" alt="img"/>
+     	{% endif %}
+      </div>
+      <video width="100%" height="auto" autoplay muted loop>
+        {% if section.settings.jou_link_mobile != blank %}
+        <source src="{{section.settings.jou_link_mobile}}" type="video/mp4" />
+        {% else %}
+        <source src="https://cdn.media.amplience.net/v/tumi/lp-built-for-the-journey-hero-mobile/mp4_720p" type="video/mp4" />
+        {% endif %}
+      </video>
+    </div>
+
+    <div class="video-con">
+      <div class="video-conbox">
+        {% if section.settings.jou_sub_heading != blank %}
+        <h2>{{ section.settings.jou_sub_heading }}</h2> 
+        {% endif %}
+        {% comment %}
+        {% if section.settings.content_img != blank %}
+        <img src="{{ section.settings.content_img | img_url: 'master' }}">
+        {% else %}
+        <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/TUMI-STAPLE-logo-lockup.png?v=1656941588">
+        {% endif %}
+        {% endcomment %}
+        {% if section.settings.jou_banner_sub_heading != blank %}
+        <h3>{{ section.settings.jou_banner_sub_heading }}</h3> 
+        {% endif %}
+        {% if section.settings.jou_banner_content != blank %}
+        <p>{{ section.settings.jou_banner_content }}</p> 
+        {% endif %}
+        
+		{% if section.settings.jou_btn != blank %}
+        <a href="{{section.settings.jou_btnlink | default: '#'}}" class="btn-transparent">
+          <span class="ben-text">{{section.settings.jou_btn}} </span>
+        </a>
+        {% endif %}
+
+      </div>
+    </div>
+
+  </section>  
+
+{% schema %}
+  {
+    "name": "journey Banner video",
+    "settings": [
+	  {
+        "type": "header",
+        "content": "Background"
+      },
+      {
+        "type": "paragraph",
+        "content": "Please add Image and Video for Mobile and Desktop Devices."
+      },
+      {
+          "type":"image_picker",
+          "id":"jou_image_desktop",
+          "label":"Video Poster Desktop"
+      },
+	  {
+          "type":"url",
+          "id":"jou_link_desktop",
+          "label":"Video URL Desktop"
+      },
+	  {
+          "type":"image_picker",
+          "id":"jou_image_mobile",
+          "label":"Video Poster Mobile"
+      },
+	  {
+          "type":"url",
+          "id":"jou_link_mobile",
+          "label":"Video URL Mobile"
+      },
+      {
+        "type": "header",
+        "content": "Content Box"
+      },
+	  {
+        "type": "paragraph",
+        "content": "Add Content Box data."
+      },
+      {
+        "type": "image_picker",
+        "id": "jou_content_img",
+        "label": "Image"
+      },
+      {
+          "type":"text",
+          "id":"jou_sub_heading",
+          "label":"Sub heading",
+          "default":"THE DOCU-CAMPAIGN"
+      },
+      {
+          "type":"text",
+          "id":"jou_banner_sub_heading",
+          "label":"Banner Sub heading",
+          "default":"BUILT FOR THE JOURNEY"
+      },
+      {
+          "type":"text",
+          "id":"jou_banner_content",
+          "label":"Banner Content",
+          "default":"Our global campaign chronicles the personal and professional journeys of four world-renowned sports and entertainment professionals, aptly known as the TUMI Crew."
+      },
+      {
+          "type":"text",
+          "id":"jou_btn",
+          "label":"Button name",
+          "default":"Shop Now"
+      },
+      {
+          "type":"url",
+          "id":"jou_btnlink",
+          "label":"Button URL"
+      },
+	  {
+        "type": "color",
+        "id": "jou_btn_color",
+        "label": "Button Color",
+        "default": "#fff"
+      },
+	  {
+        "type": "color",
+        "id": "jou_btn_txt_color",
+        "label": "Button Text Color",
+        "default": "#000"
+      }
+	],
+    "presets": [
+       {
+         "name": "Journey Banner video"
+       }
+     ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

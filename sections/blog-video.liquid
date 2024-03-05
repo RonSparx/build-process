@@ -1,0 +1,107 @@
+<section class="video-carousel">
+
+  <div class="page-width">
+    <div class="section-header text-center">
+      <h2 data-aos="fade-up" class="aos-init aos-animate">{{ section.settings.title | escape }}</h2>
+    </div>
+
+    {%- assign blog = blogs[section.settings.blog] -%}
+
+    {%- if blog.articles_count > 0 -%}
+    <ul class="video-slider" id="video-carousel">
+
+      {%- for article in blog.articles limit: section.settings.post_limit -%}
+      <li class="videos-items">
+        <div class="videos-item-content">
+        <a href="{{ article.url }}">
+          {%- if article.image -%}
+          <div class="blog-image">
+          	{{ article | img_url: '390x', scale: 2 | img_tag: '' }}
+            <i class="video-play-btn"></i>
+          </div>
+          {%- endif -%}
+          <div class="blog-content">
+            {%- if article.excerpt.size > 0 -%}
+            <h3>
+          		{{ article.excerpt }}
+			</h3>
+          {%- else -%}
+            <h3>
+            	{{ article.content | strip_html | truncate: 150 }}
+            </h3>
+          {%- endif -%}
+          <h2>{{ article.title }}</h2>
+          <span class="read-more">Explore more</span>
+          </div>
+        </a>
+		</div>
+      </li>
+      {%- endfor -%}
+
+    </ul>
+    {%- endif -%}
+
+  </div>
+</section>
+
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+$('#video-carousel').slick({
+  centerMode: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  infinite: true,
+  arrows:false,
+  draggable: false,
+  responsive: [
+    {
+      breakpoint: 767,
+      settings: {
+         draggable: true,
+        infinite: true
+      }
+    }
+  ]
+});
+</script> 
+
+
+
+
+{% schema %}
+  {
+    "name": "Blog video",
+	"class": "index-section",
+    "settings": [ 
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Blog posts"
+    },
+    {
+      "id": "blog",
+      "type": "blog",
+      "label": "Blog"
+    }
+	
+  ],
+  "presets": [
+    {
+      "name": "Blog video",
+      "category": "Blog",
+      "settings": {
+        "blog": "video"
+		
+      }
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

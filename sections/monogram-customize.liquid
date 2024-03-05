@@ -1,0 +1,103 @@
+ <section class="container-full customize-sec">
+    <h3 class="heading-block wow fadeInUp">{{ section.settings.heading }}</h3>
+
+    <div class="customize-row wow fadeInUpBig">
+
+      {% if section.blocks != blank %}
+      {% for block in section.blocks%}
+      	<div class="customize-col wow slideInUp">
+        <div class="customize-img">
+          <img src="{{ block.settings.img|img_url:'400x' }}" alt="{{ section.settings.heading }}" />
+        </div>
+        <div class="customize-guidline">
+          <h4>{{ block.settings.heading_block }}</h4>
+          <div class="guidline-text">
+            {{ block.settings.content }}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="customize-col wow slideInUp">
+        <div class="customize-img">
+          <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/customize-1.jpg?v=1646734322" alt="img-1" />
+        </div>
+        <div class="customize-guidline">
+          <h4>First Step: Your Initials</h4>
+          <div class="guidline-text">
+            <p>Click on each slot to enter an alphabet,number or select on any of the symbols displayed below
+              for monogramming.</p>
+          </div>
+        </div>
+      </div>
+      <div class="customize-col wow slideInUp">
+        <div class="customize-img">
+          <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/customize-2.jpg?v=1646734390" alt="img-1" />
+        </div>
+        <div class="customize-guidline">
+          <h4>Second Step: Design</h4>
+          <div class="guidline-text">
+            <p>Choose a color of your preference</p>
+          </div>
+        </div>
+      </div>
+      <div class="customize-col wow slideInUp">
+        <div class="customize-img">
+          <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/customize-3.jpg?v=1646734402" alt="img-1" />
+        </div>
+        <div class="customize-guidline">
+          <h4>Third Step: Place and preview your monogram</h4>
+          <div class="guidline-text">
+            <p>Choose to apply on a monorgam patch or TUMI Luggage tag</p>
+          </div>
+        </div>
+      </div>
+	{% endif %}
+    </div>
+
+
+  </section>
+
+{% schema %}
+  {
+    "name": "Monogram Customize",
+	"max_blocks":3,
+    "settings": [
+{
+"type":"text",
+"id":"heading",
+"label":"Heading",
+"default":"Customize your monogram"
+}
+],
+"blocks":[
+  {
+	"type":"customize",
+	"name":"Customize",
+	"settings": [
+{
+"type":"image_picker",
+"id":"img",
+"label":"Select Image"
+},
+{
+"type":"text",
+"id":"heading_block",
+"label":"Heading"
+},
+{
+"type":"richtext",
+"id":"content",
+"label":"Content"
+}
+]
+}
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

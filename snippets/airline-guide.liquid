@@ -1,0 +1,138 @@
+<style>
+ .airline_inner table tr td {
+    border: none;
+    font-size: 14px;
+    color: #555;
+    padding: 10.5px;
+    text-align: center;
+    line-height: normal;
+}
+.airline_inner table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-top: 1px solid #dee2e6;
+}
+
+.product-additional {
+    border-top: 1px solid #ccc;
+    padding: 5px 0;
+}
+.product-additional-item .additional-info {
+    margin-bottom: 0;
+    line-height: 1.2;
+    text-align: left;
+}
+
+.product-additional .additional-grid {
+    min-height: 50px;
+}
+
+.additional-grid .tumi-icon-og {
+    max-width: 25%;
+    width: 100%;
+    text-align: left;
+}
+
+html[lang="ar"] .additional-grid .tumi-icon-og,
+html[lang="ar"] .additional-grid .additional-info {
+    text-align: right;
+}
+
+.additional-grid .additional-explore {
+    max-width: 25%;
+    width: 100%;
+    text-align: right;
+}
+
+html[lang="ar"] .additional-grid .additional-explore {
+    text-align: left;
+}
+
+.additional-grid .additional-info {
+    max-width: 50%;
+    width: 100%;
+}
+
+.additional-info span {
+    font-size: 13px;
+}
+a.show-pop {
+    text-decoration: underline;
+    color: #1e1e1e;
+    font-family: Proxima Nova Rg;
+    font-size: 15px;
+}
+
+@media (min-width: 1199px) {
+    .product-additional {
+        width: 100%;
+    }
+    .product-additional .additional-grid {
+        flex-direction: revert;
+        align-items: center;
+    }
+    .additional-grid .tumi-icon-og {
+        max-width: 17%;
+    }
+    .additional-grid .additional-info {
+        max-width: 58%;
+    }
+}
+
+
+</style>
+
+
+{% if product.tags contains 'Carry-On Luggage' %}
+<div class="product-additional">
+    <div class="product-additional-item">
+        <div class="additional-grid">
+            <div class="tumi-icon-og">
+                <img src="{{ 'airplan.png'| asset_img_url: "28x30" }}" />
+            </div>
+            <div class="additional-info">
+                <span class="info-title">Airline Guide</span>
+                <span class="info-description">Carrier size requirements</span>
+            </div>
+            <div class="additional-explore">
+                <a href="#" class="show-pop"> View List </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+
+
+
+<!-- modal popup html start -->
+
+{% if product.tags contains 'Carry-On Luggage' %}
+
+<div class="my-modal-overlay"></div>
+{% assign page_content = pages[section.settings.page_modal] %}
+<div class="my-modal">
+    <div class="my-modal-dialog">
+        <div class="md-content">
+            <div class="md-header">
+                <h5 class="md-title">{{page_content.title}}</h5>
+                <button type="button" class="close-md">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="md-body">
+                <div class="modal-body product-detail-modal">
+                    <div class="airline_inner lklkl">
+                        {{page_content.content}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+<!-- mnodal popup html end -->
+

@@ -1,0 +1,217 @@
+<style>
+  .btn-transparent{
+    background-color: {{ section.settings.btn_color }};
+    color: {{ section.settings.btn_txt_color }};
+  }
+</style>
+
+<div class="bullet-banner-wrap">
+
+  {% if request.locale.iso_code == 'en' %}
+
+  <div class="bullet-banner bullet-banner-large">
+    <div class="banner-image">
+      {% if section.settings.desk-banner != blank %}
+      <img src="{{section.settings.desk-banner | img_url:'master' }}" alt="{{image_desktop.alt | escape }}" class="banner_img" />
+      {% else %}
+      <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/lp-Bullet-Train_Hero-desktop.jpg?v=1658212690" alt="img"/>
+      {% endif %}
+    </div>
+
+    <div class="bullet-banner-text">
+      <div class="banner-text-col">
+        {% if section.settings.content-image != blank %}
+        <img src="{{section.settings.content-image | img_url: '430x' }}" alt="{{content-image.alt | escape }}"/>
+        {% else %}
+        <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/TUMI_Bullet_Train_Logo_Lockup_Digital_2x_265bf5dd-a30c-4d17-bd68-10946c839fd3.png?v=1658212851" alt="img"/>
+        {% endif %}
+
+        {% if section.settings.btn != blank %}
+        <div class="banner-cta">
+          <a href="{{section.settings.btnlink | default: '#'}}" class="btn-transparent">
+            <span class="ben-text">{{section.settings.btn}} </span>
+          </a>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+
+  <div class="bullet-banner bullet-banner-small">
+    <div class="banner-image">
+      {% if section.settings.mob-banner != blank %}
+      <img src="{{section.settings.mob-banner | img_url:'master' }}" alt="{{image_desktop.alt | escape }}" class="banner_img" />
+      {% else %}
+      <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/lp-Bullet-Train_Hero-Mobile.jpg?v=1658212706" alt="img"/>
+      {% endif %}
+    </div>
+
+    <div class="bullet-banner-text">
+      <div class="banner-text-col">
+        {% if section.settings.content-image != blank %}
+        <img src="{{section.settings.content-image | img_url: '430x' }}" alt="{{content-image.alt | escape }}"/>
+        {% else %}
+        <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/TUMI_Bullet_Train_Logo_Lockup_Digital_2x_265bf5dd-a30c-4d17-bd68-10946c839fd3.png?v=1658212851" alt="img"/>
+        {% endif %}
+
+        {% if section.settings.btn != blank %}
+        <div class="banner-cta">
+          <a href="{{section.settings.btnlink | default: '#'}}" class="btn-transparent">
+            <span class="ben-text">{{section.settings.btn}} </span>
+          </a>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+
+  {% else %}
+
+  <div class="bullet-banner bullet-banner-large">
+    <div class="banner-image">
+      {% if section.settings.ar-desk-banner != blank %}
+      <img src="{{section.settings.ar-desk-banner | img_url:'master' }}" alt="{{ar-image_desktop.alt | escape }}" class="banner_img" />
+      {% else %}
+      <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/lp-Bullet-Train_Hero-desktop.jpg?v=1658212690" alt="img"/>
+      {% endif %}
+    </div>
+
+    <div class="bullet-banner-text">
+      <div class="banner-text-col">
+        {% if section.settings.ar-content-image != blank %}
+        <img src="{{section.settings.ar-content-image | img_url: '430x' }}" alt="{{ar-content-image.alt | escape }}"/>
+        {% else %}
+        <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/TUMI_Bullet_Train_Logo_Lockup_Digital_2x_265bf5dd-a30c-4d17-bd68-10946c839fd3.png?v=1658212851" alt="img"/>
+        {% endif %}
+
+        {% if section.ar-settings.btn != blank %}
+        <div class="banner-cta">
+          <a href="{{section.ar-settings.btnlink | default: '#'}}" class="btn-transparent">
+            <span class="ben-text">{{section.ar-settings.btn}} </span>
+          </a>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+
+  <div class="bullet-banner bullet-banner-small">
+    <div class="banner-image">
+      {% if section.settings.mob-banner != blank %}
+      <img src="{{section.settings.mob-banner | img_url:'master' }}" alt="{{image_desktop.alt | escape }}" class="banner_img" />
+      {% else %}
+      <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/lp-Bullet-Train_Hero-Mobile.jpg?v=1658212706" alt="img"/>
+      {% endif %}
+    </div>
+
+    <div class="bullet-banner-text">
+      <div class="banner-text-col">
+        {% if section.settings.content-image != blank %}
+        <img src="{{section.settings.content-image | img_url: '430x' }}" alt="{{content-image.alt | escape }}"/>
+        {% else %}
+        <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/TUMI_Bullet_Train_Logo_Lockup_Digital_2x_265bf5dd-a30c-4d17-bd68-10946c839fd3.png?v=1658212851" alt="img"/>
+        {% endif %}
+
+        {% if section.settings.btn != blank %}
+        <div class="banner-cta">
+          <a href="{{section.settings.btnlink | default: '#'}}" class="btn-transparent">
+            <span class="ben-text">{{section.settings.btn}} </span>
+          </a>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+
+  {% endif %}
+
+</div> 
+
+
+
+{% schema %}
+{
+"name": "Bullet Landing Banner",
+"tag": "section",
+"settings": [
+{
+"type": "image_picker",
+"id": "desk-banner",
+"label": "Desktop Banner"
+},
+{
+"type": "image_picker",
+"id": "mob-banner",
+"label": "Mobile Banner"
+},
+{
+"type": "image_picker",
+"id": "content-image",
+"label": "Content Image"
+},
+{
+"type":"text",
+"id":"btn",
+"label":"Button name",
+"default":"Shop Now"
+},
+{
+"type":"url",
+"id":"btnlink",
+"label":"Button URL"
+},
+{
+"type": "color",
+"id": "btn_color",
+"label": "Button Color",
+"default": "#fff"
+},
+{
+"type": "color",
+"id": "btn_txt_color",
+"label": "Button Text Color",
+"default": "#000"
+},
+{
+"type": "header",
+"content": "Arabic Banner"
+},
+{
+"type": "image_picker",
+"id": "ar-desk-banner",
+"label": "Ar Desktop Banner"
+},
+{
+"type": "image_picker",
+"id": "ar-mob-banner",
+"label": "AR Mobile Banner"
+},
+{
+"type": "image_picker",
+"id": "ar-content-image",
+"label": "AR Content Image"
+},
+{
+"type":"text",
+"id":"ar-btn",
+"label":"AR Button name",
+"default":"Shop Now"
+},
+{
+"type":"url",
+"id":"ar-btnlink",
+"label":"AR Button URL"
+}
+
+
+]
+}
+{% endschema %}

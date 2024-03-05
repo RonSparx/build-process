@@ -1,0 +1,133 @@
+<style>
+  .video-conbox .btn-transparent{
+    background-color: {{ section.settings.btn_color }};
+    color: {{ section.settings.btn_txt_color }};
+  }
+  .bottom-banner #video-viewport.mobile {
+    padding-top: 43.5%;
+    overflow: hidden;
+  }
+  .bottom-banner #video-viewport.desktop{
+  	padding-top: 29.6%;
+    overflow: initial;
+    
+  }
+  .bottom-banner{
+  	padding-top: 2.5rem;
+  }
+  .bottom-banner .video-con {
+  	margin-top: 25px;
+  }
+@media all and (max-width: 639px){
+  .bottom-banner .fallback-img img {
+      height: 78vw;
+      object-fit: cover;
+  }  
+  .bottom-banner #video-viewport.mobile{
+  	padding-top: 78%;
+  }
+}
+</style>
+
+<section class="fullsize-video-bg bottom-banner">
+    <div id="video-viewport" class="desktop">
+      <div class="fallback-img">
+        {% if section.settings.image_desktop != blank %}
+        <img src="{{section.settings.image_desktop | img_url:'master' }}" alt="{{image_desktop.alt | escape }}"/>
+        {% else %}
+        <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/Staple_LandingPage_BottomBanner_Desktop.jpg?v=1657015318" alt="img"/>
+     	{% endif %}
+      </div>
+    </div>
+  
+  	<div id="video-viewport" class="mobile">
+      <div class="fallback-img">
+        {% if section.settings.image_mobile != blank %}
+        <img src="{{section.settings.image_mobile | img_url:'master' }}" alt="{{image_mobile.alt | escape }}"/>
+        {% else %}
+        <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/Staple_LandingPage_BottomBanner_Mobile.jpg?v=1657015338" alt="img"/>
+     	{% endif %}
+      </div>
+    </div>
+
+    <div class="video-con">
+      <div class="video-conbox">
+        {% if section.settings.content_img != blank %}
+        <img src="{{ section.settings.content_img | img_url: 'master' }}">
+        {% else %}
+        <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/TUMI-STAPLE-logo-lockup.png?v=1656941588">
+        {% endif %}
+		{% if section.settings.btn != blank %}
+        <a href="{{section.settings.btnlink | default: '#'}}" class="btn-transparent">
+          <span class="ben-text">{{section.settings.btn}} </span>
+        </a>
+        {% endif %}
+
+      </div>
+    </div>
+
+  </section>  
+
+{% schema %}
+  {
+    "name": "Landing Bottom Banner",
+    "settings": [
+      {
+          "type":"image_picker",
+          "id":"image_desktop",
+          "label":"Video Poster Desktop"
+      },
+	  {
+          "type":"image_picker",
+          "id":"image_mobile",
+          "label":"Video Poster Mobile"
+      },
+      {
+        "type": "image_picker",
+        "id": "content_img",
+        "label": "Image"
+      },
+      {
+          "type":"text",
+          "id":"sub_heading",
+          "label":"Sub heading",
+          "default":"DESIGNED FOR MODERN-DAY EXPLORERS"
+      },
+
+      {
+          "type":"text",
+          "id":"btn",
+          "label":"Button name",
+          "default":"Shop Now"
+      },
+      {
+          "type":"url",
+          "id":"btnlink",
+          "label":"Button URL"
+      },
+	  {
+        "type": "color",
+        "id": "btn_color",
+        "label": "Button Color",
+        "default": "#fff"
+      },
+	  {
+        "type": "color",
+        "id": "btn_txt_color",
+        "label": "Button Text Color",
+        "default": "#000"
+      }
+	],
+	"presets": [
+       {
+         "name": "Staple Bottom Banner"
+       }
+     ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

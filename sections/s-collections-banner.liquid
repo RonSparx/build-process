@@ -1,0 +1,154 @@
+<div class="s-collection">
+<div class="{% if section.settings.img != blank%} top_holiday_banner {% else %} no_banner {% endif %}">
+  <div class="caption">
+    <div class="section-header text-center">
+      {% if section.settings.heading != blank %}
+      <h1>{{section.settings.heading}}</h1>
+      {% else %}
+      <h1>Banner Title</h1>
+      {% endif %}
+      {% if section.settings.content != blank %}
+      <p>{{section.settings.content}}</p>
+      {% else %}
+      <p>Lorem ipsum, or lipsum as it is sometimes known...</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+  
+  <div id="linksContainer" class="removeFocusIndicator">
+  <ul class="tab-holiday">
+    {% assign  menuss = section.settings.link_list_id %}
+    {% for link in linklists[menuss].links %}
+   		 <li><a href="{{ link.url }}">{{ link.title }} <img src="https://i1.adis.ws/i/tumi/Arrow_Down" /></a></li>
+	{% endfor %}
+  </ul>
+</div>
+</div>
+
+
+<style>
+  .bx-wrapper .bx-viewport { height:auto !important; }
+  .top_holiday_banner {position: relative;
+    width: 100%; 
+    background-color: #ebebeb;
+    overflow: hidden;
+    background: #f1f1f1 url({{section.settings.img | img_url:'1920x'}});
+    background-size: cover;
+    background-position: top; padding: 40px 0px; }
+
+  .no_banner {position: relative;
+    width: 100%; 
+    background-color: #ebebeb;
+    overflow: hidden;
+    background: #f1f1f1;
+    background-size: cover;
+    background-position: top; padding: 40px 0px; }
+  .caption {
+    position: relative;
+    text-align: center;
+    padding: 30px 10px 10px 10px;
+    max-width: 730px;
+    margin: 0 auto;
+  }
+  .s-collection .section-header{
+    max-width:337px;
+    margin:0 auto;
+  }
+  .s-collection .section-header h1{
+    font-size: 27px;
+    line-height: 40px;
+    margin: 0;
+    padding: 0 0 10px 0;
+    font-weight: 700;
+    color: black;
+  }
+  .s-collection .section-header p{
+    font-size: 17px;
+    line-height: 24px;
+    margin: 5px auto 0px auto;
+    padding: 0;
+    color: black;
+    font-weight: 400;
+    letter-spacing: .025em;
+  }
+  @media only screen and (min-width: 768px) {
+    .s-collection .section-header{
+      max-width:704px;
+    }
+    .s-collection .section-header h1{
+      font-size: 50px;
+      line-height: 54px;
+    }
+    .s-collection .section-header p{
+      font-size: 20px;
+      margin: 10px 0 25px 0;
+      letter-spacing: .02em;
+      line-height: 40px;
+    }
+  }
+</style>
+
+
+<script>
+  if ($(window).width() < 750){
+    $( document ).ready(function() {
+      $('.holiday').slick({
+        dots: false,
+        infinite: true,
+        autoplay:true,
+        arrows:false,
+        speed: 1500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+
+        ]
+      });
+    });
+  };
+</script>
+
+{% schema %}
+{
+"name": "Collection Banner",
+"settings": [
+{
+"type":"image_picker",
+"id":"img",
+"label":"Background image"
+},
+{
+"type":"text",
+"id":"heading",
+"label":"Banner title"
+},
+{
+"type":"textarea",
+"id":"content",
+"label":"Banner content"
+},
+{
+  "type": "link_list",
+  "id": "link_list_id",
+  "label": "menu",
+  "default": "main-menu"
+}
+]
+}
+{% endschema %}
+

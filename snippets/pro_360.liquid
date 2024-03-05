@@ -1,0 +1,66 @@
+{% if product.metafields.custom_fields["360_degree_view"] != blank %}  
+
+<style>
+  .wrap-threesixty {
+      max-width: 500px;
+      margin: auto;
+      overflow:hidden;
+  } 
+  .handle {
+      text-align: center;
+  }  
+</style>
+<div class="wrap-threesixty">
+<div class="wrapper ">
+    {% assign imgon360 = product.metafields.custom_fields["360_degree_view"] | remove:'[{"' | remove:'360_degree_view' | remove:'"=' | remove:'>"' | remove:'<img src=' | remove:'\' | remove:'/>n"}' | remove:'foaf:Image"' | remove:'" typeof="' | remove:' alt="' | remove:' {"' | remove:'>nil}]'  | remove:' ' | remove:']'%}
+            <div class="cloudimage-360" data-image-list='[
+                 {{imgon360}}
+                 ]'  data-amount="36"
+            data-magnifier="false" data-full-screen="true" data-autoplay="true"></div>
+            <!-- Add script tag with CDN link to js-cloudimage-360-view lib after all content in body tag -->
+    <div class="handle">
+      <button class="refresh"><svg id="svg2" xmlns="http://www.w3.org/2000/svg" height="25.2" viewBox="0 0 25.200001 25.200001" width="25.2" preserveAspectRatio="none"><g id="background"><path id="path_backgroundtm-pdp-images360" d="M.042 12.623q0 5.25 3.7 8.95 3.65 3.65 8.9 3.65 5.2 0 8.9-3.65 3.7-3.7 3.7-8.95 0-5.2-3.7-8.9t-8.9-3.7q-5.25 0-8.9 3.7-3.7 3.7-3.7 8.9z" style="fill-opacity: 0.784314; fill: rgb(0, 0, 0);"></path></g><g id="foreground"><path id="path_foregroundtm-pdp-images360" fill="#FFF" d="M22.792 9.273q-.85-.35-1.1.45l-.45 1q-.5-2.45-2.4-4.3-2.55-2.6-6.2-2.6t-6.25 2.6q-2.6 2.55-2.6 6.2 0 3.7 2.6 6.25 2.6 2.6 6.25 2.6t6.25-2.6q.55-.55 0-1.2-.65-.55-1.2 0-2.1 2.1-5.05 2.1t-5.05-2.1-2.1-5.05 2.1-5.05q2.15-2.05 5.05-2.05t5.05 2.05q1.65 1.7 2 3.9l-.95-1.65q-.35-.8-1.15-.35-.7.35-.35 1.15l2.25 4.1q0 .1.05.2.05.3.4.45.15.15.45.1h.2q.35-.05.55-.4.1-.15.1-.4l1.95-4.25q.35-.8-.4-1.15z" style="fill-opacity: 0.784314; fill: rgb(255, 255, 255);"></path></g></svg></button>
+      <button class="zoomIn"><svg id="svg3336" xmlns="http://www.w3.org/2000/svg" height="25.2" viewBox="0 0 25.200001 25.200001" width="25.2" preserveAspectRatio="none"><g id="Layer1_0_FILLtm-pdp-images360"><path id="path_backgroundtm-pdp-images360" fill-opacity=".706" d="M3.7 21.55q3.7 3.65 8.9 3.65t8.9-3.65q3.7-3.7 3.7-8.95 0-5.2-3.7-8.9T12.6 0 3.7 3.7 0 12.6q0 5.25 3.7 8.95z" style="fill-opacity: 0.784314; fill: rgb(0, 0, 0);"></path></g><g id="Layer1_1_FILLtm-pdp-images360"><path id="path_foregroundtm-pdp-images360" fill="#FFF" d="M13.55 9q0-.85-.85-.85t-.85.85v2.75H9.1q-.85 0-.85.85t.85.85h2.75v2.8q0 .85.85.85t.85-.85v-2.8h2.75q.85 0 .85-.85t-.85-.85h-2.75V9zm7.05 6.6q.55-1.377.55-3 0-3.5-2.5-6T12.6 4.1q-3.5 0-6 2.5t-2.5 6q0 3.55 2.5 6.05 2.45 2.5 6 2.5 2.797 0 4.95-1.55l3.3 2.55q1.9-1.6 3.05-4l-3.3-2.55m-8-9.8q2.85 0 4.85 2t2 4.8q0 2.85-2 4.85t-4.85 2q-2.9 0-4.8-2-2-2-2-4.85 0-2.8 2-4.8 1.9-2 4.8-2z" style="fill-opacity: 0.784314; fill: rgb(255, 255, 255);"></path></g></svg></button>
+      <button class="zoomOut"><svg id="svg2" xmlns="http://www.w3.org/2000/svg" height="25.2" viewBox="0 0 25.200001 25.200001" width="25.2" preserveAspectRatio="none"><g id="Layer1_0_OUT_FILLtm-pdp-images360"><path id="path_backgroundtm-pdp-images360" fill-opacity=".706" d="M12.6 0Q7.4 0 3.7 3.7T0 12.6q0 5.25 3.7 8.95 3.7 3.65 8.9 3.65t8.9-3.65q3.7-3.7 3.7-8.95 0-5.2-3.7-8.9T12.6 0z" style="fill-opacity: 0.784314; fill: rgb(0, 0, 0);"></path></g><g id="Layer1_1_OUT_FILLtm-pdp-images360"><path id="path_foregroundtm-pdp-images360" fill="#FFF" d="M8.2 12.6q0 .85.85.85h7.25q.85 0 .85-.85t-.85-.85H9.05q-.85 0-.85.85zm12.4 3q.5-1.395.5-3 0-3.5-2.5-6-2.45-2.5-6-2.5T6.55 6.6t-2.5 6q0 3.55 2.5 6.05t6.05 2.5q2.807 0 4.9-1.6l3.35 2.6q1.95-1.7 3.05-4l-3.3-2.55m-8-9.8q2.9 0 4.8 2 2 2 2 4.8 0 2.85-2 4.85-1.9 2-4.8 2-2.85 0-4.85-2t-2-4.85q0-2.8 2-4.8t4.85-2z" style="fill-opacity: 0.784314; fill: rgb(255, 255, 255);"></path></g></svg></button>
+    </div>
+</div>
+  </div>
+    
+  <!-- <script>window.CI360 = { notInitOnLoad: true }</script> -->
+       <script src="{{'rotate.js' | asset_url }}"></script>  
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+            var scaleZoom = 1;
+            var flagPlayStop;
+            $(document).ready(function () {
+                flagPlayStop = $(".cloudimage-360").data("autoplay") ? true : false;
+               // $('button.refresh').html(flagPlayStop ? 'Stop' : 'Play');
+                $('button.refresh').on('click', function () {
+                    if (flagPlayStop) {
+                        CI360._viewers[0].stop();
+                    } else {
+                        CI360._viewers[0].play();
+                    }
+                    flagPlayStop = !flagPlayStop;
+                   // $('button.refresh').html(flagPlayStop ? 'Stop' : 'Play');
+                });
+                $('button.zoomIn').on('click', function () {
+                    scaleZoom += 0.1;
+                    if (scaleZoom > 2.5) {
+                        scaleZoom = 2.5;
+                        return;
+                    }
+                    $(".cloudimage-360").css("transform", "scale(" + scaleZoom + ")");
+                });
+                $('button.zoomOut').on('click', function () {
+                    scaleZoom -= 0.1;
+                    if (scaleZoom < 1) {
+                        scaleZoom = 1;
+                        return;
+                    }
+                    $(".cloudimage-360").css("transform", "scale(" + scaleZoom + ")");
+                });
+            });
+        </script>
+{% endif %}

@@ -1,0 +1,177 @@
+<script>
+  let compare_checked_value = []; 
+  document.getElementById('thumb_one').innerHTML = `<div class="product-compare"></div>`;
+  document.getElementById('thumb_two').innerHTML = `<div class="product-compare"></div>`;
+  document.getElementById('thumb_three').innerHTML = `<div class="product-compare"></div>`;
+ 
+   window.addEventListener('globoFilterRenderCompleted', function () {
+  document.querySelectorAll('.compair-wrapper input.checkbox-comparition').forEach((chk)=> {     
+ chk.addEventListener('change', (e) => {
+      let checkBox = e.target;
+      let count = document.querySelectorAll(".checkbox-comparition:checked").length;
+  
+   if(checkBox.checked) {
+          checkBox.closest('.checkbox').classList.add('checked'); 
+          let compare_data = checkBox.value;
+          compare_checked_value.push(compare_data);
+          compare_product(0, compare_checked_value);
+      compare_checked_value =  [...new Set(compare_checked_value)]
+        } else {
+          checkBox.closest('.checkbox').classList.remove('checked');
+          checkBox.checked=false;
+          removeCompareImage(checkBox.value);
+        } 
+      if(count <= 3) {
+        if(count == 3) {
+          document.querySelectorAll(".checkbox-comparition").forEach((data) => {
+              if(!data.checked) {
+                  data.disabled = true;
+              }
+          });
+        }
+        
+      } else {
+        checkBox.closest('.checkbox').classList.remove('checked');
+        checkBox.checked = false;
+        removeCompareImage(checkBox.value);
+      }
+   
+   // disable the compare Button when product is 1.
+      if(count == 1){
+     document.querySelector(".btn_compare.btn-compare-now").classList.add("disabled");
+     }else{
+       document.querySelector(".btn_compare.btn-compare-now").classList.remove("disabled");
+     }
+    })
+       
+  }) 
+  document.querySelectorAll('.btn-compare-now').forEach((compare_click)=>{
+    compare_click.addEventListener('click', ()=> {
+      let count = document.querySelectorAll(".checkbox-comparition:checked").length;
+      if(count >= 2) {
+        if(count == 2) { 
+          window.location.href = `{{shop.url | append: request.locale.root_url }}/products/compare?pro1=${compare_checked_value[0]}&pro2=${compare_checked_value[1]}`;
+        } else {
+          window.location.href = `{{shop.url | append: request.locale.root_url }}/products/compare?pro1=${compare_checked_value[0]}&pro2=${compare_checked_value[1]}&prod3=${compare_checked_value[2]}`;
+        }
+      }
+    });
+  });
+  function removeCompareImage (val) {
+    let thumb_one = document.getElementById('thumb_one').innerHTML;
+    let thumb_two = document.getElementById('thumb_two').innerHTML;
+    let thumb_three = document.getElementById('thumb_three').innerHTML
+      compare_checked_value =  [...new Set(compare_checked_value)]
+    let ind = compare_checked_value.indexOf(val);
+    compare_checked_value.splice(ind,1);
+    compareCountUpdate();
+    if(ind == 0){
+      document.getElementById('thumb_one').innerHTML = thumb_two;
+      document.getElementById('thumb_two').innerHTML = thumb_three;
+      // compare count update //
+        compareCountUpdate(val);
+    } else if(ind == 1) {
+      document.getElementById('thumb_two').innerHTML = thumb_three;
+    }
+    document.getElementById('thumb_three').innerHTML = `<div class="product-compare"></div>`;
+    document.querySelectorAll(".checkbox-comparition").forEach((data) => {
+        if(!data.checked) {
+            data.disabled = false;
+        }
+    });
+  }
+  function compare_product(i, compareCheckedValue) {
+    // console.log(compareCheckedValue)
+    compareCheckedValue =  [...new Set(compareCheckedValue)];
+    let str2 = '';
+    if(compareCheckedValue.length > i){
+      document.querySelector(".btn_compare.btn-compare-now").querySelector(".compare_count").innerHTML = compareCheckedValue.length;
+      fetch(`{{ shop.url }}/products/${compareCheckedValue[i]}.json`).then(res=> res.json()).then((res)=>{
+        str2 += `<div class="image">
+          <img class="compare-preview-image" src="${res.product.image.src}" alt="Blank" />
+        </div>
+        <div class="product-compare_content">
+              <div class="compare_vendor"><a title="" href="#">${res.product.product_type}</a> </div>
+              <div class="compare_title">${res.product.title}</div>
+              <div class="compare_remove"> <a href="javascript:void(0)" data-handle=${res.product.handle}>Remove Item</a></div>
+          </div>
+        <div class="product-tooltip">
+          <a href="#" class="close-tooltip"><span class="tumi-icon-og icon-x"></span></a>
+          <div class="product-tooltip_img">
+            <img src="${res.product.image.src}" alt="${res.product.title}" />
+          </div>
+           <div class="product-tooltip_img-content">
+            <div class="tooltip-title">${res.product.title}</div>
+            <div class="tooltip-name">
+                <a title="" href="#">${res.product.product_type}</a>
+            </div>
+            <div class="tooltip-collection">
+                <a href="#">${res.product.title}</a>
+            </div>
+          </div>
+         
+        </div>`;
+        i==0?(document.getElementById('thumb_one').innerHTML = str2):i==1?(document.getElementById('thumb_two').innerHTML = str2):(document.getElementById('thumb_three').innerHTML = str2) 
+        compare_product(++i, compareCheckedValue);
+      })
+    } else {
+      // console.log('completed')
+    }
+  }
+     
+
+});
+
+// remove item //
+document.addEventListener("click",(e)=>{
+  if(e.target.classList.contains('compare_remove') || e.target.closest('.compare_remove')){
+     let el = e.target.classList.contains('compare_remove') ? e.target : e.target.closest('.compare_remove');
+      if(e.target.dataset.handle){
+           let clickedEle = document.querySelector(`input[value="${e.target.dataset.handle}"]`).click();
+         }
+        // compare count update //
+        compareCountUpdate();
+  
+        }
+    
+});
+
+// clear all //
+document.addEventListener("click",(e)=>{
+  if(e.target.classList.contains('btn-clear-all') || e.target.closest('.btn-clear-all')){
+    document.querySelector(".collection-header").classList.add("hide");
+   let clearCheckbox = document.querySelectorAll(".compair-wrapper_list .checkbox");
+   for(let item of clearCheckbox){
+       if(item.classList.contains('checked') || item.closest('.checked')){
+          if(item.closest(".checked")){
+           item.querySelector("input").click();
+          }
+         
+       }
+   }
+    
+  }
+});
+
+// compare count update//
+function compareCountUpdate(){
+   let samCount = document.querySelectorAll(".checkbox-comparition:checked").length;
+      if(samCount == 0){
+        document.querySelector(".sticky-compare").classList.add("hide");
+      }else if(samCount == 1){
+        document.querySelector(".btn_compare.btn-compare-now").querySelector(".compare_count").innerHTML = 1;
+         document.getElementById('thumb_three').innerHTML = `<div class="product-compare"></div>`;
+        document.getElementById('thumb_two').innerHTML = `<div class="product-compare"></div>`;
+      }else if(samCount == 2){
+         document.querySelector(".btn_compare.btn-compare-now").querySelector(".compare_count").innerHTML = 2;
+      }else if(samCount >2){
+         document.querySelector(".btn_compare.btn-compare-now").querySelector(".compare_count").innerHTML = 3;
+          //  document.getElementById('thumb_three').innerHTML = `<div class="product-compare"></div>`;
+
+      }
+}
+
+
+</script>  
+      
+ 

@@ -1,0 +1,70 @@
+<style>
+h2.diff-title, h2, h3, h4 {
+    font-family: 'PROXIMA NOVA RG', sans-serif !important;
+}
+</style>
+{% section 'top-banner' %}
+{% section 'tumi-difference' %}
+{% section 'finish-line' %}
+{% section 'functional-superiority' %}
+{% section 'technical-innovation' %}
+{% section 'video-media' %}
+{% section 'customer-service' %}
+
+<script>
+
+$(document).ready(function(){
+	$('ul.tabs.tabs-mobile li:nth-child(1)').addClass('current');
+  $('div#tab-1').addClass('current');
+	$('.diff-tab ul.tabs li').click(function(){ 
+      $('div#tab-1').removeClass('show');
+		var tab_id = $(this).attr('data-tab');
+
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	})
+	
+   
+        if ($(window).width()<749) {
+            $('.tech-grid-main').slick({
+                dots: true,
+                infinite: false,
+                slidesToShow: 1
+              });
+        }
+   
+    
+   
+
+      var $el, $ps, $up, totalHeight;
+
+      $(".mob-finishblock .readMoreButton").click(function (e) {
+          e.preventDefault();
+          totalHeight = 0;
+
+          $el = $(this);
+          $p = $el.parent();
+          $up = $p.parent();
+          $ps = $up.find("li:not('.read-more')");
+
+          $ps.each(function () {
+              totalHeight += $(this).outerHeight();
+          });
+
+          $up.css({
+              height: $up.height(),
+              "max-height": 9999,
+          }).animate({
+              height: totalHeight + 20,
+          });
+          $p.fadeOut();
+          e.preventDefault();
+      });
+
+  
+  
+})
+</script>

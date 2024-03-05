@@ -1,0 +1,144 @@
+<script type="text/template" id="NewsletterModal">
+    <div class="oc-returns-modal__container">
+        <div class="section-header text-center">
+            <h2>{{ 'general.newsletter_form.newsletter_modal_title' | t }}</h2>
+        </div>
+        <div class="oc-returns-modal__content">
+
+            <div class="form-group form-newsletter-container">
+                {%- assign formId = 'ContactModalNewsletter' -%}
+                {% form 'customer', id: formId, class: 'oc-form', novalidate: 'novalidate' %}
+
+                <input type="hidden" name="contact[tags]" value="newsletter">
+
+
+                <div class="row">
+                    <div class="form-field col">
+                        <label for="{{ formId }}-Title">{{ 'customer.register.customer_title' | t }}</label>
+                        <select name="contact[note][title]" id="{{ formId }}-Title">
+                            <option value="Mrs" {% if form.note.title==
+                            'Mrs' %} selected="selected"{% endif %}>Mrs</option>
+                            <option value="Mr" {% if form.note.title==
+                            'Mrs' %} selected="selected"{% endif %}>Mr</option>
+                            <option value="Miss" {% if form.note.title==
+                            'Miss' %} selected="selected"{% endif %}>Miss</option>
+                            <option value="Mz" {% if form.note.title==
+                            'Mz' %} selected="selected"{% endif %}>Mz</option>
+                        </select>
+
+                    </div>
+                    <div class="form-field col">
+                        <label for="{{ formId }}-LastName">{{ 'customer.register.last_name' | t }}</label>
+                        <input required type="text" name="contact[last_name]" placeholder="{{ 'general.newsletter_form.last_name_placeholder' | t }}" id="{{ formId }}-LastName" {% if
+                               form.last_name %}value="{{ form.last_name }}" {% endif %} autocomplete="family-name">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-field col">
+
+                        <label for="{{ formId }}-FirstName">{{ 'customer.register.first_name' | t }}</label>
+                        <input required type="text" name="contact[first_name]" placeholder="{{ 'general.newsletter_form.first_name_placeholder' | t }}" id="{{ formId }}-FirstName" {% if
+                               form.first_name %}value="{{ form.first_name }}" {% endif %} autocomplete="given-name">
+
+                    </div>
+                    <div class="form-field col">
+                        <label for="{{ formId }}-email">{{ 'customer.register.email' | t }}</label>
+                        <input type="email"
+                               name="contact[email]"
+                               id="{{ formId }}-email"
+                               class="newsletter__input{% if form.errors %} input--error{% endif %}"
+                               value="{{ form.email }}"
+                               placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                               aria-label="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                               aria-required="true"
+                               required
+                               autocorrect="off"
+                               autocapitalize="off"
+                               {% if form.errors %}
+                               aria-invalid="true"
+                               aria-describedby="{{ formId }}-email-error"
+                               data-form-status
+                               {% endif %}>
+                    </div>
+                </div>
+
+
+                <div class="form-newsletter-choices">
+                    <h4 class="form-heading-h4">{{ 'general.newsletter_form.newsletter_checkbox_title' | t }}</h4>
+
+                    <div class="checkbox checked">
+                        <label class="checkbox-label" for="newsletter-field">
+                        <input required class="checkbox-input" name="newsletter-field" id="newsletter-field" type="checkbox">
+                        <div class="box">
+                            <span class="icon checked-icon" color="black" role="img">
+                                <svg
+                                viewBox="0 0 34 24"><path
+                                d="M33.5 2.3L12 23.8.5 12.3l2.1-2.1 9.4 9.4L31.4.2l2.1 2.1z"></path></svg></span></div>
+                        <span class="markdown-text text">{{ 'general.newsletter_form.newsletter_checkbox_label' | t }}</span></label>
+                    </div>
+                </div>
+
+
+                <div class="form-action text-right">
+                    <button type="submit" class="btn submit newsletter__submit-text--large">
+                        {{ 'general.newsletter_form.submit' | t }}
+                    </button>
+                </div>
+
+                <div class="form-footer">
+                    <span class="text-small">
+                        {{ 'general.newsletter_form.footer_message' | t }}
+                    </span>
+                </div>
+
+                {% if form.errors contains 'email' %}
+                <span id="{{ formId }}-email-error" class="input-error-message">
+                <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                {% include 'icon-error' %}
+                <span class="site-footer__newsletter-error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+              </span>
+                {% endif %}
+                {% endform %}
+            </div>
+
+        </div>
+    </div>
+</script>
+
+<script>
+    (function(){
+        $(document).ready(function () {
+
+            var selectors = {
+                form: '#ContactModalNewsletter',
+                emailFooter: 'ContactFooter-email',
+                emailModal: '#ContactModalNewsletter input[name="contact[email]"]',
+                requiredField: "#ContactModalNewsletter *[required]",
+                submit: '.form-action button[type="submit"]'
+            };
+          
+
+            document.addEventListener('on-oc-modal-open', function () {
+                var email = document.getElementById(selectors.emailFooter).value;
+                $(selectors.emailModal).val(email);
+
+                var $requiredField = $(selectors.requiredField);
+                var $form = $(selectors.form);
+                var $submit = $(selectors.submit);
+              
+              	$form.validate({
+                  errorPlacement: function(error, element) { return true; },
+                  rules: {
+                    // compound rule
+                    ['contact[email]']: {
+                      required: true,
+                      email: true
+                    }
+                  }
+                });
+
+            })
+        })
+    })();
+</script>

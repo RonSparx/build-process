@@ -1,0 +1,72 @@
+<style>
+ #shopify-section-black-custom-content {
+        padding-bottom: 30px;
+    }
+   .sc-content-inner p {
+      font-size: 18px !important;
+    }
+   .sc-content-inner h1{
+    font-size: 36px;
+    line-height: 46px;
+    letter-spacing: 1.5px;
+    text-align: center;
+    margin: 0 auto 20px auto;
+    font-family:futuraltpro,Arial,Sans-serif;font-weight:600;
+   }
+.index-section .section-header h2, .carousel-title.section-header h2{
+    font-size: 24px;
+    line-height: 24px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin: 0 auto 16px;
+    letter-spacing: 1.2px;
+}
+.collection_home .collection-grid-item__title{
+    font-size: 20px;   
+}
+.sc-content{
+  margin-bottom: 15px;    
+}
+.degree_product {
+    padding: 30px 20px 0px !important;
+}
+  .list-product-price{
+    display:none !important;
+  }
+#shopify-section-black-custom-content-two .sc-content{
+      margin-bottom: 2.5rem;
+}
+ @media screen and (min-width: 750px) {
+  ul.grid.grid--uniform{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+  }    
+  .sc-content-inner {
+      width: 80%;
+      max-width: 678px;
+  }
+   .sc-content-inner h1{
+     max-width: 600px;
+     margin-bottom: 30px;
+   }
+   .sc-content-wrapper div.sc-content {
+     margin-bottom:30px;
+  }
+}
+
+  
+</style>
+<div class="landing-page tegra-landing">
+    {% section 'black-banner-video' %}
+    {% section 'black-collection-list' %}
+    {% comment  %}{% section 'black-custom-content' %}
+    {% section 'black-product-carousel' %}
+    {% endcomment  %}
+    
+    {% section 'black-collecton' %}
+    {% section 'black-custom-content-two' %}
+    {% section 'black-collection-list-two' %}
+</div>

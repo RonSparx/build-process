@@ -1,0 +1,52 @@
+<style>
+    .popup__store__rsvp__success {
+        display: none;
+        background-color: rgb(172, 255, 176);
+        padding: 14px 22px;
+    }
+</style>
+
+{% section 'men-custom' %}
+{% section 'men-row' %}
+
+ {% if customer %}
+    <div style="text-align:center;">
+    <button class="btn popup__store__rsvp__button"> RSVP TO THE EVENT</button>
+    <p class="popup__store__rsvp__success">Successfully registered!</p>
+</div>
+{% else %}
+<div style="text-align:center;">
+<a href="{{ routes.account_login_url }}" class="btn" >LOGIN TO RSVP</a>
+</div>
+{% endif %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.25.0/axios.min.js" integrity="sha512-/Q6t3CASm04EliI1QyIDAA/nDo9R8FQ/BULoUFyN4n/BDdyIxeH7u++Z+eobdmr11gG5D/6nPFyDlnisDwhpYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', async () => {
+        const rsvp = document.querySelector('.popup__store__rsvp__button');
+        
+        rsvp.addEventListener('click', async (e) => {
+            const customerData = {
+                "FirstName": "{{customer.first_name}}",
+                "LastName": "{{customer.last_name}}",
+                "Email": "{{customer.email}}",
+                "Mobile": "{{customer.phone}}"
+            }
+
+            try {
+                const optinResult = await axios.get('https://europe-west1-chb-ecomm-apps-d001.cloudfunctions.net/tumi-rsvp-event-optin', {params: customerData}, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                })
+                console.log("OPTIN RESULT: ", optinResult?.data)
+                rsvp.style.display = 'none';
+                document.querySelector('.popup__store__rsvp__success').style.display = "inline-flex";
+            }catch(error) {
+                console.log("ERROR!")
+                console.log("MESSAGE: ", error.message);
+            }
+        });
+    })
+</script>

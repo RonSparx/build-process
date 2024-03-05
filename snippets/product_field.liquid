@@ -1,0 +1,107 @@
+{% if product.tags contains 'field-product' %} 
+<div class="tabbing-section-field">
+          <span class="move"><ly-as-276885>free customization available for this product</ly-as-276885></span>
+</div>
+<div class="product-single__field" style="display: none;">
+<p class="line-item-property__field">
+  <label for="text"><ly-as-276886>Please populate TEXT area with initials</ly-as-276886></label>
+  <input id="text" type="text" name="properties[Text]" class="pro_textfield" maxlength="3">
+</p>
+ {% comment %}       
+  <div class="line-item-property__field emojies-wrap"> 
+	<p class="emoji-title">emoji</p>
+    <div class="emoji_list-inline">
+      
+      <div class="emoji_items">
+      	 <input type="radio" id="smile" name="properties[emoji]" value="smile" />
+         <label for="smile">
+        	<img src="{{"happy-icon.png" | asset_img_url: "original"}}" alt="Heart-Eyes">
+        	<span>smile</span> 
+        </label>
+      </div>
+      
+       <div class="emoji_items">
+      	 <input type="radio" id="grinning-face" name="properties[emoji]" value="grinning face" />
+         <label for="grinning-face">
+        	<img src="{{"in-love-icon.png" | asset_img_url: "original"}}" alt="Heart-Eyes">
+        	<span>grinning face</span> 
+        </label>
+      </div>
+      
+       <div class="emoji_items">
+      	 <input type="radio" id="grinning-sweat" name="properties[emoji]" value="grinning face with sweat" />
+         <label for="grinning-sweat">
+        	<img src="{{"smile-icon.png" | asset_img_url: "original"}}" alt="Heart-Eyes">
+        	<span>grinning face with sweat</span> 
+        </label>
+      </div>
+      
+       <div class="emoji_items">
+      	 <input type="radio" id="rolling" name="properties[emoji]" value="rolling on the floor laughing" />
+         <label for="rolling">
+        	<img src="{{"smile-one-icon.png" | asset_img_url: "original"}}" alt="Heart-Eyes">
+        	<span>rolling on the floor laughing</span> 
+        </label>
+      </div> 
+      
+      
+    </div>    
+  </div> 
+  
+     
+  <p class="line-item-property__field custom-dwn">
+    <label>Choose your color preference</label>
+    <select id="color" name="properties[Color]" >
+      <option value="">Select color</option>
+      <option value="Red"> <span class="hexa-code" style="background:red;"></span> Red</option>
+      <option value="Green">Green</option>
+      <option value="Orange">Orange</option>
+      <option value="Pink">Pink</option>
+      <option value="Blue">Blue</option>
+      <option value="Gold">Gold</option>
+      <option value="Silver">Silver</option>
+      <option value="Gunmetal">Gunmetal</option>
+    </select>
+  </p> 
+{% endcomment %}
+<div class="line-item-property__field">
+  <label><ly-as-276887>Choose your color preference</ly-as-276887></label>
+  <div class="color-wrap">
+    <div class="color-item">
+      <input type="radio" name="properties[Color]" value="Blue" title="Blue"> <span><ly-as-276888>Blue</ly-as-276888></span>
+    </div>
+   
+    <div class="color-item">
+      <input type="radio" name="properties[Color]" value="Gold" title="Gold"> <span><ly-as-276889>Gold</ly-as-276889></span>
+    </div>
+    <div class="color-item">
+      <input type="radio" name="properties[Color]" value="Green" title="Green"> <span><ly-as-276890>Green</ly-as-276890></span>
+    </div>
+    <div class="color-item">
+      <input type="radio" name="properties[Color]" value="Orange" title="Orange"> <span><ly-as-276891>Orange</ly-as-276891></span>
+    </div>
+     <div class="color-item">
+      <input type="radio" name="properties[Color]" value="Pink" title="Pink"> <span><ly-as-276892>Pink</ly-as-276892></span>
+    </div>
+    <div class="color-item">
+    	<input type="radio" name="properties[Color]" value="Red" title="Red"> <span><ly-as-276893>Red</ly-as-276893></span>
+    </div>
+    <div class="color-item">
+      <input type="radio" name="properties[Color]" value="Silver" title="Silver"> <span><ly-as-276894>Silver</ly-as-276894></span>
+    </div>
+   
+   
+    <div class="color-item">
+      <input type="radio" name="properties[Color]" value="Transparent" title="Transparent"> <span><ly-as-276895>Transparent</ly-as-276895></span>
+    </div>
+  </div>
+  
+  </div>
+  
+  
+  
+  
+
+</div> 
+
+{% endif %}   

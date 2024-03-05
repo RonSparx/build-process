@@ -1,0 +1,152 @@
+{{ 'slick.css' | asset_url | stylesheet_tag }}
+{{ 'slick-theme.min.css' | asset_url | stylesheet_tag }}
+{{ 'animate.css' | asset_url | stylesheet_tag }}
+{{ 'personalization.css' | asset_url | stylesheet_tag }}
+
+<style>
+ .appointment-form .ets_cf_box_wrap {
+    max-width: 700px;
+    margin: 0 auto;
+}
+.appointment-form .ets_cf_box_wrap .ets_cf_box {
+    box-shadow: none;
+    border: 0.0625rem solid #cecece;
+    border-radius: 0.3125rem;
+}
+.appointment-form input.ets_cf_form_control,
+.appointment-form textarea,
+.appointment-form textarea.ets_cf_form_control {
+    background: #ffffff;
+}
+.appointment-form label.ets_cf_form_label[data-key="checkbox"] {
+    display: none;
+}
+div#ets_cf_ipg_4ubmp6fw1l {
+    display: flex;
+}
+.appointment-form label.ets_cf_form_label[data-key="checkbox"] + .ets_cf_checkbox_group {
+    width: 30px;
+    margin: 10px 0;
+    display: inline-block;
+}
+
+.appointment-form .ets_cf_field_desc {
+    margin: 10px 0;
+    color: #222222;
+}
+.appointment-form label.ets_cf_form_label[data-key="checkbox"] + div + .ets_cf_field_desc {
+    display: inline-block;
+}
+.appointment-form .ets_cf_checkbox_item .ets_cf_checkbox_check,
+.ets_cf_radio_item .ets_cf_radio_check {
+    border-color: #d3d8db;
+}
+.appointment-form .ets_cf_field_desc a {
+    text-decoration: underline;
+}
+.appointment-form button.ets_cf_btn.ets_cf_btn_submit.ets_cf_btn_label {
+    background-color: #bb2131 !important;
+    border: 1px solid #bb2131 !important;
+    border-radius: 0px;
+}
+
+.appointment-form button.ets_cf_btn.ets_cf_btn_submit.ets_cf_btn_label:hover {
+    background: #000000 !important;
+    border-color: #000000 !important;
+}
+.appointment-form .ets_cf_checkbox_title {
+    display: none;
+}
+  .ets_cf_header {
+    margin-bottom: 30px;
+}
+
+
+.appointment-form .ets_cf_box {
+  margin: 0 !important;
+}
+.appointment-form-message {
+  text-align: center;
+  margin: 30px auto;
+  max-width: 630px;
+}
+.appointment-form-message h3 {
+    font-weight: bold;
+}
+
+@media all and (max-width: 767px) {
+    .appointment-form .ets_cf_box_wrap .ets_cf_box {
+        padding: 20px !important;
+    }
+    .appointment-form {
+        padding: 15px;
+    }
+}
+
+
+  
+</style>
+
+
+
+<div class="monogram-page">
+
+  {% section 'monogram-personalization-banner' %}
+  {% section 'monogram-personalization-stamp' %}
+  {% section 'monogram-customize' %}
+  {% section 'monogram-carousel' %}
+  {% section 'monogram-image-text' %}
+  {% section 'monogram-info-text' %}
+
+   <div class="appointment-form">
+     <div class="appointment-form-message">
+      <h3>Book an appointment to personalize your TUMI</h3>
+     </div>
+    {ets_cf_qph}
+  </div>
+  
+</div>
+
+
+
+<script src="{{ 'slick.min.js' | asset_url }}" async="async"></script>
+<script src="{{ 'wow.min.js' | asset_url }}" async="async"></script>
+<script>
+  
+
+  
+  $( document ).ready(function() {
+      
+    $('.personalization-carousel').slick({
+      infinite: false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dots:true,
+      arrows:false
+    });
+
+    $('.image-carousel').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      infinite: false,
+      dots:false,
+      arrows:false,
+      autoplay: true,
+      autoplaySpeed: 1000,
+      fade: true,
+      cssEase: 'linear'
+
+
+    });
+
+    // phone number max lenght
+    setTimeout(function(){
+       $("input[data-validate='isPhoneNumber']").attr('maxlength','10');
+    },3000);
+    
+    // wow js
+    
+    new WOW().init();
+    
+  }); 
+</script> 

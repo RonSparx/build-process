@@ -1,0 +1,58 @@
+<section class="sec-banner">
+    <div class="banner-img wow fadeInRightBig" >
+      <picture>
+        {% if section.settings.desktop_banner != blank %}
+        <source media="(min-width:992px)" srcset="{{ section.settings.desktop_banner | img_url:'1921x' }}">
+        {% else %}
+        <source media="(min-width:992px)" srcset="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/banner_desktop.jpg">
+        {% endif %}
+        {% if section.settings.mob_banner != blank %}
+        <img src="{{ section.settings.mob_banner | img_url:'992x' }}" alt="{{ section.settings.title }}">
+        {% else %}
+        <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/banner-img.jpg" alt="PERSONALIZATION">
+        {% endif %}
+      </picture>
+    </div>
+
+    <div class="banner-info">
+      <h3>{{ section.settings.title }}</h3>
+      <div class="banner-info-des">
+        {{ section.settings.content }}
+      </div>
+    </div> 
+  </section>
+{% schema %}
+  {
+    "name": "Monogram Banner",
+    "settings": [
+{
+	"type":"image_picker",
+	"id":"desktop_banner",
+	"label":"Desktop Banner"
+},
+{
+	"type":"image_picker",
+	"id":"mob_banner",
+	"label":"Mobile Banner"
+},
+{
+	"type":"text",
+	"id":"title",
+	"label":"Title",
+	"default":"PERSONALIZATION"
+},
+{
+	"type":"richtext",
+	"id":"content",
+	"label":"Content",
+	"default":"<p>TUMI focuses on providing creative ideas for personalization and accessorizing, offering a unique <br/>and exclusively luxurious experience. Add a unique touch to your TUMI products with <br/>our complimentary monogramming service or add an extra touch of personality using our accent kits <br/>to make them easier to identify, and stand out from the crowd.</p>"
+}
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

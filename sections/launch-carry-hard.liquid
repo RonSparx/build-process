@@ -1,0 +1,86 @@
+<div class="prelude-container unveil-lp-2">
+  <div class="prelude-text-wrapper unveil-lp">
+    <div class="prelude-text-wrapper-left" style="will-change: transform; transform: translate3d(175vw, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+      <div class="prelude-large-text-1">{{ section.settings.carry-label }}</div>
+    </div>
+    <div class="prelude-text-wrapper-right" style="will-change: transform; transform: translate3d(175vw, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+      <div class="prelude-large-text-2">{{ section.settings.hard-label }}</div>
+    </div>
+  </div>
+</div>
+<div class="prelude-backdrop unveil-lp2">
+  <img
+         src="{{ 'skyline-left.png' | asset_url  }}"
+         loading="lazy"
+         sizes="100vw"
+         srcset="
+                 {{ 'skyline-left-p-500.png' | asset_url  }} 500w,
+                 {{ 'skyline-left-p-800.png' | asset_url  }} 800w,
+                 {{ 'skyline-left.png' | asset_url  }}       907w
+                 "
+         alt=""
+         class="prelude-left"
+         style="will-change: transform; transform: translate3d(-14.841px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+         />
+    <img
+         src="{{ 'skyline-left2.png' | asset_url  }}"
+         loading="lazy"
+         sizes="100vw"
+         srcset="
+                 {{ 'skyline-left2-p-500.png' | asset_url  }} 500w,
+                 {{ 'skyline-left2-p-800.png' | asset_url  }} 800w,
+                 {{ 'skyline-left2.png' | asset_url  }}       907w
+                 "
+         alt=""
+         class="prelude-left2"
+         style="will-change: opacity, transform; opacity: 0.023415; transform: translate3d(-14.841px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+         />
+    <img
+         src="{{ 'skyline-right.png' | asset_url  }}"
+         loading="lazy"
+         sizes="100vw"
+         srcset="
+                 {{ 'skyline-right-p-500.png' | asset_url  }}  500w,
+                 {{ 'skyline-right-p-800.png' | asset_url  }}  800w,
+                 {{ 'skyline-right.png' | asset_url  }}       1036w
+                 "
+         alt=""
+         class="prelude-right"
+         style="will-change: transform; transform: translate3d(14.841px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+         />
+    <img
+         src="{{ 'skyline-right2.png' | asset_url  }}"
+         loading="lazy"
+         sizes="100vw"
+         srcset="
+                 {{ 'skyline-right2-p-500.png' | asset_url  }}  500w,
+                 {{ 'skyline-right2-p-800.png' | asset_url  }}  800w,
+                 {{ 'skyline-right2.png' | asset_url  }}       1036w
+                 "
+         alt=""
+         class="prelude-right2"
+         style="will-change: opacity, transform; opacity: 0.023415; transform: translate3d(14.841px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+         />
+  <div class="prelude-backdrop-bottom"></div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Launch Carry Hard",
+    "settings": [
+		{
+			"type": "text",
+			"id": "carry-label",
+			"label": "carry",
+			"default": "CARRY"
+		},
+		{
+			"type": "text",
+			"id": "hard-label",
+			"label": "hard",
+			"default": "HARD"
+		}
+	]
+  }
+{% endschema %}

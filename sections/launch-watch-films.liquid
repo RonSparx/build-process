@@ -1,0 +1,68 @@
+<div class="pre-product unveil-lp">
+  <div class="pre-product-wrapper">
+    <div id="w-node-d0cb1447-e1a5-e0bb-0a8e-9abcf52dfb42-6e40fd6f" class="main-hero-video-wrapper">
+      <div
+           data-poster-url="{%if section.settings.desktop-poster != blank%} {{section.settings.desktop-poster | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6273223c41f72f0b4ca3a8d7_video2a-poster-00001.jpg {%endif%}"
+           data-video-urls="{%if section.settings.desk-video != blank%} {{section.settings.desk-video}} {% else %}https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6273223c41f72f0b4ca3a8d7_video2a-transcode.mp4{%endif%}"
+           data-autoplay="true"
+           data-loop="true"
+           data-wf-ignore="true"
+           data-beta-bgvideo-upgrade="false"
+           class="video-wrapper-video w-background-video w-background-video-atom"
+           >
+        <video
+               id="d0cb1447-e1a5-e0bb-0a8e-9abcf52dfb44-video"
+               autoplay=""
+               loop=""
+               style="background-image: url('{%if section.settings.desktop-poster != blank%} {{section.settings.desktop-poster | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6273223c41f72f0b4ca3a8d7_video2a-poster-00001.jpg {%endif%}');"
+               muted=""
+               playsinline=""
+               data-wf-ignore="true"
+               data-object-fit="cover"
+               >
+          <source src="{%if section.settings.desk-video != blank%} {{section.settings.desk-video}} {% else %}https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6273223c41f72f0b4ca3a8d7_video2a-transcode.mp4{%endif%}" data-wf-ignore="true" />
+        </video>
+        <div class="pre-product-text-wrapper">
+          <h1 data-w-id="ff5f3eaa-0e4b-3258-b9df-fab60fb933c9" style="opacity: 0;" class="h2">
+            {{ section.settings.heading  }}
+          </h1>
+          <a href="#" onclick="openFullscreen();" class="watch-film-button w-inline-block">
+            <img src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd465ab3a94aa_play.png" loading="lazy" alt="" class="watch-film-icon" />
+            <div class="end-video-text">{{ section.settings.button-label  }}</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "launch watch films",
+    "settings": [
+		{
+			"type": "image_picker",
+			"id": "desktop-poster",
+			"label": "Video Poster"
+		},
+		{
+			"type": "text",
+			"id": "desk-video",
+			"label": "Video Url"
+		},
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading",
+			"default": "CARRY HARD<br> LEAD YOUR TEAM TO VICTORY."
+		},
+		{
+			"type": "text",
+			"id": "button-label",
+			"label": "button",
+			"default": "WATCH THE FILM"
+		}
+	
+	]
+  }
+{% endschema %}

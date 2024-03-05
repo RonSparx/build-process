@@ -6,3 +6,6 @@ tailwind.config.js
 tsconfig.json
 vite.config.js
 jsconfig.json
+resources/
+fontend/
+node_modules/

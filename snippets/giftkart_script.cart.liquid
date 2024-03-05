@@ -1,0 +1,2908 @@
+
+<style>
+    .openGiftKartModal {
+        vertical-align: middle;
+    }
+
+    #other {
+        text-align: right;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .header__inline h1,
+    .header__inline h2,
+    .header__inline h3,
+    .header__inline h4,
+    .header__inline h5,
+    .header__inline h6,
+    .header__inline p {
+        display: inline;
+    }
+
+
+    .GiftKartModalbtn:hover,
+    .gktModalSave:hover {
+        transform: scale(0.95);
+    }
+
+
+    .GiftKartContainer {
+        display: none;
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        opacity: 1;
+        background: #222;
+        z-index: 999999999;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        animation-name: fadeIn_Container;
+        animation-duration: 1s
+    }
+
+    .GiftKartModal {
+        display: none;
+        top: 0;
+        min-width: 250px;
+        width: 50vw !important;
+        margin: 0 auto;
+        margin-top: 25vh !important;
+        z-index: 9999999999;
+        background: #fff;
+        box-shadow: 0 0 10px #000;
+        animation-name: fadeIn_Modal;
+        animation-duration: .8s;
+    }
+
+    .GiftKartheader {
+        padding: 5px 10px;
+        width: 100%;
+        height: 70px;
+        border-radius: 10px 10px 0 0;
+        border-bottom: 2px solid #ccc
+    }
+
+    .GiftKartheader a {
+        text-decoration: none;
+        float: right;
+        line-height: 70px;
+        margin-right: 20px;
+        color: #aaa
+    }
+
+    .GiftKartcontent {
+        width: 100%;
+    }
+
+    #first_label {
+        padding-top: 30px
+    }
+
+    #second_label {
+        padding-top: 25px
+    }
+
+    .GiftKartfooter,
+    .gktModalFooter {
+        padding: 13px 10px;
+        text-align: right;
+        width: 100%;
+
+    }
+
+
+
+
+    @media screen and (max-width: 900px) {
+        .GiftKartModalContent-left {
+            display: none;
+        }
+
+        .GiftKartModalContent {
+            grid-template-columns: 1fr !important;
+        }
+
+        .GiftKartModalContent-right-giftingOptions {
+            font-size: 15px !important;
+        }
+    }
+
+    @keyframes fadeIn_Modal {
+        from {
+            opacity: 0
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    @keyframes fadeIn_Container {
+        from {
+            opacity: 0
+        }
+
+        to {
+            opacity: .9
+        }
+    }
+
+    #is-a-gift {
+        margin: 0px;
+        padding: 10px;
+    }
+
+    #giftnote,
+    .gktMessageTextarea {
+        color: #636363;
+        border: 1px solid #ccc;
+        width: 100%;
+        border-radius: 5px;
+        height: 200px;
+        padding: 10px;
+        margin-top: 5px;
+        resize: none;
+        font-size: 14px !important;
+    }
+
+    .giftnote-giftKart {
+        border: 1px solid black !important;
+        border-radius: 0px !important;
+    }
+
+    .giftnote-giftKart:focus {
+        outline: 0;
+    }
+
+    .GiftKartModalContent {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1;
+        font-family: 'Helvetica', 'Arial', sans-serif;
+    }
+
+    .GiftKartModalContent-right {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 30px 50px;
+    }
+
+    .GiftKartModalContent-right-closeButton,
+    .gktModalClose {
+        fill: rgba(255, 255, 255, 0.851);
+        background: rgba(32, 33, 36, 0.1);
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        padding: 1px;
+        align-self: baseline;
+        justify-self: end;
+        margin-top: 3px;
+        margin-right: 3px;
+        cursor: pointer;
+    }
+
+    .GiftKartModalContent-right-header {
+        align-self: center;
+        justify-self: center;
+        font-weight: 1000;
+    }
+
+    .GiftKartModalContent-right-giftingOptions {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    .GiftKartModalContent-right-footer {
+        margin: 15px 20px;
+        display: grid;
+        align-items: center;
+    }
+
+    .GiftKartModalbtn,
+    .gktModalSave {
+        cursor: pointer;
+        padding: 6px 12px;
+        font-weight: 500;
+        text-align: center;
+        background-color: #A96668;
+        color: white;
+        transition: transform .2s;
+        margin: 0 20%;
+    }
+
+    .ql-size-small {
+        font-size: 11px;
+    }
+
+    .ql-size-large {
+        font-size: 26px;
+    }
+
+    .ql-size-huge {
+        font-size: 36px;
+    }
+
+    .gktModalWrapper {
+
+        display: none;
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        opacity: 1;
+        background: #222;
+        z-index: 999999999;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        animation-name: fadeIn_Container;
+        animation-duration: 1s
+    }
+
+    /* Modal Content */
+    .gktModal {
+
+        position: fixed;
+        top: 25%;
+        left: 50%;
+        min-width: 250px;
+        width: 50vw !important;
+        margin: 10px auto;
+        padding: 10px;
+        margin-top: 25vh !important;
+        border-radius: 2%;
+        background: #fefefe;
+        box-shadow: 0 0 10px #000;
+        animation-name: fadeIn_Modal;
+        animation-duration: .8s;
+
+        transform: translate(-50%, -50%);
+    }
+
+
+
+
+    .gktModalClose:hover,
+    .gktModalClose:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+
+    .gktPageWrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        cursor: pointer !important;
+        z-index: 100000;
+        /* padding: 0px 10px; */
+    }
+
+
+    .gktPageWrapperV2 {
+        display: grid;
+        grid-template-columns: 1fr;
+        cursor: pointer !important;
+        z-index: 100000;
+    }
+
+    .gktProductPageUpsellWrapper {
+        display: none;
+        width: 100%
+    }
+
+    .gktComboWrapper {
+        display: none;
+        ,
+        width: 100%
+    }
+
+    .gktGiftMessageWrapper {
+        display: none;
+        width: 100%
+    }
+
+    .gktGiftMsgAndWrapWrapper {
+        display: none;
+        width: 100%
+    }
+
+
+    .gktCartUpsellWrapper {
+        display: none;
+        width: 100%
+    }
+
+
+
+    .gktCartGiftMessageWrapper {
+        display: none;
+        width: 100%
+    }
+
+    .gktCartGiftMsgAndWrapWrapper {
+        display: none;
+        width: 100%
+    }
+
+
+    .gktPageWrapper input {
+        display: inline-block;
+    }
+
+    .gktPageWrapper label {
+        margin-left: 6px;
+    }
+
+    .giftCartPageWrapper {
+        display: grid;
+        grid-template-columns: 25px 4fr;
+        align-items: baseline;
+        justify-items: start;
+    }
+
+
+
+    .gktModalHeader {
+        padding: 10px;
+    }
+
+    .gktContentWrapper {
+        display: grid;
+    }
+
+    .gktGridLayout {
+        /* is attached dynamically to gktContentWrapper*/
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /*.gktLeftContent and gktRightContent */
+    .gktContentWrapper>div {
+        display: grid;
+        grid-template-rows: 1fr 3fr;
+        grid-gap: 10px;
+        padding: 5px 10px;
+        margin: 5px 10px;
+        font-size: 30px;
+    }
+
+    .gktContentWrapper>div:empty {
+        display: none;
+    }
+
+    .gktMessageCheckboxHeading,
+    .gktWrapCheckboxHeading {
+        font-size: 20px !important;
+    }
+
+    .gktModalFooter {
+        text-align: center;
+    }
+
+
+
+    /* Header should be in one line*/
+    .gktModalHeader {
+        display: grid;
+        grid-template-columns: auto 25px;
+    }
+
+
+    .gktProductPageWrapper {
+        position: relative;
+        justify-items: start;
+        align-items: end;
+    }
+
+    .gktJustifyCenter {
+        justify-self: center;
+        align-self: center;
+    }
+
+    .gktGiftWrapImage {
+        width: 200px;
+        height: 200px;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        justify-self: center;
+        object-fit: cover;
+    }
+
+
+    .gktCartGiftMsgAndWrapHeader {
+        display: grid;
+        justify-items: right;
+        padding: 5px;
+
+    }
+
+    .gktGiftMsgAndWrapHeader {
+        display: grid;
+        justify-items: left;
+        padding: 5px;
+    }
+
+    .gktGiftMsgAndWrapWrapperInnerEle {
+        display: grid !important;
+        grid-template-columns: 25px auto;
+        align-items: center;
+        justify-items: center;
+        user-select: none;
+    }
+
+    .gktGiftMsgAndWrapWrapperInnerEle>p {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+
+    .gktGiftMsgAndWrapHeader>label {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .gktCartGiftMsgAndWrapHeader>label {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .gift-checkbox-giftKart {
+        align-self: center;
+        justify-self: center;
+    }
+
+    .gktCheckboxLayout {
+        display: grid !important;
+        grid-template-columns: 25px auto;
+        font-size: 20px;
+        align-items: center;
+    }
+
+    .gktMessageCheckboxHeading>p,
+    .gktModalPopupHeading>p,
+    .gktGiftWrapCheckboxHeading>p {
+        margin: 0 !important;
+    }
+
+    .gktAlignCenter {
+        align-self: center;
+    }
+
+    @media screen and (max-width: 900px) {
+        .gktGridLayout {
+            grid-template-columns: 1fr;
+        }
+
+        .gktContentWrapper>div {
+            grid-template-rows: 1fr !important;
+        }
+
+        .gktLeftContent {
+            grid-template-rows: 1fr 1fr !important;
+        }
+
+        .gktMessageTextarea {
+            width: 100% !important;
+            height: 100px !important;
+        }
+
+        .gktModal {
+            top: 10% !important;
+
+        }
+
+        .gktDisplayWrapImageOnPhone {
+            display: block !important;
+        }
+
+        .gktModal {
+            width: 95vw !important;
+        }
+
+        .gktModalWrapper p,
+        .gktModal p {
+            font-size: 20px !important;
+        }
+
+    }
+
+    .ql-font-arial {
+        font-family: 'Arial';
+    }
+
+    .ql-font-times-new-roman {
+        font-family: 'Times New Roman';
+    }
+
+    .ql-font-courier-new {
+        font-family: 'Courier New';
+    }
+
+    .ql-font-comic-sans-ms {
+        font-family: 'Comic Sans MS';
+    }
+
+    .ql-font-impact {
+        font-family: 'Impact';
+    }
+
+    .ql-font-lucida-console {
+        font-family: 'Lucida Console';
+    }
+
+    .ql-font-lucida-sans-unicode {
+        font-family: 'Lucida Sans Unicode';
+    }
+
+    .ql-font-tahoma {
+        font-family: 'Tahoma';
+    }
+
+    .ql-font-verdana {
+        font-family: 'Verdana';
+    }
+
+    .ql-font-helvetica {
+        font-family: 'Helvetica';
+    }
+
+    .ql-font-trebuchet-ms {
+        font-family: 'Trebuchet MS';
+    }
+
+    .ql-font-georgia {
+        font-family: 'Georgia';
+    }
+
+    .ql-font-garamond {
+        font-family: 'Garamond';
+    }
+
+    .ql-font-brush-script-mt {
+        font-family: 'Brush Script MT';
+    }
+</style>
+<style>
+
+.gktComboContainer {
+   display:  grid;
+   grid-template-columns: 1fr;
+   grid-template-rows: auto;
+
+}
+.gktPrevImage,.gktNextImage{
+    margin-left:5px;
+    font-size: 16px;
+}
+.gktComboSliderNavigatior{
+    position: absolute;
+    bottom: 5px;
+    right:5px;
+}
+.gktComboItemContainer{
+    display:  grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto;
+    padding: 3px 0px;
+    margin: 3px 0px;
+    border-radius: 3px;
+    border: 1px solid #f1f2f3;
+}
+
+.gktComboItemContainerItem1{
+    grid-row: 1 / 5;
+    position:relative;
+}
+
+.gktComboItemContainerItem2{
+    padding-left: 5px;
+    text-align: left;
+}
+
+.gktComboItemContainerItem3{
+    padding-left: 5px;
+    text-align: left;
+}
+
+.gktComboItemContainerItem4{
+    padding-left: 5px;
+    text-align: left;
+}
+
+
+.gktComboItemContainerItem3CustomSelect{
+    position: relative;
+    width: fit-content;
+  
+}
+
+.gktComboItemContainerItem3CustomSelect > select{
+    box-shadow: 0;
+    font-size: 16px;
+    padding: 6px 10px;
+    background-color: #fafafa;
+    border: 1px solid #eee;
+    min-width: 120px;
+    margin: 0px;
+    
+}
+
+.gktComboItemContainerItem3CustomSelect > select:focus{
+    outline:none;
+
+}
+
+.gktComboItemContainerItem3CustomSelect > .gktComboItemContainerItem3SelectDropdownBtn {
+    position: absolute;
+    display: block;
+    top:0;
+    right: 0;
+    background: #fafafa;
+    height: 100%;
+    width: 20px;
+    pointer-events: none;
+
+}
+.gktComboItemContainerItem3CustomSelect > .gktComboItemContainerItem3SelectDropdownBtn::before,
+.gktComboItemContainerItem3CustomSelect > .gktComboItemContainerItem3SelectDropdownBtn::after
+ {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.gktComboItemContainerItem3CustomSelect > .gktComboItemContainerItem3SelectDropdownBtn::before
+ {
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #635959;
+    top:30%
+
+}
+
+.gktComboItemContainerItem3CustomSelect > .gktComboItemContainerItem3SelectDropdownBtn::after
+ {
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #635959;
+    top: 70%;
+}
+
+
+
+.gktComboModalWrapper {
+   
+   display: none;
+   width: 100%;
+   height: 100vh;
+   position: fixed;
+   opacity: 1;
+   background: #222;
+   z-index: 999999999;
+   top: 0;
+   left: 0;
+   overflow: hidden;
+   animation-name: fadeIn_Container;
+   animation-duration: .2s
+}
+
+ /* Modal Content */
+.gktComboModal {
+   
+   position: fixed;
+   top: 25%;
+   left: 50%;
+   min-width: 250px;
+   width: 50vw !important;
+   margin: 10px auto;
+   padding:10px;
+   margin-top: 25vh !important;
+   border-radius: 4px;
+   background: #fefefe;
+   box-shadow: 0 0 10px #000;
+   animation-name: fadeIn_Modal;
+   animation-duration: .2s;
+
+   transform: translate(-50%, -50%);
+ }
+ 
+ 
+
+/* Header should be in one line*/
+.gktComboModalHeader {
+    display: grid;
+    grid-template-columns: auto 25px;
+}
+
+
+.gktComboModalPopupHeading > p {
+    margin: 0 !important;
+}
+
+.gktComboModalClose{
+    fill: rgba(255,255,255,0.851);
+    background: rgba(32,33,36,0.4);
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    padding: 1px;
+    align-self: baseline;
+    justify-self: end;
+    margin-top: 3px;
+    margin-right: 3px;
+    cursor: pointer;
+}
+
+  
+.gktComboModalClose:hover,
+  .gktComboModalClose:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+
+.gktComboContent {
+    display:grid;
+    grid-template-rows: 1fr 3fr;
+    grid-gap: 10px;
+    padding: 5px 10px;
+    margin:5px 10px;
+    font-size: 30px;
+}
+
+.gktComboContentHeader{
+
+}
+.gktComboContentFooter{
+
+}
+.gktComboContentFooterBtn1{
+
+}
+.gktComboContentFooterBtn2{
+
+}
+
+</style>
+<style>
+
+.gktOneClickUpsellContainer {
+   display:  grid;
+   grid-template-columns: 1fr;
+   grid-template-rows: auto;
+   padding: 5px 0px;
+   margin-bottom: 10px;
+}
+
+.gktOneClickUpsellItemContainer{
+    display:  grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    padding: 3px 0px;
+    margin: 3px 0px;
+    border-radius: 3px;
+    border: 1px solid #f1f2f3;
+    font-size: 14px;
+}
+
+.gktOneClickUpsellItemContainer label {
+  margin-bottom: 0px
+}
+
+.gktOneClickUpsellItemContainerLabelText{
+  align-self: center;
+  font-size:12px;
+  justify-self: left;
+  text-align: left;
+}
+.gktOneClickUpsellImage{
+   width: 40px;
+    height: 40px;
+    border: 1px solid #f1f2f3;
+}
+.gktOneClickUpsellItemContainerItem1{
+    grid-row: 1 / 5;
+}
+
+.gktOneClickUpsellItemContainerItem2{
+    
+}
+
+.gktOneClickUpsellItemContainerItem3{
+    position: relative;
+    display: flex;
+    width: fit-content;
+    height: 30px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+ label.gktCustomCheckboxContainer {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+} 
+
+/* The container */
+.gktCustomCheckboxContainer {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+ 
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.gktCustomCheckboxContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.gktCustomCheckboxCheckmark {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border: 1px solid #a2a2a2;
+  border-radius: 4px;
+}
+
+/* On mouse-over, add a grey background color */
+.gktCustomCheckboxContainer:hover input ~ .gktCustomCheckboxCheckmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background 
+.gktCustomCheckboxContainer input:checked ~ .gktCustomCheckboxCheckmark {
+  background-color: #2196F3;
+} */
+
+/* Create the gktCustomCheckboxCheckmark/indicator (hidden when not checked) */
+.gktCustomCheckboxCheckmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the gktCustomCheckboxCheckmark when checked */
+.gktCustomCheckboxContainer input:checked ~ .gktCustomCheckboxCheckmark:after {
+  display: block;
+}
+
+/* Style the gktCustomCheckboxCheckmark/indicator */
+.gktCustomCheckboxContainer .gktCustomCheckboxCheckmark:after {
+  left: 8px;
+  top: 1px;
+  width: 8px;
+  height: 16px;
+  border: solid #009c00;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+</style>
+<style>
+
+.gktGiftCardModalWrapper {
+   
+    display: none;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    opacity: 1;
+    background: #222;
+    z-index: 999999999;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    animation-name: fadeIn_Container;
+    animation-duration: .2s
+ }
+ 
+  /* Modal Content */
+ .gktGiftCardModal {
+    
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    min-width: 250px;
+    width: 45vw !important;
+    margin: 10px auto;
+    padding:10px;
+    margin-top: 20vh !important;
+    border-radius: 4px;
+    background: #fefefe;
+    box-shadow: 0 0 10px #000;
+    animation-name: fadeIn_Modal;
+    animation-duration: .2s;
+    transform: translate(-50%, -50%);
+  }
+  
+.gktGiftCardInputFieldsDiv{
+    display: grid;
+}
+ 
+ /* Header should be in one line*/
+ .gktGiftCardModalHeader {
+     display: grid;
+     grid-template-columns: auto 25px;
+ }
+ 
+ 
+ .gktGiftCardModalPopupHeading > p {
+     margin: 0 !important;
+ }
+ .gktGiftCardModalPopupHeading{
+     font-size: 20px;
+     
+ }
+ .gktGiftCardModalClose{
+     fill: rgba(255,255,255,0.851);
+     background: rgba(32,33,36,0.4);
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     width: 24px;
+     height: 24px;
+     padding: 1px;
+     align-self: baseline;
+     justify-self: end;
+     margin-top: 3px;
+     margin-right: 3px;
+     cursor: pointer;
+ }
+ 
+   
+ .gktGiftCardModalClose:hover,
+   .gktGiftCardModalClose:focus {
+     color: #000;
+     text-decoration: none;
+     cursor: pointer;
+   }
+ .gktGiftCardInputFieldsDiv > div {
+     display: grid;
+     padding-bottom:10px;
+ }
+
+ .gktGiftCardInputFieldsDiv  label{
+        font-size: 14px;
+ }
+ .gktGiftCardContentBody input,.gktGiftCardContentBody textarea {
+    padding: 10px 18px;
+    width: 100%;
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    color: #000000;
+    max-width: 100%;
+    line-height: 1.2;
+    border-radius: 2px;
+    padding-bottom: 10px;
+ }
+ .gktGiftCardContentBody{
+     font-size: 16px;
+ }
+ .gktGiftCardModalSubText{
+    padding:10px;
+ }
+ .old-code{
+     .gktGiftCardContent{
+        display:grid;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 10px;
+     }
+     .gktGiftCardContentFooterBtn1{
+        margin: 0 20%;  
+     }
+ }
+ .gktGiftCardContent {
+     padding: 5px 10px;
+     margin:5px 10px;
+     font-size: 30px;
+ }
+ .gktGiftCardEmailValidation{
+    color: red;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+ }
+  .gktGiftCardInputFieldsDiv label[required]::after, label[required]:after{
+    content: '*';
+    margin-right: 4px;
+    color: red;
+  }
+ 
+ .gktGiftCardContentHeader{
+ 
+ }
+ .gktGiftCardContentFooter{
+    margin: 10px auto;
+ }
+ .gktGiftCardContentFooterBtn1{
+    cursor: pointer;
+    padding: 6px 12px;
+    font-weight: 500;
+    text-align: center;
+    background-color: #A96668;
+    color: white;
+    transition: transform .2s;
+    font-size:16px; 
+ }
+ .gktGiftCardContentFooterBtn1:hover {
+    transform: scale(0.95);
+}
+ .gktGiftCardContentFooterBtn2{
+ 
+ }
+ @media screen and (max-width: 900px) {
+    .gktGiftCardModal {
+        top: 25%;
+        left: 50%;
+        min-width: 250px;
+        width: 90vw !important;
+        margin: 10px auto;
+        padding:10px;
+        margin-top: 15vh !important;
+    }
+ }
+
+</style>
+
+</div>
+<div class="gktModalWrapper">
+    <div class="gktModal">
+        <div class="gktModalHeader">
+            <strong class="gktModalPopupHeading"> </strong>
+            <!-- <div class="gktModalClose"> &times; </div>   -->
+            <div class="gktModalClose">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+                    </path>
+                </svg>
+            </div>
+        </div>
+        <div class="gktContentWrapper">
+            <div class="gktLeftContent">
+                <div class="gktJustifyCenter">
+                    <label class="gktCheckboxLayout">
+                        <input type="checkbox" checked="true" class="gktGiftMessageCheckbox">
+                        <div class="gktMessageCheckboxHeading">
+
+                        </div>
+                    </label>
+                </div>
+                <textarea class="gktMessageTextarea gktAlignCenter">
+
+                            </textarea>
+            </div>
+            <div class="gktRightContent">
+                <div class="gktJustifyCenter">
+                    <label class="gktCheckboxLayout">
+                        <input type="checkbox" checked="true" class="gktGiftWrapCheckbox">
+                        <div class="gktGiftWrapCheckboxHeading">
+
+                        </div>
+                    </label>
+                </div>
+                <img class="gktGiftWrapImage gktAlignCenter">
+
+            </div>
+        </div>
+        <div class="gktModalFooter">
+            <div class="gktModalSave"></div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- modal for combo -->
+</div>
+    <div class="gktComboModalWrapper">
+        <div class="gktComboModal">
+            <div class="gktComboModalHeader">
+                <strong class="gktComboModalPopupHeading"> </strong>
+                <!-- <div class="gktModalClose"> &times; </div>   -->
+                <div class="gktComboModalClose">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+            <div class="gktComboContent">
+                <div class="gktComboContentHeader"></div>
+                <div class="gktComboContentFooter">
+                    <div class="gktComboContentFooterBtn1"></div>
+                    <div class="gktComboContentFooterBtn2"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+<div class="gktGiftCardModalWrapper">
+    <div class="gktGiftCardModal">
+        <div class="gktGiftCardModalHeader">
+            <strong class="gktGiftCardModalPopupHeading"> </strong>
+            <!-- <div class="gktModalClose"> &times; </div>   -->
+            <div class="gktGiftCardModalClose">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+                    </path>
+                </svg>
+            </div>
+        </div>
+        <div class="gktGiftCardContent">
+            <div class="gktGiftCardContentHeader"></div>
+            <form>
+                <div class="gktGiftCardContentBody"></div>
+            </form>
+            <div class="gktGiftCardContentFooter">
+                <div class="gktGiftCardContentFooterBtn1"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.quilljs.com/1.2.6/quill.snow.css">
+
+
+<script>
+
+    let tmpCartSettings = {"_id":"621df470bf5655675ccf5300","cartPageText":"<p><strong style=\"font-size: 18px; color: rgb(230, 0, 0);\">🎁 Add Gift Options</strong></p>","popupCheckBoxText":"<p>Add Gift Wrap</p>","popupHeadingText":"<p><strong style=\"color: rgb(230, 0, 0); font-size: 34px;\">🎁 GIFT OPTIONS<span class=\"ql-cursor\"></span></strong></p>","popupImgUrl":"https://giftkart-staging.s3.us-east-2.amazonaws.com/gift_popup/Pink-gifting.png","saveButtonBackgroundColor":"#353535","saveButtonTextColor":"#FFFFFF","saveButtonText":"SAVE","cartPopupBackgroundColor":"#FFFFFF","messageBoxplaceholder":"Add a personlized gift message here...","giftWrapImgUrl":"https://giftkart-staging.s3.us-east-2.amazonaws.com/public/giftWrap_image.png","giftWrapShopifyImgUrl":"https://giftkart-staging.s3.us-east-2.amazonaws.com/public/giftWrap_image.png","giftWrapTitle":"Wrap","giftWrapDesc":"All gift items are wrapped in high quality gift wrap before being securely packaged for delivery.","giftWrapPrice":"0.0","messageCheckboxHeading":"<p>Add Gift Message</p>","giftWrapCheckboxHeading":"<p>Add Gift Wrap</p>","enabledGifiting":"CART_PAGE","giftWrapHandle":"wrap","shopName":"tumi-uae.myshopify.com","isGiftField":true,"isGiftWrap":true,"isGiftPrice":false,"productId":"7591101890798","productVariantId":"42520126390510","currency":"AED","themeId":"129132953838","createdAt":"2022-03-01T10:24:48.010Z","updatedAt":"2022-03-01T10:24:50.417Z","combos":[],"oneClickUpsells":[],"giftCards":[{"_id":"621df8d5bf5655675ccf5415","shopName":"tumi-uae.myshopify.com","productId":"7591129514222","title":"TUMI Digital Gift Card","shopifyData":{"id":7591129514222,"title":"TUMI Digital Gift Card","body_html":"Your treat. Their choice.\nWhen you know they love TUMI, give them free reign to get exactly what they want.\nChoose from Dhs. 100 to Dhs. 1,500","vendor":"tumi-uae.myshopify.com","product_type":"Gift Card","created_at":"2022-03-01T14:43:32+04:00","handle":"tumi-digital-gift-card","updated_at":"2022-03-01T14:44:52+04:00","published_at":null,"template_suffix":null,"status":"draft","published_scope":"web","tags":"gkt-gift-card(do not remove)","admin_graphql_api_id":"gid://shopify/Product/7591129514222","variants":[{"id":42520161681646,"product_id":7591129514222,"title":"100.00","price":"100.00","sku":"","position":1,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"100.00","option2":null,"option3":null,"created_at":"2022-03-01T14:43:33+04:00","updated_at":"2022-03-01T14:43:33+04:00","taxable":false,"barcode":null,"grams":0,"image_id":null,"weight":0,"weight_unit":"kg","inventory_item_id":44615124549870,"inventory_quantity":0,"old_inventory_quantity":0,"requires_shipping":false,"admin_graphql_api_id":"gid://shopify/ProductVariant/42520161681646"},{"id":42520161714414,"product_id":7591129514222,"title":"250.00","price":"250.00","sku":"","position":2,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"250.00","option2":null,"option3":null,"created_at":"2022-03-01T14:43:33+04:00","updated_at":"2022-03-01T14:43:33+04:00","taxable":false,"barcode":null,"grams":0,"image_id":null,"weight":0,"weight_unit":"kg","inventory_item_id":44615124582638,"inventory_quantity":0,"old_inventory_quantity":0,"requires_shipping":false,"admin_graphql_api_id":"gid://shopify/ProductVariant/42520161714414"},{"id":42520161812718,"product_id":7591129514222,"title":"500.00","price":"500.00","sku":"","position":3,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"500.00","option2":null,"option3":null,"created_at":"2022-03-01T14:43:33+04:00","updated_at":"2022-03-01T14:43:33+04:00","taxable":false,"barcode":null,"grams":0,"image_id":null,"weight":0,"weight_unit":"kg","inventory_item_id":44615124615406,"inventory_quantity":0,"old_inventory_quantity":0,"requires_shipping":false,"admin_graphql_api_id":"gid://shopify/ProductVariant/42520161812718"},{"id":42520161878254,"product_id":7591129514222,"title":"1000.00","price":"1000.00","sku":"","position":4,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"1000.00","option2":null,"option3":null,"created_at":"2022-03-01T14:43:33+04:00","updated_at":"2022-03-01T14:43:33+04:00","taxable":false,"barcode":null,"grams":0,"image_id":null,"weight":0,"weight_unit":"kg","inventory_item_id":44615124648174,"inventory_quantity":0,"old_inventory_quantity":0,"requires_shipping":false,"admin_graphql_api_id":"gid://shopify/ProductVariant/42520161878254"},{"id":42520161943790,"product_id":7591129514222,"title":"1500.00","price":"1500.00","sku":"","position":5,"inventory_policy":"deny","compare_at_price":null,"fulfillment_service":"manual","inventory_management":null,"option1":"1500.00","option2":null,"option3":null,"created_at":"2022-03-01T14:43:33+04:00","updated_at":"2022-03-01T14:43:33+04:00","taxable":false,"barcode":null,"grams":0,"image_id":null,"weight":0,"weight_unit":"kg","inventory_item_id":44615124680942,"inventory_quantity":0,"old_inventory_quantity":0,"requires_shipping":false,"admin_graphql_api_id":"gid://shopify/ProductVariant/42520161943790"}],"options":[{"id":9649922015470,"product_id":7591129514222,"name":"Value","position":1,"values":["100.00","250.00","500.00","1000.00","1500.00"]}],"images":[{"id":36828041674990,"product_id":7591129514222,"position":1,"created_at":"2022-03-01T14:44:52+04:00","updated_at":"2022-03-01T14:44:52+04:00","alt":null,"width":500,"height":500,"src":"https://cdn.shopify.com/s/files/1/0272/4233/2203/products/1646131395430_2d5861da-ee90-4f58-975f-728d434f396a.jpg?v=1646131492","variant_ids":[],"admin_graphql_api_id":"gid://shopify/ProductImage/36828041674990"}],"image":{"id":36828041674990,"product_id":7591129514222,"position":1,"created_at":"2022-03-01T14:44:52+04:00","updated_at":"2022-03-01T14:44:52+04:00","alt":null,"width":500,"height":500,"src":"https://cdn.shopify.com/s/files/1/0272/4233/2203/products/1646131395430_2d5861da-ee90-4f58-975f-728d434f396a.jpg?v=1646131492","variant_ids":[],"admin_graphql_api_id":"gid://shopify/ProductImage/36828041674990"}},"isDeleted":false,"createdAt":"2022-03-01T10:43:33.962Z","updatedAt":"2022-03-01T10:44:53.056Z","__v":0}],"userData":{"shopName":"tumi-uae.myshopify.com","countryCode":"AE","countryName":"United Arab Emirates","currency":"AED","currencyInfo":{"code":"AED","symbol":"د.إ.‏","thousandsSeparator":",","decimalSeparator":".","symbolOnLeft":true,"spaceBetweenAmountAndSymbol":true,"decimalDigits":2},"customSettings":{"initialModalPopupCnt":0,"disableCartSettings":false,"addToCartBtnSelectors":null,"checkoutBtnSelectors":null,"disableApp":false},"email":"daniel.rosiak@chalhoub.com"},"languageData":{"giftcard":{"purchasePageFields":{"modalHeading":{"id":"modalHeading","label":"Popup Heading Text","type":"text","value":"Let's wrap"},"modalDescription":{"id":"modalDescription","label":"Popup Description Text","type":"text","value":"Please provide the recipient's name and email address and we will send your gift card."},"recipientName":{"id":"recipientName","label":"Recipient name label","type":"text","value":"Recipient Name"},"recipientNamePlaceholder":{"id":"recipientNamePlaceholder","label":"Recipient name Placeholder","type":"text","value":"Recipient Name"},"recipientEmail":{"id":"recipientEmail","label":"Recipient email label","type":"text","value":"Recipient Email"},"recipientEmailPlaceholder":{"id":"recipientEmailPlaceholder","label":"Recipient email Placeholder","type":"text","value":"Recipient Email"},"senderName":{"id":"senderName","label":"Sender name label","type":"text","value":"Sender Name"},"senderNamePlaceholder":{"id":"senderNamePlaceholder","label":"Recipient name Placeholder","type":"text","value":"Recipient Name"},"giftNote":{"id":"giftNote","label":"Gift note label","type":"text","value":"Gift Note"},"giftNotePlaceholder":{"id":"giftNotePlaceholder","label":"Gift note placeholder","type":"text","value":"Enter a message for the recipient"},"buyNowButtonText":{"id":"buyNowButtonText","label":"Buy Now Button text","type":"text","value":"Buy Now"},"buyNowButtonTextLoading":{"id":"buyNowButtonTextLoading","label":"Buy Now Button text Loading","type":"text","value":"Loading checkout page"},"addToCartButtonText":{"id":"addToCartButtonText","label":"Add to cart button text","type":"text","value":"Add to cart"}}}}};//CART_SETTINGS_END
+
+    let DEFAULT_addToCartBtnSelectors = 'input[name="add"], button[name="add"], form[action*="/cart/add"] input[type="submit"], form[action*="/cart/add"] button[type="submit"], form[action*="/cart/add"] button:not([type="button"]), form[action*="/cart/add"] .gkt__add-to-cart';
+    let DEFAULT_checkoutBtnSelectors =  'button[name="checkout"], input[name="checkout"], form[action*="/cart"] a[href="/checkout"], a[href="/checkout"], form[action="/cart"] input[type="submit"][name="checkout"], form[action="/cart"] button[type="submit"][name="checkout"]';
+
+
+    var cart_settings = {
+        giftWrapProduct: {
+            productId: tmpCartSettings.productId,
+            productVairantID: tmpCartSettings.productVariantId,
+            giftWrapPrice: tmpCartSettings.giftWrapPrice,
+            giftWrapProductImage: tmpCartSettings.giftWrapImgUrl,
+            giftWrapShopifyImgUrl: tmpCartSettings.giftWrapShopifyImgUrl,
+            giftWrapHandle: tmpCartSettings.giftWrapHandle,
+        },
+
+        giftMessages: { messageBoxplaceholder: "" },
+        popup: {
+            popupHeadingText: tmpCartSettings.popupHeadingText,
+            messageCheckboxHeading: tmpCartSettings.messageCheckboxHeading,
+            giftWrapCheckboxHeading: tmpCartSettings.giftWrapCheckboxHeading,
+            messageBoxplaceholder: tmpCartSettings.messageBoxplaceholder,
+            saveButtonBackgroundColor: tmpCartSettings.saveButtonBackgroundColor,
+            saveButtonTextColor: tmpCartSettings.saveButtonTextColor,
+            saveButtonText: tmpCartSettings.saveButtonText,
+            cartPopupBackgroundColor: tmpCartSettings.cartPopupBackgroundColor,
+            reloadOnCancelClick: tmpCartSettings.reloadOnCancelClick
+        },
+        giftingOptions: {
+            isGiftWrapEnabled: tmpCartSettings.isGiftWrap,
+            isGiftMessageEnabled: tmpCartSettings.isGiftField,
+            // enabledGifiting: "PRODUCT_PAGES_AND_CART_PAGE", "PRODUCT_PAGES", "CART_PAGE", "NONE",
+            enabledGifiting: tmpCartSettings.enabledGifiting,
+            shopifyPageinnerHTML: tmpCartSettings.cartPageText
+        },
+        pageWrapper: { cartPageText: tmpCartSettings.cartPageText },
+        combos: tmpCartSettings.combos || [],
+        oneClickUpsells: tmpCartSettings.oneClickUpsells || [],
+        giftCards: tmpCartSettings.giftCards || [],
+        app: {
+            disableApp: tmpCartSettings.userData.customSettings.disableApp || false,
+            disableSideCart:  tmpCartSettings.userData.customSettings.disableSideCart ||  false,
+            addToCartBtnSelectors : tmpCartSettings.userData.customSettings.addToCartBtnSelectors || DEFAULT_addToCartBtnSelectors,
+            checkoutBtnSelectors : tmpCartSettings.userData.customSettings.checkoutBtnSelectors || DEFAULT_checkoutBtnSelectors,
+        },
+        merchantInfo: tmpCartSettings.userData,
+        languageData:{
+            giftcard: tmpCartSettings.languageData.giftcard,
+        }
+    }
+
+    let shopifyLiquidValues = {
+        product: { handle: {{ product.handle | json }} },
+        selected_or_first_available_variant: {{ product.selected_or_first_available_variant | json }},
+        }
+
+    var gktUtils = {
+        f: {}
+    }
+    window.gktUtils = gktUtils;
+
+    /*
+    *fn(param1, param2) =>   
+    *param1 is url of script that we suppose to load 
+    *param2 is function that should be called after script is loaded 
+    */
+    gktUtils.f.loadScript = function (a, b) {
+        var c = document.createElement("script");
+        c.type = "text/javascript";
+        c.src = a;
+        document.getElementsByTagName("head")[0].appendChild(c)
+        c.onload = function () { b() };
+    };
+
+    /*
+    * we changed loadScript function - if else block for onload is removed as it was not making sense
+    *fn(param1) =>  
+    *param1 - represents function that should be executed once jquery is loaded 
+    *https://www.w3schools.com/jquery/jquery_noconflict.asp
+    */
+    gktUtils.f.loadJquery = function (b) {
+        console.log("does this work");
+        "undefined" === typeof jQuery || 1.9 > parseFloat(jQuery.fn.jquery) ? gktUtils.f.loadScript("//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js", function () {
+            gktJquery = jQuery.noConflict(!0);
+            b(gktJquery)
+        })
+            :
+            b(jQuery)
+    };
+
+    var gkt = {
+        debug: [],
+        version: 1.1,
+        state: {
+            submitted: "",
+            product_added: "",
+            page_type: "",
+            insertWrapperOnPage: [],
+            cartData: undefined
+        },
+        constants: {
+            themesIds: {
+                DAWN_THEME: 887,
+                VENTURE_THEME: 775,
+                EXPRESS_THEME: 885,
+                CRAVE_THEME: 1363,
+                SENSE_THEME: 1356,
+                CRAFT_THEME: 1368,
+            }
+        },
+        settings: cart_settings, //object from function
+        selectors: {
+            addToCart: cart_settings.app.addToCartBtnSelectors,
+            checkoutBtn:cart_settings.app.checkoutBtnSelectors,
+            sideCartDrawerOverlay: "#CartDrawer, .drawer, .drawer-cover, .Drawer",
+            // checkoutBtn: 'button[type="submit"][name="checkout"]',
+            // checkoutBtn: 'button[name="checkout"]',
+            buyNowBtn: ".shopify-payment-button__button, .shopify-payment-button__button--unbranded",
+            cartForm: 'form[action="/cart"], form[action="/cart/"], form[action="cart"]',
+            productPageWrapperV2: '.gktProductPageWrapperV2',
+            cartPageWrapperV2: '.gktCartPageWrapperV2'
+        },
+        cartInterval: "",
+        productinterval: "",
+        f: {
+
+            bootstrap: function (settings) {
+                console.log("bootstap?");
+                gkt.f.globalListener(settings)
+                // gkt.gktGiftMsgAndWrap.init(settings);
+                gkt.storage.loadValuesFromStorage(gkt.settings);
+                gkt.themeSpecificCode.init(gkt.settings)
+
+            },
+            getPageType: function () {
+                var pageType = "";
+                if (window.location.pathname.includes("/cart") && !window.location.pathname.includes("/products")) {
+                    pageType = "cart";
+                } else if (window.location.pathname.includes("/products")) {
+                    pageType = "product";
+                } else if (window.location.pathname.includes("/collections")) {
+                    pageType = "COLLECTION";
+                } else if (window.location.pathname.includes("/")) {
+                    pageType = "HOME";
+                } else if ("undefined" != typeof Shopify && "undefined" != typeof Shopify.Checkout) {
+                    pageType = "CHECKOUT";
+                } else {
+                    pageType = "PAGE_NOT_FOUND";
+                }
+                return pageType;
+            },
+            getProductPageHandle: function () {
+                if ("product" === gkt.state.page_type && shopifyLiquidValues.product.handle) {
+                    // let pattern = /(?<=\/products\/)((?!\?|\$).)+/g
+                    // if(window && window.location && window.location.href){
+                    //     return window.location.href.match(pattern)[0]
+                    // }
+                    return shopifyLiquidValues.product.handle
+
+                }
+                return "undefined"
+
+            },
+            getSelectedVariant: function () {
+                if ("product" === gkt.state.page_type) {
+                    if(ShopifyAnalytics && ShopifyAnalytics.meta && ShopifyAnalytics.meta.selectedVariantId){
+                        return ShopifyAnalytics.meta.selectedVariantId
+                    }
+                    if(document.querySelector('[name="id"]') && document.querySelector('[name="id"]').value){
+                        return document.querySelector('[name="id"]').value
+                    }
+                    if(shopifyLiquidValues.selected_or_first_available_variant){
+                        return shopifyLiquidValues.selected_or_first_available_variant.id
+                    }
+                    return undefined
+                }
+            },
+            getElements: function (settings) {
+                return {
+                    gktGiftMsgAndWrapWrapperParent: gkt.$(gkt.$.parseHTML('<div class="gktGiftMsgAndWrapHeader" ><label for="gift-wrapping" class="gktGiftMsgAndWrapWrapperInnerEle"><input id="gift-wrapping" class="gktGiftOptionsCheckbox" type="checkbox" name="addGiftOptions"></label></div>')),
+                    gktCartGiftMsgAndWrapWrapperParent: gkt.$(gkt.$.parseHTML('<div class="gktCartGiftMsgAndWrapHeader" ><label for="gift-wrapping" class="gktGiftMsgAndWrapWrapperInnerEle"><input id="gift-wrapping" class="gktGiftOptionsCheckbox" type="checkbox" name="addGiftOptions"></label></div>')),
+                    addToCartBtn: gkt.$(document).find(gkt.selectors.addToCart),
+                    addToCartButtonCloned: undefined,
+                    checkoutBtn: gkt.$(document).find(gkt.selectors.checkoutBtn),
+                    cartForm: gkt.$(document).find(gkt.selectors.cartForm),
+                    productPageWrapperV2: gkt.$(gkt.$.parseHTML('<div class="gktPageWrapper gktProductPageWrapperV2"> <div class="gktComboWrapper"></div> <div class="gktProductPageUpsellWrapper"></div>  <div class="gktGiftMsgAndWrapWrapper"></div> </div>')),
+                    cartPageWrapperV2: gkt.$(gkt.$.parseHTML('<div class="gktPageWrapper gktCartPageWrapperV2"> <div class="gktCartUpsellWrapper"></div> <div class="gktCartGiftMessageWrapper"></div> <div class="gktCartGiftMsgAndWrapWrapper"></div> </div>')),
+                    buyNowBtn: gkt.$(document).find(gkt.selectors.buyNowBtn)
+                }
+            },
+
+            initialize: function (jQuery) {
+                //  gkt.$.ajaxSetup({global: true});
+                gkt.state.page_type = gkt.f.getPageType();
+                gkt.elements = gkt.f.getElements(gkt.settings);
+                if ("" === gkt.state.page_type) return false;
+                return gkt.f.bootstrap(gkt.settings);
+            },
+            globalListener: function (settings) {
+                let isIntervalActive = false
+                //if app is disabled reurn
+                if (settings.app.disableApp) {
+                    return
+                } else {
+                    if ("product" === gkt.state.page_type) {
+                        gkt.productPage.init(settings)
+                    }
+
+                    if (settings.app.disableSideCart) {
+                        if ("cart" === gkt.state.page_type) {
+                            gkt.cartPage.init(settings)
+                        }
+                    } else {
+                        gkt.cartPage.init(settings)
+
+                    }
+                }
+
+                setInterval(async () => {
+                    if (!isIntervalActive) {
+                        // console.log("globalListener-active")
+
+                        isIntervalActive = true
+
+                        // insert productpage wrapper if productPage is initialized
+                        if ("product" === gkt.state.page_type &&
+                            gkt.elements.addToCartBtn.length > 0 &&
+                            gkt.$(document).find(gkt.selectors.productPageWrapperV2).length == 0) {
+                            console.log("productPage-insertWrapperIntoPage1")
+                            gkt.productPage.f.insertWrapperIntoPage(settings)
+                        }
+
+                        let checkoutBtnEle = gkt.$(document).find(gkt.selectors.checkoutBtn)
+
+                        // insert cartPage wrapper if cartPage is initialized 
+                        if (checkoutBtnEle.length > 0 &&
+                            gkt.$(document).find(gkt.selectors.cartPageWrapperV2).length == 0) {
+                            console.log("cartPage-insertWrapperIntoPage")
+                            await gkt.cartPage.f.insertWrapperIntoPage(settings)
+                        }
+
+                        // keep syncing state of wrapper which is on the page as on some instance it reset 
+                        if (gkt.$(document).find(gkt.selectors.productPageWrapperV2).length > 0 || gkt.$(document).find(gkt.selectors.cartPageWrapperV2).length > 0) {
+                            gkt.gktGiftMsgAndWrap.action.syncWrapperCheckBoxState()
+                        }
+
+                        // check if giftkart product is there in cart and giftwrap is set to true
+                        let gktGiftWrapCheckbox = sessionStorage.getItem("gktGiftWrapCheckbox");
+                        if (gktGiftWrapCheckbox === "true" ? true : false) {
+                            // console.log("check cart if its having giftwrap product")
+                            let giftWrapProductFound = false
+                            // check if giftkart product is there in cart and giftwrap is set to true
+                            let cartData = await gkt.utility.getCart()
+                            for (var item of cartData['items']) {
+                                if (item["variant_id"].toString() == gkt.settings.giftWrapProduct.productVairantID) {
+                                    giftWrapProductFound = true;
+                                }
+                            }
+                            // if giftwrap is not found ensure box is uncheck
+                            if (!giftWrapProductFound) {
+                                console.log("giftwrapproduct not found")
+                                gkt.storage.setItem("gktGiftWrapCheckbox", false)
+                                gkt.utility.updateCart({ attributes: { giftWrap: "" } })
+                            } else {
+
+                            }
+                        }
+
+                        // check if comboproduct overwrite buyNowButton 
+                        if (gkt.gktCombo.state.comboHandle != "") {
+                            gkt.gktCombo.f.comboBuyNowButtonOverwrite()
+                        }
+
+                        // check if giftCard overwrite buyNowButton 
+                        if (gkt.gktGiftCard.state.giftCardData) {
+                            gkt.gktGiftCard.f.giftCardBuyNowButtonOverwrite()
+                        }
+
+
+                        isIntervalActive = false
+
+                    }
+                }, 1000)
+            }
+        },
+        utility: {
+            getCookie: function (cookieName) {
+                let name = cookieName + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(";");
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == " ") {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return null;
+            },
+            setCookie: function (cookieName, cookieValue, expiryDays = 7) {
+                const d = new Date();
+                d.setTime(d.getTime() + expiryDays * 24 * 60 * 60 * 1000);
+                let expires = "expires=" + d.toUTCString();
+                document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
+            },
+            addToCart: async function (data) {
+
+                try {
+                    // if there is nothing to add in cart..just return true
+                    if (!data.id) {
+                        return true
+                    }
+                    let result = await gkt.$.ajax({
+                        url: "/cart/add.js",
+                        data: data,
+                        type: "POST",
+                        dataType: "json",
+                    })
+                    return true
+                } catch (error) {
+                    console.error("gkt-utility-addToCart");
+                    console.error(error);
+                    return false
+                }
+            },
+            updateCart: async function (data) {
+                try {
+                    let result = await gkt.$.ajax({
+                        type: "POST",
+                        url: "/cart/update.js",
+                        data: data,
+                        dataType: "json",
+                    });
+                    return true
+                } catch (error) {
+                    console.error("gkt-utility-updateCart");
+                    console.error(error);
+                    return false
+                }
+            },
+            changeCart: async function (data) {
+                try {
+                    let result = await gkt.$.ajax({
+                        type: "POST",
+                        url: "/cart/change.js",
+                        data: data,
+                        dataType: "json",
+                    });
+                    return true
+                } catch (error) {
+                    console.error("gkt-utility-changeCart");
+                    console.error(error);
+                    return false
+                }
+            },
+
+            getProductData: async function (productName) {
+                try {
+                    let result = await gkt.$.ajax({
+                        type: "GET",
+                        url: "/products/" + productName,
+                        // data: data,
+                        dataType: "json",
+                    });
+                    return result;
+                } catch (error) {
+                    console.error("gkt-utility-updateCart");
+                    console.error(error);
+                    return false
+                }
+            },
+            getProductDataV2: function (productName) {
+                try {
+                    return new Promise((res, rej) => {
+                        gkt.$.getJSON("/products/" + productName + ".js", function (product) {
+                            console.log("success-productName: ", productName)
+                            res(product)
+                        }).fail(function () { console.log("fail-productName: ", productName); res(false) })
+                    })
+                    return result;
+                } catch (error) {
+                    console.error("gkt-utility-getProductDataV2");
+                    console.error(error);
+                    return false
+                }
+            },
+            addToCartV2: function (data) {
+                try {
+                    return new Promise((res, rej) => {
+                        gkt.$.post('/cart/add.js', data)
+                            .done(function () { console.log("success-/cart/add.js': "); res(true) })
+                            .fail(function () { console.log("fail-/cart/add.js"); res(false) })
+                    })
+                    return result;
+                } catch (error) {
+                    console.error("gkt-utility-addToCartV2");
+                    console.error(error);
+                    return false
+                }
+            },
+            clearCart:  function (data) {
+                try {
+                    return new Promise((res, rej) => {
+                        gkt.$.post('/cart/clear.js', data)
+                            .done(function () { console.log("success-/cart/clear.js': "); res(true) })
+                            .fail(function () { console.log("fail-/cart/clear.js"); res(false) })
+                    })
+                    return result;
+                } catch (error) {
+                    console.error("gkt-utility-clearCart");
+                    console.error(error);
+                    return false
+                }
+            },
+            getCart: async function (data) {
+                try {
+                    let result = await gkt.$.ajax({
+                        type: "GET",
+                        url: "/cart.js",
+                        dataType: "json",
+                    });
+                    return result
+                } catch (error) {
+                    console.error("gkt-utility-getCart");
+                    console.error(error);
+                    return false
+                }
+            },
+            getCartTotalQuantity: async function () {
+                try {
+                    let total = 0
+                    let cartData = await gkt.$.ajax({
+                        type: "GET",
+                        url: "/cart.js",
+                        dataType: "json",
+                    });
+                    for (var item of cartData['items']) {
+                        total += item["quantity"]
+                    }
+                    return total
+                } catch (error) {
+                    console.error("gkt-utility-getCart");
+                    console.error(error);
+                    return false
+                }
+            },
+            checkIfItemPresentInCart: function (searchedVariantId) {
+                if (gkt.state.cartData && gkt.state.cartData.items && gkt.state.cartData.items.length && gkt.state.cartData.items.length > 0) {
+                    for (let i = 0; i < gkt.state.cartData.items.length; i++) {
+                        let item = gkt.state.cartData.items[i]
+                        if (item && item.variant_id && item.variant_id == searchedVariantId) {
+                            return item
+                        }
+                    }
+                    return false
+                } else {
+                    return false
+                }
+            },
+            cloneAddToCartBtn: function () {
+
+            },
+            slider: {
+                state: {
+                    slideIndex: 0,
+                },
+                plusSlides: function (selector, n) {
+                    this.showSlides(selector, this.state.slideIndex += n);
+                },
+                //minusSlides
+                minusSlides: function (selector, n) {
+                    this.showSlides(selector, this.state.slideIndex -= n);
+                },
+                showSlides: function (selector, n) {
+                    var i;
+                    var slides = selector.find(".gktComboItemContainerItem1Img");
+                    if (slides && slides.length) {
+                        //     slides = JSON.parse(slides);
+                        // }
+
+
+                        if (n > slides.length) { this.state.slideIndex = 1 }
+                        if (n < 1) { this.state.slideIndex = slides.length }
+                        for (i = 0; i < slides.length; i++) {
+                            slides[i].style.display = "none";
+                        }
+                        slides[this.state.slideIndex - 1].style.display = "block";
+                        //   plusSlides(1)
+                    }
+                    // setTimeout(function () { plusSlides(n + 1) }, 2000);
+                },
+            },
+
+        },
+        storage: {
+
+            loadValuesFromStorage: function (settings) {
+                var gktGiftMessageCheckbox = sessionStorage.getItem("gktGiftMessageCheckbox");
+                var gktMessageTextarea = sessionStorage.getItem("gktMessageTextarea");
+                var gktGiftWrapCheckbox = sessionStorage.getItem("gktGiftWrapCheckbox");
+                var gktGiftOptionsCheckbox = sessionStorage.getItem("gktGiftOptionsCheckbox");
+                gkt.$('.gktMessageTextarea').val(gktMessageTextarea);
+
+                if (gktGiftMessageCheckbox === null) {
+                    gkt.$('.gktGiftMessageCheckbox').prop('checked', true);
+                } else {
+                    gkt.$('.gktGiftMessageCheckbox').prop('checked', gktGiftMessageCheckbox === "true");
+                }
+
+                if (gktGiftWrapCheckbox === null) {
+                    gkt.$('.gktGiftWrapCheckbox').prop('checked', true);
+                } else {
+                    gkt.$('.gktGiftWrapCheckbox').prop('checked', gktGiftWrapCheckbox === "true");
+                }
+
+                if (gktGiftOptionsCheckbox === null) {
+
+                    gkt.elements.cartPageWrapperV2.find(".gktGiftOptionsCheckbox").prop('checked', false)
+                    gkt.elements.productPageWrapperV2.find(".gktGiftOptionsCheckbox").prop('checked', false)
+                    gkt.$(document).find(".gktGiftOptionsCheckbox").prop('checked', false)
+                } else {
+                    gkt.elements.cartPageWrapperV2.find(".gktGiftOptionsCheckbox").prop('checked', gktGiftOptionsCheckbox === "true")
+                    gkt.elements.productPageWrapperV2.find(".gktGiftOptionsCheckbox").prop('checked', gktGiftOptionsCheckbox === "true")
+                    gkt.$(document).find(".gktGiftOptionsCheckbox").prop('checked', gktGiftOptionsCheckbox === "true")
+
+                }
+
+            },
+            setItem: function (field, value) {
+                sessionStorage.setItem(field, value)
+            },
+            getItem: function (field) {
+                return sessionStorage.getItem(field)
+            }
+        },
+        drawerCart: {
+            init: function (settings) {
+                gkt.cartPage.init(settings)
+            }
+        },
+        themeSpecificCode: {
+            init: function (settings) {
+                gkt.themeSpecificCode.f.ventureTheme(settings)
+                gkt.themeSpecificCode.f.expressTheme(settings)
+                gkt.themeSpecificCode.f.craveTheme(settings)
+                gkt.themeSpecificCode.f.craftTheme(settings)
+                gkt.themeSpecificCode.f.senseTheme(settings)
+
+
+            },
+
+            f: {
+                ventureTheme: function () {
+                    if (window.Shopify && window.Shopify.theme && window.Shopify.theme.theme_store_id && window.Shopify.theme.theme_store_id == gkt.constants.themesIds.VENTURE_THEME) {
+                        // reload on save
+                        gkt.selectors.sideCartDrawerOverlay = ""
+                    }
+                },
+                expressTheme: function () {
+                    if (window.Shopify && window.Shopify.theme && window.Shopify.theme.theme_store_id && window.Shopify.theme.theme_store_id == gkt.constants.themesIds.EXPRESS_THEME) {
+                        // addd a css property of jusyify-items:cetner to cartpagewrapper
+                        gkt.elements.cartPageWrapperV2.css("justify-items", "center")
+                        if (window.location.pathname.includes("/cart")) {
+                            gkt.selectors.checkoutBtn = ".cart__actions"
+                        }
+                    }
+                },
+                craveTheme: function () {
+                    if (window.Shopify && window.Shopify.theme && window.Shopify.theme.theme_store_id && window.Shopify.theme.theme_store_id == gkt.constants.themesIds.CRAVE_THEME) {
+                        // change css of cart__ctas in the document to block
+                        gkt.$(document).find(".cart__ctas").css("display", "block")
+
+                    }
+                },
+                craftTheme: function () {
+                    if (window.Shopify && window.Shopify.theme && window.Shopify.theme.theme_store_id && window.Shopify.theme.theme_store_id == gkt.constants.themesIds.CRAFT_THEME) {
+                        // change css of cart__ctas in the document to block
+                        gkt.$(document).find(".cart__ctas").css("display", "block")
+
+                    }
+                },
+                senseTheme: function () {
+                    if (window.Shopify && window.Shopify.theme && window.Shopify.theme.theme_store_id && window.Shopify.theme.theme_store_id == gkt.constants.themesIds.SENSE_THEME) {
+                        // change css of cart__ctas in the document to block
+                        gkt.$(document).find(".cart__ctas").css("display", "block")
+
+                    }
+                },
+
+            }
+        },
+        productPage: {
+            init: async function (settings) {
+                console.log("productPage-init")
+
+                gkt.state.cartData = await gkt.utility.getCart()
+                // gkt.state.insertWrapperOnPage.push("PRODUCT_PAGE")
+
+                gkt.gktCombo.init(settings)
+
+                gkt.gktGiftMsgAndWrap.init(settings, "PRODUCT_PAGE")
+
+                gkt.gktOneClickUpsell.init(settings, "PRODUCT_PAGE")
+
+                gkt.gktGiftCard.init(settings, "PRODUCT_PAGE")
+
+                // gkt.utility.cloneAddToCartBtn()
+            },
+            f: {
+                insertWrapperIntoPage: function (settings) {
+
+                    if ("undefined" != typeof gkt.elements.addToCartBtn) {
+                        let addToCartBtnEle = gkt.$(document).find(gkt.elements.addToCartBtn)
+                        addToCartBtnEle.each(function (index) {
+                            if (gkt.$(this).is(":visible")) {
+                                gkt.$(this).before(gkt.elements.productPageWrapperV2);
+                            }
+
+                        });
+                    }
+                },
+            },
+
+            actions: {
+                insertUpsellModal: function () {
+                    //   Gs.$("body").append(Gs.settings._modalHtml);
+                    alert("popModal for upsell action")
+                },
+            },
+        },
+        cartPage: {
+            init: async function (settings) {
+
+                gkt.state.cartData = await gkt.utility.getCart()
+
+                gkt.gktGiftMsgAndWrap.init(settings, "CART_PAGE")
+
+                gkt.gktOneClickUpsell.init(settings, "CART_PAGE")
+            },
+            f: {
+                insertWrapperIntoPage: function (settings) {
+                    return new Promise((res, rej) => {
+                        if ("undefined" != typeof gkt.elements.checkoutBtn) {
+                            let checkoutBtnEle = gkt.$(document).find(gkt.selectors.checkoutBtn)
+                            checkoutBtnEle.each(function (index) {
+                                // console.log("index", index)
+                                if (gkt.$(this).is(":visible")) {
+                                    // check if theme ids matches otherwise add element to default position
+                                    if (window.Shopify && window.Shopify.theme && window.Shopify.theme.theme_store_id && window.Shopify.theme.theme_store_id == gkt.constants.themesIds.DAWN_THEME) {
+                                        gkt.$(this).parent().before(gkt.elements.cartPageWrapperV2);
+                                    } else {
+                                        gkt.$(this).before(gkt.elements.cartPageWrapperV2);
+                                    }
+                                }
+                            });
+
+                        }
+                        res()
+                    })
+                },
+            },
+            events: {
+                ajaxSuccess: function (cartSettings) {
+                    console.log("register ajax success event")
+                    gkt.$(document).ajaxSuccess(function (event, xhr, settings) {
+                        console.log("ajaxSuccess", settings.url)
+                        if (settings.url == "/change.js?line=1&quantity=0" || settings.url == "change.js?line=1&quantity=0" || settings.url == "change.js" || settings.url == "/change.js" || settings.url == "/cart.js" || settings.url == "cart.js" || settings.url == "cart" || settings.url == "/cart") {
+                            setTimeout(function () {
+                                console.log("ajaxSuccess")
+
+                            }, 2000);
+                        }
+                    });
+                }
+            }
+        },
+        gktModal: {
+            init: function (settings) {
+                gkt.gktModal.initialize(settings)
+                gkt.gktModal.events()
+            },
+
+            initialize: function (settings) {
+                // case conditions  - isGiftWrap,isGiftField
+                // media queries -responsive to ui 
+                gkt.gktModal.actions.setModalBgColor();
+
+                gkt.gktModal.actions.addModalPopupHeader();
+                gkt.gktModal.actions.modalSaveBtn();
+
+                const { isGiftWrapEnabled, isGiftMessageEnabled } = settings.giftingOptions;
+                console.log({ isGiftWrapEnabled, isGiftMessageEnabled })
+                if (isGiftMessageEnabled == true && isGiftWrapEnabled == true) {
+                    gkt.gktModal.actions.modalGiftWrapContent();
+                    gkt.gktModal.actions.modalGiftMessageContent();
+                    //add a class called as gridLayout
+                    gkt.$(".gktContentWrapper").addClass("gktGridLayout");
+                }
+                else if (isGiftMessageEnabled == false && isGiftWrapEnabled == true) {
+                    gkt.gktModal.actions.modalGiftWrapContent();
+                    gkt.gktModal.actions.hideModalGiftMessageContent();
+                    //display image on mobile only if wrap is enabled
+                    gkt.$(".gktGiftWrapImage").addClass("gktDisplayWrapImageOnPhone");
+
+                }
+                else if (isGiftMessageEnabled == true && isGiftWrapEnabled == false) {
+                    gkt.gktModal.actions.modalGiftMessageContent();
+                    gkt.gktModal.actions.hideModalGiftWrapContent();
+                }
+
+            },
+            events: function () {
+                console.log("gktModal-events")
+
+                gkt.$(document).on("click", ".gktModalClose", gkt.gktModal.actions.onModalClose)
+                gkt.$(document).on("click", ".gktModalSave", gkt.gktModal.actions.onModalSave)
+
+            },
+
+            actions: {
+                onModalClose: function (event) {
+
+                    // check if behavior is set to reload just reload the page
+                    if (gkt.settings.popup.reloadOnCancelClick) {
+                        window.location.reload()
+                    }
+
+                    //enable overlay
+                    gkt.$(document).find(gkt.selectors.sideCartDrawerOverlay).css("display", "block");
+
+                    // check the current state of giftingpopup and assign the same to it. 
+                    gkt.gktGiftMsgAndWrap.action.syncWrapperCheckBoxState()
+
+                    // hide the modal
+                    gkt.$(".gktModalWrapper").hide();
+
+                },
+                onModalSave: async function (event) {
+                    let isApiCallRequired = false
+                    let updateCartData = { attributes: {} }
+                    let addToCartData = {}
+
+                    // check if gifwrapEnabled 
+                    if (gkt.settings.giftingOptions.isGiftWrapEnabled) {
+                        // check if giftwrap is checked or not
+                        if (gkt.$(".gktGiftWrapCheckbox").prop('checked') == true) {
+                            let productVairantId = gkt.settings.giftWrapProduct.productVairantID
+                            // addToCartData  = {quantity: 1,id: gkt.settings.giftWrapProduct.productVairantID}
+                            updateCartData.updates = { [productVairantId]: 1 }
+                            updateCartData.attributes.giftWrap = "YES"
+                            gkt.storage.setItem("gktGiftWrapCheckbox", true)
+                        } else {
+
+                            let productVairantId = gkt.settings.giftWrapProduct.productVairantID
+                            // addToCartData  = {quantity: 0,id: gkt.settings.giftWrapProduct.productVairantID}
+                            updateCartData.attributes.giftWrap = ""
+                            updateCartData.updates = { [productVairantId]: 0 }
+                            gkt.storage.setItem("gktGiftWrapCheckbox", false)
+                        }
+                    }
+
+
+                    // check if giftMessageEnabled
+                    if (gkt.settings.giftingOptions.isGiftMessageEnabled) {
+                        if (gkt.$(".gktGiftMessageCheckbox").prop('checked') == true && gkt.$(".gktMessageTextarea").val() == "") {
+                            gkt.$(".gktMessageTextarea").css("border", "3px solid red");
+                            gkt.$(".gktMessageTextarea").attr("placeholder", "Please enter a gift message here");
+                            gkt.$(".gktMessageTextarea").focus();
+                            return true;
+
+                        }
+                        // check if giftMessage is checked or not
+                        if (gkt.$(".gktGiftMessageCheckbox").prop('checked') == true) {
+                            console.log("gktGiftMessageCheckbox checked-if")
+                            var giftMessageValue = gkt.$(".gktMessageTextarea").val();
+                            updateCartData.attributes.giftMessage = giftMessageValue
+                            updateCartData.note = giftMessageValue
+                            gkt.storage.setItem("gktMessageTextarea", giftMessageValue)
+                            gkt.storage.setItem("gktGiftMessageCheckbox", true)
+                            // 
+                        }
+                        else {
+                            console.log("gktGiftMessageCheckbox checked-else")
+                            updateCartData.attributes.giftMessage = ""
+                            updateCartData.note = ""
+                            gkt.storage.setItem("gktMessageTextarea", "")
+                            gkt.storage.setItem("gktGiftMessageCheckbox", false)
+                        }
+                    }
+
+                    // sync gift options checkbox state
+                    gkt.gktGiftMsgAndWrap.action.syncWrapperCheckBoxState()
+
+                    // api call
+                    gkt.utility.updateCart(updateCartData).then((data) => {
+                        if (data && gkt.state.page_type == "cart") {
+                            // gkt.utility.updateCart(updateCartData)
+                            window.location.reload()
+                        }
+                    })
+                    //enable overlay
+                    gkt.$(document).find(gkt.selectors.sideCartDrawerOverlay).css("display", "block");
+
+                    // hide the modal
+                    gkt.$(".gktModalWrapper").hide();
+
+                },
+                modalGiftMessageContent: function () {
+                    gkt.$(".gktMessageCheckboxHeading").html(gkt.settings.popup.messageCheckboxHeading);
+                    gkt.$(".gktMessageTextarea").attr("placeholder", gkt.settings.popup.messageBoxplaceholder);
+                },
+                modalGiftWrapContent: async function () {
+                    gkt.$(".gktGiftWrapCheckboxHeading").html(gkt.settings.popup.giftWrapCheckboxHeading);
+                    let giftWrapProduct = await gkt.utility.getProductData(gkt.settings.giftWrapProduct.giftWrapHandle);
+                    let wrapImage = gkt.settings.giftWrapProduct.giftWrapProductImage;
+                    if (giftWrapProduct) {
+                        wrapImage = giftWrapProduct.product.image.src;
+                    }
+                    gkt.$(".gktGiftWrapImage").attr("src", wrapImage);
+                },
+                modalSaveBtn: function () {
+                    gkt.$(".gktModalSave").html(gkt.settings.popup.saveButtonText);
+                    gkt.$(".gktModalSave").css("background-color", gkt.settings.popup.saveButtonBackgroundColor);
+                    gkt.$(".gktModalSave").css("color", gkt.settings.popup.saveButtonTextColor);
+                },
+                hideModalGiftWrapContent: function () {
+                    gkt.$(".gktRightContent").hide();
+                },
+                hideModalGiftMessageContent: function () {
+                    gkt.$(".gktLeftContent").hide();
+                },
+                addModalPopupHeader: function () {
+                    gkt.$(".gktModalPopupHeading").html(gkt.settings.popup.popupHeadingText);
+                },
+                setModalBgColor: function () {
+                    gkt.$(".gktModal").css("background-color", gkt.settings.popup.cartPopupBackgroundColor);
+                },
+            }
+
+        },
+        gktGiftMsgAndWrap: {
+            init: function (settings, parent) {
+                gkt.gktGiftMsgAndWrap.initialize(settings, parent)
+                gkt.gktGiftMsgAndWrap.events(settings)
+                gkt.gktModal.init(settings)
+            },
+            initialize: function (settings, parent) {
+                if (parent == "PRODUCT_PAGE") {
+                    // check if need to be visible 
+                    if (gkt.gktGiftMsgAndWrap.f.isAddgktGiftMsgAndWrapOnProductPage(settings)) {
+                        gkt.gktGiftMsgAndWrap.f.insertIntoProductPageWrapper(settings)
+                    }
+                }
+                if (parent == "CART_PAGE") {
+                    // check if need to be visible 
+                    if (gkt.gktGiftMsgAndWrap.f.isAddgktGiftMsgAndWrapOnCartPage(settings)) {
+                        gkt.gktGiftMsgAndWrap.f.insertIntoCartPageWrapper(settings)
+                    }
+                }
+            },
+            f: {
+                insertIntoProductPageWrapper: function (settings) {
+
+                    gkt.elements.productPageWrapperV2.find(".gktGiftMsgAndWrapWrapper").css("display", "block")
+
+                    // insert into parent element 
+                    gkt.elements.gktGiftMsgAndWrapWrapperParent.find(".gktGiftMsgAndWrapWrapperInnerEle").append(settings.giftingOptions.shopifyPageinnerHTML);    //cartPageText                 
+
+                    // insert final  element into productPageWrapperV2
+                    gkt.elements.productPageWrapperV2.find(".gktGiftMsgAndWrapWrapper").append(gkt.elements.gktGiftMsgAndWrapWrapperParent);
+
+                },
+                insertIntoCartPageWrapper: function (settings) {
+
+                    gkt.elements.cartPageWrapperV2.find(".gktCartGiftMsgAndWrapWrapper").css("display", "block")
+                    // insert into parent element 
+                    gkt.elements.gktCartGiftMsgAndWrapWrapperParent.find(".gktGiftMsgAndWrapWrapperInnerEle").append(settings.giftingOptions.shopifyPageinnerHTML);    //cartPageText                 
+
+                    // insert final  element into productPageWrapperV2
+                    gkt.elements.cartPageWrapperV2.find(".gktCartGiftMsgAndWrapWrapper").append(gkt.elements.gktCartGiftMsgAndWrapWrapperParent);
+
+                },
+                isAddgktGiftMsgAndWrapOnProductPage: function (settings) {
+                    let flag = false
+                    switch (settings.giftingOptions.enabledGifiting) {
+                        case "PRODUCT_PAGES_AND_CART_PAGE":
+                        case "PRODUCT_PAGES":
+                            flag = true
+                            break;
+                    }
+                    return flag
+                },
+                isAddgktGiftMsgAndWrapOnCartPage: function (settings) {
+                    let flag = false
+                    switch (settings.giftingOptions.enabledGifiting) {
+                        case "PRODUCT_PAGES_AND_CART_PAGE":
+                        case "CART_PAGE":
+                            flag = true
+                            break;
+                    }
+                    return flag
+                }
+            },
+            events: function (settings) {
+                gkt.$(document).on("click", ".gktGiftOptionsCheckbox", function (event) {
+                    console.log("gktGiftOptionsCheckbox - click")
+                    const { isGiftWrapEnabled, isGiftMessageEnabled } = settings.giftingOptions;
+                    if(isGiftMessageEnabled == false && isGiftWrapEnabled == true  ){
+                        if(gkt.$(this).prop('checked') == true){
+                            gkt.$(".gktGiftWrapCheckbox").prop('checked', true);
+                            gkt.$(".gktGiftMessageCheckbox").prop('checked', false);
+                            gkt.$(".gktGiftOptionsCheckbox").prop('checked',true);
+                        }
+                        else if(gkt.$(this).prop('checked') == false){
+                            gkt.$(".gktGiftWrapCheckbox").prop('checked', false);
+                            gkt.$(".gktGiftMessageCheckbox").prop('checked', false);
+                            gkt.$(".gktGiftOptionsCheckbox").prop('checked',false);
+                        }
+                        gkt.gktModal.actions.onModalSave();
+                        return;
+                    }
+                    else{
+                        gkt.$(document).find(gkt.selectors.sideCartDrawerOverlay).css("display", "none");
+                        // load variable values
+                        gkt.storage.loadValuesFromStorage(settings);
+
+                        // optn popup
+                        gkt.$(".gktModalWrapper").show();
+                    }
+
+                })
+            },
+            action: {
+                syncWrapperCheckBoxState: function () {
+
+                    let gktGiftOptionsCheckbox = gkt.storage.getItem("gktGiftOptionsCheckbox");
+                    let gktGiftMessageCheckbox = sessionStorage.getItem("gktGiftMessageCheckbox");
+                    let gktGiftWrapCheckbox = sessionStorage.getItem("gktGiftWrapCheckbox");
+
+                    let gktGiftOptionsCheckboxValue = false
+                    // check if all null, keep it chekc
+                    if (gktGiftMessageCheckbox === null && gktGiftWrapCheckbox === null) {
+                        gktGiftOptionsCheckboxValue = false
+                    } else if ((gktGiftMessageCheckbox === "true" ? true : false) || (gktGiftWrapCheckbox === "true" ? true : false)) {
+                        gktGiftOptionsCheckboxValue = true
+                    } else {
+                        gktGiftOptionsCheckboxValue = false
+                    }
+
+                    gkt.elements.cartPageWrapperV2.find(".gktGiftOptionsCheckbox").prop('checked', gktGiftOptionsCheckboxValue)
+                    gkt.elements.productPageWrapperV2.find(".gktGiftOptionsCheckbox").prop('checked', gktGiftOptionsCheckboxValue)
+                    gkt.$(document).find(".gktGiftOptionsCheckbox").prop('checked', gktGiftOptionsCheckboxValue)
+
+                },
+
+                setWrapperCheckBoxState: function (value) {
+                    gkt.elements.cartPageWrapperV2.find(".gktGiftOptionsCheckbox").prop('checked', value)
+                    gkt.elements.productPageWrapperV2.find(".gktGiftOptionsCheckbox").prop('checked', value)
+                    gkt.$(document).find(".gktGiftOptionsCheckbox").prop('checked', value)
+                }
+            }
+        },
+        gktCombo: {
+            init: function (settings) {
+                gkt.gktCombo.initialize(settings)
+            },
+            currLoadingState: {
+                isComboSoldOut: false,
+                comboProductVariantIds: [],
+                gktComboItemContainer: null,
+                gktComboContainer: null,
+            },
+            state: {
+                comboHandle: "",
+                // update combo state here.
+                isComboAddToCartButtonOverwrite: false,
+                selectedComboProductsData: [],
+                redirect: {},
+                isComboBuyNowButtonOverwrite: false
+            },
+            initialize: async function (settings) {
+                let productHandle = gkt.f.getProductPageHandle()
+                let comboProduct = gkt.gktCombo.f.checkIfComboProduct(settings, productHandle)
+                console.log("comboProduct:", comboProduct)
+                // if this is combo product1
+                if (comboProduct) {
+
+                    gkt.gktCombo.state.comboHandle = comboProduct.handle
+                    gkt.gktCombo.f.setInitialStateFromStorage(comboProduct.handle)
+
+                    // redirect user to discount combo product page if discount is applied on combo
+                    if (gkt.gktCombo.state.redirect && gkt.gktCombo.state.redirect.handle != comboProduct.handle) {
+                        console.log("inside if redirect")
+                        gkt.gktCombo.state.redirect.handle = comboProduct.handle
+                        gkt.gktCombo.f.setComboStateToStorage()
+
+                        if (comboProduct && comboProduct.discount && comboProduct.discount.title) {
+                            // console.log("redirect")
+                            window.location.href = window.location.origin + "/discount/" + comboProduct.discount.title + "?redirect=" + window.location.pathname
+                        }
+                    } else {
+                        gkt.gktCombo.state.redirect = {}
+                        gkt.gktCombo.f.setComboStateToStorage()
+                    }
+
+                    // get prodducts data of combo
+                    let productsData = await gkt.gktCombo.f.getAllproductsInCombo(comboProduct)
+                    gkt.gktCombo.f.setInitialCurrentState(comboProduct, productsData)
+
+                    gkt.gktCombo.f.comboAddToCartButtonOverwrite()
+                    gkt.gktCombo.f.comboBuyNowButtonOverwrite()
+                    gkt.gktCombo.f.changeComboAddToCartButtonText("BUY NOW")
+                    let comboUiHtml = gkt.gktCombo.f.prepareComboUi(settings, productsData)
+                    gkt.gktCombo.f.insertIntoProductPageWrapper(settings, comboUiHtml)
+
+                    if (gkt.gktCombo.currLoadingState.isComboSoldOut) {
+                        gkt.gktCombo.f.changeComboAddToCartButtonText("SOLD OUT")
+                        gkt.gktCombo.f.disabledComboAddToCartButton()
+                    }
+                }
+            },
+            f: {
+                insertIntoProductPageWrapper: function (settings, comboUiHtml) {
+                    gkt.elements.productPageWrapperV2.find(".gktComboWrapper").css("display", "block")
+                    gkt.elements.productPageWrapperV2.find(".gktComboWrapper").append(comboUiHtml);
+                    // gkt.elements.productPageWrapperV2.find(".gktComboWrapper").append(gkt.elements.addToCartBtn);
+
+                },
+                checkIfComboProduct: function (settings, currProductHandle) {
+                    let combos = settings.combos
+                    for (let i = 0; i < combos.length; i++) {
+                        if (combos[i].handle == currProductHandle) {
+                            return combos[i]
+                        }
+
+                    }
+                    return undefined
+                },
+                getAllproductsInCombo: async function (comboProduct) {
+                    let products = comboProduct.products
+                    let apiCalls = []
+                    for (let i = 0; i < products.length; i++) {
+                        apiCalls.push(gkt.utility.getProductDataV2(products[i].handle))
+                    }
+                    let comboProductsData = await Promise.all(apiCalls)
+                    console.log("Promise resolved")
+                    return comboProductsData
+                },
+                comboAddToCartButtonOverwrite: async function () {
+
+                    // set required states 
+                    gkt.gktCombo.state.isComboAddToCartButtonOverwrite = true
+
+                    gkt.elements.addToCartBtn.unbind().unbind("click").off().off("click");
+
+                    gkt.elements.addToCartBtn.on("click", function (event) {
+                        gkt.$(this).attr("disabled", true);
+                        setTimeout(() => { gkt.$(this).attr("disabled", false); }, 1000)
+                        gkt.gktCombo.action.comboAddToCartButton(event)
+
+                    })
+                },
+                comboBuyNowButtonOverwrite: async function () {
+                    if (gkt.$(document).find(gkt.selectors.buyNowBtn)) {
+                        gkt.$(document).find(gkt.selectors.buyNowBtn).hide()
+                    }
+                },
+                changeComboAddToCartButtonText: async function (insideHtml) {
+                    if (gkt.gktCombo.state.isComboAddToCartButtonOverwrite) {
+                        gkt.elements.addToCartBtn.html(insideHtml)
+                    } else {
+                        return false
+                    }
+
+                },
+                disabledComboAddToCartButton: async function () {
+                    if (gkt.gktCombo.state.isComboAddToCartButtonOverwrite) {
+                        gkt.elements.addToCartBtn.prop("disabled", true);
+                    } else {
+                        return false
+                    }
+                },
+                setComboStateToStorage: function () {
+
+                    let comboState = gkt.gktCombo.f.getComboStateFromStorage()
+                    comboState = { ...comboState, [gkt.gktCombo.state.comboHandle]: gkt.gktCombo.state }
+                    gkt.storage.setItem('gktComboState', JSON.stringify(comboState))
+                },
+                getComboStateFromStorage: function () {
+
+                    let state = gkt.storage.getItem('gktComboState')
+                    if (state) {
+                        state = JSON.parse(state)
+                        return state
+                    } else {
+                        return {}
+                    }
+                },
+                setInitialStateFromStorage: function (comboHandle) {
+                    let comboState = gkt.gktCombo.f.getComboStateFromStorage()
+                    let currCombostate = comboState[comboHandle]
+                    if (currCombostate) {
+                        gkt.gktCombo.state = currCombostate
+                    }
+                },
+                prepareComboUi: function (settings, productsData) {
+                    console.log("productsData", productsData)
+                    gktComboContainer = gkt.$("<div>").addClass('gktComboContainer')
+                    gkt.gktCombo.currLoadingState.gktComboContainer = gktComboContainer
+
+                    for (let i = 0; i < productsData.length; i++) {
+                        let productData = productsData[i]
+                        if (!productData) {
+                            continue
+                        }
+
+                        let gktComboItemContainer = gkt.$("<div>").addClass('gktComboItemContainer')
+                        gkt.gktCombo.currLoadingState.gktComboItemContainer = gktComboItemContainer
+
+                        let gktComboItemContainerItem1 = gkt.$("<div>").addClass('gktComboItemContainerItem1')
+                        let gktComboItemContainerItem2 = gkt.$("<div>").addClass('gktComboItemContainerItem2')
+
+                        let gktComboItemContainerItem3 = gkt.$("<div>").addClass('gktComboItemContainerItem3')
+                        let gktComboItemContainerItem3CustomSelect = gktComboItemContainerItem3.append(gkt.$("<div>").addClass('gktComboItemContainerItem3CustomSelect'))
+                        gktComboItemContainerItem3.find('.gktComboItemContainerItem3CustomSelect').append(gkt.$("<select>").addClass('gktComboItemContainerItem3Select'))
+
+                        let gktComboItemContainerItem4 = gkt.$("<div>").addClass('gktComboItemContainerItem4')
+                        gktComboItemContainer.append([gktComboItemContainerItem1, gktComboItemContainerItem2, gktComboItemContainerItem3, gktComboItemContainerItem4])
+                        gktComboItemContainerItem3.find('.gktComboItemContainerItem3CustomSelect').append(gkt.$("<span>").addClass('gktComboItemContainerItem3SelectDropdownBtn'))
+                        if (productData) {
+                            for (let i = 0; i < productData.images.length; i++) {
+                                let image = productData.images[i];
+                                if (!image) {
+                                    continue
+                                }
+                                if (image) {
+                                    gktComboItemContainerItem1.append(gkt.$("<img>").addClass('gktComboItemContainerItem1Img' + i).addClass("gktComboItemContainerItem1Img"))
+                                    gktComboItemContainerItem1.find('.gktComboItemContainerItem1Img' + i).attr('src', image).css('display', 'none').css('max-height', '100px')
+                                }
+                                if (i == 0) {
+                                    gktComboItemContainerItem1.find('.gktComboItemContainerItem1Img' + i).css('display', 'block')
+                                }
+                            }
+
+                            //push an anchor tag 
+                            gktComboSliderNavigatior = gkt.$("<div>").addClass('gktComboSliderNavigatior')
+                            gktComboSliderNavigatior.append(gkt.$("<a>").addClass('gktPrevImage'))
+                            gktComboSliderNavigatior.find('.gktPrevImage').html("&#10094;");
+                            //add an onclick event to the anchor tag
+                            gktComboSliderNavigatior.append(gkt.$("<a>").addClass('gktNextImage'))
+                            gktComboSliderNavigatior.find('.gktNextImage').html("&#10095;");
+
+                            gktComboSliderNavigatior.find('.gktPrevImage').click(function () {
+                                gkt.utility.slider.plusSlides(gktComboItemContainerItem1, 1)
+                            })
+                            gktComboSliderNavigatior.find('.gktNextImage').click(function () {
+                                gkt.utility.slider.minusSlides(gktComboItemContainerItem1, 1)
+                            })
+                            gktComboItemContainerItem1.append(gktComboSliderNavigatior);
+
+                            // add title 
+                            gktComboItemContainerItem2.html(productData.title)
+
+
+                            let addedVariantsCnt = 0
+                            // add select options
+                            for (let j = 0; j < productData.variants.length; j++) {
+                                let variant = productData.variants[j]
+
+                                // if variant is not available dont add it
+                                if (!variant.available) {
+                                    continue
+                                }
+                                // if variant is not selected in admin ui, dont add it
+                                if (gkt.gktCombo.currLoadingState.comboProductVariantIds.indexOf(variant.id) == -1) {
+                                    continue
+                                }
+
+                                addedVariantsCnt += 1
+
+                                let variantName = variant.options.join(" / ")
+                                let optionEle = gkt.$("<option>").attr("value", variant.id).addClass('gktComboItemContainerItem3SelectOption').html(variantName)
+                                gktComboItemContainerItem3.find('.gktComboItemContainerItem3Select').append(optionEle)
+                            }
+
+                            if(addedVariantsCnt  == 0){
+                                gkt.gktCombo.currLoadingState.isComboSoldOut = true
+                            }
+                            //hide dropdown if there is default variant of product
+                            if (productData.variants.length == 1 && productData.variants[0].title && productData.variants[0].title == "Default Title") {
+                                gktComboItemContainerItem3CustomSelect.hide()
+                            }
+
+                        } else {
+                            gktComboItemContainerItem2.html("combo product not found")
+                        }
+
+                        gktComboContainer.append(gktComboItemContainer)
+                    }
+
+
+
+                    return gktComboContainer
+
+                },
+                setSelectedVariantsState: function () {
+                    // set initialState for selected elements 
+                    gkt.$('.gktComboContainer').find('.gktComboItemContainerItem3Select').each(function (index) {
+                        console.log(index + ": " + gkt.$(this).val());
+                        gkt.gktCombo.state.selectedComboProductsData[index] = { id: gkt.$(this).val() }
+                    });
+                    gkt.gktCombo.f.setComboStateToStorage()
+                },
+                openComboModal: function () {
+                    gkt.$('.gktComboModalWrapper').css('display', 'block')
+                },
+                setInitialCurrentState: function (comboProduct, productsData) {
+
+                    for (let i = 0; i < productsData.length; i++) {
+                        let productData = productsData[i]
+                        if (!productData) {
+                            continue
+                        }
+                        if (!productData.available) {
+                            gkt.gktCombo.currLoadingState.isComboSoldOut = true
+                        }
+
+                    }
+                    let comboProducts = comboProduct.products ? comboProduct.products : []
+                    for (let i = 0; i < comboProducts.length; i++) {
+                        let variants = comboProducts[i].variants
+                        if (variants && variants.length && variants.length > 0) {
+                            variants.forEach(item => { gkt.gktCombo.currLoadingState.comboProductVariantIds.push(parseInt(item.variantId)) })
+                        }
+
+                    }
+                }
+
+            },
+            action: {
+                comboAddToCartButton: async function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // add selected products to combo
+                    gkt.gktCombo.f.setSelectedVariantsState()
+                    let selectedComboProductsData = gkt.gktCombo.state.selectedComboProductsData
+                    let items = []
+                    for (let i = 0; i < selectedComboProductsData.length; i++) {
+                        items.push({ quantity: 1, id: selectedComboProductsData[i].id })
+                    }
+                    let resAddToCart = await gkt.utility.addToCartV2({ items: items })
+
+                    // gkt.gktCombo.f.openComboModal()
+                    window.location.href = window.location.origin + "/cart/checkout"
+                    console.log("addToCartButtonClicked")
+                }
+            }
+        },
+        gktOneClickUpsell: {
+            init: async function (settings, parent) {
+                await gkt.gktOneClickUpsell.initialize(settings, parent)
+                gkt.gktOneClickUpsell.f.registerEvents()
+            },
+            initialize: async function (settings, parent) {
+                let productHandle = gkt.f.getProductPageHandle(settings)
+
+                // write function which return two list 
+                // oneClickUpsell products that need to be shown on this product page 
+                // get the list of oneClickUpsellProducts that need to be shown on cart page 
+                let { oneClickUpsellListForCartPage, oneClickUpsellListForProductPage } = gkt.gktOneClickUpsell.f.segregateOneClickUpsells(settings.oneClickUpsells, productHandle)
+
+                if (parent == "PRODUCT_PAGE" && oneClickUpsellListForProductPage && oneClickUpsellListForProductPage.length && oneClickUpsellListForProductPage.length > 0) {
+                    let variantListToBeShownOnProductPage = await gkt.gktOneClickUpsell.f.findVariantListToBeShown(oneClickUpsellListForProductPage)
+                    let oneClickUpsellProductPageHTML = gkt.gktOneClickUpsell.f.prepareUI(settings, variantListToBeShownOnProductPage, parent)
+                    gkt.gktOneClickUpsell.f.insertIntoProductPageWrapper(settings, oneClickUpsellProductPageHTML)
+                    console.log("variantListToBeShownOnProductPage", variantListToBeShownOnProductPage)
+                    console.log("PRODUCT_PAGE")
+                }
+
+                if (parent == "CART_PAGE" && oneClickUpsellListForCartPage && oneClickUpsellListForCartPage.length && oneClickUpsellListForCartPage.length > 0) {
+                    let variantListToBeShownOnCartPage = await gkt.gktOneClickUpsell.f.findVariantListToBeShown(oneClickUpsellListForCartPage)
+                    let oneClickUpsellCartPageHTML = gkt.gktOneClickUpsell.f.prepareUI(settings, variantListToBeShownOnCartPage, parent)
+                    gkt.gktOneClickUpsell.f.insertIntoCartPageWrapper(settings, oneClickUpsellCartPageHTML)
+                    console.log("variantListToBeShownOnCartPage", variantListToBeShownOnCartPage)
+                    console.log("CART_PAGE")
+                }
+
+            },
+            f: {
+
+                segregateOneClickUpsells: function (oneClickUpsells, currProductHandle) {
+                    let oneClickUpsellListForCartPage = []
+                    let oneClickUpsellListForProductPage = []
+
+                    for (let i = 0; i < oneClickUpsells.length; i++) {
+                        let oneClickUpsell = oneClickUpsells[i]
+
+                        // add products to cart page list
+                        if (oneClickUpsell.isVisibleOnCart) {
+                            oneClickUpsellListForCartPage.push(oneClickUpsell)
+                        }
+
+                        // add products to product page list 
+                        if (oneClickUpsell.isVisibleOnAllProductPages) {
+
+                            oneClickUpsellListForProductPage.push(oneClickUpsell)
+
+                        } else if (oneClickUpsell.isVisibleOnSpecificProductPages &&
+                            oneClickUpsell.visibleOnSpecificProductPages &&
+                            oneClickUpsell.visibleOnSpecificProductPages.find(x => x.handle === currProductHandle)) {
+
+                            oneClickUpsellListForProductPage.push(oneClickUpsell)
+                        }
+
+                    }
+
+                    return {
+                        oneClickUpsellListForCartPage: oneClickUpsellListForCartPage,
+                        oneClickUpsellListForProductPage: oneClickUpsellListForProductPage
+                    }
+                },
+                findVariantListToBeShown: async function (oneClickUpsellList) {
+                    let responseData = []
+
+                    let variantListSelectedByUser = []
+                    let apiCalls = []
+
+                    for (let i = 0; i < oneClickUpsellList.length; i++) {
+                        let oneClickUpsell = oneClickUpsellList[i]
+
+                        for (let j = 0; j < oneClickUpsell.upsellProducts.length; j++) {
+                            let oneClickUpsellProduct = oneClickUpsell.upsellProducts[j]
+                            apiCalls.push(gkt.utility.getProductDataV2(oneClickUpsellProduct.handle))
+
+                            for (let k = 0; k < oneClickUpsellProduct.variants.length; k++) {
+                                variantListSelectedByUser.push(parseInt(oneClickUpsellProduct.variants[k].variantId))
+                            }
+                        }
+
+                    }
+
+                    let oneClickUpsellProducts = await Promise.all(apiCalls)
+                    // get required variants and return 
+                    for (let i = 0; i < oneClickUpsellProducts.length; i++) {
+                        let oneClickUpsellProduct = oneClickUpsellProducts[i]
+
+                        if (!oneClickUpsellProduct) {
+                            continue
+                        }
+
+                        for (let j = 0; j < oneClickUpsellProduct.variants.length; j++) {
+                            let variant = oneClickUpsellProduct.variants[j]
+                            //if variant.featured_image is null then take the onceClickUpsellProduct.featured_image
+                            if (variant.featured_image) {
+                                variant.featured_image = variant.featured_image.src
+                            } else {
+                                variant.featured_image = oneClickUpsellProduct.featured_image
+                            }
+                            //console.log("ashfaq");
+                            // if variant is not available dont add it
+                            if (!variant.available) {
+                                continue
+                            }
+
+                            // if variant is not selected in admin ui, dont add it
+                            if (variantListSelectedByUser.indexOf(variant.id) == -1) {
+                                continue
+                            }
+
+                            responseData.push(variant)
+
+                        }
+                    }
+
+                    return responseData
+
+                },
+                insertIntoProductPageWrapper: function (settings, oneClickUpsellHTML) {
+
+                    gkt.elements.productPageWrapperV2.find(".gktProductPageUpsellWrapper").css("display", "block")
+
+                    // // insert into parent element 
+                    // gkt.elements.gktGiftMsgAndWrapWrapperParent.find(".gktGiftMsgAndWrapWrapperInnerEle").append(settings.giftingOptions.shopifyPageinnerHTML);    //cartPageText                 
+
+                    // insert final  element into productPageWrapperV2
+                    gkt.elements.productPageWrapperV2.find(".gktProductPageUpsellWrapper").append(oneClickUpsellHTML);
+
+                },
+                insertIntoCartPageWrapper: function (settings, oneClickUpsellHTML) {
+
+                    gkt.elements.cartPageWrapperV2.find(".gktCartUpsellWrapper").css("display", "block")
+
+                    // insert into parent element 
+                    // gkt.elements.gktCartGiftMsgAndWrapWrapperParent.find(".gktGiftMsgAndWrapWrapperInnerEle").append(settings.giftingOptions.shopifyPageinnerHTML);    //cartPageText                 
+
+                    // insert final  element into productPageWrapperV2
+                    // gkt.elements.cartPageWrapperV2.find(".gktCartUpsellWrapper").append(gkt.elements.gktCartGiftMsgAndWrapWrapperParent);
+                    gkt.elements.cartPageWrapperV2.find(".gktCartUpsellWrapper").append(oneClickUpsellHTML);
+
+                },
+                prepareUI: function (settings, variantListToBeShown, parent) {
+                    let gktOneClickUpsellContainer = gkt.$("<div>").addClass('gktOneClickUpsellContainer')
+
+
+                    for (let i = 0; i < variantListToBeShown.length; i++) {
+                        let variant = variantListToBeShown[i]
+                        let gktOneClickUpsellItemContainer = gkt.$("<div>").addClass('gktOneClickUpsellItemContainer')
+                        let gktOneClickUpsellItemContainerCheckboxLable = gkt.$("<label>").addClass('gktCustomCheckboxContainer')
+                        let inputCheckboxEle = gkt.$("<input>").addClass('gktOneClickUpsellInputCheckboxEle')
+                            .attr("type", "checkbox")
+                            .attr("data-variant", JSON.stringify(variant))
+                            .attr("data-parent", JSON.stringify(parent))
+
+                        if (gkt.utility.checkIfItemPresentInCart(variant.id)) {
+                            inputCheckboxEle.attr("checked", true)
+                        }
+                        let gktOneClickUpsellImage = gkt.$("<img>").addClass('gktOneClickUpsellImage')
+                            .attr("src", variant.featured_image)
+                        gktOneClickUpsellImage.css("width", "40px")
+                        gktOneClickUpsellImage.css("height", "40px")
+                        gktOneClickUpsellImage.css("justify-self", "right")
+
+                        gktOneClickUpsellItemContainerCheckboxLable.append(inputCheckboxEle)
+                        gktOneClickUpsellItemContainerCheckboxLable.append(gkt.$("<span>").addClass("gktCustomCheckboxCheckmark"))
+
+
+                        let appendString = "" + variant.name
+                        let price = variant.price > 0 ? parseFloat(variant.price / 100) : variant.price
+                        if (settings.merchantInfo && settings.merchantInfo.currencyInfo && settings.merchantInfo.currencyInfo.symbol) {
+                            appendString = appendString + " + " + settings.merchantInfo.currencyInfo.symbol + price
+                        }
+                        //create a div with appendString 
+                        let gktOneClickUpsellItemContainerLableText = gkt.$("<div>").addClass('gktOneClickUpsellItemContainerLabelText')
+                            .text(appendString)
+                        gktOneClickUpsellItemContainerCheckboxLable.append(gktOneClickUpsellItemContainerLableText)
+                        gktOneClickUpsellItemContainer.append(gktOneClickUpsellItemContainerCheckboxLable)
+                        gktOneClickUpsellItemContainerCheckboxLable.append(gktOneClickUpsellImage)
+                        gktOneClickUpsellContainer.append(gktOneClickUpsellItemContainer)
+                    }
+
+                    return gktOneClickUpsellContainer
+                },
+                registerEvents: function () {
+                    gkt.$(document).on("click", ".gktOneClickUpsellInputCheckboxEle", async function (event) {
+                        await gkt.gktOneClickUpsell.actions.handleOneClickUpsellOnChangEvent(event);
+                        //gktPage type is cartPage then reload page
+                        if (gkt.state.page_type == "cart") {
+                            window.location.reload()
+                            //turn off click events till the page loads
+                            gkt.$("body").css("pointer-events", "none")
+                        }
+                    })
+                }
+            },
+            actions: {
+                handleOneClickUpsellOnChangEvent: async function (cb) {
+                    if (cb && cb.target) {
+                        let variant = JSON.parse(cb.target.getAttribute("data-variant"))
+                        let parent = cb.target.getAttribute("data-parent")
+
+                        //if true 
+                        if (cb.target.checked) {
+                            await gkt.utility.updateCart({ updates: { [variant.id]: 1 } })
+                        }
+                        else {
+                            await gkt.utility.updateCart({ updates: { [variant.id]: 0 } })
+                        }
+
+                    }
+
+                }
+            }
+
+        },
+        gktGiftCard: {
+            init: async function (settings, parent) {
+                await gkt.gktGiftCard.initialize(settings, parent)
+                gkt.gktGiftCard.f.registerEvents()
+            },
+            state: {
+                isGiftCardAddToCartButtonOverwrite: false,
+                isGiftCardBuyNowButtonOverwrite: false,
+                giftCardAddToCartButtonClone: "",
+                giftCardData: undefined,
+                giftCardDiv : undefined,
+            },
+            initialize: async function (settings, parent) {
+                let productHandle = gkt.f.getProductPageHandle()
+                let giftCardProduct = gkt.gktGiftCard.f.checkIfGiftCardProduct(productHandle, settings.giftCards)
+                
+                if (giftCardProduct) {
+
+                    gkt.gktGiftCard.state.giftCardData = giftCardProduct
+                    gkt.gktGiftCard.f.giftCardAddToCartButtonOverwrite()
+                    gkt.gktGiftCard.f.giftCardBuyNowButtonOverwrite()
+                    gkt.gktGiftCard.f.changeGiftCardAddToCartButtonText(gkt.settings.languageData.giftcard.purchasePageFields.addToCartButtonText.value)
+                    gkt.gktGiftCard.f.initializeModal()
+                    console.log("giftCardProduct", giftCardProduct)
+                }
+                console.log("gktGiftCard initialize")
+                console.log("settings.giftCard")
+            },
+            f:{
+                checkIfGiftCardProduct:function (currProductHandle, giftCards) {
+                    for (let i = 0; i < giftCards.length; i++) {
+                        if (giftCards[i] && giftCards[i].shopifyData && giftCards[i].shopifyData.handle == currProductHandle) {
+                            return giftCards[i]
+                        }
+
+                    }
+                    return undefined
+                },
+                giftCardAddToCartButtonOverwrite: function () {
+
+                    // set required states 
+                    gkt.gktGiftCard.state.isGiftCardAddToCartButtonOverwrite = true
+
+                    gkt.elements.addToCartBtn.unbind().unbind("click").off().off("click");
+
+                    gkt.elements.addToCartBtn.on("click", function (event) {
+                        // gkt.$(this).attr("disabled", true);
+                        // setTimeout(() => { gkt.$(this).attr("disabled", false); }, 1000)
+                        gkt.gktGiftCard.action.giftCardAddToCartButton(event)
+
+                    })
+                },
+                giftCardBuyNowButtonOverwrite: function () {
+                     // set required states 
+                     gkt.gktGiftCard.state.isGiftCardBuyNowButtonOverwrite = true
+
+                    if (gkt.$(document).find(gkt.selectors.buyNowBtn)) {
+                        gkt.$(document).find(gkt.selectors.buyNowBtn).hide()
+                    }
+                },
+                changeGiftCardAddToCartButtonText: function (insideHtml) {
+                    if (gkt.gktGiftCard.state.isGiftCardAddToCartButtonOverwrite) {
+                        gkt.elements.addToCartBtn.html(insideHtml)
+                    } else {
+                        return false
+                    }
+
+                },
+                openGiftCardModal: function () {
+                    gkt.$('.gktGiftCardModalWrapper').css('display', 'block')
+                },
+                registerEvents: function(){
+                    gkt.$(document).on("click", ".gktGiftCardModalClose", gkt.gktGiftCard.action.onModalClose)
+                },
+                initializeModal: function(){
+                    gkt.gktGiftCard.f.modalBuyNowButton()
+                    gkt.gktGiftCard.f.prepareGiftCardUI()
+                },
+                prepareGiftCardUI: function () {
+                    console.log("gktGiftCard.f.prepareGiftCardUI")
+                    console.log("line 1670", gkt.settings.languageData.giftcard.purchasePageFields);
+                    const {modalHeading,modalDescription,recipientName,recipientNamePlaceholder,recipientEmail,recipientEmailPlaceholder,senderName,senderNamePlaceholder,giftNote,giftNotePlaceholder,buyNowButtonText} = gkt.settings.languageData.giftcard.purchasePageFields;
+                    let gktGiftCardModalPopupHeading = gkt.$(".gktGiftCardModalPopupHeading")
+                    let gktGiftCardModalHeader = gkt.$(".gktGiftCardModalHeader")
+                    
+                    let gktGiftCardModalSubText = gkt.$("<div>", { class: "gktGiftCardModalSubText" })
+
+                    gktGiftCardModalSubText.append(modalDescription.value);
+                    gktGiftCardModalPopupHeading.append(modalHeading.value);
+                    
+                    //insert gktGiftCardModalSubText after gktGiftCardModalHeader
+                    gktGiftCardModalHeader.after(gktGiftCardModalSubText)
+
+                    let gktGiftCardToInputField = gkt.$("<input>").attr("type", "text").attr("placeholder",recipientNamePlaceholder.value).addClass("gktGiftCardToInputField");
+                    let gktGiftCardFromInputField = gkt.$("<input>").attr("type", "text").attr("placeholder",senderNamePlaceholder.value).addClass("gktGiftCardFromInputField");
+                    let gktGiftCardEmailInputField = gkt.$("<input>").attr("type", "email").attr("placeholder",recipientEmailPlaceholder.value).addClass("gktGiftCardEmailInputField");
+                    let gktGiftCardMessageInputField = gkt.$("<textarea>").attr("type", "text").attr("placeholder",giftNotePlaceholder.value).addClass("gktGiftCardMessageInputField").attr("rows", "4");
+                    
+                    let gktGiftCardEmailValidation = gkt.$("<p>", { class: "gktGiftCardEmailValidation" });
+                    // add a label to all of these fields
+                    let gktGiftCardToLabel = gkt.$("<label>").addClass("gktGiftCardToLabel").html(recipientName.value)
+                    let gktGiftCardFromLabel = gkt.$("<label>").addClass("gktGiftCardFromLabel").html(senderName.value)
+                    let gktGiftCardEmailLabel = gkt.$("<label>").addClass("gktGiftCardEmailLabel").html(recipientEmail.value)
+                    let gktGiftCardMessageLabel = gkt.$("<label>").addClass("gktGiftCardMessageLabel").html(giftNote.value)
+                    
+                        
+                    gktGiftCardToLabel.attr("required", true)
+                    gktGiftCardFromLabel.attr("required", true)
+                    gktGiftCardEmailLabel.attr("required", true)
+                    gktGiftCardMessageLabel.attr("required", true)
+                    
+                    // add all of these fields to a div
+                    let gktGiftCardInputFieldsDiv = gkt.$("<div>").addClass("gktGiftCardInputFieldsDiv")
+                    let gktGiftCardInputRow1 = gkt.$("<div>").addClass("gktGiftCardInputRow1")
+                    // let gktGiftCardInputRow1Div1 = gkt.$("<div>").addClass("gktGiftCardInputRow1Div1")
+                    // let gktGiftCardInputRow1Div2 = gkt.$("<div>").addClass("gktGiftCardInputRow1Div2")
+                    let gktGiftCardInputRow2 = gkt.$("<div>").addClass("gktGiftCardInputRow2")
+                    let gktGiftCardInputRow3 = gkt.$("<div>").addClass("gktGiftCardInputRow3")
+                    let gktGiftCardInputRow4 = gkt.$("<div>").addClass("gktGiftCardInputRow4")
+
+                    // gktGiftCardInputRow1.append(gktGiftCardInputRow1Div1).append(gktGiftCardInputRow1Div2)
+                    gktGiftCardInputRow1.append(gktGiftCardToLabel).append(gktGiftCardToInputField)
+                    gktGiftCardInputRow2.append(gktGiftCardFromLabel).append(gktGiftCardFromInputField)
+                    gktGiftCardInputRow3.append(gktGiftCardEmailLabel).append(gktGiftCardEmailInputField).append(gktGiftCardEmailValidation)
+                    gktGiftCardInputRow4.append(gktGiftCardMessageLabel).append(gktGiftCardMessageInputField)
+                    
+                    gktGiftCardInputFieldsDiv.append(gktGiftCardInputRow1)
+                    gktGiftCardInputFieldsDiv.append(gktGiftCardInputRow2)
+                    gktGiftCardInputFieldsDiv.append(gktGiftCardInputRow3)
+                    gktGiftCardInputFieldsDiv.append(gktGiftCardInputRow4)
+                    
+                    //add  gktGiftCardInputFieldsDiv to a gktGiftCardContentBody to find it later
+                    let gktGiftCardContentBody = gkt.$(".gktGiftCardContentBody")
+                    gktGiftCardContentBody.html(gktGiftCardInputFieldsDiv)
+
+                },
+                modalBuyNowButton: function () {
+                    gkt.$(".gktGiftCardContentFooterBtn1").html(gkt.settings.languageData.giftcard.purchasePageFields.buyNowButtonText.value);
+                    gkt.$(".gktGiftCardContentFooterBtn1").css("background-color", "#ffffff");
+                    gkt.$(".gktGiftCardContentFooterBtn1").css("color", "#000000");
+                    gkt.$(".gktGiftCardContentFooterBtn1").css("border", "1px solid #000000");
+                    gkt.$(".gktGiftCardContentFooterBtn1").on("click", function (event) {
+                        gkt.$(this).attr("disabled", true);
+                        setTimeout(() => { gkt.$(this).attr("disabled", false); }, 4000)
+                        gkt.gktGiftCard.action.onModalBuyNowButton(event)
+                    })
+
+                    gkt.$(".gktGiftCardContentFooter").append(gkt.gktGiftCard.state.giftCardAddToCartButtonClone)
+                },
+
+                validateForm:function(){
+                    let isValid = true
+                    gkt.$(".gktGiftCardInputFieldsDiv input").each(function () {
+                        if (gkt.$(this).val() == "") {
+                            gkt.$(this).css("border", "1px solid red")
+                            isValid = false
+                        } else {
+                            gkt.$(this).css("border", "1px solid #cccccc")
+                        }
+                    })
+                    gkt.$(".gktGiftCardInputFieldsDiv textarea").each(function () {
+                        if (gkt.$(this).val() == "") {
+                            gkt.$(this).css("border", "1px solid red")
+                            isValid = false
+                        } else {
+                            gkt.$(this).css("border", "1px solid #cccccc")
+                        }
+                    })
+                    return isValid
+                },
+                emailValidation: function(emailString){
+                var atSymbol = emailString.indexOf("@");
+                if(atSymbol < 1) return false;
+                
+                var dot = emailString.indexOf(".");
+                if(dot <= atSymbol + 2) return false;
+                
+                // check that the dot is not at the end
+                if (dot === emailString.length - 1) return false;
+
+                return true;
+                }
+
+            },
+            action:{
+                giftCardAddToCartButton: async function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    gkt.gktGiftCard.f.openGiftCardModal()
+
+                    console.log("giftCardAddToCartButton-clicked")
+                },
+                onModalClose: function (e) {
+                    // hide the modal
+                    gkt.$(".gktGiftCardModalWrapper").hide();
+                },
+                onModalBuyNowButton: async function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    let selectedVariantId = gkt.f.getSelectedVariant()
+                    let gkGifttCardFromValue = gkt.$(".gktGiftCardFromInputField").val()
+                    let gkGifttCardToValue = gkt.$(".gktGiftCardToInputField").val()
+                    let gkGifttCardMessageValue = gkt.$(".gktGiftCardMessageInputField").val()
+                    let gkGifttCardEmailValue = gkt.$(".gktGiftCardEmailInputField").val()
+                    // let gkGifttCardEmailValueIsValid = gkt.f.validateEmail(gkGifttCardEmailValue)
+                    let isFormValid = gkt.gktGiftCard.f.validateForm();
+                    let emailValid = gkt.gktGiftCard.f.emailValidation(gkGifttCardEmailValue); 
+                    if(isFormValid && emailValid){
+                        gkt.$(".gktGiftCardContentFooterBtn1").html(gkt.settings.languageData.giftcard.purchasePageFields.buyNowButtonTextLoading.value);
+                    }else if(!emailValid){
+                        gkt.$(".gktGiftCardEmailValidation").html("Please enter a valid email address")
+                        return;
+                    }
+                    else{
+                        return;
+                    }
+                    let clearCart =  await gkt.utility.clearCart()
+                    let resAddToCart = await gkt.utility.addToCartV2({   "items": [
+                                                            {
+                                                                "id": selectedVariantId,
+                                                                "quantity": 1,
+                                                                "properties" : {
+                                                                    "to": gkGifttCardToValue,
+                                                                    "from": gkGifttCardFromValue,
+                                                                    "note": gkGifttCardMessageValue,
+                                                                    "send_email_to": gkGifttCardEmailValue,
+                                                                    // "delivery_date": Date.now(),
+                                                                }
+                                                            }
+                                                        ] })
+                    window.location.href = window.location.origin + "/cart/checkout"
+                                                    
+                    console.log("onModalBuyNowButton-clicked")
+                }
+            }
+        }
+        
+    }
+
+    window.gkt = gkt;
+    /*
+    * start the program 
+    */
+    gktUtils.f.loadJquery(function (jqueryRefObj) {
+        gkt.$ = jqueryRefObj;
+
+        gkt.$(document).ready(function () {
+            console.log("document ready", gkt.$);
+            gkt.f.initialize(gkt.$);
+        })
+    })
+
+</script>

@@ -1,0 +1,144 @@
+<section class="diff-indicator">
+  <div class="indicator-row">
+    <div class="indicator-left">
+    	<div class="diff-content">
+            <h2 class="diff-title">
+                {% if section.settings.text_heading != blank %}
+        {{section.settings.text_heading}}
+        {% else %}
+         Heading Title
+        {% endif %}
+            </h2>
+            <hr class="gray-divider" />
+            <p>
+              {% if section.settings.text_area != blank %}
+        {{section.settings.text_area}}
+        {% else %}
+        In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.
+        {% endif %}
+          </p>
+        </div>
+
+    </div>
+    
+    <div class="indicator-right">
+      <div class="about-block">
+          <h2 class="block-title">
+              {% if section.settings.text_headingTwo != blank %}
+           {{section.settings.text_headingTwo}}
+           {% else %}
+            Heading 
+           {% endif %}
+          </h2>
+          <div class="separator-sm">&nbsp;</div>
+         
+        
+        
+        {% if section.settings.menu_one != blank %}
+        
+        <ul>
+              <li>
+                  <a href="{{section.settings.url_one}}">{{section.settings.menu_one}}</a>
+              </li>
+              <li>
+                  <a href="{{section.settings.url_two}}" class="active"> {{section.settings.menu_two}}</a>
+              </li>
+              <li>
+                  <a href="{{section.settings.url_three}}">{{section.settings.menu_three}}</a>
+              </li>
+          </ul>
+        
+        
+        {% else %}
+        <ul>
+              <li>
+                  <a href="#"> TUMI Difference</a>
+              </li>
+              <li>
+                  <a href="#" class="active"> TUMI Story</a>
+              </li>
+              <li>
+                  <a href="#">Sustainability</a>
+              </li>
+          </ul>
+        
+        {% endif %}
+       
+<!--           <ul>
+              <li>
+                  <a href="#" class="active"> TUMI Difference</a>
+              </li>
+              <li>
+                  <a href="#"> TUMI Story</a>
+              </li>
+              <li>
+                  <a href="#">Sustainability</a>
+              </li>
+          </ul>   -->
+      </div>
+
+    </div>
+    
+    
+  </div> 
+</section> 
+
+
+{% schema %}
+  {
+    "name": "Tumi Difference Brand",
+    "settings": [
+   {
+     "type":"text",
+	 "id":"text_heading",
+	 "label": "TUMI title"
+   },
+	{
+     "type":"textarea",
+	 "id":"text_area",
+	 "label": "About Tumi content"
+   },
+   {
+     "type":"text",
+	 "id":"text_headingTwo",
+	 "label": "Menu title"
+   },
+ 	{
+     "type":"text",
+	 "id":"menu_one",
+	 "label": "Menu title"
+   },
+{
+     "type":"url",
+	 "id":"url_one",
+	 "label": "Menu link"
+   },
+{
+     "type":"text",
+	 "id":"menu_two",
+	 "label": "Menu title two"
+   },
+{
+     "type":"url",
+	 "id":"url_two",
+	 "label": "Menu link two"
+   },
+{
+     "type":"text",
+	 "id":"menu_three",
+	 "label": "Menu title three"
+   },
+{
+     "type":"url",
+	 "id":"url_three",
+	 "label": "Menu link three"
+   }
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

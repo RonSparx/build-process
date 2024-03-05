@@ -1,0 +1,72 @@
+{% comment %}
+  The contents of the cart.liquid template can be found in /sections/cart-template.liquid
+{% endcomment %}
+
+{% section 'cart-template' %}
+{% comment %}
+{% include 'cross-sell' %}
+{% endcomment %}
+
+<script src="https://checkout.tabby.ai/tabby-promo.js"></script>
+
+{% if request.locale.iso_code == 'ar' %}
+<script>
+  var pp = `{{ cart.total_price }}`;
+
+  var ppp = parseInt(pp/100).toFixed(2);
+  //alert(ppp);
+  //console.log(ppp);
+  var timer = setTimeout(() => {
+                         if (window && window.TabbyPromo) {
+    new window.TabbyPromo({
+      selector: '#tabbyPromo',
+      currency: 'AED',
+      price: ppp,
+      source: 'null',
+      lang: 'ar'
+    });
+  }
+
+  clearTimeout(timer);
+  });
+
+  var timerone = setInterval(function() {
+    var divlenght = $( "div#tabbyPromo>div").length;
+    //console.log("divlenght",divlenght);
+    if (divlenght > 0) {
+      clearInterval(timerone);
+      $(".tabbyPromo-placeholder").css({"visibility":"hidden"});
+    }
+  }, 100);
+</script> 
+{%else%}
+<script>
+  var pp = `{{ cart.total_price }}`;
+
+  var ppp = parseInt(pp/100).toFixed(2);
+  //alert(ppp);
+  //console.log(ppp);
+  var timer = setTimeout(() => {
+                         if (window && window.TabbyPromo) {
+    new window.TabbyPromo({
+      selector: '#tabbyPromo',
+      currency: 'AED',
+      price: ppp,
+      source: 'null',
+      lang: 'en'
+    });
+  }
+
+  clearTimeout(timer);
+  });
+
+  var timerone = setInterval(function() {
+    var divlenght = $( "div#tabbyPromo>div").length;
+    //console.log("divlenght",divlenght);
+    if (divlenght > 0) {
+      clearInterval(timerone);
+      $(".tabbyPromo-placeholder").css({"visibility":"hidden"});
+    }
+  }, 100);
+</script> 
+{%endif%} 

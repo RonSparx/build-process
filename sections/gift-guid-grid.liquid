@@ -1,0 +1,104 @@
+<style>
+  .gift_grid_row {
+      margin:50px 0;
+  }
+  .gift_grid_row .gift_grid_col {
+      margin-bottom: 30px;
+  }
+  .gift_grid_row .gift_grid_col:last-child {
+      margin-bottom: 0;
+  }
+  a.gift_grid_cta {
+      display: block;
+  }
+
+
+@media all and (min-width:749px){
+  .gift_grid_row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+  }
+  .gift_grid_row .gift_grid_col {
+      width: calc(50% - 30px);
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+  }
+  .gift_grid_col .gift_grid_title {
+      padding: 0 15px 0;
+      width: 150px;
+  }
+  .gift_grid_col .gift_grid_media {
+      width: calc(100% - 150px);
+  }
+  .gift_grid_col .gift_grid_title a.gift_grid_cta {
+      font-size: 18px;
+      line-height: 1.5;
+  }
+}
+
+  
+</style>
+
+
+<div class="page-width">
+  <div class="gift_grid_row">
+
+    {% for block in section.blocks %}
+    
+    <div class="gift_grid_col">
+      <div class="gift_grid_media">
+        {% if block.settings.guid_grid_image != blank  %}
+          <a href="{{ block.settings.guid_grid_url }}" class="gift_grid_cta">
+            <img src="{{block.settings.guid_grid_image | img_url:'master' }}" alt="{{guid_grid_image.alt | escape }}">
+          </a>
+        {% else %}
+          {{ 'lifestyle-1' | placeholder_svg_tag }}
+        {% endif %}
+      </div>
+      {% if block.settings.guid_grid_heading != blank  %}
+        <div class="gift_grid_title">
+          <h4> <a href="{{ block.settings.guid_grid_url }}" class="gift_grid_cta">  {{ block.settings.guid_grid_heading }} </a> </h4>
+        </div>
+      {% endif %}
+    </div>
+
+    {% endfor %}
+    
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Gift Guid Grid",
+    "max_blocks": 2,
+    "settings": [],
+    "blocks":[
+      {
+        "type": "guid-grid-item",
+        "name": "Guid Grid Item",
+        "settings":[
+          {
+            "type": "image_picker",
+            "id": "guid_grid_image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "guid_grid_heading",
+            "label": "Heading",
+            "default": "Title"
+          },
+          {
+            "type": "url",
+            "id": "guid_grid_url",
+            "label": "CTA Url"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+

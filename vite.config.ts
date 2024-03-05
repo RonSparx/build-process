@@ -1,21 +1,32 @@
-import { defineConfig } from 'vite'
-import shopify from 'vite-plugin-shopify'
-import { resolve } from 'node:path'
+import { defineConfig } from "vite";
+import shopify from "vite-plugin-shopify";
+import { resolve } from "node:path";
 
 export default defineConfig({
   server: {
     host: true,
-    port: 3000
+    port: 3000,
   },
-  publicDir: 'public',
+  publicDir: "public",
   resolve: {
     alias: {
-      '@fonts': resolve('frontend/fonts'),
-      '@modules': resolve('frontend/modules')
-    }
+      "@fonts": resolve("frontend/fonts"),
+      "@images": resolve("frontend/images"),
+      "@scripts": resolve("frontend/scripts"),
+      "@styles": resolve("frontend/styles"),
+      "@svg": resolve("frontend/svg"),
+    },
   },
   plugins: [
-    shopify()
+    shopify({
+      additionalEntrypoints: [
+        "frontend/fonts/**/*",
+        "frontend/images/**/*",
+        "frontend/scripts/**/*",
+        "frontend/styles/**/*",
+        "frontend/svg/**/*",
+      ],
+    }),
   ],
   build: {
     sourcemap: false,
@@ -23,7 +34,4 @@ export default defineConfig({
       external: /^lit/,
     },
   },
-})
-
-
- 
+});

@@ -1,0 +1,226 @@
+<style>
+    .lps-link a {
+    position: relative;
+    color: #000;
+    font-weight: 600;
+    }
+    .lps-link a:after {
+          content: '';
+        font-size: 25px;
+        position: absolute;
+        top: -24px;
+        display: inline-block;
+        margin: 30px auto;
+        width: 9px;
+        height: 9px;
+        border-top: 2px solid #000;
+        border-left: 2px solid #000;
+        transform: rotate(135deg);
+        right: -13px;
+    }
+    .lps-img img {
+    width: 100%;
+    }
+    .lps-link {
+      padding: 10px 0;
+    }
+    .text-section{
+      padding:30px;
+      text-align:left;
+      background:#000;
+      margin:20px 0; 
+      display: flex;
+        align-items: center;
+        min-height:300px;
+    }
+    .text-section p{
+      text-align:left;
+      color:#fff;
+    }
+  .landing-wrapper {
+    margin: 30px 0;
+}
+  
+    @media all and (min-width:750px){
+      .landing-wrapper {
+    margin: 50px 0;
+}
+    .landing-wrapper{
+      display: flex;
+      grid-gap: 25px;
+      padding-bottom: 30px !important;
+    }
+    .landing-select-block{
+      width: 50%;
+    }
+    .text-section{
+           margin: 0 0 25px 0px;
+        width: 100%;
+        height: calc(100% - 50%);
+    }
+    .second-block{
+         display: flex;
+        flex-wrap: wrap; 
+    }  
+    .lps-img{
+      width:100%;
+    }
+    .second-block .lps-img {
+        width: 100%;
+      position:relative;
+      padding-top: 89%;
+    }
+      .lps-img{
+        font-size: 0;
+      }
+    .second-block .lps-img img{
+        width: 100%;
+      position:absolute;
+      top:0px;
+      left:0px;
+      height:100%;
+      
+    }
+      
+    }
+    @media all and (min-width:992px){
+      .second-block .lps-img {
+        padding-top:92.4%;
+      }
+    }
+      @media all and (min-width:1024px){
+      .landing-wrapper {
+        padding:30px;
+    }
+      .lps-img{
+        font-size: 0;
+      }
+      .second-block .lps-img {
+        padding-top: 92%;
+      }
+    }
+    @media all and (min-width:1200px){
+      .landing-wrapper {
+        padding: 0 147px;
+       
+      }
+      .second-block .lps-img {
+        padding-top: 91.3%;
+      }
+    }
+
+      @media all and (max-width:767px){
+        .text-section {
+            min-height: auto;
+        }
+      }
+    
+    </style>
+    
+    
+    
+    <div class="page-width">
+    <div class="landing-wrapper">
+    <div class="landing-select-block">
+      {% if section.settings.mclaren-hub_image != blank %}
+      <div class="lps-img">
+          <img src="{{ section.settings.mclaren-hub_image | img_url: '400x' }}">
+      </div>
+      {% else %}
+      <div class="lps-img">
+          <img src="https://cdn.media.amplience.net/i/tumi/lp-built-for-the-journey-lando-vertical" width="400">
+        
+      </div>
+      
+      {% endif %}
+      
+      {% if section.settings.mclaren-hub_product_link != blank and  section.settings.mclaren-hub_btn_text != blank %}
+      <div class="lps-link">
+        <a href="{{ section.settings.mclaren-hub_product_link }}">{{ section.settings.mclaren-hub_btn_text }}</a>
+      </div>
+      {% endif %}
+    </div>
+    
+    <div class="landing-select-block second-block">
+    <div class="text-section">
+        <p>
+          {{ section.settings.mclaren-hub_text_block }}
+        </p>
+    </div>
+    
+    {% if section.settings.mclaren-hub_image != blank %}
+    <div class="lps-img">
+        <img src="{{ section.settings.mclaren-hub_image_two | img_url: '400x' }}">
+    </div>
+      
+      {% else %}
+      <div class="lps-img">
+          <img src="https://cdn.media.amplience.net/i/tumi/lp-built-for-the-journey-lando-square" width="400">
+      </div>
+      
+    {% endif %}
+    {% if section.settings.mclaren-hub_product_link_two!= blank and  section.settings.mclaren-hub_btn_text_two != blank %}
+    <div class="lps-link">
+      <a href="{{ section.settings.mclaren-hub_product_link_two }}">{{ section.settings.mclaren-hub_btn_text_two }}</a>
+    </div>
+    {% endif %}
+    
+    </div>
+    </div>
+      </div>
+    
+    
+    
+    
+    {% schema %}
+    {
+    "name": "hub images collection",
+    "settings": [
+    {
+         "type": "image_picker",
+         "id": "mclaren-hub_image",
+         "label": "Image"
+       },
+       {
+         "type": "url",
+         "id": "mclaren-hub_product_link",
+         "label": "Product link"
+       },
+       {
+         "type": "text",
+         "id": "mclaren-hub_btn_text",
+         "label": "Button Text",
+         "default": "Shop Now"
+       },
+      {
+         "type": "text",
+         "id": "mclaren-hub_text_block",
+         "label": "Text block",
+          "default":"The TUMI | McLaren Carbon Fiber CFX is engineered with exceptional qualities, distinguishing it as a premium material and high-performance fabric, which is necessary when racing to your next journey"
+       },
+      {
+         "type": "image_picker",
+         "id": "mclaren-hub_image_two",
+         "label": "Image block two"
+       },
+       {
+         "type": "url",
+         "id": "mclaren-hub_product_link_two",
+         "label": "Product link"
+       },
+       {
+         "type": "text",
+         "id": "mclaren-hub_btn_text_two",
+         "label": "Button Text",
+         "default": "Shop Now"
+       }
+    ]
+    }
+    {% endschema %}
+    
+    {% stylesheet %}
+    {% endstylesheet %}
+    
+    {% javascript %}
+    {% endjavascript %}
+    

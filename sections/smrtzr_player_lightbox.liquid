@@ -1,0 +1,117 @@
+{% comment %} Automatically generated file by Smartzer, do not change {% endcomment %}
+{% include 'smrtzr_custom_code' %}
+{% include 'smrtzr_player_html' %}
+{% include 'smrtzr_player_scripts' %}
+
+{%- schema -%}
+{
+  "name": {
+    "en": "Smartzer lightbox embed"
+  },
+  "class": "index-section index-section--flush",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Select a project from the list, and configure any Embedding, Styling or Playback settings. Dont see your project in the list below? Navigate to the Interactive Editor and make sure it has been distributed to this store theme"
+    },
+    {
+      "type": "header",
+      "content": "Embedding Settings"
+    },
+    {
+      "type": "select",
+      "id": "project_id_by_name",
+      "label": "Select project by name",
+      "options": [
+        {
+          "value": "v/5110726276415488",
+          "label": {
+            "en": "Home Page Video"
+          }
+        },
+        {
+          "value": "v/5125819127037952",
+          "label": {
+            "en": "Collection Page Video"
+          }
+        }
+      ]
+    },
+    {
+      "type": "radio",
+      "id": "embed_method",
+      "label": "Picture-in-picture",
+      "default": "lightbox",
+      "options": [
+        {
+          "value": "lightbox",
+          "label": {
+            "en": "No"
+          }
+        },
+        {
+          "value": "lightbox:pip:landscape",
+          "label": {
+            "en": "Yes (landscape)"
+          }
+        },
+        {
+          "value": "lightbox:pip:portrait",
+          "label": {
+            "en": "Yes (portrait)"
+          }
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "title_text",
+      "label": "Lightbox trigger title",
+      "default": "Click to play"
+    },
+    {
+      "type": "range",
+      "label": "Padding",
+      "id": "trigger_padding",
+      "default": 10,
+      "min": 0,
+      "max": 100
+    },
+    {
+      "type": "header",
+      "content": "Playback Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "add_to_cart_enabled",
+      "label": "Enable Add To Cart",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop",
+      "default": false
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": {
+        "en": "Smartzer lightbox embed"
+      },
+      "category": {
+        "en": "Video"
+      },
+      "blocks": []
+    }
+  ]
+}
+{%- endschema -%}

@@ -1,0 +1,47 @@
+
+{{ 'jquery.products.min.js' | asset_url | script_tag }}
+
+<div class="clearfix"></div>
+
+<div class="product-template__container head-room">
+  <aside class="grid">
+    <div class="grid__item">
+      <div class="pdp-sec-title">
+         <h4>Previously viewed</h4>      
+      </div>
+      <div id="recently-viewed-products" class="collection clearfix recent-wrap " >
+
+      </div>
+    </div>
+  </aside>  
+</div>
+{% assign grid_item_width = 'small--one-half medium-up--one-third' %}
+<div class="grid grid--uniform grid--view-items leg-room">
+  {% raw %}
+
+
+  <script id="recently-viewed-product-template"  type="text/x-jquery-tmpl">
+      <div class="grid__item small--one-half medium-up--one-third"  itemscope itemtype="http://schema.org/Product" >
+        <div id="product-${handle}" class="products"}>
+          <div class="image">
+            <a href="${url}">
+              <img src="${Shopify.Products.resizeImage(featured_image, "medium")}" />
+    </a>
+    </div>
+          <div class="details">
+            <a href="${url}">
+              <span class="title">${title}</span>
+              <!--Add Price Code-->
+
+				<span class="price">${price/100} Dhs</span>
+    </a>
+    </div>
+    </div>
+    </div>
+  </script>
+  {% endraw %}
+
+  <script>
+    Shopify.Products.showRecentlyViewed( { howManyToShow:6 } );
+  </script>
+</div>

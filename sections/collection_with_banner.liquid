@@ -1,0 +1,136 @@
+<div class="s-collection">
+  <section class="gift-sec {{ section.settings.overly_align }}" id="{{section.settings.tab | remove:' '}}" id="gifts-for-him">
+    <div class="sec-top">
+      <div class="gift-hero">
+        {% if section.settings.desk_img != blank %}
+        <picture>
+          <source media="(max-width: 768px)" id="banner1M" srcset="{{section.settings.mob_img | img_url:'600x'}}" />
+          <img class="hero-picture" id="banner1" src="{{section.settings.desk_img | img_url:'1900x'}}"/>
+        </picture>
+        {% endif %}
+      </div>
+      <div class="gift-hero-content">
+        <div class="gift-con-row">
+          <div class="gift-con-col">
+            {% if section.settings.heading != blank %}
+            <h2 class="gift-hero-title">{{section.settings.heading}} </h2>
+            {% else %}
+            <h2 class="gift-hero-title">Heading title</h2>
+            {% endif %}
+            {% if section.settings.content != blank %}
+            {{section.settings.content}}
+            {% else %}
+            <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown ...</p>
+            {% endif %}
+            {% if section.settings.btnlabel != blank %}
+            <a class="gift-hero-link" href="{{section.settings.link}}">{{section.settings.btnlabel}}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% if section.blocks.size > 0  %}
+  <div class="gift-carousel-wrap">
+    <div class="carousel_slider {% if section.settings.enable_collection_carousel %}gift-for-him {% endif %}">
+      {% for block in section.blocks %}
+      {% assign collection = collections[block.settings.coll_id] %}
+      <div class="gift-item">
+        <div class="product-card-ctm">
+          <div class="gift-pro-img">
+            <a class="" href="{{ collection.url }}">
+              <img class="card-img-top" src="{{ collection.image.src | collection_img_url: 'large' }}" alt="{{ collection.title | escape }}" />
+            </a>
+            <div class="gift-pro-content">
+              <a class="" href="{{ collection.url }}">
+                {{ collection.title | escape }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+
+{% schema %}
+  {
+    "name": "collection with banner",
+    "settings": [
+			{
+                "type":"image_picker",
+                "id":"desk_img",
+                "label":"Desktop banner"
+              },
+              {
+                "type":"image_picker",
+                "id":"mob_img",
+                "label":"Mobile banner"
+              },
+              {
+                "id": "heading",
+                "type": "text",
+                "label": "Heading"
+              },
+              {
+                "id": "content",
+                "type": "richtext",
+                "label": "Content"
+              },
+              {
+                "id": "btnlabel",
+                "type": "text",
+                "label": "Button label"
+              },
+              {
+                "id": "link",
+                "type": "url",
+                "label": "Button link"
+              },
+		   {
+            "type": "select",
+            "id": "overly_align",
+            "label": "overlay alignment",
+            "default": "left-alignment",
+            "options": [
+                {
+                  "value": "left-alignment",
+                  "label": "left"
+                },
+				{
+                  "value": "right-alignment",
+                  "label": "right"
+                }
+			   ]
+			  },
+              {
+                "type":"checkbox",
+                "id":"enable_collection_carousel",
+                "label":"Enable collection carousel",
+                "default":true
+              }
+	],
+	"blocks": [
+		{
+          "type": "collection",
+          "name": "collection",
+          "settings": [
+              {
+                  "type": "collection",
+                  "id": "coll_id",
+                  "label": "Select collection"
+                }
+              
+          ]
+		}
+	],
+    "presets": [
+      {
+        "name": "collection with banner"
+      }
+    ]
+  }
+{% endschema %}

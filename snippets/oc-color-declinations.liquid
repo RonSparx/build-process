@@ -1,0 +1,9 @@
+{% assign handles = product.metafields.color_declinations.handles | split: '|' %}
+<p>{{ 'products.product.color_declinations' | t }}</p>
+<ul class="grid grid--uniform grid--view-items">
+  {% for handle in handles %}
+  	<li class="grid__item grid__item--{{section.id}} small--one-half medium-up--one-half">
+      {% include 'oc-color-declination-card-grid', max_height: 530, product: all_products[handle], show_vendor: false %}
+  	</li>
+  {% endfor %}
+</ul>

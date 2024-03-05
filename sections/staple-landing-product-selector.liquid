@@ -1,0 +1,136 @@
+<style>
+.landing-product-selector {
+    width: 100%;
+  	padding-top: 2rem;
+}
+.landing-product-selector-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+.landing-pro-select-block {
+    text-align: center;
+  	width: 100%;
+}
+.lps-link a {
+    position: relative;
+  	color: #ef4c5f;
+  	font-weight: 600;
+}
+.lps-link a:after {
+    content: "\2023";
+    font-size: 25px;
+    position: absolute;
+    top: -7px;
+  	margin-left: 10px;
+}
+.lps-img img {
+    width: 100%;
+}
+.lps-link {
+    padding: 10px 0;
+}
+@media all and (min-width:640px){
+	.landing-pro-select-block {
+        width: calc(50% - 1.5rem);
+    }
+}
+@media all and (min-width:768px){
+	.landing-pro-select-block:last-child {
+        display: none;
+    }  
+    .landing-pro-select-block {
+        width: calc(33.33% - 1.5rem);
+    }
+    .landing-product-selector-inner{
+		justify-content: space-between;
+    }
+}
+  
+</style>
+<div class="page-width">
+  <div class="landing-product-selector">
+    <div class="landing-product-selector-inner">
+    {% if section.blocks != blank %}
+      {% for block in section.blocks %}
+        <div class="landing-pro-select-block">
+          {% if block.settings.image != blank %}
+          <div class="lps-img">
+              <img src="{{ block.settings.image | img_url: '400x' }}">
+          </div>
+          {% endif %}
+          {% if block.settings.product_link != blank and  block.settings.btn_text != blank %}
+          <div class="lps-link">
+            <a href="{{ block.settings.product_link }}">{{ block.settings.btn_text }}</a>
+          </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      {% for i in (1..4) %}
+      	<div class="landing-pro-select-block">
+          <div class="lps-img">
+              <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/Staple_LandingPage_CampaignImage_KitCrossbody_1080x1080_e7be93c6-9686-4960-82c2-f3cc83cd9d56.jpg?v=1657173642">
+          </div>
+          <div class="lps-link">
+            <a href="#">Shop Now</a>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Landing Product Selector",
+    "settings": [],
+    "blocks": [
+       {
+         "name": "Slide",
+         "type": "slide",
+         "settings": [
+           {
+             "type": "image_picker",
+             "id": "image",
+             "label": "Image"
+           },
+           {
+             "type": "url",
+             "id": "product_link",
+             "label": "Product link"
+           },
+           {
+             "type": "text",
+             "id": "btn_text",
+             "label": "Button Text",
+             "default": "Shop Now"
+           }
+         ]
+       }
+     ],
+     "presets": [
+       {
+         "name": "Staple Product Selector",
+         "blocks": [
+           {
+             "type": "slide"
+           },
+           {
+             "type": "slide"
+           },
+		   {
+             "type": "slide"
+           }
+         ]
+       }
+     ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

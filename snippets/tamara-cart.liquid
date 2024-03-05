@@ -1,0 +1,172 @@
+<style>
+  .tamara-cart-row {
+      max-width: 320px;
+      text-align: left;
+      display: flex;
+      flex-direction: row-reverse;
+      margin-bottom: 40px;
+      border-top: 1px solid #e8e8e8;
+      padding-top: 20px;
+      justify-content: space-between;
+  }
+  
+ 
+  .tamara-cart-row .tb-content h3 {
+      font-size: 14px;
+      font-weight: 600;
+        margin-bottom: 5px;
+  }
+  .tamara-cart-row .tb-content {
+    width: 70%;
+  }
+  .tamara-cart-row .tb-content p {
+      font-size: 14px;
+  }
+  .tamara-cart-row .tb-img {
+      width: 30%;
+        text-align: right;
+  }
+
+.tamara-cart-row .tb-img img {
+    width: 70px;
+}
+  .tabby-custom.tamara-cart-wrap {
+    display: flex;
+    justify-content: flex-end;
+}
+
+  .tabby-cart div#tabbyPromo {
+    position: absolute;
+    top: 0;
+}
+
+.tabby-widgts-wrap {
+    margin-top: 50px;
+}
+
+
+  @media all and (max-width:749px){
+    .tamara-cart-row {
+        margin: 0 auto 30px; 
+    }
+    div .tabby-cart .tabbyPromo-placeholder {
+            margin-bottom: 0;
+        }
+        div .tabby-cart .tabbyPromo-placeholder {
+        margin-bottom: 0;
+    }
+    
+    .tabby-widgts-wrap {
+        border: 1px solid #e6e6e6;
+        padding: 15px 15px 0;
+    }
+    
+    .tabby-widgts-wrap .tabby-cart {
+        margin-top: 0;
+        padding: 10px 10px 0;
+    }
+    .cart__buttons-container {
+          padding: 0;
+          margin: 0;
+          width: 100% !important;
+      }
+      
+      .cart__buttons-container {
+          max-width: 100%;
+      }
+    .tabby-cart div#tabbyPromo {
+    max-width: 100%;
+    width: 100%;
+}
+
+.tabbyPromo-conatiner,
+    .tamara-cart-row
+    {
+    position: relative;
+    width: 100%;
+          max-width: 100%;
+}
+    .tabby-widgts-wrap .tabby-cart {
+    padding: 0;
+}
+/*     .tamara-cart-row .tb-img img {
+    width: 50px !important;
+} */
+  }
+
+
+
+    @media only screen and (max-width: 640px){
+      .tamara-cart-row {
+    max-width: 100%;
+}
+     div  .tabby-cart .tabbyPromo-placeholder {
+    min-width: 100%;
+}
+      div .tabby-cart div#tabbyPromo {
+    max-width: 100%;
+}
+    }
+
+
+
+
+  {% if request.locale.iso_code == 'ar' %}
+    
+    .tamara-cart-row {
+        text-align: right;
+    }
+  .tamara-cart-row .tb-content {
+    width: 70%;
+}
+  .tamara-cart-row .tb-img {
+    width: 30%;
+    text-align: left;
+}
+
+.tamara-cart-row .tb-img img {
+    width: 70px;
+}
+
+
+        .tabby-custom.tamara-cart-wrap {
+    display: block;
+}
+
+  @media (max-width: 749px){
+  .tabby-widgts-wrap .tabby-cart {
+    padding: 0;
+  }
+  
+/*   .tabby-widgts-wrap .tabby-cart {
+    margin-bottom: 0;
+  } */
+  }
+
+  
+  {% endif %}
+  
+</style>
+
+
+<div class="tabby-custom tamara-cart-wrap">
+<div class="tamara-cart-row">
+<div class="tb-img">
+  {% if request.locale.iso_code == 'ar' %}
+    <img src="{{"tamara-arabic-logo.png" | asset_img_url: "original"}}">
+  {% else %}
+    <img src="{{"tamara-logo.png" | asset_img_url: "original"}}">
+  {% endif %}
+   
+</div> 
+<div class="tb-content">
+  {% if request.locale.iso_code == 'ar' %}  
+  <h3 style="font-size:14px;">قسمها على 3 دفعات وبدون فوائد</h3>
+  <p>1/3 اليوم والباقي على 2 أشهر بدون رسوم </p>
+  {% else %}
+<h3>Split into 3 Payments</h3>
+<p>1/3 today, and the rest within 2 months without fees</p>
+{% endif %}
+</div>
+  </div>
+</div>  

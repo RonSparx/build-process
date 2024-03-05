@@ -1,0 +1,113 @@
+<div class="slideshow__slide slideshow__slide--{{ block.id }}" {{ block.shopify_attributes }}>
+            {% if block_image == blank %}
+              <div class="slideshow__image js">
+                <div class="placeholder-background">
+                  {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+                  {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+                {% if section.settings.show_overlay %}<div class="slideshow__overlay"></div>{% endif %}
+              </div>
+            {% else %}
+            <a href="{{ block.settings.button_link }}" >
+              <div
+                   {% unless block_image.alt == blank %}
+                   role="img"
+                   aria-label="{{ block_image.alt | escape }}"
+                   data-alt="{{ block_image.alt | escape }}"
+                   {% endunless %}
+                   class="slideshow__image box ratio-container lazyload{% unless forloop.first %} lazypreload{% endunless %} js"
+                   data-bg="{{ block_image | img_url: '300x300' }}"
+                   data-bgset="{% include 'bgset', image: block_image %}"
+                   data-sizes="auto"
+                   id="img-{{block.id}}"
+                   data-parent-fit="contain"
+                   style="background-position: {{ block.settings.alignment }};
+                          background-image: url('{{ block_image | img_url: '300x300' }}');">
+                {% if section.settings.show_overlay %}<div class="slideshow__overlay"></div>{% endif %}
+              </div>
+            </a>
+        {% if block.settings.image_mbl %}    
+            <style>
+              @media(max-width:749px){
+              #img-{{block.id}}{
+                background-image: url({{ block.settings.image_mbl | img_url:'original' }}) !important;
+              }
+              }
+            </style>
+          {% endif %}   
+            {% endif %}
+
+            <noscript>
+              <div class="slideshow__image"{% if block_image %}{% unless block_image.alt == blank %} role="img" aria-label="{{ block_image.alt | escape }}"{% endunless %} style="background-image: url('{{ block_image | img_url: '2048x' }}'); background-position: {{ block.settings.alignment }};"{% endif %}>
+                {% if block_image == blank %}
+                  <div class="placeholder-background">
+                    {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
+                {% endif %}
+              </div>
+            </noscript>
+            
+            
+			{%assign slide_title = block.settings.slide_title %}
+            {%assign slide_label = block.settings.button_label %}
+            {%assign slide_label_more = block.settings.button_label_sec %}
+            {%assign desktop_gif = block.settings.desktop_gif %}
+            {% if slide_title != blank or slide_label != blank or slide_label_more != blank %}
+            <div class="slideshow__text-wrap slideshow__text-wrap--desktop">
+              <div class="slideshow__text-content slideshow__text-content--vertical-{{ text_vertical_alignment }} text-{{ text_horizontal_alignment }}">
+                <div class="page-width">
+                  <div class="slide-inner-wrp">
+                    {% unless block.settings.slide_title == blank and block.settings.subheading == blank %}
+                    <ul class="slideshow__text-content-list">
+                      {%- unless block.settings.slide_title == blank -%}
+                      <li>
+                        <h2 class="h1 mega-title slideshow__title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">
+                          {{ block.settings.slide_title | escape }}
+                        </h2>
+                      </li>
+                      {%- endunless -%}
+                      {%- unless block.settings.subheading == blank -%}
+                      <li>
+                        <span class="mega-subtitle slideshow__subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %}">
+                          {{ block.settings.subheading | escape }}
+                        </span>
+                      </li>
+                      {%- endunless -%}
+                    </ul>
+                    {% endunless %}
+
+                    {%- assign show_link_button = false -%}
+                    {%- if block.settings.button_label != blank and block.settings.button_link != blank -%}
+                    {%- assign show_link_button = true -%}
+                    {%- endif -%}
+                    
+                    <div class="slideshow__btn-wrapper{% if block.settings.slide_title != blank or block.settings.subheading != blank %} slideshow__btn-wrapper--push{% endif %}">
+                      
+                      {% if slide_label != blank %}
+                      <a href="{{ block.settings.button_link }}" class="btn slideshow__btn">
+                        {{ block.settings.button_label | escape }}
+                      </a>
+                      {%endif%}
+                      {% if slide_label_more != blank %}
+                      <a href="{{ block.settings.button_link_sec }}" class="btn slideshow__btn">
+                        {{ block.settings.button_label_sec | escape }}
+                      </a>
+                      {%endif%}
+
+                    </div>
+                    {% if block.settings.desktop_gif or block.settings.mobile_gif %}
+                    <div class="gif-icon">
+                      <picture>
+                        {% if block.settings.desktop_gif %}<source media="(min-width:750px)" srcset="{{block.settings.desktop_gif | img_url: "original"}}">{%endif%}
+                        {% if block.settings.mobile_gif%}<img src="{{block.settings.mobile_gif | img_url: "original"}}" alt="icon" style="width:auto;">{%endif%}
+                      </picture>
+                    </div>
+                    {%endif%}
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            {%endif%}
+            
+          </div>

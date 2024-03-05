@@ -1,0 +1,102 @@
+{% if section.blocks != blank %}
+<div class="year-Blocks">
+  <ul>
+    {% for block in section.blocks %}
+    <li>
+      <div class="inner-wrper">
+        <h2>{{block.settings.number}}</h2>
+        <p>{{block.settings.heading}}</p>
+        <p>{{block.settings.content}}</p>
+        <div class="yearBlockImage">
+          {% if block.settings.img != blank %}
+         <img src="{{block.settings.img | img_url:'600x'}}" />
+          {% else %}
+          
+          {% endif %}
+        </div>
+        </div>
+    </li>
+   {% endfor %}
+  </ul>
+</div>
+{% else %}
+<div class="year-Blocks">
+  <ul>
+    <li>
+      <div class="inner-wrper">
+        <h2>18</h2>
+        <p>Relaunched<strong>&nbsp;ALPHA BRAVO &nbsp;</strong>collection</p>
+        <p>And TUMI expanded the network across 75 countries with more than 1900 point of sales across the distribution channels</p>
+        <img class="yearBlockImage" src="https://www.tumi-hk.com/medias/2018.jpg?context=bWFzdGVyfHJvb3R8NDM3ODR8aW1hZ2UvanBlZ3xoZTUvaDQ4Lzg4NzM3OTI5OTUzNTguanBnfGRmZTg4YjI1YWQ3MTUyNzYyMzdhZDI3OWU0ZDg4NTM4OTZmNGRlMDU5MDQ3ODE3YzdhNmVjZGU5MjFmZmE2ZWU">
+      </div>
+    </li>
+    <li>
+      <div class="inner-wrper">
+        <h2>17</h2>
+        <p>TUMI launched the limited-edition collaboration with Rusell Westbrook.</p>
+        <img class="yearBlockImage" src="https://www.tumi-hk.com/medias/2017.jpg?context=bWFzdGVyfHJvb3R8MjI3NzB8aW1hZ2UvanBlZ3xoZDIvaDQ4Lzg4NzM3OTI4NjQyODYuanBnfDhjNmJhOTc3MGNkYzdhYjJmN2U1MmFhNWMzMDhmYjhlOTY0YTA2MzUwN2Y1YTU5ZWRlZjA1MTc5MTYwMmUzNWE">
+      </div>
+    </li>
+    <li>
+      <div class="inner-wrper">
+        <h2>16</h2>
+        <p>2003,<strong>&nbsp; Victor Sanz &nbsp;</strong> is appointed the Creative Director of TUMI, after 13 years since he joined the TUMI Design team in 2003.</p>
+        <p>And this year he has introduced the first ever Aluminum case of TUMI – 19 Degree.</p>
+        <img class="yearBlockImage" src="https://www.tumi-hk.com/medias/2017.jpg?context=bWFzdGVyfHJvb3R8MjI3NzB8aW1hZ2UvanBlZ3xoZDIvaDQ4Lzg4NzM3OTI4NjQyODYuanBnfDhjNmJhOTc3MGNkYzdhYjJmN2U1MmFhNWMzMDhmYjhlOTY0YTA2MzUwN2Y1YTU5ZWRlZjA1MTc5MTYwMmUzNWE">
+      </div>
+    </li>
+    <li>
+      <div class="inner-wrper">
+        <h2>15</h2>
+        <p><strong>&nbsp; Celebrates 40th Anniversary &nbsp;</strong>
+          <img class="yearBlockImage" src="https://www.tumi-hk.com/medias/2017.jpg?context=bWFzdGVyfHJvb3R8MjI3NzB8aW1hZ2UvanBlZ3xoZDIvaDQ4Lzg4NzM3OTI4NjQyODYuanBnfDhjNmJhOTc3MGNkYzdhYjJmN2U1MmFhNWMzMDhmYjhlOTY0YTA2MzUwN2Y1YTU5ZWRlZjA1MTc5MTYwMmUzNWE">
+      </div>
+    </li>
+  </ul>
+</div>
+{% endif %}
+{% schema %}
+{
+"name": "Branding Year",
+"settings": [],
+"blocks":[
+      {
+      "type":"block",
+       "name":"Year",
+  "settings":[
+    {
+    "type":"text",
+    "id":"number",
+    "label":"Number"
+    },
+   {
+    "type":"html",
+    "id":"heading",
+    "label":"Heading",
+	"info":"we can use HTML"
+    },
+{
+    "type":"html",
+    "id":"content",
+    "label":"Content",
+	"info":"we can use HTML"
+    },
+{
+    "type":"image_picker",
+    "id":"img",
+    "label":"Select Image"
+    }
+
+]
+
+      }
+    
+    ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

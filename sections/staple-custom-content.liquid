@@ -1,0 +1,90 @@
+<style>
+.sc-content-inner p{
+	font-size: 18px;
+    color: #212529;
+  	text-align: {{ section.settings.text_align }};
+} 
+.sc-content {
+  padding-top:1.5rem;
+  display: flex;
+  justify-content: {% if section.settings.content_align == "left" %}flex-start{% elsif section.settings.content_align == "center" %}center {% elsif section.settings.content_align == "right"%}flex-end{% else%}center{% endif %};
+}
+@media all and (min-width: 750px){
+  .sc-content-inner{
+  	width: 80%;
+  }  
+}
+@media all and (max-width: 749px){
+  .sc-content-inner{
+  	max-width: 400px;
+    width: 100%;
+  }  
+  .sc-content-inner p {
+    font-size: 14px;
+  }
+}
+</style>
+<div class="page-width">
+  <div class="sc-content">
+    <div class="sc-content-inner">
+    	{% if section.settings.paragraph != blank %}
+      	{{ section.settings.paragraph }}
+      	{% else %}
+      	<p>This collection celebrates our shared values of style and functionality and is built for the modern day city explorer. Each piece combines signature STAPLE touches, including the iconic Pigeon logo and Pigeon Pink accents, with the innovation and durability of TUMI. TUMI | STAPLE keeps you on the move, no matter where your travels take you.</p>
+      	{% endif %}
+    </div>  
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Staple Custom Content",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "paragraph",
+      "label": "Paragraph"
+    },
+	{
+      "type": "select",
+      "id": "text_align",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+	{
+      "type": "select",
+      "id": "content_align",
+      "label": "Content alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    }
+  ]
+}
+{% endschema %}

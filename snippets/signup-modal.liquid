@@ -1,0 +1,1273 @@
+{{ 'signup-popup.css' | asset_url | stylesheet_tag }}
+
+<style>
+    .form-validate span.not-match {
+        display: none;
+    }
+    .sub-prefered p {
+        font-weight: 600;
+    }
+    .form-items-col.form-validate.password-not-match span.not-match {
+        display: block;
+    }
+    .login-register {
+        .form-row {
+            padding: 0 8px;
+            margin-bottom: 16px;
+        }
+        label {
+            font-size: 14px;
+            line-height: 16px;
+            font-weight: 400;
+            color: #000000;
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="email"],
+        input[type="text"],
+        input[type="password"],
+        input[type="date"],
+        select {
+            border: 1px solid #878787;
+            padding: 10px 8px;
+            display: block;
+            width: 100%;
+            height: 40px;
+            box-sizing: border-box;
+            background: transparent;
+        }
+        button[type="submit"],
+        input[type="submit"],
+        button[type="button"],
+        input[type="button"],
+        .register-btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 8px;
+            transition: all 0.2s ease-in-out;
+            color: #000;
+            background: 0 0;
+            border: 1px solid #0b202d;
+            min-width: 240px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 12px;
+            line-height: 16px;
+            &:hover {
+                border-color: #d0021b;
+                background: #d0021b;
+                color: #ffffff;
+            }
+        }
+        .custom-forgotp {
+            margin: 0 !important;
+            width: 100%;
+        }
+    }
+
+    .a-error-message,
+    .a-caption-message {
+        color: #d0021b;
+        font-size: 12px;
+        line-height: 16px;
+        margin: 8px 0;
+    }
+    .a-caption-message {
+        color: #495460;
+    }
+    .accetpt-offer {
+        position: relative;
+        margin: 16px 0;
+        input[type="checkbox"] {
+            border: none;
+            padding: 0;
+            opacity: 1;
+            z-index: -1;
+            position: absolute;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+            transform: translateY(-50%);
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        label {
+            font-size: 14px;
+            line-height: 20px;
+            padding-left: 30px;
+            display: inline-block;
+            position: relative;
+            &:before {
+                left: 0;
+                top: 0;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background: 0 0;
+                transition: all 0.2s cubic-bezier(0.7, 0, 0.3, 1);
+                content: "";
+                position: absolute;
+            }
+            &:after {
+                content: " ";
+                left: 0;
+                width: 16px;
+                height: 16px;
+                font-size: 16px;
+                line-height: 15px;
+                color: #fff;
+                background: 0 0;
+                border: 0.1rem solid #797676;
+                box-shadow: inset 0 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.3);
+                text-align: center;
+                transition: all 0.2s cubic-bezier(0.7, 0, 0.3, 1);
+                position: absolute;
+                box-sizing: border-box;
+                top: 0;
+            }
+            &:hover:before {
+                box-shadow: 0 0 0 8px #e4e4e4;
+                background: #e4e4e4;
+            }
+        }
+        input[type="checkbox"]:checked ~ label::after {
+            background: #0b202d;
+            border: 0.1rem solid transparent;
+            -webkit-box-shadow: inset 0 0.1rem 0.1rem 0 transparent;
+            box-shadow: inset 0 0.1rem 0.1rem 0 transparent;
+            content: "";
+            font-family: "erb-icons";
+            font-size: 14px;
+        }
+    }
+    .center_con {
+        margin-bottom: 16px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .login-register .register-btn {
+        min-width: 124px;
+        margin: 0;
+    }
+
+    .password-forgot a {
+        font-size: 12px;
+        line-height: 20px;
+        color: #001022;
+        a:hover {
+            opacity: 0.7;
+        }
+    }
+
+    .popup_content::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+        background-color: #f5f5f5;
+    }
+
+    .popup_content::-webkit-scrollbar {
+        width: 6px;
+        background-color: #f5f5f5;
+    }
+
+    .popup_content::-webkit-scrollbar-thumb {
+        background-color: #000000;
+        border-radius: 10px;
+    }
+
+    .forgot_pass_popup {
+        .login-page-header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            padding: 16px 0;
+            line-height: 24px;
+        }
+    }
+
+    .login-register {
+        .form-row-flex {
+            button[type="submit"],
+            input[type="submit"] {
+                margin: 0;
+                width: 100%;
+            }
+        }
+    }
+
+    .form-row-flex {
+        display: flex;
+        justify-content: space-between;
+        .form-row-item {
+            width: 49%;
+        }
+    }
+    .btn-cancle {
+        display: block;
+        padding: 8px;
+        transition: all 0.2s ease-in-out;
+        color: #000;
+        background: 0 0;
+        border: 1px solid #f3e5dd;
+        min-width: 240px;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-size: 12px;
+        line-height: 16px;
+        text-align: center;
+        text-decoration: none;
+        width: 100%;
+        :hover {
+            background: #f3e5dd;
+            border-color: #f3e5dd;
+        }
+    }
+
+    .forgot-pass-box .login-register .form-row {
+        padding: 0;
+    }
+
+    .popup_modal_loader {
+        .popup_content {
+            background: transparent;
+            height: 50vh;
+            box-shadow: none;
+        }
+    }
+    .loader_img {
+        position: relative;
+        width: 68px;
+        &:after {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            max-width: 68px;
+            max-height: 266px;
+            width: 100%;
+            height: 100%;
+            background: url(loader.gif) no-repeat;
+            background-size: contain;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            z-index: 102;
+            position: absolute !important;
+            z-index: 999;
+            background-position: center;
+        }
+    }
+
+    .popup-loader-show,
+    .popup-loader-show .popup_content {
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* login popup end */
+
+    /* register css start */
+    .register-form-container {
+        max-width: 800px;
+        margin: 0 auto;
+        .login-page-header {
+            h1 {
+                text-align: center;
+                font-size: 38px;
+                font-weight: 700;
+                line-height: 38px;
+                padding: 0;
+                margin: 30px 0;
+            }
+            .header_info {
+                font-size: 14px;
+                line-height: 20px;
+                color: #000000;
+                margin: 5px 0 24px 0;
+            }
+        }
+    }
+
+    .register-from-wrap {
+        margin-right: -8px;
+        margin-left: -8px;
+    }
+
+    .login-register {
+        .register-from-wrap {
+            .form-row {
+                padding: 0;
+            }
+        }
+    }
+
+    .form-row-flex {
+        .form-items-col {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+    }
+
+    .form-items-col {
+        padding-right: 8px;
+        padding-left: 8px;
+        box-sizing: border-box;
+    }
+
+    .inner-row {
+        display: flex;
+        justify-content: space-between;
+        margin-left: -8px;
+        margin-right: -8px;
+        .form-inner-item {
+            flex: 0 0 50%;
+            max-width: 50%;
+            padding-right: 8px;
+            padding-left: 8px;
+            box-sizing: border-box;
+        }
+        .form-inner-item.abcd {
+            flex: 0 0 100%;
+            max-width: 103%;
+        }
+    }
+
+    .login-register {
+        .select-hidden {
+            display: none;
+            visibility: hidden;
+            padding-right: 10px;
+        }
+        .select {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            font-size: 16px;
+            color: #000000;
+            width: 100%;
+            height: 40px;
+        }
+        .select-styled {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: #ffffff;
+            padding: 8px 15px;
+            transition: all 0.2s ease-in;
+            border: 1px solid #878787;
+            padding: 10px 8px;
+            display: block;
+            width: 100%;
+            height: 40px;
+            box-sizing: border-box;
+            font-weight: 300;
+            font-size: 14px;
+            text-transform: uppercase;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            padding-right: 20px;
+            &:after {
+                content: "";
+                width: 0;
+                height: 0;
+                border: 4px solid transparent;
+                border-color: #000 transparent transparent transparent;
+                position: absolute;
+                top: 18px;
+                right: 10px;
+            }
+        }
+        .select-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            left: 0;
+            z-index: 999;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            background-color: #ffffff;
+            border: 1px solid #979797;
+            border-top: none;
+            max-height: 256px;
+            overflow-y: auto;
+        }
+        li {
+            margin: 0;
+            padding: 9px 8px;
+            border-top: 1px solid rgba(0, 16, 34, 0.1);
+            transition: all 0.15s ease-in;
+            font-size: 14px;
+            font-weight: 300;
+            text-transform: uppercase;
+            &:hover {
+                color: #000000;
+                background: #fff;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .login-register .select-styled:active:after,
+    .select-styled.active:after {
+        top: 13px;
+        border-color: transparent transparent #000 transparent;
+    }
+
+    .login-register .select-options li[rel="hide"] {
+        display: none;
+    }
+
+    .login-register .select-options li:first-child {
+        border-top: none;
+    }
+
+    .select-options::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+        background-color: #f5f5f5;
+    }
+
+    .select-options::-webkit-scrollbar {
+        width: 6px;
+        background-color: #f5f5f5;
+    }
+
+    .select-options::-webkit-scrollbar-thumb {
+        background-color: #000000;
+        border-radius: 10px;
+    }
+
+    .field-message-caption,
+    .field-message-caption2 {
+        font-size: 12px;
+        line-height: 16px;
+        margin: 8px 0;
+        color: #495460;
+    }
+
+    .login-register {
+        .register-from-wrap {
+            .newsletter-check {
+                padding: 20px 0 0;
+                label {
+                    margin: 0;
+                }
+            }
+            .full-para p {
+                margin: 0 0 20px;
+                font-size: 12px;
+            }
+            .form-row {
+                a {
+                    color: #001022;
+                    &:hover {
+                        opacity: 0.7;
+                    }
+                }
+                .tc-check {
+                    padding-top: 20px;
+                }
+            }
+        }
+    }
+
+    /* register css end */
+
+    /* loginpage css start */
+    .login-page-wrap .login-page-header h1 {
+        text-align: center;
+        font-size: 40px;
+        line-height: 40px;
+        font-weight: 500;
+    }
+    .login-page-wrap .login-page-header .header_info {
+        font-size: 14px;
+        line-height: 20px;
+        color: #000;
+        margin: 5px 0 24px 0;
+    }
+    .login_page_row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -8px;
+        margin-left: -8px;
+    }
+
+    .login-create-account {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding-right: 8px;
+        padding-left: 8px;
+        box-sizing: border-box;
+    }
+
+    .login-pconatiner .container_custom {
+        padding: 0 30px;
+        box-sizing: border-box;
+    }
+    .login-create-account h2.header-title {
+        font-size: 18px;
+        margin: 14px 0;
+        font-weight: 700;
+    }
+    .new-customers-box {
+        margin-right: 52px;
+    }
+    .new-customers-box .header-para {
+        margin: 32px 0;
+        text-align: center;
+        font-size: 13px;
+        color: #000000;
+        padding: 0 15px;
+    }
+    .login-register .login-create-account .register-btn,
+    .login-register .login-create-account button[type="submit"],
+    .login-register .login-create-account input[type="submit"] {
+        min-width: 124px;
+    }
+    .primary-content.login-pconatiner {
+        margin: 0 0 50px;
+    }
+    .mb-account-flex {
+        cursor: pointer;
+    }
+    .error .not-valid {
+        display: none;
+    }
+    .form-validate.not-valid span.not-valid {
+        display: block !important;
+    }
+    .form-validate.not-valid [data-required="true"],
+    .form-validate.not-valid .select-styled {
+        border: 1px solid red;
+    }
+
+    .form-group.not-valid input {
+        border: 1px solid red;
+    }
+    .form-group.not-valid span.no-valid {
+        display: block !important;
+    }
+    .register-page-footer {
+        padding: 0 8px;
+    }
+    /* .customer-register-container{
+  	border:0;
+} */
+    .customer-register-container label {
+        text-transform: none;
+    }
+    .form-row-flex .form-items-col {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .inner-row-subscription .form-inner-item:first-child {
+        flex: 0 0 33%;
+        max-width: 33%;
+    }
+    .inner-row .form-inner-item {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+    .inner-row-subscription .form-inner-item:last-child {
+        flex: 0 0 67%;
+        max-width: 67%;
+    }
+    .inner-row-subscription .form-inner-item:last-child label {
+        opacity: 0;
+    }
+    .field-message-caption,
+    .field-message-caption2 {
+        margin: 8px 0;
+    }
+    .phone_error {
+        display: none;
+    }
+    .register-from-wrap .form-row {
+        margin-bottom: 16px;
+    }
+    .form-group .form-field {
+        margin-bottom: 0;
+    }
+    .accetpt-offer input[type="checkbox"] {
+        border: none;
+        padding: 0;
+        opacity: 1;
+        z-index: -1;
+        position: absolute;
+        top: 50%;
+        width: 16px;
+        height: 16px;
+        transform: translateY(-50%);
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    .accetpt-offer {
+        position: relative;
+        margin: 16px 0;
+    }
+    .accetpt-offer label {
+        font-size: 14px;
+        line-height: 20px;
+        padding-left: 30px;
+        display: inline-block;
+        position: relative;
+    }
+    .accetpt-offer label:before {
+        left: 0;
+        top: 0;
+        width: 16px;
+        height: 16px;
+
+        background: 0 0;
+        transition: all 0.2s cubic-bezier(0.7, 0, 0.3, 1);
+        content: "";
+        position: absolute;
+    }
+    .accetpt-offer label:after {
+        content: " ";
+        left: 0;
+        width: 16px;
+        height: 16px;
+        font-size: 16px;
+        line-height: 15px;
+        color: #fff;
+        background: 0 0;
+        border: 0.1rem solid #797676;
+        box-shadow: inset 0 0.1rem 0.1rem #0000004d;
+        text-align: center;
+        transition: all 0.2s cubic-bezier(0.7, 0, 0.3, 1);
+        position: absolute;
+        box-sizing: border-box;
+        top: 0;
+    }
+    /* media css login register start */
+    @media all and (max-width: 1023px) {
+        .login_page_row {
+            display: block;
+            .login-create-account {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+        .new-customers-box {
+            margin-right: 0;
+        }
+    }
+
+    @media all and (max-width: 749px) {
+        .popup_content {
+            padding: 0 16px;
+        }
+        .close-modal {
+            right: 0;
+        }
+        .login_popup {
+            padding: 0;
+        }
+        .forgot_pass_popup .login-register {
+            .register-bt,
+            button[type="button"],
+            button[type="submit"],
+            input[type="submit"] {
+                min-width: 100%;
+            }
+        }
+        .btn-cancle {
+            min-width: 100%;
+        }
+
+        .form-row-flex,
+        .inner-row {
+            display: block;
+            .form-items-col,
+            .form-inner-item {
+                flex: 0 0 100%;
+                max-width: 100%;
+                margin-bottom: 16px;
+            }
+        }
+    }
+
+    /* media css login register end */
+
+    /* loginpage css end */
+
+    .form-validate.not-valid .accetpt-offer [data-required="true"] {
+        border: none;
+    }
+
+    /* 30 aug start */
+    .fa-eye.active:before {
+        content: "\f070";
+    }
+    .form-field {
+        position: relative;
+    }
+    #toggle-password {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translate(0, -50%);
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    /* 30 aug end  */
+
+    .subscribe-from-wrap {
+        input[type="checkbox"]:not(:checked) + label,
+        input[type="checkbox"]:checked + label,
+        input[type="radio"]:not(:checked) + label,
+        input[type="radio"]:checked + label {
+            cursor: pointer;
+            position: relative;
+            padding-left: 25px;
+            padding-top: 4px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            display: inline-block;
+        }
+
+        input[type="checkbox"]:not(:checked) + label::before,
+        input[type="checkbox"]:not(:checked) + label::after,
+        input[type="checkbox"]:checked + label::before,
+        input[type="checkbox"]:checked + label::after,
+        input[type="radio"]:not(:checked) + label::before,
+        input[type="radio"]:not(:checked) + label::after,
+        input[type="radio"]:checked + label::before,
+        input[type="radio"]:checked + label::after {
+            content: "" !important;
+            color: #fff;
+            border-radius: 0;
+            border: 0.0625rem solid transparent;
+            position: absolute;
+            left: 0;
+            top: 0.1875rem;
+            width: 15px;
+            height: 15px;
+            -webkit-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            transition: all 0.2s;
+        }
+        input[type="checkbox"]:not(:checked) + label::before,
+        input[type="checkbox"]:checked + label::before,
+        input[type="radio"]:not(:checked) + label::before,
+        input[type="radio"]:checked + label::before {
+            background: #fff;
+            border-color: #ccc;
+        }
+        input[type="radio"]:not(:checked) + label::before,
+        input[type="radio"]:not(:checked) + label::after,
+        input[type="radio"]:checked + label::before,
+        input[type="radio"]:checked + label::after {
+            border-radius: 100%;
+        }
+
+        input[type="checkbox"]:not(:checked) + label::after,
+        input[type="checkbox"]:checked + label::after,
+        input[type="radio"]:not(:checked) + label::after,
+        input[type="radio"]:checked + label::after {
+            -webkit-box-shadow: 0 0 0 0.125rem #fff inset;
+            box-shadow: 0 0 0 0.125rem #fff inset;
+            background: #001022;
+            border-color: #001022;
+        }
+        input[type="checkbox"]:not(:checked) + label::after,
+        input[type="radio"]:not(:checked) + label::after {
+            opacity: 0;
+            -webkit-transform: scale(0);
+            -ms-transform: scale(0);
+            transform: scale(0);
+        }
+
+        input[type="tel"] {
+            border: 1px solid #878787;
+            padding: 10px 8px;
+            display: block;
+            width: 100%;
+            height: 40px;
+            box-sizing: border-box;
+            background: 0 0;
+        }
+    }
+
+    .form-pass .form-field {
+        position: relative;
+    }
+
+    div#toggle-password,
+    div#contoggle-password {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+        cursor: pointer;
+        width: 30px;
+    }
+
+    #toggle-password span,
+    #contoggle-password span {
+        position: absolute;
+        top: 50%;
+        width: 30px;
+        height: 30px;
+        right: 0;
+        transform: translateY(-50%);
+        left: 50%;
+        vertical-align: middle;
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
+    #toggle-password span svg,
+    #contoggle-password span svg {
+        height: 16px;
+        width: 16px;
+    }
+
+    .form-pass .form-field {
+        position: relative;
+    }
+
+    #toggle-password span.password-toggle-hide,
+    #contoggle-password span.password-toggle-hide {
+        display: none;
+    }
+
+    div#toggle-password.active span.password-toggle-show,
+    div#contoggle-password.active span.password-toggle-show {
+        display: none;
+    }
+    div#toggle-password.active span.password-toggle-hide,
+    div#contoggle-password.active span.password-toggle-hide {
+        display: flex;
+    }
+    .form-pass input {
+        padding-right: 40px;
+    }
+    #toggle-password span svg path,
+    #contoggle-password span svg path {
+        fill: #cecece;
+    }
+
+    .pass-conifrm-field .form-field {
+        position: relative;
+    }
+
+    body .form-message--error {
+        color: #d0021a;
+    }
+    body .form-message--error a,
+    body .form-message--error a:hover {
+        color: #d0021a;
+    }
+    body .form-message--error {
+        border: none;
+        padding: 0;
+    }
+
+    /* password check css start */
+    .form-validate.not-valid.form-pass .not-valid {
+        display: flex !important;
+        flex-wrap: wrap;
+    }
+    .form-validate.not-valid.form-pass .not-valid > span {
+        width: 33.33%;
+        margin-bottom: 10px;
+        position: relative;
+    }
+    .form-validate.not-valid.form-pass .not-valid > span:last-child {
+        margin-bottom: -0;
+    }
+    .form-validate.not-valid.form-pass .not-valid > span:nth-child(1) {
+        width: 46%;
+    }
+    .form-validate.not-valid.form-pass .not-valid > span:nth-child(2),
+    .form-validate.not-valid.form-pass .not-valid > span:nth-child(3) {
+        width: 27%;
+    }
+
+    .form-validate.not-valid.form-pass .not-valid > span.errors:before {
+        content: "\2715";
+        padding-right: 10px;
+    }
+    .form-validate.not-valid.form-pass .not-valid > span.suceess:before {
+        content: "\2714";
+        padding-right: 10px;
+    }
+
+    .form-validate.not-valid.form-pass .not-valid > span.errors:before {
+        content: "\2715";
+        padding-right: 10px;
+    }
+    .form-validate.not-valid.form-pass .not-valid > span.suceess:before {
+        content: "\2714";
+        padding-right: 10px;
+    }
+    .form-validate.not-valid.form-pass .not-valid > span.suceess {
+        color: #28a745;
+    }
+
+    .custom-registerform ::selection {
+        background: #2196f3;
+        color: #fff;
+    }
+
+    .customer-register-container #RegisterForm {
+        padding-top: 0 !important;
+    }
+
+    @media all and (max-width: 991px) {
+        .customer-register-container {
+            width: 100%;
+            padding: 30px;
+        }
+        .inner-row-subscription label.phone-label-en {
+            white-space: nowrap;
+        }
+    }
+
+    @media all and (max-width: 767px) {
+        .form-row-flex .form-items-col {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        .inner-row.inner-row-subscription {
+            display: flex;
+        }
+        .customer-register-container {
+            padding: 20px 0;
+        }
+        .customer-register-container #RegisterForm h2.form-heading-h2 {
+            font-size: 14px;
+        }
+    }
+
+    @media all and (max-width: 480px) {
+        .form-validate.not-valid.form-pass .not-valid > span {
+            width: 50% !important;
+        }
+    }
+
+    /* password check css end */
+</style>
+
+<div class="subscribe-modal">
+    <div class="subscribe-form subscribe-from-wrap customer-register-container">
+        <div class="subscribe-modal-header">
+            <div class="content-asset">
+                <div class="signup-logo">
+                    <img src="{{ 'signup-logo.jpg' | asset_img_url: '' }}" />
+                </div>
+                <h2>{{ settings.signup-heading }}</h2>
+                {{ settings.signup-desc }}
+            </div>
+
+            <div class="subscribe-close">
+                <span class="close-btn">×</span>
+            </div>
+        </div>
+
+        <div class="subscribe-modal-body">
+            {%- assign formId = 'RegisterForm' -%} {% form 'create_customer', id: formId, novalidate: 'novalidate' %} {% include 'form-status', form: form, form_id: formId %}
+
+            <div class="register-from-wrap">
+                <div class="form-row form-cat-row subscribe-from-wrap hide_border">
+                    <div class="form-items-col">
+                        <div class="form-group">
+                            <label class="form-control-label">{{'Newsletter.title' | t }}</label>
+                        </div>
+                        <div class="sub-cat-row form-radio">
+                            <div class="sub-cat-item">
+                                <input class="custom-check" type="radio" id="{{ formId }}-ms" name="customer[note][gender]" value="ms" checked="checked" />
+                                <label for="{{ formId }}-ms">Ms</label>
+                            </div>
+                            <div class="sub-cat-item">
+                                <input class="custom-check" type="radio" id="{{ formId }}-mrs" name="customer[note][gender]" value="mrs" />
+                                <label for="{{ formId }}-mrs">Mrs</label>
+                            </div>
+                            <div class="sub-cat-item">
+                                <input class="custom-check" type="radio" id="{{ formId }}-mr" name="customer[note][gender]" value="mr" />
+                                <label for="{{ formId }}-mr">Mr</label>
+                            </div>
+                            <div class="sub-cat-item">
+                                <input class="custom-check" type="radio" id="{{ formId }}-miss" name="customer[note][gender]" value="miss" />
+                                <label for="{{ formId }}-miss">Miss</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row form-row-flex">
+                    <div class="form-items-col form-validate">
+                        <div class="form-group">
+                            <label for="{{ formId }}-FirstName">{{ 'Newsletter.first_name' | t }}</label>
+                            <div class="form-field">
+                                <input
+                                    data-required="true"
+                                    class="custom-check"
+                                    type="text"
+                                    name="customer[first_name]"
+                                    id="{{ formId }}-FirstName"
+                                    {%
+                                    if
+                                    customer
+                                    %}
+                                    value="{{ customer.first_name }}"
+                                    {%
+                                    endif
+                                    %}
+                                    required
+                                    autocomplete="given-name"
+                                />
+                            </div>
+                            <p class="a-error-message error empty" aria-live="assertive">
+                                <span class="not-valid">{{'Newsletter.first_name_error' | t }}</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-items-col form-validate">
+                        <div class="form-group">
+                            <label for="{{ formId }}-LastName">{{ 'Newsletter.last_name' | t }}</label>
+                            <div class="form-field">
+                                <input
+                                    data-required="true"
+                                    class="custom-check"
+                                    type="text"
+                                    name="customer[last_name]"
+                                    id="{{ formId }}-LastName"
+                                    {%
+                                    if
+                                    customer
+                                    %}
+                                    value="{{ customer.last_name }}"
+                                    {%
+                                    endif
+                                    %}
+                                    required
+                                    autocomplete="family-name"
+                                />
+                            </div>
+                            <p class="a-error-message error empty" aria-live="assertive">
+                                <span class="not-valid">{{'Newsletter.last_name_error' | t }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-items-col form-validate">
+                        <div class="form-group">
+                            <label for="">{{ 'Newsletter.email' | t }}<span class="red-label">*</span></label>
+                            <div class="form-field">
+                                <input data-required="true" type="email" name="customer[email]" id="{{ formId }}-email" class="{% if form.errors contains 'email' %} input--error{% endif %}" {% if form.email %} value="{{ form.email }}"{%
+                                endif %} autocorrect="off" autocapitalize="off" autocomplete="email" aria-required="true" {%- if form.errors contains 'email' -%} class="input--error" aria-invalid="true" aria-describedby="{{ formId
+                                }}-email-error" {%- endif -%} > {%- if form.errors contains 'email' -%}
+                                <span id="{{ formId }}-email-error" class="input-error-message">
+                                    <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                                    {% include 'icon-error' %}
+                                    <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+                                </span>
+                                {%- endif -%}
+                                <p id="email-caption" class="a-caption-message">{{ 'Newsletter.email-example' | t }}</p>
+                            </div>
+                            <p class="a-error-message error empty" aria-live="assertive">
+                                <span class="not-valid"> {{ 'Newsletter.email-error' | t }} </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row form-row-flex">
+                    <div class="form-items-col form-pass form-validate">
+                        <div class="form-group">
+                            <label for="{{ formId }}-password">{{ 'Newsletter.password' | t }}<span class="red-label">*</span></label>
+                            <div class="form-field">
+                                <input data-required="true" type="password" name="customer[password]" id="{{ formId }}-password" class="{% if form.errors contains 'password' %} input--error{% endif %}" aria-required="true" {%- if
+                                form.errors contains 'password' -%} class="input--error" aria-invalid="true" aria-describedby="{{ formId }}-password-error" {%- endif -%} >
+
+                                <div id="toggle-password" class="">
+                                    <span class="password-toggle-show">
+                                        <svg
+                                            style="width: 16px; height: 16px;"
+                                            aria-hidden="true"
+                                            focusable="false"
+                                            data-prefix="far"
+                                            data-icon="eye"
+                                            class="svg-inline--fa fa-eye fa-w-18"
+                                            role="img"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 576 512"
+                                        >
+                                            <path
+                                                fill="currentColor"
+                                                d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"
+                                            ></path>
+                                        </svg>
+                                    </span>
+                                    <span class="password-toggle-hide">
+                                        <svg
+                                            style="width: 16px; height: 16px;"
+                                            aria-hidden="true"
+                                            focusable="false"
+                                            data-prefix="far"
+                                            data-icon="eye-slash"
+                                            class="svg-inline--fa fa-eye-slash fa-w-20"
+                                            role="img"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 640 512"
+                                        >
+                                            <path
+                                                fill="currentColor"
+                                                d="M634 471L36 3.51A16 16 0 0 0 13.51 6l-10 12.49A16 16 0 0 0 6 41l598 467.49a16 16 0 0 0 22.49-2.49l10-12.49A16 16 0 0 0 634 471zM296.79 146.47l134.79 105.38C429.36 191.91 380.48 144 320 144a112.26 112.26 0 0 0-23.21 2.47zm46.42 219.07L208.42 260.16C210.65 320.09 259.53 368 320 368a113 113 0 0 0 23.21-2.46zM320 112c98.65 0 189.09 55 237.93 144a285.53 285.53 0 0 1-44 60.2l37.74 29.5a333.7 333.7 0 0 0 52.9-75.11 32.35 32.35 0 0 0 0-29.19C550.29 135.59 442.93 64 320 64c-36.7 0-71.71 7-104.63 18.81l46.41 36.29c18.94-4.3 38.34-7.1 58.22-7.1zm0 288c-98.65 0-189.08-55-237.93-144a285.47 285.47 0 0 1 44.05-60.19l-37.74-29.5a333.6 333.6 0 0 0-52.89 75.1 32.35 32.35 0 0 0 0 29.19C89.72 376.41 197.08 448 320 448c36.7 0 71.71-7.05 104.63-18.81l-46.41-36.28C359.28 397.2 339.89 400 320 400z"
+                                            ></path>
+                                        </svg>
+                                    </span>
+                                </div>
+
+                                {%- if form.errors contains 'password' -%}
+                                <span id="{{ formId}}-password-error" class="input-error-message">
+                                    {% include 'icon-error' %}
+                                    <span>{{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.</span>
+                                </span>
+                                {%- endif -%}
+                            </div>
+                        </div>
+                        <p class="a-error-message error empty" aria-live="assertive">
+                            <span class="not-valid"> {{ 'Newsletter.password' | t }} </span>
+                        </p>
+                    </div>
+
+                    {% comment %}
+                    <div class="form-items-col form-validate">
+                        <div class="form-group">
+                            <label for="{{ formId }}-password">{{ 'Newsletter.confirm-password' | t }} <span class="red-label">*</span></label>
+                            <div class="form-field">
+                                <input data-required="true" required type="password" value="" name="customer[confirm-password]" id="confirm-password" class="confirm password-splash-conf custom-check" />
+                            </div>
+                            <p class="a-error-message error empty pass_error_msg" aria-live="assertive">
+                                <span class="not-valid">Password should not blank</span>
+                            </p>
+                            <p class="a-error-message error empty not-match" aria-live="assertive">
+                                <span class="not-match"> {{ 'Newsletter.confirm-password-error' | t }} </span>
+                            </p>
+                        </div>
+                    </div>
+                    {% endcomment %}
+                </div>
+
+                <div class="form-row form-row-flex countries_states">
+                    <div class="form-items-col">
+                        <div class="inner-row inner-row-subscription field_phoneno">
+                            <div class="form-inner-item">
+                                <div class="form-group">
+                                    <label class="phone-label-en" for="">{{'Newsletter.phone' | t }}<span class="red-label">*</span></label>
+                                    <div class="form-field">
+                                        <select id="{{ formId }}-country_code" name="customer[note][country_code]">
+                                          {% include 'country_code'%}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-inner-item form-validate">
+                                <div class="form-group">
+                                    <label class="phone-label-en phone-label-ar" for="">{{'Newsletter.phone' | t }}<span class="red-label">*</span></label>
+
+                                    <div class="form-field">
+                                        <input data-required="true" id="phonoe_no" type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" name="customer[note][phone]" />
+                                    </div>
+                                    <span class="not-valid error_phone"></span>
+                                    <p class="a-error-message error empty" aria-live="assertive">
+                                        <span class="not-valid">{{'Newsletter.phone-error' | t }} </span>
+                                    </p>
+                                    <!--                   <p class="a-error-message error empty phone_error" aria-live="assertive">
+                    <span class="not-valid" >Please enter a valid phone number -11</span>
+                  </p> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--           <div class="form-items-col ">
+           <div class="form-group">
+              <label for="">DOB</label>
+               <div class="form-field">
+                <input  type="date" name="customer[note][DOB]"/>
+                <p class="field-message-caption">Please enter DOB</p>
+              </div>
+            </div>
+          </div> -->
+                </div>
+
+                <div class="register-page-footer">
+                    <div class="form-row checkbox tc-check">
+                        <div class="accetpt-offer form-group custom-mst form-validate valid">
+                            <input class="email-checked" type="checkbox" id="tc" name="customer[note][terms and conditions]" value="true" aria-invalid="false" data-required="true" checked disabled />
+                            <label for="tc">I accept the <a href="{{shop.url}}/pages/legal-terms-and-conditions">Terms and conditions</a> and the privacy and cookie policy.<span class="red-label">*</span></label>
+
+                            <p class="a-error-message error empty" aria-live="assertive">
+                                <span class="not-valid">{{ 'please read and accept the terms and conditions' }}</span>
+                            </p>
+                        </div>
+                        <input type="hidden" name="contact[tags]" value="newsletter" />
+                        <input type="hidden" name="customer[accepts_marketing]" value="true" id="marketing" />
+                    </div>
+
+                    <!--         <div class="form-row checkbox tc-check form-validate">
+          <div class="accetpt-offer">
+            <input class="email-checked" type="checkbox"  id="tc" name ="customer[note][terms and conditions]" value="true" aria-invalid="false" data-required="true" checked disabled />
+            <label for="tc">Terms and conditions<span class="red-label">*</span></label>
+
+            <p class="a-error-message error empty" aria-live="assertive">
+                <span class="not-valid" >{{ 'please read and accept the terms and conditions' }}</span>
+              </p>
+          </div>
+        </div> -->
+
+                    <br />
+
+                    <div class="form-row">
+                        <h2 class="form-heading-h2">preferred communication method</h2>
+                    </div>
+                    <div class="form-row-grid">
+                        <div class="form-field form-validate valid">
+                            <input name="customer[note][communication by email]" value="Email" id="by-email" type="checkbox" checked disabled />
+                            <label class="form-control-label" for="by-email"> Email </label>
+                        </div>
+                        <div class="form-field">
+                            <input name="customer[note][communication by sms]" value="SMS" id="by-sms" type="checkbox" />
+                            <label class="form-control-label" for="by-sms"> SMS </label>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="form-row">
+                        <div class="register-actions text-center">
+                            <input id="form-sumbit" disabled type="button" value="Subscribe" class="register-btn btn" />
+                        </div>
+                    </div>
+
+                    {% if settings.bottom_text != blank %}
+                    <div class="form-row full-para">
+                        {{ settings.bottom_text }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endform %}
+        </div>
+    </div>
+    <div class="signup-modal-overlay"></div>
+</div>
+
+<script src="{{ 'signup.js' | asset_url }}"></script>
+ 

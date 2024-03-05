@@ -1,0 +1,705 @@
+
+      <style type="text/css"> 
+         @font-face {
+         font-family: 'ProximaNova';
+         src:
+         url('https://cdn.shopify.com/s/files/1/0272/4233/2203/files/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.shopify.com/s/files/1/0272/4233/2203/files/ProximaNova-Regular.woff2') format('woff2'),
+         url('https://cdn.shopify.com/s/files/1/0272/4233/2203/files/ProximaNova-Regular.woff') format('woff'),
+         url('https://cdn.shopify.com/s/files/1/0272/4233/2203/files/ProximaNova-Regular.ttf') format('truetype');
+         font-weight: 400;
+         font-style: normal;
+         }
+         @font-face {
+         font-family: 'ProximaNova';
+         src:
+         url('https://cdn.shopify.com/s/files/1/0272/4233/2203/files/ProximaNova-Bold.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.shopify.com/s/files/1/0272/4233/2203/files/ProximaNova-Bold.woff2') format('woff2'),
+         url('https://cdn.shopify.com/s/files/1/0272/4233/2203/files/ProximaNova-Bold.woff') format('woff'),
+         url('https://cdn.shopify.com/s/files/1/0272/4233/2203/files/ProximaNova-Bold.ttf') format('truetype');
+         font-weight: 700;
+         font-style: normal;
+         }
+         @font-face {
+         font-family: 'ProximaNova';
+         src:
+         url('https://cdn.shopify.com/s/files/1/0272/4233/2203/files/ProximaNova-Semibold.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.shopify.com/s/files/1/0272/4233/2203/files/ProximaNova-Semibold.woff2') format('woff2'),
+         url('https://cdn.shopify.com/s/files/1/0272/4233/2203/files/ProximaNova-Semibold.woff') format('woff'),
+         url('https://cdn.shopify.com/s/files/1/0272/4233/2203/files/ProximaNova-Semibold.ttf') format('truetype');
+         font-weight: 600;
+         font-style: normal;
+         }
+         *, *::before, *::after {
+         box-sizing: border-box;
+         }
+         .missoni-page .row {
+         display:-ms-flexbox;
+         display:flex;
+         -ms-flex-wrap:wrap;
+         flex-wrap:wrap;
+         margin-right:-15px;
+         margin-left:-15px
+         }
+         .missoni-page .col-12 {
+         -ms-flex: 0 0 100%;
+         flex: 0 0 100%;
+         max-width: 100%;
+         }
+         .missoni-page .col-12,
+         .missoni-page .col-md-6,
+         .missoni-page .col-md-4 {
+         position: relative;
+         width: 100%;
+         min-height: 1px;
+         padding-right: 15px;
+         padding-left: 15px;
+         }
+         .missoni-page .d-none {
+         display: none;
+         }
+         .missoni-page img {
+         display: block;
+         width: 100%;
+         }
+         .missoni-container {
+         padding: 30px 15px 0;
+         color: #000;
+         }
+         .missoni-page .banner-section {
+         position: relative;
+         height: 67vw;
+         }
+         .missoni-page .iframe-banner {
+         position: absolute;
+         top: 0;
+         left: 0;
+         bottom: 0;
+         right: 0;
+         width: 100%;
+         height: 100%;
+         border: none;
+         }
+         .fashion-section .title {
+         font-family: "ProximaNova";
+         font-weight: 600;
+         text-transform: uppercase;
+         width: 10em;
+         font-size: 28px;
+         text-align: center;
+         margin: 0 auto;
+         letter-spacing: 0.5px;
+         }
+         .fashion-section .content {
+         font-family: "ProximaNova";
+         font-weight: 400;
+         font-size: 14px;
+         width: 22em;
+         margin: 0 auto;
+         text-align: center;
+         padding-top: 10px;
+         }
+         .fashion-section .text-section {
+         padding-bottom: 40px;
+         }
+         .fashion-section .image-section {
+         padding: 0;
+         }
+         .product-section {
+         width: 100%;
+         display: block;
+         overflow: hidden;
+         }
+         .product-section .product-carousel-container {
+         margin-right: -100px;
+         }
+         .product-section .title {
+         font-weight: 700;
+         font-family: 'ProximaNova';
+         text-align: center;
+         font-size: 27px;
+         }
+         .product-section .product-item .product-name {
+         font-size: 17px;
+         text-align: center;
+         margin-bottom: 0;
+         font-weight: 400;
+         font-family: 'ProximaNova';
+         }
+         .product-section .product-item .tumi-missoni {
+         font-size: 13px;
+         text-align: center;
+         display: block;
+         margin-top: 3px;
+         font-weight: 700;
+         font-family: 'ProximaNova';
+         }
+         .product-section .product-item .product-name::after {
+         display: none;
+         }
+         .modern-icons-section .title {
+         font-family: "ProximaNova";
+         font-weight: 600;
+         text-transform: uppercase;
+         width: 10em;
+         font-size: 28px;
+         text-align: center;
+         margin: 0 auto;
+         letter-spacing: 0.5px;
+         }
+         .modern-icons-section .content {
+         font-family: "ProximaNova";
+         font-weight: 400;
+         font-size: 14px;
+         width: 23em;
+         margin: 0 auto;
+         text-align: center;
+         padding-top: 10px;
+         }
+         .modern-icons-section .text-section {
+         padding-top: 20px;
+         padding-bottom: 10px;
+         text-align: center;
+         }
+         .modern-icons-section .image-section {
+         padding: 0;
+         }
+         .modern-icons-section .text-section a {
+         text-align: center;
+         margin-top: 15px;
+         font-family: 'ProximaNova';
+         display: inline-block;
+         position: relative;
+         }
+         .modern-icons-section .text-section a img {
+         display: inline-block;
+         width: 13px;
+         position: absolute;
+         left: 100%;
+         top: 45%;
+         transform: translateY(-50%);
+         }
+         .modern-icons-section iframe {
+         width: 100%;
+         height: 67vw;
+         }
+         .missoni-showing-section {
+         margin-top: 50px;
+         }
+         .missoni-showing-section .text-section {
+         padding: 0;
+         text-align: center;
+         }
+         .missoni-showing-section .text-section h2 {
+         font-family: 'ProximaNova';
+         font-weight: 600;
+         text-align: center;
+         font-size: 26px;
+         margin: 25px 0 20px;
+         }
+         .missoni-showing-section .text-section a {
+         text-align: center;
+         margin-top: 0px;
+         font-family: 'ProximaNova';
+         font-weight: 700;
+         display: inline-block;
+         font-size: 23px;
+         margin-bottom: 20px;
+         position: relative;
+         }
+         .missoni-showing-section .text-section a img {
+         display: inline-block;
+         width: 22px;
+         position: absolute;
+         left: 100%;
+         top: 50%;
+         transform: translateY(-50%);
+         }
+         .missoni-showing-section .iframe-showing {
+         width: 100%;
+         height: 100vw;
+         }
+         .shop-collection-section {
+         margin-top: 35px;
+         text-align: center;
+         }
+         .shop-collection-section .shop-collection-content {
+         padding: 30px 35px;
+         }
+         .shop-collection-section .shop-collection-btn {
+         display: inline-block;
+         margin-top: 30px;
+         background: #000;
+         color: #fff;
+         padding: 15px 25px;
+         font-weight: 700;
+         font-family: 'ProximaNova';
+         font-size: 16px;
+         }
+         img[data-src] {
+         min-height: 0;
+         min-width: 0;
+         }
+         .missoni-page a {
+         cursor: pointer;
+         text-decoration: none;
+         color: #000;
+         }
+         .missoni-page a:hover {
+         color: #000;
+         }
+         @media only screen and (min-width: 768px) {
+         .missoni-page .col-md-4 {
+         -ms-flex: 0 0 33.33333%;
+         flex: 0 0 33.33333%;
+         max-width: 33.33333%;
+         }
+         .missoni-page .col-md-6 {
+         -ms-flex: 0 0 50%;
+         flex: 0 0 50%;
+         max-width: 50%;
+         }
+         .missoni-page .d-md-none {
+         display: none;
+         }
+         .missoni-page .d-md-block {
+         display: block;
+         }
+         .missoni-page .banner-section {
+         position: relative;
+         height: 36.7vw;
+         }
+         .missoni-container {
+         width: 94%;
+         margin: 0 auto;
+         padding: 3vw 0 0;
+         }
+         .fashion-section .row {
+         flex-direction: row-reverse;
+         margin: 0;
+         }
+         .fashion-section .text-section {
+         display: flex;
+         flex-direction: column;
+         align-self: center;
+         place-self: center;
+         justify-self: center;
+         padding: 0;
+         }
+         .fashion-section .title {
+         width: 100%;
+         font-size: 2.2vw;
+         letter-spacing: 0.1vw;
+         }
+         .fashion-section .content {
+         width: 100%;
+         width: 75%;
+         padding-top: 1vw;
+         font-size: 1.34vw;
+         }
+         .product-section.missoni-container {
+         width: 100%;
+         display: block;
+         }
+         .product-section .title {
+         font-size: 2vw;
+         margin-bottom: 1vw;
+         }
+         .product-section .product-carousel-container {
+         margin-right: 0;
+         }
+         .modern-icons-section .row {
+         flex-direction: row-reverse;
+         margin: 0;
+         }
+         .modern-icons-section .text-section {
+         display: flex;
+         flex-direction: column;
+         align-self: center;
+         place-self: center;
+         justify-self: center;
+         padding: 0;
+         }
+         .modern-icons-section .title {
+         width: 100%;
+         font-size: 2.2vw;
+         letter-spacing: 0.1vw;
+         }
+         .product-section .product-item .product-name {
+         font-size: 14px;
+         }
+         .product-section .product-item .tumi-missoni {
+         font-size: 12px;
+         }
+         .modern-icons-section .content {
+         width: 100%;
+         width: 75%;
+         padding-top: 1vw;
+         font-size: 1.34vw;
+         }
+         .modern-icons-section .text-section a {
+         display: none;  
+         }
+         .modern-icons-section iframe {
+         width: 100%;
+         height: 35vw;
+         }
+         .missoni-showing-section {
+         margin-bottom: 3vw;
+         }
+         .missoni-showing-section .row {
+         margin: 0 -1vw;
+         }
+         .missoni-showing-section .text-section {
+         padding: 0 1vw;
+         }
+         .missoni-showing-section .iframe-showing {
+         width: 100%;
+         height: 29.75vw;
+         }
+         .missoni-showing-section .text-section h2 {
+         font-size: 1.6vw;
+         margin: 2vw 0 1.5vw;
+         }
+         .missoni-showing-section .text-section a {
+         font-size: 1.5vw;
+         margin-bottom: 0;
+         }
+         .missoni-showing-section .text-section a img {
+         width: 1.3vw;
+         }
+         .shop-collection-section {
+         position: relative;
+         margin-top: 7vw;
+         }
+         .shop-collection-section .shop-collection-content {
+         position: absolute;
+         padding: 0;
+         top: 50%;
+         left: 5%;
+         text-align: left;
+         transform: translateY(-50%);
+         width: 35%;
+         }
+         .shop-collection-section .shop-collection-btn {
+         color: #000;
+         background: #fff;
+         font-size: 1.5vw;
+         padding: 1vw 2vw;
+         margin-top: 2.5vw;
+         }
+         }
+         @media only screen and (min-width: 991px) {
+         .product-section .product-item .product-name {
+         font-size: 17px;
+         }
+         .product-section .product-item .tumi-missoni {
+         font-size: 13px;
+         }
+         }
+         @media only screen and (min-width: 1600px) {
+         .product-section .product-item .product-name {
+         font-size: 20px;
+         }
+         .product-section .product-item .tumi-missoni {
+         font-size: 15px;
+         }
+         }
+         /* Slider */
+         .slick-slider
+         {
+         position: relative;
+         display: block;
+         box-sizing: border-box;
+         -webkit-user-select: none;
+         -moz-user-select: none;
+         -ms-user-select: none;
+         user-select: none;
+         -webkit-touch-callout: none;
+         -khtml-user-select: none;
+         -ms-touch-action: pan-y;
+         touch-action: pan-y;
+         -webkit-tap-highlight-color: transparent;
+         }
+         .slick-list
+         {
+         position: relative;
+         display: block;
+         overflow: hidden;
+         margin: 0;
+         padding: 0;
+         }
+         .slick-list:focus
+         {
+         outline: none;
+         }
+         .slick-list.dragging
+         {
+         cursor: pointer;
+         cursor: hand;
+         }
+         .slick-slider .slick-track,
+         .slick-slider .slick-list
+         {
+         -webkit-transform: translate3d(0, 0, 0);
+         -moz-transform: translate3d(0, 0, 0);
+         -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+         transform: translate3d(0, 0, 0);
+         }
+         .slick-track
+         {
+         position: relative;
+         top: 0;
+         left: 0;
+         display: block;
+         margin-left: auto;
+         margin-right: auto;
+         }
+         .slick-track:before,
+         .slick-track:after
+         {
+         display: table;
+         content: '';
+         }
+         .slick-track:after
+         {
+         clear: both;
+         }
+         .slick-loading .slick-track
+         {
+         visibility: hidden;
+         }
+         .slick-slide
+         {
+         display: none;
+         float: left;
+         height: 100%;
+         min-height: 1px;
+         }
+         [dir='rtl'] .slick-slide
+         {
+         float: right;
+         }
+         .slick-slide img
+         {
+         display: block;
+         }
+         .slick-slide.slick-loading img
+         {
+         display: none;
+         }
+         .slick-slide.dragging img
+         {
+         pointer-events: none;
+         }
+         .slick-initialized .slick-slide
+         {
+         display: block;
+         }
+         .slick-loading .slick-slide
+         {
+         visibility: hidden;
+         }
+         .slick-vertical .slick-slide
+         {
+         display: block;
+         height: auto;
+         border: 1px solid transparent;
+         }
+         .slick-arrow.slick-hidden {
+         display: none;
+         }    
+      </style>    
+      <div class="missoni-page">
+         <div class="banner-section">    
+            <iframe class="iframe-banner d-none d-md-block" src="https://player.vimeo.com/video/587676299?title=&background=1&muted=1&autoplay=1" width="100%" height="auto" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            <iframe class="iframe-banner d-md-none" src="https://player.vimeo.com/video/587676330?title=&background=1&muted=1&autoplay=1" width="100%" height="auto" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+         </div>
+         <div class="fashion-section missoni-container">
+            <div class="row">
+               <div class="text-section col-12 col-md-6">
+                  <h2 class="title">Fashion That Takes You Far</h2>
+                  <p class="content">Italian fashion house Missoni partnered with TUMI to celebrate a shared love of design excellence. The collection blends their emblematic house codes, like zigzags and rust accents, with TUMI's superior functionality.</p>
+               </div>
+               <div class="image-section col-12 col-md-6">
+                  <img alt="Fashion" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/fashion.jpg">
+               </div>
+            </div>
+         </div>
+<!--          <div class="discover-luggage-bags-section product-section missoni-container">
+            <h2 class="title">Discover Luggage & Bags</h2>
+            <div class="product-carousel-container">
+               <div class="slick-carousel product-carousel product-slides-a row">
+                  <div class="product-item">
+                     <a href="#">
+                        <img alt="Short Trip Packing Case" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/short-trip-packing-case.jpg">
+                        <h3 class="product-name">Short Trip Packing Case</h3>
+                        <span class="tumi-missoni">TUMI | MISSONI</span>
+                     </a>
+                  </div>
+                  <div class="product-item">
+                     <a href="#">
+                        <img alt="Just In Case Tote" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/just-in-case-tote.jpg">
+                        <h3 class="product-name">Just In Case Tote</h3>
+                        <span class="tumi-missoni">TUMI | MISSONI</span>
+                     </a>
+                  </div>
+                  <div class="product-item">
+                     <a href="#">
+                        <img alt="Carson Backpack" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/carson-backpack.jpg">
+                        <h3 class="product-name">Carson Backpack</h3>
+                        <span class="tumi-missoni">TUMI | MISSONI</span>
+                     </a>
+                  </div>
+                  <div class="product-item">
+                     <a href="#">
+                        <img alt="Cleary Weekender" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/cleary-weekender.jpg">
+                        <h3 class="product-name">Cleary Weekender</h3>
+                        <span class="tumi-missoni">TUMI | MISSONI</span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div> -->
+         <div class="modern-icons-section missoni-container">
+            <div class="row">
+               <div class="image-section col-12 col-md-6">
+                  <iframe class="d-md-none" src="https://player.vimeo.com/video/588258557?title=&background=1&muted=1&autoplay=1" width="100%" height="auto" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                  <iframe class="d-none d-md-block" src="https://player.vimeo.com/video/588258603?title=&background=1&muted=1&autoplay=1" width="100%" height="auto" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+               </div>
+               <div class="text-section col-12 col-md-6">
+                  <h2 class="title">Modern Icons</h2>
+                  <p class="content">Chosen for its vibrance, the instantly recognizable motif was personally selected from the Missoni archives by our Creative Director. It was reimagined across the collection, including Voyageur favorites and new lightweight cases.</p>
+                  <a href="#">Shop Now <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/arrow-right.svg"/></a>
+               </div>
+            </div>
+         </div>
+         <div class="discover-luggage-bags-section product-section missoni-container d-md-none">
+            <h2 class="title">TUMI | Missoni Collection</h2>
+            <div class="product-carousel-container">
+               <div class="slick-carousel product-carousel product-slides-b row">
+                  <div class="product-item">
+                     <a href="#">
+                        <img alt="Madina Cosmetic" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/madina-cosmetic.jpg">
+                        <h3 class="product-name">Madina Cosmetic</h3>
+                        <span class="tumi-missoni">TUMI | MISSONI</span>
+                     </a>
+                  </div>
+                  <div class="product-item">
+                     <a href="#">
+                        <img alt="Missoni Luggage Tag" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/missoni-luggage-tag.jpg">
+                        <h3 class="product-name">Missoni Luggage Tag</h3>
+                        <span class="tumi-missoni">TUMI | MISSONI</span>
+                     </a>
+                  </div>
+                  <div class="product-item">
+                     <a href="https://www.tumi.ae/products/anna-sling-2">
+                        <img alt="Basel Small Triangle Pouch" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/basel-small-triangle-pouch.jpg">
+                        <h3 class="product-name">Basel Small Triangle Pouch</h3>
+                        <span class="tumi-missoni">TUMI | MISSONI</span>
+                     </a>
+                  </div>
+                  <div class="product-item">
+                     <a href="#">
+                        <img alt="TUMI Accents Pouch" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/tumi-accents-pouch.jpg">
+                        <h3 class="product-name">TUMI Accents Pouch</h3>
+                        <span class="tumi-missoni">TUMI | MISSONI</span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="missoni-showing-section missoni-container">
+            <div class="row">
+               <div class="text-section col-12 col-md-4">
+                  <iframe class="iframe-showing" src="https://player.vimeo.com/video/587676492?title=&background=1&muted=1&autoplay=1" width="100%" height="auto" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                  <h2 class="title">Cleary Weekender</h2>
+                  <!-- <a href="#" class="shop-now-btn">Shop Now <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/arrow-right.svg"/></a> -->
+               </div>
+               <div class="text-section col-12 col-md-4">
+                   <img class="image-showing" alt="Carson Backpack" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/carson-backpack-banner.jpg">
+                  <h2 class="title">Carson Backpack</h2>
+                  <a href="https://www.tumi.ae/products/carson-backpack-5" class="shop-now-btn">Shop Now <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/arrow-right.svg"/></a>
+               </div>
+               <div class="text-section col-12 col-md-4">
+                  <iframe class="iframe-showing" src="https://player.vimeo.com/video/587676543?title=&background=1&muted=1&autoplay=1" width="100%" height="auto" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                  <h2 class="title">Anna Sling</h2>
+                  <a href="https://www.tumi.ae/products/anna-sling-2" class="shop-now-btn">Shop Now <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/arrow-right.svg"/></a>
+               </div>
+            </div>
+         </div>
+         <!-- <div class="discover-luggage-bags-section product-section missoni-container d-none d-md-block">
+            <h2 class="title">Explore Travel Accessories</h2>
+            <div class="product-carousel-container">
+               <div class="slick-carousel product-carousel product-slides-c row">
+                  <div class="product-item">
+                     <a href="#">
+                        <img alt="Madina Cosmetic" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/madina-cosmetic.jpg">
+                        <h3 class="product-name">Madina Cosmetic</h3>
+                        <span class="tumi-missoni">TUMI | MISSONI</span>
+                     </a>
+                  </div>
+                  <div class="product-item">
+                     <a href="#">
+                        <img alt="Missoni Luggage Tag" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/missoni-luggage-tag.jpg">
+                        <h3 class="product-name">Missoni Luggage Tag</h3>
+                        <span class="tumi-missoni">TUMI | MISSONI</span>
+                     </a>
+                  </div>
+                  <div class="product-item">
+                     <a href="#">
+                        <img alt="Basel Small Triangle Pouch" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/basel-small-triangle-pouch.jpg">
+                        <h3 class="product-name">Basel Small Triangle Pouch</h3>
+                        <span class="tumi-missoni">TUMI | MISSONI</span>
+                     </a>
+                  </div>
+                  <div class="product-item">
+                     <a href="#">
+                        <img alt="TUMI Accents Pouch" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/tumi-accents-pouch.jpg">
+                        <h3 class="product-name">TUMI Accents Pouch</h3>
+                        <span class="tumi-missoni">TUMI | MISSONI</span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div> -->
+         <div class="shop-collection-section">
+            <picture>
+               <source srcset="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/shop-collection-mobile.jpg" media="(max-width: 767px)" />
+               <img alt="Shop Collection" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/shop-collection-desktop.jpg" />
+            </picture>
+            <div class="shop-collection-content">
+               <picture>
+                  <source srcset="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/missoni-black-logo.png" media="(max-width: 767px)" />
+                  <img class="tumi-mission-icon" alt="Shop Collection" src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/missoni-white-logo.png" />
+               </picture>
+               <a href="https://www.tumi.ae/collections/tumi-missoni" class="shop-collection-btn">Shop the Collection</a>
+            </div>
+         </div>
+      </div>
+      <script src="{{ 'slick.min.js' | asset_url }}" async="async"></script>
+      <script type="text/javascript">
+         $(document).ready(function() {     
+
+            $('.product-slides-a, .product-slides-b, .product-slides-c').slick({
+              dots: false,
+              arrows: false,
+              infinite: true,
+              speed: 300,
+              slidesToShow: 4,              
+              responsive: [
+                {
+                  breakpoint: 767,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    infinite: true,
+                    dots: false
+                  }
+                }
+              ],           
+              slidesToScroll: 4
+            });              
+          });
+      </script>

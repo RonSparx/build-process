@@ -1,0 +1,145 @@
+
+  <div class="write-up-wrapper unveil-lp">
+    <h1 data-w-id="668b92b4-426e-44f9-91a7-5eaa11e9b01c" style="opacity: 1;" class="h2 green">{{ section.settings.heading }}</h1>
+    <div class="paragraph write-up">
+    	{{ section.settings.description }}
+    </div>
+    <div
+         data-w-id="668b92b4-426e-44f9-91a7-5eaa11e9b020"
+         style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+         class="line-graphics-wrapper-left"
+         >
+      <div class="line-graphics _1a"></div>
+      <div class="line-graphics _1b"></div>
+      <div class="line-graphics _1c"></div>
+      <div class="line-graphics _1d"></div>
+    </div>
+    <div
+         data-w-id="668b92b4-426e-44f9-91a7-5eaa11e9b025"
+         style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+         class="line-graphics-wrapper-right"
+         >
+      <div class="line-graphics _2a"></div>
+      <div class="line-graphics _2b"></div>
+      <div class="line-graphics _2c"></div>
+      <div class="line-graphics _2d"></div>
+    </div>
+  </div>
+  <div class="prelude-container unveil-lp">
+    <div class="prelude-text-wrapper unveil-lp">
+      <div
+           class="prelude-text-wrapper-left"
+           style="will-change: transform; transform: translate3d(89.6643vw, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+           >
+        <div class="prelude-large-text-1">{{ section.settings.carry-label }}</div>
+      </div>
+      <div
+           class="prelude-text-wrapper-right"
+           style="will-change: transform; transform: translate3d(89.6643vw, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+           >
+        <div class="prelude-large-text-2">{{ section.settings.hard-label }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="prelude-backdrop">
+    <img
+         src="{{ 'skyline-left.png' | asset_url  }}"
+         loading="lazy"
+         sizes="100vw"
+         srcset="
+                 {{ 'skyline-left-p-500.png' | asset_url  }} 500w,
+                 {{ 'skyline-left-p-800.png' | asset_url  }} 800w,
+                 {{ 'skyline-left.png' | asset_url  }}       907w
+                 "
+         alt=""
+         class="prelude-left"
+         style="will-change: transform; transform: translate3d(-14.841px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+         />
+    <img
+         src="{{ 'skyline-left2.png' | asset_url  }}"
+         loading="lazy"
+         sizes="100vw"
+         srcset="
+                 {{ 'skyline-left2-p-500.png' | asset_url  }} 500w,
+                 {{ 'skyline-left2-p-800.png' | asset_url  }} 800w,
+                 {{ 'skyline-left2.png' | asset_url  }}       907w
+                 "
+         alt=""
+         class="prelude-left2"
+         style="will-change: opacity, transform; opacity: 0.023415; transform: translate3d(-14.841px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+         />
+    <img
+         src="{{ 'skyline-right.png' | asset_url  }}"
+         loading="lazy"
+         sizes="100vw"
+         srcset="
+                 {{ 'skyline-right-p-500.png' | asset_url  }}  500w,
+                 {{ 'skyline-right-p-800.png' | asset_url  }}  800w,
+                 {{ 'skyline-right.png' | asset_url  }}       1036w
+                 "
+         alt=""
+         class="prelude-right"
+         style="will-change: transform; transform: translate3d(14.841px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+         />
+    <img
+         src="{{ 'skyline-right2.png' | asset_url  }}"
+         loading="lazy"
+         sizes="100vw"
+         srcset="
+                 {{ 'skyline-right2-p-500.png' | asset_url  }}  500w,
+                 {{ 'skyline-right2-p-800.png' | asset_url  }}  800w,
+                 {{ 'skyline-right2.png' | asset_url  }}       1036w
+                 "
+         alt=""
+         class="prelude-right2"
+         style="will-change: opacity, transform; opacity: 0.023415; transform: translate3d(14.841px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"
+         />
+    <div class="prelude-backdrop-bottom"></div>
+  </div>
+  
+  
+  
+  
+  
+
+
+
+{% schema %}
+  {
+    "name": "carry hard.",
+    "settings": [
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading",
+			"default": "CARRY HARD"
+		},
+		{
+			"type": "richtext",
+			"id": "description",
+			"label": "Description",
+			"default": "<p>For those destined to go places, set your sights on a new exploration in lifestyle and travel for the modern gamer. Rise to the occasion and bring the team to victory with the TUMI | Razer collection. </p>"
+			
+		},
+		{
+			"type": "header",
+			"content": "Animated text"
+		},
+		{
+			"type": "text",
+			"id": "carry-label",
+			"label": "carry",
+			"default": "CARRY"
+		},
+		{
+			"type": "text",
+			"id": "hard-label",
+			"label": "hard",
+			"default": "HARD"
+		}
+		
+		
+	
+	]
+  }
+{% endschema %}

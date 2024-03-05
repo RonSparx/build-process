@@ -1,0 +1,168 @@
+{% assign product_qty = 0 %}
+{% for variant in product.variants %}
+  {% if variant.inventory_quantity > 0 %}
+   {% assign product_qty = product_qty | plus: variant.inventory_quantity %}
+  {% endif %}
+{% endfor %}
+
+<div class="product-recently-view__container">
+    <h2 class="product-recently-view__heading h2">{{ section.settings.heading | escape }}</h2>
+    <div class="recently-viewed grid product-grid owl-carousel" role="list">
+    <!-- Recently viewed products will appear here -->
+    </div>
+</div>
+
+<script>
+function setRecentlyViewedProducts() {
+  const productData = {
+    productTitle: '{{ product.title }}',
+    productImg: "{{ product.images[0] | image_url }}",
+    imgWidth:"{{ product.featured_media.width }}",
+    imgHeight:"{{ product.featured_media.height }}",
+    productPrice: "{{ product.price | money_with_currency }}",
+    productUrl: "{{ product.url }}",
+    productImageAltText: "{{product.featured_media.alt | escape }}",
+    variantId:"{{ product.first_available_variant.id }}",
+    vendorName: "{{ product.vendor }}",
+    quantity:'{{ product_qty }}',
+    productJson:'{{ product | json | escape }}',
+    available:'{{ product.available }}',
+  };
+ 
+  const productList = [];
+  let jsonResp, jsonRespArr, jsonRespArrStr;
+  const numberOfProducts = 6;
+  productList.push(productData);
+  const currProductPageTitle = productData.productTitle;
+  const productDataString = JSON.stringify(productList);
+  const localData = localStorage.getItem("recentlyViewedProduct");
+
+  if (localData === null) {
+    localStorage.setItem("recentlyViewedProduct", productDataString);
+  } else if (localData) {
+    const oldProductData = localStorage.getItem("recentlyViewedProduct");
+    const countProductData = (oldProductData.match(/productTitle/g) || []).length;
+    const sameProduct = oldProductData.includes(currProductPageTitle);
+    if (countProductData < numberOfProducts && sameProduct == false) {
+      jsonResp = JSON.parse(oldProductData);
+      jsonRespArr = jsonResp.concat(productList);
+      jsonRespArrStr = JSON.stringify(jsonRespArr);
+      localStorage.setItem("recentlyViewedProduct", jsonRespArrStr);
+    } else if (countProductData >= numberOfProducts && sameProduct == false) {
+      jsonResp = JSON.parse(oldProductData);
+      jsonResp.shift();
+      jsonRespArr = jsonResp.concat(productList);
+      jsonRespArr = JSON.stringify(jsonRespArr);
+      localStorage.setItem("recentlyViewedProduct", jsonRespArr);
+    }
+  }
+}
+
+setRecentlyViewedProducts();
+const localViewed = localStorage.recentlyViewedProduct;
+function getRecentlyViewedProducts() {
+  const productData = JSON.parse(localStorage.getItem("recentlyViewedProduct"));
+  const recentlyViewedHtml = [];
+
+  productData.map(item => {
+    if(item.available && (item.quantity >= 2)){
+    console.log(item.quantity,"item.quantity");
+     recentlyViewedHtml.unshift(`
+    <div class="grid__item item">
+     <div class="card-wrapper underline-links-hover">
+      <div class="card card--standard card--media">
+        <div class="card__inner color-background-2 gradient ratio">
+         <div style="position:relative" class="card__media">
+         <div class="media media--transparent media--hover-effect product-images">
+    		 <a class="full-unstyled-link" href="${item.productUrl}"> <img class="motion-reduce" src="${item.productImg}" width="${item.imgWidth}" height="${item.imgHeight}"  loading="lazy" alt="${item.productImageAltText}"/></a>
+              <span class="gray-overlay"></span> 
+          </div>
+          <div class="recent_atc-btn product-recently-view_btn">
+           <button type="button" value="Add to cart" aria-disabled="true" aria-label="Sold out" ${item.quantity <= 1 ? 'style="display: none;"' : ''} class=" notify_me  recommendation-atc pdp-atc-btn btn add-to-cart " data-add-to-cart="" data-variant="${item.variantId}" tabindex="0"> 
+             <span data-add-to-cart-text="" style="display: block;"> Add to cart</span>
+              <span class="load-spinner hide" data-loader="">
+                          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-spinner" viewBox="0 0 20 20"><path d="M7.229 1.173a9.25 9.25 0 1 0 11.655 11.412 1.25 1.25 0 1 0-2.4-.698 6.75 6.75 0 1 1-8.506-8.329 1.25 1.25 0 1 0-.75-2.385z" fill="#919EAB"></path></svg>
+                </span>
+        </button>
+              <button id="BIS_trigger" class="BIS_trigger recently-view pdp-atc-btn btn add-to-cart" type="button" ${item.quantity <= 1 ? 'style="display: block;"' : ''} data-product-data="${item.productJson}">Notify me</button>      
+        
+         </div>
+        </div>
+       </div>
+       <div class="recommend-product-vendor">
+          <a class="link" href="#" tabindex="0">${item.vendorName}</a>
+         </div>
+       <div class="card__content">
+       <div class="card__information">
+       <h3 class="card__heading h5">
+       <a class="full-unstyled-link" href="${item.productUrl}">${item.productTitle}</a></h3>
+         <div class="card-information">
+           <div class="price ">
+             <div class="price__container">
+               <div class="price-item price-item--regular">
+                   ${item.productPrice}
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       </div>
+       
+       </div>
+       </div>
+    </div>
+   `);
+  }
+    
+  });
+  const newProductData = `${recentlyViewedHtml.join("")}`;
+  const fullContent = document.getElementsByClassName("recently-viewed");
+  fullContent[0].innerHTML = newProductData;
+    
+      let rtlView = window.langify.locale.iso_code == "ar" ? true : false;
+      $('#shopify-section-product-recently-view .recently-viewed').owlCarousel({
+          nav:true,
+          rtl:rtlView,
+          touchStart: true,
+          dots: false,
+          loop:false,
+          responsive:{
+              0:{
+                  items:1.5,
+                  loop:true,
+              },
+              600:{
+                  items:3
+              },
+              1000:{
+                  items:3
+              }
+          }
+      })
+    
+     // document.querySelector(".recently-viewed button.slick-next.slick-arrow").addEventListener("click",()=>{
+     //        document.querySelector(".recently-viewed button.slick-prev.slick-arrow").style.opacity = 1;
+     //       });
+ }
+
+
+document.addEventListener("DOMContentLoaded", function (event) {
+  getRecentlyViewedProducts();
+});
+
+</script>
+
+
+{% schema %}
+  {
+    "name": "Recent Products",
+    "settings": [
+      {
+      "type": "text",
+      "id": "heading",
+      "default": "Recently Viewed",
+      "label": "Title"
+    }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,52 @@
+<div class="page-width feature-row">
+  {% capture image_layout %}
+    <div class="feature-row__item">
+      {% if collection.image != blank %}
+        {% capture img_id %}FeatureRowImage-{{ section.id }}{% endcapture %}
+        {% capture wrapper_id %}FeatureRowImageWrapper-{{ section.id }}{% endcapture %}
+        {%- assign img_url = collection.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        {% include 'image-style', image: collection.image, height: 545, wrapper_id: wrapper_id, img_id: img_id %}
+        <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
+          <div style="padding-top:{{ 1 | divided_by: collection.image.aspect_ratio | times: 100}}%;">
+            <img id="{{ img_id }}"
+                 class="feature-row__image lazyload"
+                 src="{{ collection.image | img_url: '2048x600' }}"
+                 data-src="{{ img_url }}"
+                 data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-aspectratio="{{ collection.image.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ collection.image.alt | escape }}">
+          </div>
+        </div>
+
+        <noscript>
+          {{ collection.image | img_url: '2048x600', scale: 2 | img_tag: collection.image.alt, 'feature-row__image' }}
+        </noscript>
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+  {% endcapture %}
+
+  <div class="feature-row">
+
+    <div class="feature-row__item feature-row__text">
+     
+		<div class="collection-hero__title-wrapper">
+          <h1 class="collection-hero__title page-width">
+            <span role="text">
+              <span class="visually-hidden">{{ 'collections.general.collection_label' | t }}: </span>
+              {{ collection.title }}
+            </span>
+          </h1>
+        </div>      
+      {% if collection.description != blank %}
+        <div class="rte collection-description page-width">
+          {{ collection.description }}
+        </div>
+      {% endif %}
+      
+    </div>
+  </div>
+</div>
+

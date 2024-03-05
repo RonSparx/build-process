@@ -1,0 +1,100 @@
+{% comment %}Copy following content and paste to templates/search.liquid file{% endcomment %}
+
+{% paginate search.results by 12 %}
+
+<div class="page-width">
+  {% if search.performed == false %}
+    <div class="text-center">
+      <h1 class="h2">{{ 'general.search.title' | t }}</h1>
+  {% else %}
+    <div class="text-center">
+      <h1 class="h2">
+        <span class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}:</span>
+        {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+      </h1>
+  {% endif %}
+      <div class="grid">
+        <div class="grid__item medium-up--six-tenths medium-up--push-two-tenths">
+          {% if search.performed and search.results_count == 0 %}
+            <div class="rte search--no-results-found">
+              <p>{{ 'general.search.no_results' | t }}</p>
+            </div>
+          {% endif %}
+          <form action="{{ routes.search_url }}" method="get" role="search" class="search-form search-page-form">
+            <div class="input-group input-group--nowrap">
+              <div class="input-group__field input-group__field--connected search-form__input-wrapper">
+                <input
+                  type="search"
+                  name="q"
+                  value="{{ search.terms | escape }}"
+                  placeholder="{{ 'general.search.placeholder' | t }}"
+                  role="combobox"
+                  aria-autocomplete="list"
+                  aria-owns="predictive-search-results"
+                  aria-expanded="false"
+                  aria-label="{{ 'general.search.placeholder' | t }}"
+                  aria-haspopup="listbox"
+                  class="search-form__input"
+                  data-search-page-predictive-search-input
+                />
+
+                <input type="hidden" name="options[prefix]" value="last" aria-hidden="true" />
+
+                <button type="reset" class="search-form__clear-action" aria-label="{{ 'general.search.clear_search_term' | t }}" data-search-page-predictive-search-clear>
+                  {% include 'icon-close' %}
+                </button>
+
+                <div class="predictive-search-wrapper" data-predictive-search-mount="default"></div>
+              </div>
+
+              <button type="submit" class="search-form__connected-submit" aria-label="{{ 'general.search.submit' | t }}" data-search-page-predictive-search-submit>
+                {% include 'icon-search' %}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+{% if search.performed %}
+  
+  
+  <div class="page-width" id="Collection">
+    
+    {% if search.results_count > 0 %}
+      <hr aria-hidden="true" />
+    {% endif %}
+
+
+    {%- assign max_height = 494 -%}
+
+        {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+
+      <ul class="grid grid--uniform{% if search.results_count > 0 %} grid--view-items{% endif %}">
+        {% for product in search.results %}
+          <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+            {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
+          </li>
+        {% endfor %}
+      </ul>
+
+    {% if is_empty_collection %}
+      <div class="grid__item small--text-center">
+        <p class="text-center">{{ 'collections.general.no_matches' | t }}</p>
+      </div>
+    {% endif %}
+
+    {%- if paginate.pages > 1 -%}
+      {% include 'pagination', paginate: paginate %}
+    {%- endif -%}
+  </div>
+  
+{% endif %}
+
+{% if search.results_count < 2  %}
+  <div class="search--less-than-2-results"></div>
+{% endif %}
+
+{% endpaginate %}

@@ -1,0 +1,141 @@
+{% if product.metafields.custom_fields["show_tabs"] != blank %}
+<div class="page-width">
+  {% if section.blocks != blank %}
+   
+      <div class="innovation-container">
+    <div class="innovation-header">
+      <h2>{{section.settings.heading}} </h2> 
+    </div>
+  
+    <div class="innovation-slider">
+ 		<div class="innovation-slider-body">
+            <ul class="innovation-slider-item">
+              {% assign count_tab = 0 %}
+              {% for item in product.metafields.custom_fields["show_tabs"] %} 
+        		{% assign meta_tab_handle =  item["show_tabs"] %}
+              		{% assign count_tab = count_tab | plus: 1 %}
+              		{%- for block in section.blocks -%}
+              			{% assign tab_handle = block.settings.tab_handle %}
+              				{% if tab_handle == meta_tab_handle %}
+              					<li class="innovation-item-width">
+                                        <div class="item-icon-img innovation-tab-{{ block.settings.tab_handle | replace: ' ', '-' | downcase }}" aria-describedby="{{section.settings.heading}}" aria-label="{{section.settings.heading}}" >
+                                      		<img src="{{ block.settings.tab_icon | img_url:'40x' }}"/ alt="tumi-icon" class="tumi-icon">
+                                      	</div>
+                                    </li> 
+              					{% endif %}
+              		{% endfor %}
+              {% endfor %} 
+          </ul>
+        </div>
+      	<ul class="innovation-details">
+          {% for item in product.metafields.custom_fields["show_tabs"] %} 
+        {% assign meta_tab_handle =  item["show_tabs"] %}
+          {%- for block in section.blocks -%}
+            {% assign tab_handle = block.settings.tab_handle %}
+            {% if tab_handle == meta_tab_handle %}
+          <li class="innovation-slider-clc">
+              <div class="tm-innovation-slider-desc">
+                 <h4>{{block.settings.heading}}</h4>
+                  <div class="short-desc">{{block.settings.content}}</div>
+              </div>
+              <div class="innovation-image-holder">
+                  <div class="innovation-image">
+                    {% if block.settings.img != blank %}
+                      <img class="lazy" data-original="{{block.settings.img | img_url:'400x'}}" alt="" src="{{block.settings.img | img_url:'400x'}}" style="" />
+                   {% else %}
+                    {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {% endif %}
+                </div>
+              </div>
+          </li>
+           {% endif %}
+          {% endfor %}
+  {% endfor %}
+      </ul>
+
+      
+
+    </div>
+    
+  </div>	
+   
+ 
+  {% endif %}
+</div>  
+{% endif %}
+{% schema %}
+  {
+    "name": "PDP innovation",
+    "settings": [
+{
+    "type":"text",
+    "id":"heading",
+    "label":"Heading",
+	"default":"Heading Title"
+    }
+	
+],
+"blocks":[
+      {
+      "type":"block",
+       "name":"Tab Blocks",
+  "settings":[
+	{
+    "type":"text",
+    "id":"tab_handle",
+    "label":"Tab handle"
+    },
+    {
+    "type":"text",
+    "id":"heading",
+    "label":"Heading"
+    },
+	{
+    "type":"image_picker",
+    "id":"tab_icon",
+    "label":"Tab icon"
+    },
+{
+    "type":"textarea",
+    "id":"content",
+    "label":"Content"
+    },
+{
+    "type":"image_picker",
+    "id":"img",
+    "label":"Content Image"
+    }
+
+]
+      }
+    
+    ]
+  }
+{% endschema %} 
+
+
+
+<script>
+  $(document).ready(function() {
+    $('.innovation-details').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: true,
+      asNavFor: '.innovation-slider-item'
+    });
+    
+    $('.innovation-slider-item').slick({
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      asNavFor: '.innovation-details',
+      dots: false,
+      centerMode: true,
+      focusOnSelect: true
+    });
+    
+    });
+</script>
+
+
+

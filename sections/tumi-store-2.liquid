@@ -1,0 +1,77 @@
+<script src="{{ 'modernizr-3.11.2.min.js' | asset_url }}" async="async"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>window.noZensmooth = true</script>
+<script src="{{ 'zenscroll-min.js' | asset_url }}" async="async"></script>
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script src="{{ 'plugins.js' | asset_url }}" async="async"></script>
+<script src="{{ 'main.min.js' | asset_url }}" async="async"></script>
+
+
+<section class="common-vms tumigoevirtual-section" data-aos="fade-up" data-aos-delay="200">
+  <div class="custom-container">
+    <div class="tumigoevirtual-wrapper">
+      <h3>{{ section.settings.heading }}</h3>
+      <p>{{ section.settings.Text }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="video_con" id="video">
+  <div class="video_clip">
+    <div id="video_src"></div>
+  </div>
+</section>
+
+<section class="common-vms single-banner-section" data-aos="fade-up" data-aos-offset="200" id="video">
+  <div class="custom-container">
+    {% comment%}
+    <picture>
+      <source class="ful-width" media="(min-width:750px)" srcset="{{ section.settings.desk_img | img_url: "original"}}" style="width:100%;">
+      <img src="{{ section.settings.mbl_img | img_url: "original"}}" alt="icon" style="width:auto;">
+    </picture>
+    {% endcomment%}
+
+
+    <div class="victor-section" data-aos="fade-up" data-aos-delay="500" id="quote_pos">
+      <p>{{ section.settings.text_below_image }}</p>
+      <author>{{ section.settings.author }}</author>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+"name": "tumi-store-2",
+"settings": [
+{
+"type": "text",
+"id": "heading",
+"label": "Heading"
+},
+{
+"type": "textarea",
+"id": "Text",
+"label": "Text"
+},
+{
+"type": "image_picker",
+"id": "desk_img",
+"label": "desktop Image"
+},
+{
+"type": "image_picker",
+"id": "mbl_img",
+"label": "Mobile Image"
+},
+{
+"type": "textarea",
+"id": "text_below_image",
+"label": "text below image"
+},
+{
+"type": "text",
+"id": "author",
+"label": "author"
+}
+]
+}
+{% endschema %}

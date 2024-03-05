@@ -1,0 +1,42 @@
+<!-- Rebuild tart -->
+{% case media.media_type %} 
+{% when 'image' %}
+{% assign image_alt = 'Custom Alt Text' %}
+{%- if media.alt != blank -%}
+  {% assign image_alt = media.alt %}
+{%- endif -%}
+  
+<div class="product_gallery_image item" data-media-id="{{ media.id }}">
+    <a class="fancybox" data-fancybox="products-gallery" href="{{ media.src | img_url:'master'}}">
+       {% assign image_width = 1000 %}
+{% assign image_height = image_width | times: media.height | divided_by: media.width %}
+<img src="{{ media | image_url: width: image_width, height: image_height }}" alt="{{ image_alt }}" loading="{% if index < 2 %}eager{% else %}lazy{% endif %}">
+
+    </a>
+</div>
+{% when 'external_video' %}
+<div class="product_gallery_media item" data-media-id="{{ media.id }}">
+    {% if media.host == 'youtube' %} 
+      <div class="youtube-player-wrapper">
+        {{ media | external_video_url: color: 'white' | external_video_tag }}
+      </div>
+    {% elsif media.host == 'vimeo' %}
+      <div class="vimeo-player-wrapper">
+          <div id="vimeo-player">
+              {{ media | external_video_url: loop: '1', muted: '1', controls:false | external_video_tag }}
+          </div>
+          <button class="play-pause-button">
+              <img src="{{ 'play-icon-video.png' | asset_url }}" class="lazyload js" />
+          </button>
+      </div>
+    {% endif %}
+</div>
+{% when 'video' %}
+<div class="product_gallery_media item" data-media-id="{{ media.id }}">
+  <div class="mp4-video-wrapper">
+    {{ media | video_tag: controls: true }}
+  </div>
+</div>
+
+{% endcase %}
+

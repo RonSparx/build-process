@@ -1,0 +1,277 @@
+<section  id="aplhaone">
+    <div class="page-width">
+      <div class="backpack-wrap">
+        <div class="backpack-video">
+          <div class="video-container">
+           {% if section.settings.video != blank %}
+              <iframe width="100%"  src="https://www.youtube.com/embed/{{section.settings.video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            {% else %}
+              <iframe width="100%"  src="https://www.youtube.com/embed/xkuN9FM0kac" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+         	{% endif %}
+          </div>
+        </div>
+
+        <div class="backpack-con">
+          <h2>{{section.settings.heading}}</h2>
+          <h3>{{section.settings.sub_heading}}</h3>
+          <span class="subtitle">{{section.settings.sub_title}}</span> 
+            {{section.settings.content}} 
+{% if section.settings.btn != blank %}
+          <a href="{{section.settings.link | default:"#"}}" class="btn-primary" >{{section.settings.btn}}</a>
+{% endif %}
+        </div>
+
+      </div>
+
+      <div class="explore-collection">
+        <h2 class="block_title">
+           {{section.settings.collection_name }}
+        </h2>
+        
+        <div class="travel-sliderWrap explore-slider">
+
+        <div class="custom-row explore-row">
+          {% if section.settings.product_col != blank %}
+          {% for product in collections[section.settings.product_col].products  %}
+          	{% assign image  = product.featured_media.preview_image %}
+          <div class="explore-item">
+           <a href="{{product.url}}">
+            <img src="{{image | img_url:'300x'}}" alt="{{product.title}}">
+            <div class="explore-content">
+              <span>{{product.type}}</span>
+              <h4>{{product.title}}</h4>
+              
+            </div>
+            </a>
+          </div>
+          	
+          {% endfor %}
+          
+         {% else %}
+          
+          {% for i in (1..4) %}
+           <div class="explore-item">
+            <a href="#">
+             <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/03-AlphaBravo-NavigationBackpack-Desktop.jpg" alt="b1">
+            <div class="explore-content">
+              <h4>Navigation Backpack</h4>
+              <span>alpha bravo</span>
+            </div>
+             </a>
+          </div>
+          {% endfor %}
+<!-- 
+          <div class="explore-item">
+            <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/03-AlphaBravo-ClassifiedWaistpack-Desktop.jpg" alt="b1">
+            <div class="explore-content">
+              <h4> Classified Waistpack</h4>
+              <span>alpha bravo</span>
+            </div>
+          </div>
+
+          <div class="explore-item">
+            <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/03-AlphaBravo-MasonDuffel-Desktop.jpg" alt="b1">
+            <div class="explore-content">
+              <h4> Mason Duffel</h4>
+              <span>alpha bravo</span>
+            </div>
+          </div>
+
+          <div class="explore-item">
+            <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/03-AlphaBravo-LogisticsBackpack-Desktop.jpg" alt="b1">
+            <div class="explore-content">
+              <h4> Logistics Backpack</h4>
+              <span>alpha bravo</span>
+            </div>
+          </div>  
+ -->
+ {% endif %}
+        </div>
+        </div>
+
+      </div>
+
+      <div class="explore-collection explore-two">
+        <div class="custom-row explore-row">
+          
+          {% if section.blocks != blank %}
+          {% for block in section.blocks %}
+          	
+          	<div class="explore-item">
+              <a href="{{block.settings.link}}">
+            <img src="{{block.settings.img | img_url: '400x'}}" alt="{{block.settings.title | img_url: '400x'}}">
+              </a>
+            <div class="explore-content">
+               <a href="{{block.settings.link}}">
+              <h4>{{block.settings.heading}}</h4>
+              </a>
+              {% if block.settings.btn != blank %}
+              <a href="{{block.settings.link}}" class="btn-transparent">
+                <span class="ben-text">{{block.settings.btn}} </span>
+              </a>
+              {% endif %}
+            </div>
+          </div>
+          
+          {% endfor %}
+          
+          {% else %}
+          
+          {% for i in (1..3)%}
+          <div class="explore-item">
+            <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/04-LandoNorris-AlphaBravo-ClassifiedWaistpack-Desktop.jpg?v=1641299460" alt="b1">
+            <div class="explore-content">
+              <h4>CLASSIFIED WAISTPACK</h4>
+              <a href="#" class="btn-transparent">
+                <span class="ben-text">Shop Now </span>
+              </a>
+            </div>
+          </div>
+          
+          {% endfor %}
+          
+          {% endif %}
+           
+<!--           <div class="explore-item">
+            <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/04-LandoNorris-AlphaBravo-ClassifiedWaistpack-Desktop.jpg?v=1641299460" alt="b1">
+            <div class="explore-content">
+              <h4>CLASSIFIED WAISTPACK</h4>
+              <a href="#" class="btn-transparent">
+                <span class="ben-text">Shop Now </span>
+                <i class="fas fa-caret-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+          <div class="explore-item">
+            <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/04-LandoNorris-AlphaBravo-Masonduffel-Desktop.jpg?v=1641299460" alt="b1">
+            <div class="explore-content">
+              <h4>CLASSIFIED WAISTPACK</h4>
+              <a href="#" class="btn-transparent">
+                <span class="ben-text">Shop Now </span>
+                <i class="fas fa-caret-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+          <div class="explore-item">
+            <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/04-LandoNorris-AlphaBravo-NavigationBackpack-Desktop.jpg?v=1641299460" alt="b1">
+            <div class="explore-content">
+              <h4>Mason Duffel</h4>
+              <a href="#" class="btn-transparent">
+                <span class="ben-text">Shop Now </span>
+                <i class="fas fa-caret-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div> -->
+ 
+          
+          
+          
+        </div>
+
+      </div>
+
+
+    </div>
+  </section>
+{% schema %}
+  {
+    "name": "Alpha One",
+    "settings": [
+	{
+	  "type":"header",
+	  "content":"Youtube section"
+},
+{
+	"type":"html",
+	"id":"video",
+	"label":"Video link",
+	"info":"Youtube Embed video URL"
+},
+{
+	"type":"text",
+	"id":"heading",
+	"label":"Heading",
+	"default":"The Navigation Backpack"
+},
+{
+	"type":"text",
+	"id":"sub_heading",
+	"label":"Sub Heading",
+	"default":"Featuring Lando Norris"
+},
+{
+	"type":"text",
+	"id":"sub_title",
+	"label":"Sub Title",
+	"default":"Mclaren F1 Driver, Gamer"
+},
+{
+	"type":"richtext",
+	"id":"content",
+	"label":"Content",
+	"default":"<p>As an all-or-nothing kind of guy, the multi-purpose design and durability of the Navigation Backpack supports Lando's endless pursuit of making history.</p>"
+},
+{
+	"type":"text",
+	"id":"btn",
+	"label":"Button name",
+	"default":"Shop the Backpack"
+},
+{
+	"type":"url",
+	"id":"link",
+	"label":"Button URL"
+},
+{
+	  "type":"header",
+	  "content":"Collection section"
+},
+{
+	"type":"text",
+	"id":"collection_name",
+	"label":"Collection Name",
+	"default":"Explore the Collection"
+},
+{
+	"type":"collection",
+	"id":"product_col",
+	"label":"Collection Name"
+}
+	], 
+"blocks":[
+	{
+	"name":"block",
+	"type":"column",
+	"settings":[
+
+  {
+  "type":"image_picker",
+  "id":"img",
+  "label":"Select Image"
+  },
+  {
+  "type":"text",
+  "id":"heading",
+  "label":"Heading"
+  },
+  {
+  "type":"text",
+  "id":"btn",
+  "label":"Button name"
+  },
+  {
+  "type":"url",
+  "id":"link",
+  "label":"Categories URL"
+  }
+]
+}
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

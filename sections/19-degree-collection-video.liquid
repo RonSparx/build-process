@@ -1,0 +1,266 @@
+
+<style>
+  .degree-button .btn-transparent{
+          background-color: #000000;
+        display: inline-block;
+    padding: 15px 20px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0;
+    letter-spacing: .0125em;
+    text-decoration: none;
+        max-width: 100%;
+    width: 80%;
+  }
+  .degree-button .fa-caret-right:before{
+    content:none;
+  }
+</style>
+<section  id="aplhatwo" class="degree-button">
+    <div class="page-width">
+      <div class="discover-wrap">
+        {% if section.settings.heading!= blank and  section.settings.sub_heading != blank %}
+        <div class="header-block">
+          <span class="subtitle">{{section.settings.heading}}</span>
+          <h2 class="block_title">
+            {{section.settings.sub_heading}}
+          </h2>
+        </div>
+        {% endif %}
+          
+        <div class="discover-aplha">
+           <div class="discover-item">
+             <div class="video-desc">
+              <div class="backpack-con">
+                <h2>{{section.settings.title}}</h2>
+                {{section.settings.content}}
+                
+                {% if section.settings.btn != blank %}
+                <a href="{{section.settings.link | default:'#'}}" class="btn-transparent">
+                  <span class="ben-text">{{section.settings.btn}} </span>
+                  <i class="fas fa-caret-right" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+              </div>
+            </div>
+            <div class="video-col">
+              <div class="video-discover">
+                {%  if section.settings.vertical_alignment_top == "image_top" %}
+                <div class="fallback-img">
+                  {% if section.settings.img != blank %}
+                  	<img src="{{section.settings.img | img_url:'600x'}}" />
+                  {% else %}
+                  <img src="https://cdn.media.amplience.net/i/tumi/lp-19-degree-aluminum-son" alt="img"/>
+                  {% endif %}
+                </div>
+                {%  else %}
+                  
+                 {% if section.settings.video != blank %}
+                <video width="100%" height="auto" media="(min-width:650px)" autoplay muted loop>
+                  <source class="desktop_view" src="{{section.settings.video}}"/>
+                </video>
+                 <video class="mobile_view" width="100%" height="auto" autoplay muted loop>
+                  <source src="{{section.settings.video_mob}}"/>
+                </video>
+                   
+                {% else %}
+                <video width="100%" height="auto" autoplay muted loop>
+                  <source src="https://cdn.media.amplience.net/v/tumi/lp-19-degree-aluminum-expandable-v2/mp4_1440p"/>
+                </video>
+                {% endif %}
+                {% endif %}
+              </div>
+            </div>
+            
+          </div>
+          <div class="discover-item">
+            <div class="video-desc">
+              <div class="backpack-con">
+                <h2>{{section.settings.title2}}</h2>
+                {{section.settings.content2}}
+                {% if section.settings.btn2 != blank %}
+                <a href="{{section.settings.link2 | default:'#'}}" class="btn-transparent">
+                  <span class="ben-text">{{section.settings.btn2}} </span>
+                  <i class="fas fa-caret-right" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+              </div>
+            </div>
+            <div class="video-col">
+              <div class="video-discover">
+                {%  if section.settings.vertical_alignment == "image" %}
+                <div class="fallback-img">
+                  {% if section.settings.img2 != blank %}
+                  <img src="{{section.settings.img2 | img_url:'600x'}}" alt="{{section.settings.title2}}"/>
+                  {% else %}
+                  <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/05-Alphabravo-sustainability-desktop_00075.jpg" alt="img"/>
+                  {% endif %}
+                </div>
+                {% else %}
+                {% if section.settings.video2 != blank %}
+                <video class="desktop_view" width="100%" media="(min-width:650px)" height="auto" autoplay muted loop >
+                      <source src="{{section.settings.video2}}"/>
+                </video>
+                <video class="mobile_view" width="100%" height="auto" autoplay muted loop>
+                      <source src="{{section.settings.video2_mob}}"/>
+                </video>
+                {% else %}
+                <video width="100%" height="auto" autoplay muted loop>
+                  <source src="https://cdn.media.amplience.net/v/tumi/lp-19-degree-aluminum-expandable-v2/mp4_1440p"/>
+                </video>
+                {% endif %}
+                  {% endif %}
+                
+              </div>
+            </div>
+            
+          </div>   
+        </div>
+      </div>
+ 
+
+    </div>
+  </section>
+{% schema %}
+  {
+    "name": "19 degree collection",
+    "settings": [
+	{
+	"type":"text",
+	"id":"heading",
+	"label":"Heading",
+	"default":"Core Pillars"
+},
+{
+	"type":"text",
+	"id":"sub_heading",
+	"label":"Sub Heading",
+	"default":"Explore the Collection"
+},
+{
+	"type":"header",
+	"content":"Block -1"
+},
+{
+	"type":"image_picker",
+	"id":"img",
+	"label":"Fallback image"
+		},
+{
+	"type":"url",
+	"id":"video",
+	"label":"Video URL"
+},
+      {
+	"type":"url",
+	"id":"video_mob",
+	"label":"Mobile Video URL"
+},
+{
+	"type":"text",
+	"id":"title",
+	"label":"Title",
+	"default":"Core pillars"
+		},
+{
+	"type":"richtext",
+	"id":"content",
+	"label":"Content",
+	"default":"<p>We stayed true to Alpha Bravo's utilitarian roots with rugged styling and unmatched durability.</p>"
+		},
+{
+"type":"text",
+"id":"btn",
+"label":"Button name",
+"default":"Shop the collection"
+},
+{
+"type":"url",
+"id":"link",
+"label":"Button URL"
+},
+{
+"type":"header",
+"content":"Block 2"
+},
+{
+	"type":"image_picker",
+	"id":"img2",
+	"label":"Fallback image"
+		},
+{
+	"type":"url",
+	"id":"video2",
+	"label":"Video URL"
+},
+{
+	"type":"url",
+	"id":"video2_mob",
+	"label":"Mobile Video URL"
+},
+{
+	"type":"text",
+	"id":"title2",
+	"label":"Heading",
+	"default":"protecting what matters"
+		},
+{
+	"type":"richtext",
+	"id":"content2",
+	"label":"Content",
+	"default":"<p>Without compromising strength, we incorporated recycled materials that not only help protect your belongings, but also the planet.</p>"
+		},
+{
+"type":"text",
+"id":"btn2",
+"label":"Button name",
+"default":"Shop the Collection"
+},
+{
+"type":"url",
+"id":"link2",
+"label":"Button URL"
+},
+      {
+  "type": "select",
+  "id": "vertical_alignment",
+  "label": "Vertical alignment",
+  "options": [
+    {
+      "value": "image",
+      "label": "Image"
+    },
+    {
+      "value": "video",
+      "label": "Video"
+    }
+  ],
+  "default": "image"
+},
+            {
+  "type": "select",
+  "id": "vertical_alignment_top",
+  "label": "Vertical alignment",
+  "options": [
+    {
+      "value": "image_top",
+      "label": "Image"
+    },
+    {
+      "value": "video",
+      "label": "Video"
+    }
+  ],
+  "default": "image_top"
+}
+
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,88 @@
+{{ 'slick.css' | asset_url | stylesheet_tag }}
+{{ 'slick-theme.min.css' | asset_url | stylesheet_tag }}
+<style>
+.lpa-slide.desktop{
+    display: none !important;
+}
+
+@media all and (min-width:992px){
+  .lpa-slide.desktop{
+    display: block !important;
+  }
+}
+</style>
+<div class="page-width">
+  <div class="landing-pro-assort">
+    <div class="landing-pro-heading">
+      {% if section.settings.heading != blank %}
+      <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+    </div>
+    {% if section.settings.collection != blank %}
+    {% assign productList = collections[section.settings.collection] %}
+    {% else %}
+    {% assign productList = collections['tumi-i-mclaren'] %}
+    {% endif %}
+
+    <div class="lpa-slide desktop">
+    {% for product in productList.products %}
+      <div class="landing-pro-block">
+      	<img src="{{ product.featured_image | img_url: '200x' }}" alt="">
+        <p>{{ product.title }}</p>
+        <span>{{ productList.title }}</span>
+        <a href="{{ product.url }}"></a>
+      </div>
+    {% endfor %}  
+    </div>
+    <div class="landing-pro-ass-slide mobile">
+    
+    {% for product in productList.products %}
+      <div class="landing-pro-block">
+      	<img src="{{ product.featured_image | img_url: '200x' }}" alt="">
+        <p>{{ product.title }}</p>
+        <span>{{ productList.title }}</span>
+        <a href="{{ product.url }}"></a>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+<script src="{{ 'jquery.min.js' | asset_url }}" async="async"></script>
+<script src="{{ 'slick.min.js' | asset_url }}" ></script>
+<script>
+$('.lpa-slide').slick({
+  infinite: true,
+  slidesToShow: 4,
+  centerPadding: '100px',
+  slidesToScroll: 1
+});
+</script>
+{% schema %}
+  {
+    "name": "Landing Prod Assortment",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "TUMI | STAPLE  Collection"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection"
+      }
+	],
+	"presets": [
+     {
+       "name": "Staple Prod Assortment"
+     }
+   ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

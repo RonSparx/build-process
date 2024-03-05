@@ -1,0 +1,68 @@
+<style>
+    .sc-content-inner p{
+        font-size: 18px;
+        color: #212529;
+          text-align:center;
+    } 
+    .sc-content {
+      padding-top:1.5rem;
+      display: flex;
+      justify-content:center;
+    }
+    @media all and (min-width: 750px){
+      .sc-content-inner{
+          width: 80%;
+      }  
+    }
+    @media all and (max-width: 749px){
+      .sc-content-inner{
+          max-width: 400px;
+        width: 100%;
+      }  
+      .sc-content-inner p {
+        font-size: 14px;
+      }
+    }
+    @media all and (min-width:1024px){
+      div.sc-content{
+        padding-top:3.5rem;
+      } 
+    }
+    </style>
+    <div class="page-width">
+      <div class="sc-content">
+        <div class="sc-content-inner">
+    
+            {% if section.settings.mclaren-hub_title != blank %}
+              <h3>
+              {{ section.settings.mclaren-hub_title }}
+              </h3>
+            {% endif %}
+
+            {% if section.settings.mclaren-hub_paragraph != blank %}
+              {{ section.settings.mclaren-hub_paragraph }}
+            {% endif %}
+            
+        </div>  
+      </div>
+    </div>
+    
+    {% schema %}
+    {
+      "name": "Mclaren Custom Content",
+      "settings": [
+        {
+          "type": "text",
+          "id": "mclaren-hub_title",
+          "label": "title",
+          "default": "Stories From Our Acclaimed TUMI Crew"
+        },
+        {
+          "type": "richtext",
+          "id": "mclaren-hub_paragraph",
+          "label": "Paragraph",
+          "default": "<p>Add content here </p>" 
+        }
+      ]
+    }
+    {% endschema %}

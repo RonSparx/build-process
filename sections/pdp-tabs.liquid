@@ -1,0 +1,282 @@
+{{ 'pdp-tab.css' | asset_url | stylesheet_tag }}
+
+{% if product.metafields["custom_fields"]["description_tabs"] != blank %}
+  {% for item in product.metafields["custom_fields"]["description_tabs"] %}
+    <div class="product-details-features">
+    <!--  tab list  -->
+      <ul class="product-tab-list">
+
+        {% if item["features_tab"] != blank %}
+          <li class="product-tab-name">
+            <a class="product-tab-link"  href="#features"> <span>{{ 'pdp.tabs.features' | t }}</span></a>
+          </li>
+        {% endif %}
+
+        {% if item["specifications_tab"] != blank %}
+        <li class="product-tab-name">
+          <a class="product-tab-link" href="#specifications">  <span>{{ 'pdp.tabs.specifications' | t }}</span></a>
+        </li>
+        {% endif %}
+
+        {% if item["maintainence_tabs"] != blank %}
+         <li class="product-tab-name maintainence-care-tab">
+          <a class="product-tab-link" href="#maintainence-care">  <span> {{ 'pdp.tabs.maintainence-label' | t }}  </span></a>
+        </li>
+        {% endif %}
+    
+         <li class="product-tab-name">
+          <a class="product-tab-link"  href="#contact-details">{{ 'pdp.tabs.contact-label' | t }}</a>
+        </li>
+      </ul>
+    
+      <!--  tab content  -->
+      <div class="product-tab-destails">
+        
+        <!--  features content  -->
+        {% if item["features_tab"] != blank %}
+           {% for features_tab_item in item["features_tab"] %}
+            <div id="features" class="product-tab-content">
+              
+                <div class="features-row">
+                  {% if features_tab_item["exterior"] != blank %}
+                  <div class="features-col">
+                    <h5>{{ 'pdp.tabs.exterior' | t }}</h5>
+                    <div class="feature-description">
+                       {{ features_tab_item["exterior"] }}
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% if features_tab_item["interior"] != blank %}
+                  <div class="features-col">
+                    <h5>{{ 'pdp.tabs.interior' | t }} </h5>
+                    <div class="feature-description">
+                      {{ features_tab_item["interior"] }}
+                    </div>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+        {% endif %}
+    
+         <!-- specifications content    -->
+        {% if item["specifications_tab"] != blank %}
+        <div id="specifications" class="product-tab-content">
+          <div class="specifications-row">
+            {% for specifications_tab_item in item["specifications_tab"] %}
+            <div class="specifications-col">
+               {% if specifications_tab_item["image"] != blank %}
+                <div class="specifications-icon">
+                  {{ specifications_tab_item["image"] }}
+                </div>
+               {% endif %}
+
+               
+               <div class="specifications-descriptions">
+                 {% if specifications_tab_item["heading"] != blank %}
+                   <h5> {{ specifications_tab_item["heading"] }}</h5>
+                  {% endif %}
+                  {% if specifications_tab_item["description"] != blank %}
+                   <div class="specifications-descriptions-content">
+                      {{ specifications_tab_item["description"] }}
+                   </div>
+                {% endif %}
+               </div>
+              
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+       {% endif %}
+
+      <!-- maintainence-care content   -->
+        {% if item["maintainence_tabs"] != blank %}
+        <div id="maintainence-care" class="product-tab-content">
+          <div class="maintainence-care-row">
+
+            <!-- Maintaiance items -->
+            <div class="maintainence-care-row">
+              {% for maintainence_tabs_item in item["maintainence_tabs"] %}
+            <!-- Maintaiance items -->
+            <div class="maintainence-care-items">
+              {% if maintainence_tabs_item["image"] != blank %}
+                <div class="maintainence-care-image">
+                  {{ maintainence_tabs_item["image"] }}
+                </div>
+              {% endif %}
+                <div class="maintainence-care-content">
+                {% if maintainence_tabs_item["heading"] != blank %}
+                    <h3>
+                        <a href="{% if maintainence_tabs_item["link"] != blank %} {{ maintainence_tabs_item["link"] }} {% endif %}">{{ maintainence_tabs_item["heading"] }}</a>
+                        <div class="maintainence-care-arrow">
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.71069 18.2929C10.1012 18.6834 10.7344 18.6834 11.1249 18.2929L16.0123 13.4006C16.7927 12.6195 16.7924 11.3537 16.0117 10.5729L11.1213 5.68254C10.7308 5.29202 10.0976 5.29202 9.70708 5.68254C9.31655 6.07307 9.31655 6.70623 9.70708 7.09676L13.8927 11.2824C14.2833 11.6729 14.2833 12.3061 13.8927 12.6966L9.71069 16.8787C9.32016 17.2692 9.32016 17.9023 9.71069 18.2929Z"
+                                    fill="#0F0F0F"
+                                />
+                            </svg>
+                        </div>
+                    </h3>
+                  {% endif %}
+                {% if maintainence_tabs_item["descriptions"] != blank %}
+                    <div class="maintainence-care-description">
+                       {{ maintainence_tabs_item["descriptions"] }}
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+                {% endfor %}
+          </div>
+          </div>
+        </div>
+        {% endif %}
+    
+        <!--  contact-details content -->
+        <div id="contact-details" class="product-tab-content">
+    
+          <div class="product-contact-row">
+            
+            <div class="product-contact-col">
+              <div class="product-contact-col-inner">
+                <div class="product-contact-icon">
+                 {% render 'envelop-icon'  %}
+                </div>
+                <p class="product-contact-label">{{ 'pdp.tabs.email' | t }}</p>
+                <a href="mailto:{{ section.settings.contact-email }}" class="contact-us-link">Send</a>
+              </div>
+            </div>
+    
+            <div class="product-contact-col">
+              <div class="product-contact-col-inner">
+                <div class="product-contact-icon">
+                 {% render 'phone-icon'  %}
+                </div>
+                <p class="product-contact-label">{{ 'pdp.tabs.call' | t }}</p>
+                 <a href="tel:{{ section.settings.contact-phone }}" class="contact-us-phone">{{ section.settings.contact-phone }}</a>
+              </div>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+        
+      </div>
+      
+    </div>
+  {% endfor %}
+{% endif %}
+
+
+
+<!-- Maintaiance and care collapse -->
+{% if product.metafields["custom_fields"]["description_tabs"] != blank %}
+{% for item in product.metafields["custom_fields"]["description_tabs"] %}                                  
+{% if item["maintainence_tabs"] != blank %}
+<div class="maintaince-collapse-detail">
+    <div class="maintaince-collapse-header">
+        <div class="maintaince-collapse-icon">
+            <div class="maintaince-collapse-plus">{% render 'plus-icon' %}</div>
+            <div class="maintaince-collapse-minus">{% render 'minus-icon' %}</div>
+        </div>
+        <h3 class="maintaince-collapse-title">{{ 'pdp.tabs.maintainence-label' | t }}</h3>
+    </div>
+    <div class="maintaince-collapse-body">
+        <div class="maintainence-care-row">
+            <!-- Maintaiance items -->
+            {% for maintainence_tabs_item in item["maintainence_tabs"] %}
+            <!-- Maintaiance items -->
+            <div class="maintainence-care-items">
+              {% if maintainence_tabs_item["image"] != blank %}
+                <div class="maintainence-care-image">
+                  {{ maintainence_tabs_item["image"] }}
+                </div>
+              {% endif %}
+                <div class="maintainence-care-content">
+                {% if maintainence_tabs_item["heading"] != blank %}
+                    <h3>
+                        <a href="{% if maintainence_tabs_item["link"] != blank %} {{ maintainence_tabs_item["link"] }} {% endif %}">{{ maintainence_tabs_item["heading"] }}</a>
+                        <div class="maintainence-care-arrow">
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.71069 18.2929C10.1012 18.6834 10.7344 18.6834 11.1249 18.2929L16.0123 13.4006C16.7927 12.6195 16.7924 11.3537 16.0117 10.5729L11.1213 5.68254C10.7308 5.29202 10.0976 5.29202 9.70708 5.68254C9.31655 6.07307 9.31655 6.70623 9.70708 7.09676L13.8927 11.2824C14.2833 11.6729 14.2833 12.3061 13.8927 12.6966L9.71069 16.8787C9.32016 17.2692 9.32016 17.9023 9.71069 18.2929Z"
+                                    fill="#0F0F0F"
+                                />
+                            </svg>
+                        </div>
+                    </h3>
+                  {% endif %}
+                {% if maintainence_tabs_item["descriptions"] != blank %}
+                    <div class="maintainence-care-description">
+                       {{ maintainence_tabs_item["descriptions"] }}
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+          {% endfor %}
+  
+          
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endfor %}
+{% endif %}                              
+
+<!-- product contact  collapse -->
+<div class="conatct-collapse-detail">
+  <div class="conatct-collapse-header">
+    <div class="conatct-collapse-icon">
+      <div class="conatct-collapse-plus">{% render 'plus-icon' %}</div>
+      <div class="conatct-collapse-minus">{% render 'minus-icon' %}</div>
+    </div>
+    <h3 class="conatct-collapse-title">{{ 'pdp.tabs.contact-label' | t }}</h3>
+  </div>
+   <div class="conatct-collapse-body">
+        <div class="product-contact-row">
+          <div class="product-contact-col">
+            <div class="product-contact-col-inner">
+              <div class="product-contact-icon">
+               {% render 'envelop-icon'  %}
+              </div>
+              <p class="product-contact-label">{{ 'pdp.tabs.email' | t }}</p>
+              <a href="mailto:{{ section.settings.contact-email }}" class="contact-us-link">Send</a>
+            </div>
+          </div>
+  
+          <div class="product-contact-col">
+            <div class="product-contact-col-inner">
+              <div class="product-contact-icon">
+               {% render 'phone-icon'  %}
+              </div>
+              <p class="product-contact-label">{{ 'pdp.tabs.call' | t }}</p>
+              <a href="tel:{{ section.settings.contact-phone }}" class="contact-us-phone">{{ section.settings.contact-phone }}</a>
+            </div>
+          </div>
+          
+        </div>
+    </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Description Tabs",
+    "settings": [
+      {
+        "type": "text",
+        "id": "contact-email",
+        "label": "Contact Email",
+        "default": "xyz@gmail.com"
+      },
+      {
+        "type": "text",
+        "id": "contact-phone",
+        "label": "Contact Phone",
+        "default": "8008864"
+      }
+    ]
+  }
+{% endschema %}

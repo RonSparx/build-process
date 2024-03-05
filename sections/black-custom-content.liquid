@@ -1,0 +1,67 @@
+<style>
+.sc-content-inner p{
+    color: #212529;
+  	text-align:center;
+} 
+.sc-content {
+  padding-top:1.5rem;
+  display: flex;
+  justify-content:center;
+}
+@media all and (min-width: 750px){
+  .sc-content-inner{
+  	width: 80%;
+  }  
+}
+@media all and (max-width: 749px){
+  .sc-content-inner{
+  	max-width: 400px;
+    width: 100%;
+  }  
+  .sc-content-inner p {
+    font-size: 14px;
+  }
+  .sc-content-inner h3{
+        font-size: 2em;
+  }
+}
+@media all and (min-width:1024px){
+  div.sc-content{
+    padding-top:3.5rem;
+  } 
+}
+</style>
+<div class="page-width">
+  <div class="sc-content">
+    <div class="sc-content-inner">
+
+        {% if section.settings.black_title != blank %}
+        	<h1>{{ section.settings.black_title }}</h1>
+      	{% endif %}
+      
+    	{% if section.settings.black_paragraph != blank %}
+        	{{ section.settings.black_paragraph }}
+      	{% endif %}
+    </div>  
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "black friday monday",
+  "settings": [
+    {
+      "type": "text",
+      "id": "black_title",
+      "label": "title",
+      "default":"BLACK FRIDAY & CYBER MONDAY 2022"
+    },
+    {
+      "type": "richtext",
+      "id": "black_paragraph",
+      "label": "Paragraph",
+      "default":"<p>OK, so you’ve missed our biggest Black Friday deal ever and, we’re not gonna lie, it was really something. But, there’s plenty more to look out for from right now until Black Friday 2022! We’re talking daily drops of new-season styles from 850+ of the biggest brands in the world. For a sneak peek at some of the best of the best clothing, shoes and accessories, check out the New In edits below. Plus, for year-round discounts, head to Outlet. You won’t be disappointed...</p>"
+    }
+  ]
+}
+{% endschema %}

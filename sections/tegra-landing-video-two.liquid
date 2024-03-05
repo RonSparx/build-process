@@ -1,0 +1,51 @@
+
+<div class="page-width">
+  <div class="landing-video">
+    <div class="landing-video-inner">
+      {% if section.settings.tegra_two_video_embed != blank %}
+      <iframe allowfullscreen src="{{ section.settings.tegra_two_video_embed }}{% if section.settings.autoplay == true %}?autoplay=1{% else %}?autoplay=0{% endif %}{% if section.settings.mute == true %}&mute=1{% else %}&mute=0{% endif %}">
+      </iframe>
+      {% else %}
+      <iframe allowfullscreen src="https://www.youtube.com/embed/lxeuwmrqNcs{% if section.settings.autoplay == true %}?autoplay=1{% else %}?autoplay=0{% endif %}{% if section.settings.mute == true %}&mute=1{% else %}&mute=0{% endif %}">
+      </iframe>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "tegra youtube Video",
+    "settings": [
+		{
+          "type": "url",
+          "id": "tegra_two_video_embed",
+          "label": "Video Url",
+		  "info": "Demo URL: https://youtu.be/lxeuwmrqNcs"
+        },
+        {
+          "type": "checkbox",
+          "id": "autoplay",
+          "label": "AutoPlay",
+          "default": true
+        },
+		{
+          "type": "checkbox",
+          "id": "mute",
+          "label": "Mute Video",
+          "default": true
+        }
+	],
+	"presets": [
+     {
+       "name": "tegra youtube Video"
+     }
+   ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,91 @@
+<div class="page-width">
+  <div class="valentine_gift-for-him gift-wrapper">
+  <div class="valentine_gift-for-him-content ">
+    <div class="gift_image-content">
+      {% if section.settings.for_him_collections != blank %}
+      <img src="{{section.settings.for_him_collections | img_url:'master' }}" alt="{{section.settings.for_him_collections.alt | escape }}">
+      {% endif %}
+    </div>
+     
+    
+  </div>
+    <div class="valentine_gift-products degree_productsss">
+    <ul class="degree_products valentine_products" style="opacity:0;">   
+    {% for product in collections[section.settings.product_col].products %}
+      <li class=" ">
+        {% include 'valentine-product-card-grid', max_height: 270, product: product, show_vendor: section.settings.show_vendor %}
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="valentine_product-content valentine_degree_products">
+      {% if section.settings.for_him_collection != blank %}
+      <h3>{{ section.settings.for_him_collection }} </h3>
+      {% endif %}
+      
+      {% if section.settings.for_him_content != blank %}
+       <p> {{ section.settings.for_him_content }}</p>
+      {% endif %}
+      
+      {% if section.settings.for_him_shop != blank %}
+        <a href="{{ section.settings.for_him_url }}" class="btn btn-black">
+            <span class="ben-text">{{ section.settings.for_him_shop }}</span>
+        </a>
+      {% endif %}
+
+    </div>
+    </div>
+  </div>
+</div>
+
+ 
+{% schema %}
+    {
+        "name": "valentine gift for him",
+        "settings": [
+          {
+           "type":"image_picker",
+           "id":"for_him_collections",
+           "label":"Desktop Bnaner Image"
+          },
+           {
+            "type":"text",
+            "id":"for_him_collection",
+            "label": "collection title",
+            "default":"Gifts for Him"
+          },
+          {
+            "type":"text",
+            "id":"for_him_content",
+            "label": "section content ",
+            "default":"Elevate his everyday with modern gifts that deliver functionality, durability and style"
+          },
+          {
+            "type":"text",
+            "id":"for_him_shop",
+            "label": "button text",
+            "default":"Gifts for Him"
+          },
+          {
+            "type":"url",
+            "id":"for_him_url",
+            "label": "button url"
+          },
+          {
+            "type": "collection",
+            "id": "product_col",
+            "label": "Select Collection"
+          }
+        ],
+	"presets": [
+     {
+       "name": "valentine gift for him"
+     } 
+   ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

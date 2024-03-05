@@ -1,0 +1,20 @@
+{% comment %} Automatically generated file by Smartzer, do not change {% endcomment %}
+
+<script>
+  if (!window.smrtzrShopifyInitChecker) {
+    window.smrtzrShopifyInitChecker = function (id) {
+      if (!window.smrtzrShopifySectionInit) {
+        setTimeout(function() {
+          window.smrtzrShopifyInitChecker(id);
+        }, 100);
+        return;
+      }
+
+      const el = document.getElementById(id);
+      if (el) {
+        window.smrtzrShopifySectionInit(el);
+      }
+    };
+  }
+  window.smrtzrShopifyInitChecker('{{section.id}}');
+</script>

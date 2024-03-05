@@ -1,0 +1,103 @@
+{{ 'owl.carousel.min.css' | asset_url | stylesheet_tag }}
+  {% assign collectionMeta = collection.metafields.custom.you_may_also_like.value -%}
+<div class="grid__item product-card">
+     <div class="card-wrapper underline-links-hover owl-carousel">
+{% for product in collectionMeta.products %}
+   {%- for variant in product.variants -%}
+        {% assign Inventory_qtn = variant.inventory_quantity %}
+        {% assign availProduct = variant.available %}
+      {%- endfor -%}
+  
+    {% assign show = false %}
+    {% for variant in product.variants %}
+    {% if variant.inventory_quantity > 1 or variant.inventory_policy == 'continue' %}
+    {% assign show = true %}
+    {% endif %}
+    {% endfor %}
+  
+  {% if show %}
+       <div class="card card--standard card--media item" data="{{ availProduct }}">
+        <div class="card__inner color-background-2 gradient ratio">
+         <div style="position:relative" class="card__media plp-product_recommendation">
+         <div class="media media--transparent media--hover-effect product-images"><a href="{{ product.url }}">
+    	  <img class="motion-reduce" src="{{ product.featured_image | img_url:'master' }}" alt="{{ product.featured_image.alt }}"  loading="lazy" />
+              <span class="gray-overlay"></span> </a>
+          </div>
+          <div class="recent_atc-btn">
+          <button type="button" value="Add to cart" {% unless current_variant.available %} aria-disabled="true" {% else %}
+                              {% if current_variant.inventory_quantity > 1 %} {% else %}aria-disabled="true"{% endif %}{% endunless %}
+                              aria-label="{% unless Inventory_qtn == 0 %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}"
+                              class="{% if Inventory_qtn >= 1 %}available{% endif %} {% if Inventory_qtn >= 1 %}recommendation-atc plp-atc-btn btn add-to-cart {% else %}notify_me{% endif %} plp-recommendation_btn  {% if section.settings.enable_payment_button %} btn--secondary-accent{% endif %}"
+                              data-add-to-cart data-variant={{ product.selected_or_first_available_variant.id }}> 
+                    {% if Inventory_qtn >= 1 %}     
+                     <span data-add-to-cart-text class="plpAddtoCart">
+                        {{ 'products.product.add_to_cart' | t }}
+                             </span>
+                     <span class="hide load-spinner" data-loader>
+                                {% render 'icon-spinner' %}
+                         </span>
+                    {% else %}
+                     <span notify-me-text>
+                       {{ 'Notify Me' }}
+                      </span>      
+                  {% endif %}
+            </button> 
+            
+                
+          {% unless product.available %}
+                   <a href="#" id="BIS_trigger" type="button" style="display: none;" class="BIS_trigger notify_me-btn" data-product-data="{{product| json | escape }}" data-variant-id="{{ product.variants[0].id }}">Notify me</a>         
+          {% endunless %}
+          </div>
+        </div>
+       </div>
+
+       <div class="card__content">
+       <div class="card__information">
+         <div class="plp-recommend_vendor">
+         {{ product.vendor }}
+         </div>
+       <h3 class="card__heading h5 recommend-plp-title">
+       <a class="full-unstyled-link" href="{{ product.url }}">{{ product.title }}</a></h3>
+         <div class="card-information">
+           <div class="price ">
+             <div class="price__container">
+               <div class="price-item price-item--regular">
+                  {{ product.price | money }}
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       </div>
+       
+       </div>
+   {% endif %}
+{% endfor %}
+    </div>
+</div>
+
+<script src="{{ 'owl.carousel.min.js' | asset_url }}" defer></script>
+<script>
+$(document).ready(function () {
+   let rtlViews = window.langify.locale.iso_code == "ar" ? true : false;
+      $('.grid__item.product-card .owl-carousel').owlCarousel({
+          loop:false,
+          margin:30,    
+          nav:true,
+          rtl:rtlViews,
+          dots: false,
+          responsive:{
+              0:{
+                  items:1.5,
+                  loop:true
+              },
+              600:{
+                  items:3,
+              },
+              1000:{
+                  items:3,
+              }
+          }
+      });
+  });
+ </script> 

@@ -1,0 +1,54 @@
+<div data-section-type="video-section">
+  <div id="banner_{{ block.id }}" class="banner_wrapper">
+    <div class="page-width banner video_{{ block.id }}" data-id="{{ block.id }}" >
+      {%- if block.settings.video_url != blank -%}
+      <div class="landing_video_box">
+        <div class="video_iframe">
+          <iframe class="landing_video_iframe" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+        {%- if block.settings.image_item != blank -%}
+        <div class="landing_video_box__image">
+        <picture>
+            <!--[if IE 9]>
+            <audio><![endif]-->
+            <source data-srcset="{{ block.settings.image_item | img_url: '800x' }}" media="(max-width: 759px)" srcset="{{ block.settings.image_item | img_url: '800x' }}">
+            <source data-srcset="{{ block.settings.image_item | img_url: '1024x' }}" media="(max-width: 1024px)" srcset="{{ block.settings.image_item | img_url: '1024x' }}">
+            <source data-srcset="{{ block.settings.image_item | img_url: '1450x' }}" media="(max-width: 1449px)" srcset="{{ block.settings.image_item | img_url: '1450x' }}">
+            <source data-srcset="{{ block.settings.image_item | img_url: '1500x'}}" media="(max-width: 1450px)" srcset="{{ block.settings.image_item | img_url: '2048x'}}">
+            <!--[if IE 9]></audio><![endif]-->
+            <img data-src="{{ block.settings.image_item | img_url: '1500x'}}" alt="" title="">
+        </picture>
+        <div class="landing_video_box__image_icon" data-video_url="{{block.settings.video_url.id}}">{% include 'play_black' %}</div>
+        </div>
+          {%- endif -%}
+      </div>
+      {%- endif -%}
+      <div class="slideshow_2_text">
+        <div class="page-width text">
+          {%- if block.settings.title_box != blank -%}
+          <div class="title">
+            {%- if block.settings.link != blank -%}<a href="{{block.settings.link}}">{%- endif -%}
+              <span class="css_EN">{{ block.settings.title_box }}</span>
+              <span class="css_AR">{{ block.settings.title_box_ar }}</span>
+            {%- if block.settings.link != blank -%}</a>{%- endif -%}
+          </div>
+          {%- endif -%}
+          {%- if block.settings.text != blank -%}
+          <div class="text">
+            {%- if block.settings.link != blank -%}<a href="{{block.settings.link}}">{%- endif -%}
+              <span class="css_EN">{{ block.settings.text }}</span>
+              <span class="css_AR">{{ block.settings.text_ar }}</span>
+            {%- if block.settings.link != blank -%}</a>{%- endif -%}
+          </div>
+          {%- endif -%}
+          {%- if block.settings.link_text != blank and block.settings.link != blank -%}
+          <div class="link">
+            <a href="{{block.settings.link}}" class="css_EN">{{ block.settings.link_text }}</a>
+            <a href="{{block.settings.link}}" class="css_AR">{{ block.settings.link_text_ar }}</a>
+          </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

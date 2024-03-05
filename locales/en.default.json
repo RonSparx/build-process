@@ -1,1 +1,548 @@
-{}
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content",
+      "close_modal": "Close",
+      "link_messages": {
+        "new_window": "Opens in a new window.",
+        "external": "Opens external website.",
+        "new_window_and_external": "Opens external website in a new window."
+      },
+      "refresh_page": "Choosing a selection results in a full page refresh.",
+      "selection_help": "Press the space key then arrow keys to make a selection.",
+      "unit_price_separator": "per",
+      "error": "Error"
+    },
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "404": {
+      "title": "404 Page Not Found",
+      "subtext": "The page you requested does not exist.",
+      "link": "Continue shopping"
+    },
+    "pagination": {
+      "previous": "Previous page",
+      "next": "Next page",
+      "current_page": "Page {{ current }} of {{ total }}"
+    },
+    "password_page": {
+      "opening_soon": "Opening Soon",
+      "login_form_heading": "Enter store using password",
+      "login_form_password_label": "Password",
+      "login_form_password_placeholder": "Your password",
+      "login_form_submit": "Enter",
+      "signup_form_email_label": "Email",
+      "signup_form_success": "We will send you an email right before we open!",
+      "admin_link_html": "Are you the store owner? <a href=\"\/admin\" class=\"text-link\">Log in here<\/a>",
+      "password_link": "Enter using password",
+      "powered_by_shopify_html": "This shop will be powered by {{ shopify }}"
+    },
+    "social": {
+      "share_on_facebook": "Share",
+      "share_on_twitter": "Tweet",
+      "share_on_pinterest": "Pin it",
+      "alt_text": {
+        "share_on_facebook": "Share on Facebook",
+        "share_on_twitter": "Tweet on Twitter",
+        "share_on_pinterest": "Pin on Pinterest"
+      }
+    },
+    "search": {
+      "no_results": "Try checking your spelling or using different words.",
+      "empty_search_message": "Search field cannot be empty",
+      "results_with_count": {
+        "one": "result found for “{{ terms }}”",
+        "other": "results found for “{{ terms }}”"
+      },
+      "title": "Search our site",
+      "placeholder": "Search",
+      "submit": "Submit",
+      "close": "Close search",
+      "heading": {
+        "one": "Search",
+        "other": "Search"
+      },
+      "search_for": "Search for",
+      "products": "Products",
+      "loading": "Loading",
+      "clear_search_term": "Clear search term",
+      "number_of_results": "{{ result_number }} of {{ results_count }}",
+      "number_of_results_found": "{{ results_count }} results found",
+      "one_result_found": "1 result found"
+    },
+    "newsletter_form": {
+      "newsletter_email": "Subscribe to our mailing list",
+      "newsletter_modal_title": "RECEIVE OUR NEWSLETTER",
+      "newsletter_checkbox_title": "Tumi Newsletter",
+      "newsletter_checkbox_label": "I wish to be contacted by Christian TUMI Couture by email to receive TUMI newsletters, personalized information on TUMI products and services, invitations to events and marketing surveys in relation with Fashion & Accessories ",
+      "email_placeholder": "*E-mail",
+      "first_name_placeholder": "*First name",
+      "last_name_placeholder": "*Last name",
+      "confirmation": "Thanks for subscribing!",
+      "submit": "validate",
+      "ok": "OK",
+      "footer_message": "By clicking Validate, you confirm you have read the privacy policy and consent to the processing of your personal data by Christian Tumi Couture in the conditions set forth in the relevant privacy policy. You may at any time use the link \"unsubscribe\" integrated in each email TUMI will sent you."
+    },
+    "filters": {
+      "show_more": "Show More",
+      "show_less": "Show Less"
+    },
+    "payment": {
+      "method": "Payment methods"
+    },
+    "currency": {
+      "dropdown_label": "Currency"
+    },
+    "language": {
+      "dropdown_label": "Language"
+    }
+  },
+  "sections": {
+    "slideshow": {
+      "next_slide": "Next slide",
+      "previous_slide": "Previous slide",
+      "pause_slideshow": "Pause slideshow",
+      "rotate_slideshow": "Play slideshow",
+      "load_slide": "Load slide {{ slide_number }}",
+      "navigation_instructions": "Use left\/right arrows to navigate the slideshow or swipe left\/right if using a mobile device"
+    },
+    "featured_product": {
+      "title": "Featured product",
+      "gallery_thumbnail_alt": "Load image into Gallery viewer, {{ imageAlt }}",
+      "video_thumbnail_alt": "Load and play video in Gallery viewer, {{ imageAlt }}",
+      "model_thumbnail_alt": "Load 3D model into Gallery viewer, {{ imageAlt }}"
+    },
+    "map": {
+      "address_error": "Error looking up that address",
+      "address_no_results": "No results for that address",
+      "address_query_limit_html": "You have exceeded the Google API usage limit. Consider upgrading to a <a href=\"https:\/\/developers.google.com\/maps\/premium\/usage-limits\">Premium Plan<\/a>.",
+      "auth_error_html": "There was a problem authenticating your Google Maps account.",
+      "section_heading": "Location"
+    },
+    "video": {
+      "play": "Play {{ video_title }} video",
+      "pause": "Pause {{ video_title }} video",
+      "resume": "Resume {{ video_title }} video",
+      "close": "Close {{ video_title }} video"
+    }
+  },
+  "blogs": {
+    "article": {
+      "view_all": "View all",
+      "view_all_blogs": "View all blogs",
+      "all_topics": "All topics",
+      "by_author": "by {{ author }}",
+      "posted_in": "Posted in",
+      "read_more": "Read more",
+      "read_more_title": "Read more: {{ title }}",
+      "back_to_blog": "Back to {{ title }}",
+      "tags": "Tags",
+      "article_with_count": {
+        "zero": "0 articles",
+        "one": "1 article",
+        "other": "{{ count }} articles"
+      }
+    },
+    "comments": {
+      "title": "Leave a comment",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "post": "Post comment",
+      "moderated": "Please note, comments must be approved before they are published",
+      "success_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated.",
+      "success": "Your comment was posted successfully! Thank you!",
+      "unapproved": "The email address provided is not approved for posting comments.",
+      "comments_with_count": {
+        "one": "{{ count }} comment",
+        "other": "{{ count }} comments"
+      }
+    }
+  },
+  "Newsletter": {
+    "title": "Title*",
+    "first_name": "First Name*",
+    "first_name_error": "Please enter your first name",
+    "last_name": "Last Name*",
+    "last_name_error": "Please enter your last name",
+    "area": "Area*",
+    "area-error": "Please enter your area",
+    "phone": "Phone Number",
+    "phone-error": "Please enter a valid phone number",
+    "phone-info": "Will only be used for delivery purpose",
+    "email": "Email",
+    "email-example": "(example@example.com)",
+    "email-error": "Please enter a valid email address",
+    "password": "Password",
+    "password-error": "Enter Password",
+    "confirm-password": "Confirm Password",
+    "confirm-password-error": "Password not match"
+  },
+  "cart": {
+    "general": {
+      "title": "Your cart",
+      "note": "Add a gift message",
+      "removed_item_html": "Removed <span class=\"cart__removed-product-details\">({{ quantity }}) {{ link }}<\/span> from your cart.",
+      "remove": "Remove",
+      "subtotal": "Subtotal",
+      "savings": "You're saving",
+      "taxes_and_shipping_at_checkout": "Tax included and free shipping.",
+      "taxes_and_shipping_policy_at_checkout_html": "Tax included and free shipping.",
+      "taxes_included_but_shipping_at_checkout": "Tax included and free shipping.",
+      "taxes_included_and_shipping_policy_html": "Tax included. Free shipping.",
+      "update": "Update",
+      "checkout": "Check out",
+      "empty": "Your cart is currently empty.",
+      "cookies_required": "Enable cookies to use the shopping cart",
+      "continue_shopping": "Continue shopping",
+      "cart_error": "There was an error while updating your cart. Please try again."
+    },
+    "label": {
+      "discounted_total": "Discounted total",
+      "product": "Product",
+      "price": "Price",
+      "price_column": "See Price column for discount details.",
+      "product_details": "Product details",
+      "quantity": "Quantity",
+      "qty": "Qty",
+      "regular_total": "Regular total",
+      "remove": "Remove {{ product }}",
+      "total": "Total",
+      "update": "Update"
+    },
+    "popup": {
+      "added_to_cart": "Just added to your cart",
+      "cart_count": {
+        "one": "{{ count }} item",
+        "other": "{{ count }} items"
+      },
+      "product_details": "Product details",
+      "quantity": "Qty",
+      "quantity_label": "Quantity: {{ quantity_count }}",
+      "basket": "Shopping Cart"
+    }
+  },
+  "collections": {
+    "general": {
+      "view_all": "View all",
+      "view_all_label": "View all products in the {{ collection_name }} collection",
+      "no_matches": "Sorry, there are no products in this collection",
+      "items_with_count": {
+        "one": "{{ count }} product",
+        "other": "{{ count }} products"
+      },
+      "collection_label": "Collection"
+    },
+    "catalog": {
+      "title": "Catalog"
+    },
+    "sorting": {
+      "title": "Sort by"
+    },
+    "filters": {
+      "title_tags": "Filter by",
+      "all_tags": "All products"
+    }
+  },
+  "pdp": {
+    "tabs": {
+      "features": "Features",
+      "exterior": "Exterior",
+      "interior": "Interior",
+      "specifications": "Specifications",
+      "contact-label": "May We Help?",
+      "maintainence-label": "Maintainence and Care",
+      "email": "Email Us",
+      "call": "Call Us",
+      "send": "Send"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "message": "Message",
+      "submit": "submit",
+      "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
+      "error_heading": "Please adjust the following:"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "My Account",
+      "details": "Account Details",
+      "view_addresses": "View Addresses",
+      "return": "Return to Account Details"
+    },
+    "activate_account": {
+      "title": "Activate Account",
+      "subtext": "Create your password to activate your account.",
+      "password": "Password",
+      "password_confirm": "Confirm Password",
+      "submit": "Activate Account",
+      "cancel": "Decline Invitation"
+    },
+    "addresses": {
+      "title": "Your Addresses",
+      "default": "Default",
+      "add_new": "Add a New Address",
+      "edit_address": "Edit address",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "company": "Company",
+      "address1": "Address",
+      "address2": "Apartment, suite, etc.",
+      "city": "City",
+      "country": "Country\/Region",
+      "province": "Province",
+      "zip": "Postal\/Zip Code",
+      "phone": "Phone",
+      "set_default": "Set as default address",
+      "add": "Add Address",
+      "update": "Update Address",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "delete": "Delete",
+      "delete_confirm": "Are you sure you wish to delete this address?"
+    },
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "forgot_password": "Forgot your password?",
+      "sign_in": "Sign In",
+      "guest_title": "Continue as a guest",
+      "guest_continue": "Continue"
+    },
+    "orders": {
+      "title": "Order History",
+      "order_number": "Order",
+      "order_number_link": "Order number {{ number }}",
+      "date": "Date",
+      "payment_status": "Payment Status",
+      "fulfillment_status": "Fulfillment Status",
+      "total": "Total",
+      "none": "You haven't placed any orders yet."
+    },
+    "order": {
+      "title": "Order {{ name }}",
+      "date_html": "Placed on {{ date }}",
+      "cancelled_html": "Order Cancelled on {{ date }}",
+      "cancelled_reason": "Reason: {{ reason }}",
+      "billing_address": "Billing Address",
+      "payment_status": "Payment Status",
+      "shipping_address": "Shipping Address",
+      "fulfillment_status": "Fulfillment Status",
+      "discount": "Discount",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "product": "Product",
+      "sku": "SKU",
+      "price": "Price",
+      "quantity": "Quantity",
+      "total": "Total",
+      "fulfilled_at_html": "Fulfilled {{ date }}",
+      "subtotal": "Subtotal",
+      "track_shipment": "Track shipment"
+    },
+    "recover_password": {
+      "title": "Reset your password",
+      "email": "Email",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "subtext": "We will send you an email to reset your password.",
+      "success": "We've sent you an email with a link to update your password."
+    },
+    "reset_password": {
+      "title": "Reset account password",
+      "subtext": "Enter a new password for {{ email }}",
+      "password": "Password",
+      "password_confirm": "Confirm Password",
+      "submit": "Reset Password"
+    },
+    "register": {
+      "title": "Create Account",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Create my account",
+      "customer_title": "Title",
+      "address": "Address line 1",
+      "address2": "Address line 2",
+      "post_code": "ZIP CODE",
+      "town_city": "CITY",
+      "country_region": "COUNTRY \/ REGION",
+      "phone_number": "PHONE NUMBER",
+      "date_of_birth": "DATE OF BIRTH",
+      "newsletter_title": "RECEIVE OUR NEWSLETTER",
+      "newsletter": "I wish to be contacted by Tumi UAE by email to receive newsletters, personalized information products and services, invitations to events and marketing surveys in relation with Fashion & Accessories.",
+      "privacypolicy": "By clicking on “Create my account” you confirm you have read the privacy policy and consent to the processing of your personal data by Tumi for the management of your account, and Tumi client relationship in the conditions set forth in the Privacy policies available in the footer. If you tick the appropriate boxe(s), you also consent to the processing of your personal data by Tumi for direct marketing, which may be tailored based on the personal data we know about you and your preferences. In order to provide you with the same personalized service worldwide, your personal data may be communicated to  Tumi International.",
+      "privacypolicy2": "As per applicable laws and regulations, you are entitled to access, correct and delete any data that may relate to you. You may also ask us not to send you personalized communications on our products and services. You may exercise these right at any time contacting us as set forth in the relevant Privacy policy.",
+      "email-example": "(example@example.com)",
+      "conifrm-password": "Conifrm Password",
+      "ms": "Ms",
+      "mrs": "Mrs",
+      "mr": "Mr",
+      "miss": "Miss",
+      "dob_info": "Day Month Year ( dd - mm - yyyy )",
+      "communication": "Choose your preferred communication method",
+      "communication_email": "Email",
+      "communication_sms": "SMS",
+      "input_errors": {
+        "email": "Please enter a valid email address",
+        "password": "Please enter your password",
+        "conifrm-password": "Passwords do not match",
+        "first_name": "Please enter your first name",
+        "last_name": "Please enter your last name",
+        "address": "Please enter your address",
+        "town_city": "Please check the town \/ city",
+        "country_region": "Please indicate your country \/ region",
+        "phone_number": "Please enter a valid phone number"
+      },
+      "city": {
+        "Abu_Dhabi": "Abu Dhabi",
+        "Ajman": "Ajman",
+        "Al_Ain": "Al Ain",
+        "Al_Madam": "Al Madam",
+        "As_Sila": "As Sila",
+        "Dhaid": "Dhaid",
+        "Dubai": "Dubai",
+        "Fujairah": "Fujairah",
+        "Ghayathi": "Ghayathi",
+        "Hatta": "Hatta",
+        "Kalba": "Kalba",
+        "Khor_Fakkan": "Khor Fakkan",
+        "Liwa_Oasis": "Liwa Oasis",
+        "Madinat_Zayed": "Madinat Zayed",
+        "Ras_Al_Khaimah": "Ras Al Khaimah",
+        "Ruwais": "Ruwais",
+        "Sharjah": "Sharjah",
+        "Umm_Al_Quwain": "Umm Al Quwain",
+        "Western_Region": "Western Region"
+      }
+    }
+  },
+  "homepage": {
+    "general": {
+      "title": "Homepage"
+    },
+    "onboarding": {
+      "product_title": "Your product's name",
+      "product_description": "This area is used to describe your product’s details. Tell customers about the look, feel, and style of your product. Add details on color, materials used, sizing, and where it was made.",
+      "collection_title": "Your collection's name",
+      "blog_title": "Your post's title",
+      "blog_excerpt": "Your store hasn’t published any blog posts yet. A blog can be used to talk about new product launches, tips, or other news you want to share with your customers. You can check out Shopify’s ecommerce blog for inspiration and advice for your own store and blog.",
+      "blog_author": "Author name",
+      "no_content": "This section doesn’t currently include any content. Add content to this section using the sidebar."
+    }
+  },
+  "teaser_lp": {
+    "form_heading": "get notified of the drop and other updates",
+    "notification-heading-2": "Thanks for signing up for the drop.",
+    "error-text": "Oops! Something went wrong while submitting the form.",
+    "member-heading": "THANKS FOR SIGNING UP FOR THE TUMI | RAZER COLLECTION DROP. WOULD YOU LIKE TO JOIN OUR TUMI EXCLUSIVES CLUB AND RECEIVE MEMBER BENEFITS?",
+    "member-yes": "Yes",
+    "member-no": "NO THANKS"
+  },
+  "layout": {
+    "navigation": {
+      "search": "Search",
+      "expand": "expand",
+      "collapse": "collapse",
+      "menu": "Menu"
+    },
+    "cart": {
+      "title": "Cart",
+      "items_count": {
+        "one": "item",
+        "other": "items"
+      }
+    },
+    "customer": {
+      "account": "Account",
+      "log_out": "Log out",
+      "log_in": "Log in",
+      "create_account": "Create account"
+    },
+    "footer": {
+      "social_platform": "{{ name }} on {{ platform }}"
+    }
+  },
+  "products": {
+    "product": {
+      "color_declinations": "Other versions available",
+      "regular_price": "Regular price",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "availability": "Availability",
+      "on_sale": "Sale",
+      "from_lowest_price_html": "from {{ lowest_price }}",
+      "sale_price": "Sale price",
+      "quantity": "Quantity",
+      "add_to_cart": "Add to cart",
+      "loader_label": "Adding product to your cart",
+      "back_to_collection": "Back to {{ title }}",
+      "vendor": "Vendor",
+      "quantity_minimum_message": "Quantity must be 1 or more",
+      "include_taxes": "",
+      "shipping_policy_html": "",
+      "unit_price_label": "Unit price",
+      "view_cart": "View cart",
+      "view_in_space": "View in your space",
+      "view_in_space_label": "View in your space, loads item in augmented reality window"
+    }
+  },
+  "gift_cards": {
+    "issued": {
+      "title_html": "Here's your {{ value }} gift card for {{ shop }}!",
+      "subtext": "Your gift card",
+      "gift_card_code": "Gift card code",
+      "disabled": "Disabled",
+      "expired": "Expired on {{ expiry }}",
+      "active": "Expires on {{ expiry }}",
+      "redeem_html": "Use this code at checkout to redeem your {{ value }} gift card",
+      "shop_link": "Start shopping",
+      "print": "Print this gift card",
+      "remaining_html": "{{ balance }} left",
+      "add_to_apple_wallet": "Add to Apple Wallet",
+      "qr_image_alt": "QR code — scan to redeem gift card"
+    }
+  },
+  "shopify": {
+    "checkout": {
+      "order_summary": {
+        "shipping_default_value": "Free shipping",
+        "free_total_label": "Free"
+      },
+      "shop_policies": {
+        "refund_policy": "Return policy"
+      },
+      "payment_gateway": {
+        "cash_on_delivery_label": "Card on Delivery"
+      },
+      "shipping": {
+        "shipping_method_title": "*Express Delivery: DUBAI orders placed before 2PM will be shipped same day - ABU DHABI\/SHARJAH orders placed before 12PM will be shipped same day. All orders coming after cut off time, will be prioritized for the next day.",
+        "free_rate_label": "Free"
+      },
+      "delivery_options": {
+        "pick_up": "Click & Collect (online payment only)",
+        "free_total_label": "Free"
+      },
+      "payment_summary": {
+        "free_label": "Free"
+      }
+    },
+    "page_titles": {
+      "collections": "Latest collections"
+    },
+    "notices": {
+      "order": {
+        "cash_on_delivery": "Card on delivery"
+      }
+    }
+  }
+}

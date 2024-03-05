@@ -1,0 +1,460 @@
+<style>
+#video-viewport {
+  position: relative;
+  padding-top: 40%;
+  background: #fff;
+  overflow: auto;
+}
+
+#video-viewport .fallback-img {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+#video-viewport video {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+}
+.video-con {
+  text-align: center;
+  padding: 30px 15px;
+}
+
+.video-conbox h1 {
+  font-size: 24px; 
+  margin: 0;
+}
+.video-conbox h2 {
+  font-size: 18px;
+}
+
+.btn-transparent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight:600;
+  color: #222222;
+  font-size: 15px;
+  transition: all .3s ease-in-out;
+}
+.btn-transparent:hover {
+    color: #555555 !important;
+}
+
+.btn-transparent i {
+  font-size: 14px;
+  padding: 3px 0 0 10px;
+}
+.video-conbox {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.video-conbox img {
+    max-width: 300px;
+}
+
+ .video-conbox .btn-transparent {
+      display: inline-block;
+      padding: 10px 40px;
+      background-color: #ffffff;
+      color: #222222;
+      font-weight: 600;
+      font-size: 15px;
+       margin: 0;
+      letter-spacing: .0125em;
+      text-decoration: none;
+   	  margin-top: 20px;
+  }
+
+ .video-conbox  .btn-transparent:hover {
+      background-color: #ffffffff;
+      color: #bb2131 !important;
+      text-decoration: none;
+  }
+.mobile{
+  	display: block;
+}
+.desktop{
+  	display: none;
+}
+
+.fallback-img img{
+	width: 100%;
+}
+
+/* media css start */
+  
+@media all and (min-width:640px){
+
+  .discover-slider {
+    margin-left: -15px;
+    margin-right: -15px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .travel-slider {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -5px;
+    margin-right: -5px;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .travel-sliderItem {
+    max-width: 33.33%;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  
+	
+}
+
+
+
+  section.fullsize-video-bg {
+    position: relative;
+  }
+
+  .video-con {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    color: #ffffff;
+    padding: 0;
+    left: 50%;
+    width: 80%;
+    transform: translate(-50%, -50%);
+  }
+
+@media all and (min-width:992px){
+  .video-conbox h1 {
+    font-size: 32px;
+    margin-bottom: 6px;
+  }
+  .mobile{
+  	display:none;
+  }
+  .desktop{
+  	display: block;
+  }
+}
+
+
+@media all and (min-width:1199px){
+
+  .video-conbox {
+    max-width: 680px;
+  }
+  .video-con {
+    width: 100%;
+  }
+  .video-conbox h1 {
+    font-size: 45px;
+    margin: 0;
+  }
+  .video-conbox h2 {
+    font-size: 23px;
+    margin-bottom: 16px;
+  }
+  .video-conbox p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+}
+
+/* ++++++++++++++++++++++++*/
+ 
+
+
+
+
+
+/*backpacks css start */
+
+.backpack-wrap {
+  margin: 30px 0;
+}
+.video-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+.backpack-con {
+  text-align: center;
+  padding: 30px 0 0;
+}
+.backpack-con h3 {
+  margin: 0;
+}
+
+.backpack-con span.subtitle {
+  display: inline-block;
+  margin-bottom: 15px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  background: #262626;
+  color: #ffffff;
+  display: inline-block;
+  padding: 12px 20px;
+}
+
+
+ .video-conbox .btn-transparent {
+      display: inline-block;
+      padding: 15px 20px;
+      background-color: #ffffff;
+      color: #222222;
+      font-weight: 600;
+      font-size: 15px;
+       margin: 0;
+      letter-spacing: .0125em;
+      text-decoration: none;
+  }
+
+ .video-conbox  .btn-transparent:hover {
+      background-color: #ffffffff;
+      color: #bb2131 !important;
+      text-decoration: none;
+  }
+ 
+ .video-conbox .btn-transparent{
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid {{ section.settings.jou_btn_color }};
+  }
+  .video-conbox h3{
+        text-transform: capitalize;
+        font-weight:600;
+        letter-spacing: 3px;
+    }
+.video-conbox p{
+      /*display:none;*/
+     overflow: hidden;
+     display: -webkit-box;
+     -webkit-line-clamp:5;
+     -webkit-box-orient: vertical;
+      font-size:18px;
+    }
+
+  
+  @media (max-width:749px){
+    #video-viewport {
+      padding-top: 100%;
+    }
+    .video-conbox h3{
+        font-size:26px;
+      margin-bottom:20px;
+    }
+    
+  }
+  @media (min-width: 1200px){
+    .video-conbox h2 {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+    .video-conbox h3{
+        font-size: 50px;
+    }
+    .video-conbox .btn-transparent{
+    width: 100%;
+    max-width: 285px;
+  }
+    .video-conbox p{
+    -webkit-line-clamp:6;
+     -webkit-box-orient: vertical;
+    }
+  }
+</style>
+
+<section class="fullsize-video-bg">
+    <div id="video-viewport" class="desktop">
+      <div class="fallback-img">
+        {% if section.settings.jou_image_desktop != blank %}
+        <img src="{{section.settings.jou_image_desktop | img_url:'master' }}" alt="{{jou_image_desktop.alt | escape }}"/>
+     	{% endif %}
+      </div>
+      <video width="100%" height="auto" autoplay muted loop>
+        {% if section.settings.jou_link_desktop != blank %}
+          <source src="{{section.settings.jou_link_desktop}}" type="video/mp4" />
+        {% endif %}
+      </video>
+    </div>
+  
+  	<div id="video-viewport" class="mobile">
+      <div class="fallback-img">
+        {% if section.settings.jou_image_mobile != blank %}
+         <img src="{{section.settings.jou_image_mobile | img_url:'master' }}" alt="{{jou_image_mobile.alt | escape }}"/>
+     	{% endif %}
+      </div>
+      <video width="100%" height="auto" autoplay muted loop>
+        {% if section.settings.jou_link_mobile != blank %}
+        <source src="{{section.settings.jou_link_mobile}}" type="video/mp4" />
+        {% endif %}
+      </video>
+    </div>
+
+    <div class="video-con">
+      <div class="video-conbox">
+        {% if section.settings.jou_sub_heading != blank %}
+        <h2 style="color: {{ section.settings.sub_title }}">{{ section.settings.jou_sub_heading }}</h2> 
+        {% endif %}
+       
+        {% if section.settings.black_sub_heading != blank %}
+        <h3 style="color: {{ section.settings.heading_title }}">{{ section.settings.black_sub_heading }}</h3> 
+        {% endif %}
+        
+        {% if section.settings.jou_banner_content != blank %}
+        <p style="color: {{ section.settings.content_color }}">{{ section.settings.jou_banner_content }}</p> 
+        {% endif %}
+        
+		{% if section.settings.jou_btn != blank %}
+        <a style="color: {{ section.settings.jou_btn_txt_color }}" href="{{section.settings.jou_btnlink | default: '#'}}" class="btn-transparent">
+          <span class="ben-text">{{section.settings.jou_btn}} </span>
+        </a>
+        {% endif %}
+
+      </div>
+    </div>
+
+  </section>  
+
+{% schema %}
+  {
+    "name": "journey Banner video",
+    "settings": [
+	  {
+        "type": "header",
+        "content": "Background"
+      },
+      {
+        "type": "paragraph",
+        "content": "Please add Image and Video for Mobile and Desktop Devices."
+      },
+      {
+          "type":"image_picker",
+          "id":"jou_image_desktop",
+          "label":"Video Poster Desktop"
+      },
+	  {
+          "type":"url",
+          "id":"jou_link_desktop",
+          "label":"Video URL Desktop"
+      },
+	  {
+          "type":"image_picker",
+          "id":"jou_image_mobile",
+          "label":"Video Poster Mobile"
+      },
+	  {
+          "type":"url",
+          "id":"jou_link_mobile",
+          "label":"Video URL Mobile"
+      },
+      {
+        "type": "header",
+        "content": "Content Box"
+      },
+	  {
+        "type": "paragraph",
+        "content": "Add Content Box data."
+      },
+     {
+          "type":"text",
+          "id":"jou_sub_heading",
+          "label":"Sub heading"
+      },
+      {
+      "type": "color",
+      "id": "sub_title",
+      "label": "title color",
+      "default": "#000000"
+       },
+      {
+          "type":"text",
+          "id":"black_sub_heading",
+          "label":"Banner Sub heading",
+          "default":"BLACK FRIDAY & CYBER MONDAY 2022"
+      },
+      {
+      "type": "color",
+      "id": "heading_title",
+      "label": "Heading color",
+      "default": "#000000"
+       },
+      {
+          "type":"text",
+          "id":"jou_banner_content",
+          "label":"Banner Content",
+          "default":"Our global campaign chronicles the personal and professional journeys of four world-renowned sports and entertainment professionals, aptly known as the TUMI Crew."
+      },
+      {
+      "type": "color",
+      "id": "content_color",
+      "label": "content color",
+      "default": "#000000"
+       },
+      {
+          "type":"text",
+          "id":"jou_btn",
+          "label":"Button name"
+      },
+      {
+          "type":"url",
+          "id":"jou_btnlink",
+          "label":"Button URL"
+      },
+	  {
+        "type": "color",
+        "id": "jou_btn_color",
+        "label": "Button Color",
+        "default": "#fff"
+      },
+	  {
+        "type": "color",
+        "id": "jou_btn_txt_color",
+        "label": "Button Text Color",
+        "default": "#000"
+      }
+	],
+    "presets": [
+       {
+         "name": "Journey Banner video"
+       }
+     ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

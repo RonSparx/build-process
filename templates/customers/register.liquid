@@ -1,0 +1,452 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.13.4/jquery.mask.min.js"></script>
+<div class="page-width">
+  <div class="grid">
+    <div class="customer-register-container">
+      <div class="form-vertical">
+        {% comment %}
+          <div class="customer-return-to-login">
+            <a href="{{ routes.account_login_url }}"><img src="{{ 'arrow-mk.png' | asset_img_url: '50x50' }}"></a><br />
+          </div>
+        {% endcomment %}
+
+        {% assign formId = 'RegisterForm' %}
+        {% form 'create_customer', id: formId, novalidate: 'novalidate', class: 'oc-form custom-registerform' %}
+        {% include 'form-status', form: form, form_id: formId %}
+
+        <div class="customer-login-details">
+          <h2 class="form-heading-h2"><ly-as-275970>Your login details</ly-as-275970></h2>
+          <span class="form-required-info"><ly-as-275971>*Required fields</ly-as-275971></span> 
+          
+          <div class="form-row">
+          <div class="form-items-col form-validate">
+            <div class="form-group">
+               <label for="{{ formId }}-email">{{ 'customer.register.email' | t }} *</label>
+              <div class="form-field">
+                <input data-required="true"
+                       type="email"
+                       name="customer[email]"
+                       id="{{ formId }}-email"
+                       class="{% if form.errors contains 'email' %} input--error{% endif %}"
+                       {% if form.email %} value="{{ form.email }}"{% endif %}
+                       autocorrect="off"
+                       autocapitalize="off"
+                       autocomplete="email"
+                       aria-required="true"
+                       {%- if form.errors contains 'email' -%}
+                       class="input--error"
+                       aria-invalid="true"
+                       aria-describedby="{{ formId }}-email-error"
+                       {%- endif -%}
+                       >
+                {%- if form.errors contains 'email' -%} 
+                <span id="{{ formId }}-email-error" class="input-error-message">
+                  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                  {% include 'icon-error' %}
+                  <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+                </span>
+                {%- endif -%}
+                <span id="email-caption" class="a-caption-message">{{ 'customer.register.email-example' | t }}</span>
+                
+                  
+              </div>
+           	 <p class="a-error-message error empty" aria-live="assertive">
+                    <span class="not-valid" > {{ 'customer.register.input_errors.email' | t }} </span>
+                  </p>
+            </div>
+          </div> 
+        </div>
+          
+          
+          
+          <div class="form-row form-row-flex">
+          <div class="form-items-col form-pass form-validate">
+            <div class="form-group">
+              <label for="{{ formId }}-password">{{ 'customer.register.password' | t }} *</label>
+              <div class="form-field">
+                <input data-required="true"
+                       type="password"
+                       name="customer[password]"
+                       id="{{ formId }}-password"
+                       class="{% if form.errors contains 'password' %} input--error{% endif %}"
+                       aria-required="true"
+                       {%- if form.errors contains 'password' -%}
+                       class="input--error"
+                       aria-invalid="true"
+                       aria-describedby="{{ formId }}-password-error"
+                       {%- endif -%}
+                       >
+                
+                <div id="toggle-password" class="">
+                  <span class="password-toggle-show">
+                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="eye" class="svg-inline--fa fa-eye fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"></path></svg>
+                  </span>
+                  <span class="password-toggle-hide">
+                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="eye-slash" class="svg-inline--fa fa-eye-slash fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M634 471L36 3.51A16 16 0 0 0 13.51 6l-10 12.49A16 16 0 0 0 6 41l598 467.49a16 16 0 0 0 22.49-2.49l10-12.49A16 16 0 0 0 634 471zM296.79 146.47l134.79 105.38C429.36 191.91 380.48 144 320 144a112.26 112.26 0 0 0-23.21 2.47zm46.42 219.07L208.42 260.16C210.65 320.09 259.53 368 320 368a113 113 0 0 0 23.21-2.46zM320 112c98.65 0 189.09 55 237.93 144a285.53 285.53 0 0 1-44 60.2l37.74 29.5a333.7 333.7 0 0 0 52.9-75.11 32.35 32.35 0 0 0 0-29.19C550.29 135.59 442.93 64 320 64c-36.7 0-71.71 7-104.63 18.81l46.41 36.29c18.94-4.3 38.34-7.1 58.22-7.1zm0 288c-98.65 0-189.08-55-237.93-144a285.47 285.47 0 0 1 44.05-60.19l-37.74-29.5a333.6 333.6 0 0 0-52.89 75.1 32.35 32.35 0 0 0 0 29.19C89.72 376.41 197.08 448 320 448c36.7 0 71.71-7.05 104.63-18.81l-46.41-36.28C359.28 397.2 339.89 400 320 400z"></path></svg>
+                  </span>
+                </div>
+                
+                {%- if form.errors contains 'password' -%}
+                <span id="{{ formId}}-password-error" class="input-error-message">
+                  {% include 'icon-error' %}
+                  <span>{{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.</span>
+                </span>
+                {%- endif -%}
+              </div>
+            </div>
+            <p class="a-error-message error empty" aria-live="assertive">
+                <span class="not-valid" > {{ 'customer.register.input_errors.password' | t }}  </span>
+              </p>
+          </div>
+
+          <div class="form-items-col form-validate">
+            <div class="form-group pass-conifrm-field">
+              <label for="{{ formId }}-password">{{ 'customer.register.conifrm-password' | t }}  <span class="red-label">*</span></label>
+              <div class="form-field">
+                <input data-required="true" required type="password" value="" name="customer[confirm-password]" id="confirm-password" class="confirm password-splash-conf custom-check" />
+               	<div id="contoggle-password" class="">
+                  <span class="password-toggle-show">
+                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="eye" class="svg-inline--fa fa-eye fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"></path></svg>
+                  </span>
+                  <span class="password-toggle-hide">
+                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="eye-slash" class="svg-inline--fa fa-eye-slash fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M634 471L36 3.51A16 16 0 0 0 13.51 6l-10 12.49A16 16 0 0 0 6 41l598 467.49a16 16 0 0 0 22.49-2.49l10-12.49A16 16 0 0 0 634 471zM296.79 146.47l134.79 105.38C429.36 191.91 380.48 144 320 144a112.26 112.26 0 0 0-23.21 2.47zm46.42 219.07L208.42 260.16C210.65 320.09 259.53 368 320 368a113 113 0 0 0 23.21-2.46zM320 112c98.65 0 189.09 55 237.93 144a285.53 285.53 0 0 1-44 60.2l37.74 29.5a333.7 333.7 0 0 0 52.9-75.11 32.35 32.35 0 0 0 0-29.19C550.29 135.59 442.93 64 320 64c-36.7 0-71.71 7-104.63 18.81l46.41 36.29c18.94-4.3 38.34-7.1 58.22-7.1zm0 288c-98.65 0-189.08-55-237.93-144a285.47 285.47 0 0 1 44.05-60.19l-37.74-29.5a333.6 333.6 0 0 0-52.89 75.1 32.35 32.35 0 0 0 0 29.19C89.72 376.41 197.08 448 320 448c36.7 0 71.71-7.05 104.63-18.81l-46.41-36.28C359.28 397.2 339.89 400 320 400z"></path></svg>
+                  </span>
+                </div>
+              	
+              </div>
+<!--                <p class="a-error-message error empty pass_error_msg" aria-live="assertive">
+                  <span class="not-valid">Password should not blank</span>
+              </p>  -->
+              <p class="a-error-message error empty not-match" aria-live="assertive">
+                <span class="not-valid not-match" > {{ 'customer.register.input_errors.conifrm-password' | t }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+          
+          
+          
+          
+        
+          
+          
+    
+
+          
+        </div>
+
+        <h2 class="form-heading-h2"><ly-as-275972>Your personal information</ly-as-275972></h2>
+		
+        {% comment %}
+        <div class="form-field input-small">
+          <label for="{{ formId }}-Title">{{ 'customer.register.customer_title' | t }}</label>
+          <select name="customer[note][title]" id="{{ formId }}-Title">
+            <option value="Mrs"{% if form.note.title == 'Mrs' %} selected="selected"{% endif %}><ly-as-275973>Mrs</ly-as-275973></option>
+            <option value="Mr"{% if form.note.title == 'Mrs' %} selected="selected"{% endif %}><ly-as-275974>Mr</ly-as-275974></option>
+            <option value="Miss"{% if form.note.title == 'Miss' %} selected="selected"{% endif %}><ly-as-275975>Miss</ly-as-275975></option>
+
+          </select>
+        </div>
+        {% endcomment %}
+        
+        <div class="form-row register-title">
+          <div class="form-items-col form-validate valid">
+              <div>
+                  <label class="form-control-label">{{ 'customer.register.customer_title' | t }}*</label>
+              </div>
+              <div class="sub-cat-row form-radio">
+                <div class="sub-cat-item">
+                      <input class="custom-check" type="radio" id="{{ formId }}-ms" name="customer[note][gender]" value="ms" checked="checked" />
+                      <label for="{{ formId }}-ms">{{ 'customer.register.ms' | t }}</label>
+                  </div>
+                
+                 <div class="sub-cat-item">
+                      <input class="custom-check" type="radio" id="{{ formId }}-mrs" name="customer[note][gender]" value="mrs" />
+                       <label for="{{ formId }}-mrs">{{ 'customer.register.mrs' | t }}</label>
+                  </div>
+                
+                  <div class="sub-cat-item">
+                      <input class="custom-check" type="radio" id="{{ formId }}-mr" name="customer[note][gender]" value="mr" />
+                      <label for="{{ formId }}-mr">{{ 'customer.register.mr' | t }}</label>
+                  </div>
+                 
+                  <div class="sub-cat-item">
+                      <input class="custom-check" type="radio" id="{{ formId }}-miss" name="customer[note][gender]" value="miss" />
+                       <label for="{{ formId }}-miss">{{ 'customer.register.miss' | t }}</label>
+                  </div>
+              </div>
+          </div>
+      </div>
+        
+          <div class="row form-row ">
+            <div class="form-field col">
+              <div class="form-items-col form-validate">
+                <div class="form-group">
+                  <label for="{{ formId }}-FirstName">{{ 'customer.register.first_name' | t }} *</label>
+                  <div class="form-field">
+                    <input data-required="true" class="custom-check" type="text" name="customer[first_name]" id="{{ formId }}-FirstName" {% if customer %} value="{{ customer.first_name }}" {% endif %} required autocomplete="given-name" />
+                  </div>
+                  <p class="a-error-message error empty" aria-live="assertive">
+                    <span class="not-valid">{{ 'customer.register.input_errors.first_name' | t }}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-field col">
+              <div class="form-items-col form-validate">
+                <div class="form-group">
+                  <label for="{{ formId }}-LastName">{{ 'customer.register.last_name' | t }} *</label>
+                  <div class="form-field">
+                    <input data-required="true" class="custom-check" type="text" name="customer[last_name]" id="{{ formId }}-LastName" {% if customer %} value="{{ customer.last_name }}" {% endif %} required autocomplete="family-name" />
+                  </div>
+                  <p class="a-error-message error empty" aria-live="assertive">
+                    <span class="not-valid">{{ 'customer.register.input_errors.last_name' | t }} </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        
+        
+        
+        <div class="form-row">
+          <div class="form-items-col form-validate">
+            <div class="form-group">
+             <label for="{{ formId }}-Address">{{ 'customer.register.address' | t }} *</label>
+              <div class="form-field">
+                <input data-required="true" class="custom-check" type="text" name="customer[note][address1]"/>
+              </div>
+              <p class="a-error-message error empty" aria-live="assertive">
+                <span class="not-valid">{{ 'customer.register.input_errors.address' | t }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="form-row">
+          <div class="form-items-col">
+            <div class="form-group">
+              <label for="{{ formId }}-Address2">{{ 'customer.register.address2' | t }}</label>
+              <div class="form-field">
+                <input class="custom-check" type="text" name="customer[note][address2]"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      
+        <div class="row">
+          {%comment%}
+          <div class="form-field col">
+            <label for="{{ formId }}-TownCity">{{ 'customer.register.town_city' | t }} *</label>
+            <input required type="text" name="customer[note][town_city]" id="{{ formId }}-TownCity" {% if form.note.town_city %}value="{{ form.note.town_city }}"{% endif %} autocomplete="town-city">
+            <span id="{{ formId}}-town_city-error" class="input-error-message">
+              {% include 'icon-error' %}
+              <span>{{ 'customer.register.input_errors.town_city' | t }}</span>
+            </span>
+          </div>
+          {%endcomment %}
+          
+          <div class="form-field col">
+            
+            <div class="form-row  countries_states">
+              <div class="form-items-col form-validate valid">
+                <div class="form-group">
+                 <label for="{{ formId }}-TownCity">{{ 'customer.register.town_city' | t }} *</label>
+                  <div class="form-field">
+                    <select data-required="true"  name="customer[note][city]" autocomplete="address-level">
+                     {% include 'city_list'%}
+                    </select>
+                    <p class="a-error-message error empty" aria-live="assertive">
+                      <span class="not-valid"></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            
+          </div>
+          <div class="form-field col sm-none"></div>
+        </div>
+        <div class="row form-row ">
+          <div class="form-field col form-validate valid">
+            <div class="form-group">
+            <label for="{{ formId }}-CountryRegion">{{ 'customer.register.country_region' | t }} *</label>
+            <select required name="customer[note][country_region]" id="{{ formId }}-CountryRegion">
+              {% include 'country_list'%}
+            </select>
+            <span id="{{ formId}}-country_region-error" class="input-error-message">
+              {% include 'icon-error' %}
+              <span>{{ 'customer.register.input_errors.country_region' | t }}</span>
+            </span>
+            </div>
+          </div>
+          <div class="form-field col sm-none"></div>
+        </div>
+
+        <div class="row form-row">
+          {% comment %}
+          <div class="form-field col">
+            <label for="{{ formId }}-PhoneNumber">{{ 'customer.register.phone_number' | t }} *</label>
+            <input required type="text" name="customer[note][phone_number]" id="{{ formId }}-PhoneNumber" {% if form.note.phone_number %}value="{{ form.note.phone_number }}"{% endif %} placeholder="(+)971512345678" data-inputmask-regex="^[+]?[0-9]{1,14}$" autocomplete="phone-number">
+            <span id="{{ formId}}-phone_number-error" class="input-error-message">
+              {% include 'icon-error' %}
+              <span>{{ 'customer.register.input_errors.phone_number' | t }}</span>
+            </span>
+          </div>
+          <div class="form-field col sm-none"></div>
+          
+          {% endcomment %}
+          
+          
+          <div class="form-field col">
+            <div class="form-items-col ">
+               <label class="phone-label-en" for="">{{ 'customer.register.phone_number' | t }}<span class="red-label">*</span></label>
+                <div class="forminner-row">
+                    <div class="form-inner-item">
+                        <div class="form-group form-validate valid">
+                            <div class="form-field">
+                                <select id="{{ formId }}-country_code" name="customer[note][country_code]">
+                                    {% include 'country_code'%}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                      
+                      
+                      
+                      
+                      <div class="form-inner-item form-validate">
+                          <div class="form-group">
+                            <div class="form-field">
+                              <input data-required="true" id="phonoe_no" type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" name="customer[note][phone]" />
+                            </div>
+                            <span class="not-valid error_phone" ></span>
+                            <p class="a-error-message error empty" aria-live="assertive">
+                              <span class="not-valid" >{{ 'customer.register.input_errors.phone_number' | t }} </span>
+                            </p>
+          <!--                   <p class="a-error-message error empty phone_error" aria-live="assertive">
+                              <span class="not-valid" >Please enter a valid phone number -11</span>
+                            </p> -->
+                        </div>
+                        </div>
+                      
+                </div>
+            </div>
+          </div>
+          
+          <div class="form-field col sm-none"></div>
+          
+        </div>
+        {% comment %}
+        <div class="form-field input-small date-wrap">
+          <label for="{{ formId }}-DateOfBirth">{{ 'customer.register.date_of_birth' | t }}</label>
+          <input type="date" name="customer[note][date_of_birth]" id="{{ formId }}-DateOfBirth" {% if form.note.date_of_birth %}value="{{ form.note.date_of_birth }}"{% endif %} data-inputmask="'mask': '99/99/9999'" placeholder="MM/DD/YYYY" autocomplete="date-of-birth">
+        </div>
+        {% endcomment %}
+        <div class="row form-row ">
+          <div class="form-field col">
+            <div class="form-group">
+              <label for="{{ formId }}-DateOfBirth">{{ 'customer.register.date_of_birth' | t }}</label>
+              <div class="form-field">
+                <input  type="date" name="customer[note][DOB]"/>
+                <p class="field-message-caption">{{ 'customer.register.dob_info' | t }} </p>
+              </div>
+            </div>
+          </div>
+          <div class="form-field col sm-none"></div>
+        </div>
+
+        <br />
+
+        <h2 class="form-heading-h2">{{ 'customer.register.newsletter_title' | t }}</h2>
+        
+        <div class="form-row checkbox tc-check form-validate">
+          <div class="accetpt-offer form-group custom-mst">
+            <input class="email-checked" type="checkbox"  id="tc" name ="customer[note][terms and conditions]" value="true" aria-invalid="false" data-required="true" />
+            <label for="tc">I accept the <a href="{{shop.url}}/pages/legal-terms-and-conditions">Terms and conditions</a> and the privacy and cookie policy.<span class="red-label">*</span></label>
+
+            <p class="a-error-message error empty" aria-live="assertive">
+                <span class="not-valid" >{{ 'please read and accept the terms and conditions' }}</span>
+              </p>
+          </div>
+        </div>
+        
+        
+        
+<!--         <div class="form-field custom-mst">
+          <input  name="customer[term]" value="newsletter" type="checkbox" id="{{ formId }}-Newsletters" {% if form.tags %}selected="selected"{% endif %}>
+          <label for="{{ formId }}-Newsletters"> <ly-as-276221>I accept the</ly-as-276221> <a href="{{shop.url}}/pages/legal-terms-and-conditions"> <ly-as-276222>terms and conditions</ly-as-276222> </a> <ly-as-276223>and the privacy and cookie policy.</ly-as-276223></label>
+        </div> -->
+        <div class="form-field">
+          <input type="checkbox" name="customer[accepts_marketing]"  value="true" id="marketing" />
+          <label for="marketing">{{ 'customer.register.newsletter' | t }}</label>
+        </div>
+       <input type="hidden" name="contact[tags]" value="newsletter">
+
+        
+         <br /><br />
+        
+       <div class="form-row">
+         <h2 class="form-heading-h2">{{ 'customer.register.communication' | t }}</h2>
+      </div>
+      <div class="form-row-grid">
+          <div class="form-field form-validate valid">
+             <input name="customer[note][communication by email]" value="Email" id="by-email" type="checkbox"  checked />
+             <label class="form-control-label" for="by-email"> {{ 'customer.register.communication_email' | t }}  </label>
+         </div>
+         <div class="form-field">
+             <input name="customer[note][communication by sms]" value="SMS" id="by-sms" type="checkbox" />
+             <label class="form-control-label" for="by-sms"> {{ 'customer.register.communication_sms' | t }}  </label>
+         </div>
+       
+     </div>
+
+    
+
+        <br /><br />
+
+<!--         <p class="text-center">
+          <input type="submit" name="condition" value="{{ 'customer.register.submit' | t }}" class="btn" disabled>
+        </p>
+         -->
+        <div class="form-row">
+          <div class="register-actions text-center">
+            <input id="form-sumbit"  type="button" value="{{ 'customer.register.submit' | t }}" disabled class="btn register-btn" />
+
+          </div>
+        </div>
+        <br /><br />
+
+        <div class="form-field conditions-wrapper">
+          <span id="{{ formId }}-PrivacyPolicy" class="conditions rich-text grey justify size-11">
+            <p class="conditions rich-text grey justify size-11">
+              {{ 'customer.register.privacypolicy' | t }}
+              <br /><br />
+              {{ 'customer.register.privacypolicy2' | t }}
+            </p>
+          </span>
+          {% comment %}
+          <!--                     <p class="conditions rich-text grey justify size-11">
+By clicking on “Create my account” you confirm you have read the privacy policy and consent to the processing of your personal data by Dior for the management of your account, and Dior client relationship in the conditions set forth in the Privacy policies available in the footer. If you tick the appropriate boxe(s), you also consent to the processing of your personal data by Dior for direct marketing, which may be tailored based on the personal data we know about you and your preferences. In order to provide you with the same personalized service worldwide, your personal data may be communicated to Christian Dior entities in France and abroad. <br>
+<br>
+<br>
+As per applicable laws and regulations, you are entitled to access, correct and delete any data that may relate to you. You may also ask us not to send you personalized communications on our products and services.<br/>
+You may exercise these right at any time contacting us as set forth in the relevant Privacy policy.</p> -->{% endcomment %}
+        </div>
+
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+ <script src="{{ 'register.js' | asset_url }}" ></script> 

@@ -1,0 +1,111 @@
+{% comment %}
+  The contents of the collection.liquid template can be found in /sections/collection-template.liquid
+{% endcomment %}
+{{ 'plp-rebuild.css' | asset_url | stylesheet_tag }}
+
+
+<!-- collection video and image start -->
+{% assign collection_description = collection.description %}  
+{% if collection.metafields["custom_fields"]["banner"] != blank %}
+    <div class="collection-banner">
+      {% for item in collection.metafields["custom_fields"]["banner"] %}
+        <div class="collection-banner-item">
+        <div class="collection-banner-media">
+            {% if item["desktop_image"] != blank %}
+              <div class="collection-banner-desktop">
+                {{ item["desktop_image"] }}
+              </div>
+             {% endif %}
+            {% if item["mobile_image"] != blank %}
+              <div class="collection-banner-mobile">
+                {{ item["mobile_image"] }}
+              </div>
+            {% endif %}
+        </div>
+
+        <div class="collection-banner-content {% if item["text_alignment"] != blank %} banner-content-{{ item["text_alignment"] }} {% endif %} ">
+          {% if item["banner_subheading"] != blank %}
+               <div class="collection-banner-subheading">
+                 {{ item["banner_subheading"] }}
+               </div>
+           {% endif %}
+            {% if item["banner_heading"] != blank %}
+               <h1 class="collection-banner-heading">
+                 {{ item["banner_heading"] }}
+               </h1>
+           {% endif %}
+            {% if item["banner_content"] != blank %}
+              <div class="collection-banner-description">
+                 {{ item["banner_content"] }}
+              </div>
+           {% endif %}
+        </div>
+         </div>
+       {% endfor %}
+    </div>
+  
+{% else %}
+  {% if collection.metafields["custom_fields"]["banner_video"] != blank %}
+    <div class="collection-banner-video">
+      {% for item in collection.metafields["custom_fields"]["banner_video"] %}
+        {% if item["video_desktop"] != blank %}
+        <div class="collection-banner-desktop">
+          <div class="collection-video-wrap">
+            <iframe width="100%" height="100%" frameborder="0" allow="autoplay" src="{{ item["video_desktop"] }}"></iframe>
+          </div>
+          </div>
+        {% endif %}
+        {% if item["video_mobile"] != blank %}
+        <div class="collection-banner-mobile">
+           <div class="collection-video-wrap">
+          <iframe width="100%" height="100%" frameborder="0" allow="autoplay" src="{{ item["video_mobile"] }}"></iframe>
+         </div>
+           </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+  
+{% endif %}
+
+{% if collection.metafields["custom_fields"]["banner"] == blank and collection.metafields["custom_fields"]["banner_video"] == blank %}
+   <div class="custom-contaier">
+    <div class="collection-header plp-container_header">
+      <div class="collection-hero page-width">
+        <h1 class="plp-collection_title">{{ collection.title }}</h1>
+          {% if collection_description != blank %}
+                <p class="collection_desc">{{ collection_description }}</p>
+          {% endif %}
+      </div>
+     </div>
+  </div>
+{% endif %}
+
+<!-- collection video and image end -->
+
+<div class="plp-bredcrumbs_container">
+  <div class="custom-contaier">
+    <div class="custom-grid-row">
+      <div class="custom-grid-col search-left">
+           {% render 'plp-breadcrumb' %}
+      </div>
+      <div class="custom-grid-col search-right"> 
+          <div class="plp-product_count"><span class="total-products">{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</span></div>
+          <div class="btn-filter-collapse">
+            <span class="btn-filter-hide"> Show Filters </span>
+             <span class="btn-filter-show"> Hide Filters </span>
+            <span class="btn-filter-img"></span>
+          </div>
+          
+      </div>
+    </div>
+  </div>
+ </div>
+
+ 
+{% section 'collection-template' %}
+
+{% section 'plp-product-recommendation' %}
+<script src="{{ 'plp-rebuild.js' | asset_url }}" defer></script> 
+
+ 

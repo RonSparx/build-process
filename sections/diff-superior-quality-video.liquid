@@ -1,0 +1,73 @@
+<div class="design_exellence-wrapper supperior_video bg-color" id="SuperiorQuality">
+     <div class="design_exellence-content page-width ">
+       {% if section.settings.design_exe_heading != blank %}
+         <h2 class="design_exellence-heading">{{ section.settings.design_exe_heading }}</h2> 
+       {% endif %}
+       {% if section.settings.design_exe_subheading != blank %}
+         <span class="design_exellence-subheading">{{ section.settings.design_exe_subheading }}</span>
+       {% endif %}
+     </div>
+    <div class="design_excellence-video page-width">
+         {% for block in section.blocks %}
+        <video loop class="excellence-video diff_tech_video" id="video_play" control="false" poster="{{block.settings.excellence_video_banner | img_url:"master"}}">
+          <source src="{{block.settings.excellence_video_url}}" type="video/mp4">
+        </video>
+     {% endfor %}
+        <div class="excellence_playButton diff_tech_button" >
+          <svg height="40" id="Layer_1" fill="#fff" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M405.2,232.9L126.8,67.2c-3.4-2-6.9-3.2-10.9-3.2c-10.9,0-19.8,9-19.8,20H96v344h0.1c0,11,8.9,20,19.8,20  c4.1,0,7.5-1.4,11.2-3.4l278.1-165.5c6.6-5.5,10.8-13.8,10.8-23.1C416,246.7,411.8,238.5,405.2,232.9z"></path></svg>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+   {
+     "name": "Superior Quality",
+     "settings": [
+       {
+          "type": "header",
+          "content": "Superior Quality content"
+          },
+         {
+           "type":"text",
+           "id":"design_exe_heading",
+           "label":"Heading",
+           "default":"Superior Quality"
+         },
+         {
+           "type":"text",
+           "id":"design_exe_subheading",
+           "label":"Box text",
+           "default":"We want to keep you and your TUMI on the road. Each bag has undergone rigorous testing to ensure its durability meets our high standards."
+          }
+     ],
+    "max_blocks":1,
+    "blocks":[
+       {
+       "name":"Superior Quality video",
+       "type":"video",
+       "settings":[  
+         {
+          "type": "header",
+          "content": "Superior Quality content"
+          },
+         {
+           "type":"text",
+           "id":"excellence_video_url",
+           "label":"Superior video"
+         },
+         {
+           "type":"image_picker",
+           "id":"excellence_video_banner",
+           "label":"Poster Image"
+          }
+         
+       ]
+    }
+     ]
+   }
+ {% endschema %}
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

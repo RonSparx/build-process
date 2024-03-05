@@ -1,0 +1,103 @@
+{% if section.settings.tera_title_collection != blank %}
+<div class="page-width">
+  <div class="carousel-title section-header">
+      	<h2>{{ section.settings.tera_title_collection }}</h2>
+  </div>
+</div>
+ {% endif %}
+<div class="slider-width">
+  <ul class="degree_product" style="opacity:0;">   
+  {% for product in collections[section.settings.product_col].products %}
+    <li class=" ">
+      {% include 'product-card-grid', max_height: 270, product: product, show_vendor: section.settings.show_vendor %}
+      <div class="list-product-price">
+        {{product.price | money}}
+      </div>
+    </li>
+    {% endfor %}
+    
+  </ul>
+</div>
+
+  <script>
+    $(document).ready(function(){
+      var sliderCount = 5;
+      if($(window).width() >480 && $(window).width() <767){
+        sliderCount = 3;
+        } else if ($(window).width() <480) {
+          sliderCount = 2;
+        } 
+      $('.degree_product').slick({
+        dots: false,
+        arrows:true,
+        infinite: true,
+        speed:1300,
+        slidesToShow:sliderCount,
+        slidesToScroll: 1, 
+      });
+      
+      
+      
+      // loading content
+          setTimeout(function(){
+          jQuery('.degree_product').css('opacity',1);
+          jQuery('.loader_new').hide();
+          }, 2000)
+    });
+
+  
+</script> 
+
+<style>
+  .holiday_product_slider{
+    padding:0 30px;
+    margin:30px 0;
+  }
+  .dots{
+    display:none;
+  }
+   .carousel-title{
+     text-align:center;
+      margin-top:30px;
+   }
+  .degree_product{
+    padding:30px 20px 50px;
+  }
+  .degree_product .slick-prev{
+        left:0px;
+  }
+  .degree_product .slick-next{
+        right:0px;
+  }
+
+</style>
+ 
+ 
+{% schema %}
+    {
+        "name": "black Product Carousel",
+        "settings": [
+          {
+            "type":"text",
+            "id":"tera_title_collection",
+            "label": "collection title"
+          },
+          {
+            "type": "collection",
+            "id": "product_col",
+            "label": "Select Collection"
+          }
+        ],
+	"presets": [
+     {
+       "name": "black Product Carousel"
+     }
+   ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

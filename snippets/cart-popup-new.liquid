@@ -1,0 +1,216 @@
+<script>
+  window.gwp_pro_remove = false;
+ 
+               
+  
+$(document).on('click', '.minicart_remove', function(){
+ var productId = $(this).parents("[data-cart-item-index]").attr('data-cart-item-index')
+ //alert(productId)
+   $.ajax({
+         type:"POST",
+         url:"/cart/change.js",
+         data: {
+             quantity: 0,
+             line: productId
+         },
+         dataType: 'json', 
+         success: function (data) {        
+        
+         jQuery.getJSON('/cart.js', function(cart) {
+   				// now have access to Shopify cart object
+             console.log(cart);
+//    				alert('There are now ' + cart.item_count + ' items in the cart.');
+            $('.count-qty').text(cart_count + 1);
+           let item_ = '';
+            for(let item of cart.items){
+            		console.log(item.title); 
+              item_ += `<li class="list-group-item">${item.title}</li>`;
+              
+              }
+           console.log('jjjj - ',item_);
+  $('ul.list-group').html(item_);
+			} );
+        
+        
+        
+      }
+       
+       
+       
+     })
+
+  
+  setTimeout(function(){
+   $( "#miniCart" ).load(window.location.href + " #miniCart", function(){
+
+
+      var gwp_product_length =  $('.cart-popup-item.okok').length;
+    console.log(gwp_product_length, 'gwp_product_lengthgwp_product_lengthgwp_product_length')
+//alert('aaaa');
+    if(gwp_product_length == 0) {
+  $('.cart-popup-item.okok').addClass('pppppp');
+
+       var sample_pro = $('.sample').attr('data-cart-item-index');
+        
+               var params = {
+                url: '/cart/change.js',
+                data: { quantity: 0, line: sample_pro },
+                dataType: 'json'
+            };
+       $.post(params)
+                .done(
+                    function(state) {
+                       console.log(state, 'sssssssssssssssssssss')
+                      $('.sample').remove();
+                    }.bind(this)
+                )
+                .fail(
+                    function() {
+                        console.log('okokokokoko')
+                    }.bind(this)
+                );
+
+      
+      }
+
+         jQuery.getJSON('/cart.js', function(cart) { 
+             //console.log(cart, 'aaaaaaaaaaaaaaaaaaaaaaaaaaa');
+var total_price = cart.total_price;
+       if(total_price < 1){
+
+ $.ajax({
+      type: "POST",
+      url: '/cart/clear.js',
+      success: function(){
+        //location.reload();
+      },
+      dataType: 'json'
+    }); 
+         
+         
+       }
+     })
+     
+     
+   } );
+   },500);
+
+ 
+  })
+  
+</script>
+
+{% style %}
+  {% assign cart_popup_box_shadow = settings.color_borders | color_modify: 'alpha', 0.5 %}
+
+  .cart-popup {
+    box-shadow: 1px 1px 10px 2px {{ cart_popup_box_shadow }};
+  }
+{% endstyle %}
+
+<div class="cart-popup-wrapper cart-popup-wrapper--hidden" role="dialog" aria-modal="true" aria-labelledby="CartPopupHeading" data-cart-popup-wrapper>
+  <div class="cart-popup" data-cart-popup tabindex="-1">
+    <div class="cart-popup__header">
+      <h2 id="CartPopupHeading" class="cart-popup__heading">
+        {{ 'cart.popup.basket' | t }}  {%comment%}Shopping Cart{%endcomment%}
+        {%comment%}(<span data-cart-popup-cart-quantity></span>){%endcomment%}
+      </h2>
+      <button class="cart-popup__close" aria-label="{{ 'general.accessibility.close_modal' | t }}" data-cart-popup-close>{% include 'icon-close' %}</button>
+    </div>
+    
+    <div class="cart-popup__scrollable-content">
+
+
+      {% comment  %}
+          <div class="cart-popup-item-list"></div>
+      {% endcomment  %}
+<div id="miniCart">
+   {% assign collection_handle_gwp = settings.sample_collection.handle %}
+          {% assign apply_collection_handle = settings.collection_name %}
+       {%- for item in cart.items -%}
+          <div data-cart-item-index="{{ forloop.index }}" class="cart-popup-item {% for collection in item.product.collections %}{% if collection.handle == apply_collection_handle %}okok{% endif %}{% endfor %} {% for collection in item.product.collections %}{% if collection.handle == collection_handle_gwp %}sample{% endif %}{% endfor %} ">
+                              <div class="cart-popup-item__image-wrapper" data-cart-popup-image-wrapper>
+                                <div class="cart-popup-item__image cart-popup-item__image--placeholder" data-cart-popup-image-placeholder>
+                                  <div data-placeholder-size> <img class="cart__image{% if item.image == null %} hide{% endif %}" src="{{ item | img_url: 'x190' }}" alt="{{ item.image.alt | escape }}" data-cart-item-image></div>
+                                  <div class="placeholder-background placeholder-background--animation"></div>
+                                </div>
+                              </div>
+                              <div class="cart-popup-item__description">
+                                <div>
+                                  <div class="cart-popup-item__title" data-cart-popup-title>{{ item.title }}</div>
+								  <div class="cart-product-type">{{ item.type }}</div>
+           {% if item.original_price > 1 %}
+            <div class="cart-product-price">{{ item.original_price | money }}</div>
+            {% else %}
+            Free
+            {% endif %}
+								  {% if item.original_price > 1 %}
+                                  <ul class="product-details" aria-label="Product details" data-cart-popup-product-details="">
+                                   <li>
+                                      <p class="minicart_remove">
+                                        <a href="/cart/change?line=1&amp;quantity=0" class="text-link text-link--accent" data-mini-cart-remove=""><span>Remove</span></a>
+                                      </p>
+                                    </li>
+                                  </ul>
+                                    {% else %}
+            
+            {% endif %}
+                                </div>
+                               <div class="cart-popup-item__quantity"> 
+                                  <span class="visually-hidden" data-cart-popup-quantity-label=""></span>
+                                  <span aria-hidden="true"><span>Qty</span>: <span>{{ item.quantity }}</span></span>
+                                  <span aria-hidden="true" data-cart-popup-quantity=""></span>
+                                  <div class="product-quantity__buttons" data-cart-item-quantity="3" data-mini-cart-item="1" data-mini-cart-item-handle="william-backpack">
+                                    <button aria-label="Decrease quantity William Backpack" aria-disabled="true" data-cart-quantity-action="decrease">
+                                        <span class="icon css-avaj45 ej69fo90" color="black" role="img"><svg viewBox="0 0 288 288"><path d="M0 136h288v16H0v-16z"></path></svg></span>
+                                    </button>
+                                    <button aria-label="Increase quantity William Backpack" aria-disabled="false" data-cart-quantity-action="increase" disabled="">
+                                       <span class="icon css-avaj45 ej69fo90" color="black" role="img"><svg viewBox="0 0 18 18"><path d="M8.47 8.47V0h1.06v8.47H18v1.06H9.53V18H8.47V9.53H0V8.47h8.47z"></path></svg></span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div> 
+      {% endfor %}
+</div>
+    <div class="cart-popup__actions">
+      
+      <div class="grid__item cart-note mini-cart-note">
+        <label for="CartSpecialInstructions" class="cart-note__label small--text-center">{{ 'cart.general.note' | t }}</label>
+        <textarea maxlength="360" name="note" id="CartSpecialInstructions" class="cart-note__input" data-mini-cart-note>{{ cart.note }}</textarea>
+      </div>
+
+      <a href="{% if routes.root_url != '/' %}{{ routes.root_url }}{% endif %}/cart" aria-label="Go to Cart" class="btn product-form__cart-submit btn--primary view-more-mkt">
+        <span>
+          <ly-as-275735>View Cart</ly-as-275735>
+        </span>
+      </a>
+      <a href="{% if routes.root_url != '/' %}{{ routes.root_url }}{% endif %}/checkout" aria-label="Go to checkout" class="btn product-form__cart-submit btn--primary">
+        <span>
+          {{ 'cart.general.checkout' | t }}
+        </span>
+      </a>
+    </div>
+    
+    <div class="cart-popup__empty">
+    	<p class="cart--empty-message">{{ 'cart.general.empty' | t }}</p>
+    </div>
+
+    <div class="cart-popup__dismiss">
+      <button class="cart-popup__dismiss-button text-link text-link--accent" data-cart-popup-dismiss>
+        {{ 'cart.general.continue_shopping' | t }}
+      </button>
+    </div>
+    
+    <div class="cart-popup__loading" style="display: none">
+      <img src="{{ 'ajax-loader.gif' | asset_url }}">
+      <p><ly-as-275736>Loading...</ly-as-275736></p>
+    </div>
+    </div>
+    
+
+    
+    
+  </div>
+</div>
+ 

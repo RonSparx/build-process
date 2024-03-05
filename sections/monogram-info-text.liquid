@@ -1,0 +1,67 @@
+<section class="container-full info_text">
+  {% if section.blocks != blank %}
+  {% for block in section.blocks %}
+     <div class="info_col wow fadeInUp">
+      <h4>{{ block.settings.heading }}</h4>
+      {{ block.settings.content }}
+    </div>
+  {% endfor %}
+  
+  {% else %}
+    <div class="info_col wow fadeInUp">
+      <h4>Monogrammable products</h4>
+      <p>Monogramming services are available for most TUMI bags and luggage, for further details please contact our customer services for more information.</p>
+    </div>
+    <div class="info_col wow fadeInUp">
+      <h4>Monogramming Locations</h4>
+      <p>Monogramming may be done either on the monogram patch or luggage tag of a product</p>
+    </div>
+    <div class="info_col wow fadeInUp">
+      <h4>Monogram Designs</h4>
+      <p>You may choose between alphabets, numbers, or from a variety of symbols to be monogrammed onto your product, along with a wide range of colors available at your preference.</p>
+    </div>
+    <div class="info_col wow fadeInUp">
+      <h4>Delivery time</h4>
+      <p>Please allow approximately 2 to 4 additional working days for delivery of orders with monogram options.</p>
+    </div>
+    <div class="info_col wow fadeInUp">
+      <h4>Complimentary Monogramming Services</h4>
+      <p>Monogramming services are complimentary and free of charge.</p>
+    </div>
+    <div class="info_col wow fadeInUp">
+      <h4>Regarding returns & exchanges</h4>
+      <p>Monogrammed and personalized products cannot be returned or exchanged either online or in-store.</p>
+    </div>
+    {% endif %}
+  </section>
+
+{% schema %}
+  {
+    "name": "Monogram info text",
+    "settings": [],
+"blocks":[
+	{
+	"type":"info",
+	"name":"info",
+"settings":[
+	{
+"type":"text",
+"id":"heading",
+"label":"Heading"
+},
+{
+"type":"richtext",
+"id":"content",
+"label":"Content"
+}
+]
+}
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

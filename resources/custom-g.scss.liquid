@@ -1,0 +1,251 @@
+.oc-linked-section {
+  h2 {
+    font-family: 'DinCondensedBold';
+    color: black;
+    font-size: 2.875rem !important;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: 0px;
+    @media only screen and (min-width: 750px) {
+      font-size: 3.25rem !important;
+      line-height: 3.25rem;
+    }
+  }
+}
+
+.oc-linked-section__img {
+  margin-bottom: 15px;
+}
+
+.oc-linked-section__btn-container {
+  text-align: center;
+  
+  @media only screen and (min-width: 750px) {
+	text-align: left;
+  }
+}
+
+.store-locator-entry {
+  position: relative;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  background: transparent url({{ 'store-locator.jpg' | asset_url }}) repeat;
+  @media only screen and (min-width: 750px) {
+  	min-height: 31vh;
+  }
+}
+
+.store-locator-entry-text {
+  display: flex;
+  flex-direction: column;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: 0;
+  top: 0;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.store-locator-entry-text .title-with-level {
+  color: black;
+  margin-bottom: 1.5rem;
+  text-align: center; }
+.store-locator-entry .store-locator-entry-form {
+  display: flex;
+  position: relative; }
+.store-locator-entry .autocomplete-field input {
+  display: inline-flex;
+  height: 3.75rem;
+  border-radius: 3.75rem;
+  width: 96vw;
+  padding: 0.5rem 4.6875rem 0.5rem 1.5625rem;
+  box-sizing: border-box;
+  border: 0.0625rem solid #000;
+  background-color: white;
+  font-size: 0.9375rem;
+  color: #757575; }
+@media screen and (min-width: 50rem) {
+  .store-locator-entry .autocomplete-field input {
+    width: 20.3125rem; } }
+.store-locator-entry .autocomplete-field .react-autosuggest__suggestions-list {
+  background-color: white;
+  margin-top: 0.625rem;
+  border: 0.0625rem solid #e5e5e5;
+  position: relative;
+  padding: 0.75rem 0; }
+.store-locator-entry .autocomplete-field .react-autosuggest__suggestions-list::before {
+  content: '';
+  position: absolute;
+  top: -0.5rem;
+  left: 1.5625rem;
+  background-color: white;
+  display: flex;
+  width: 0.8125rem;
+  height: 0.8125rem;
+  transform: rotate(-135deg);
+  border-right: 0.0625rem solid #e5e5e5;
+  border-bottom: 0.0625rem solid #e5e5e5; }
+.store-locator-entry .autocomplete-field .react-autosuggest__suggestions-list .react-autosuggest__suggestion {
+  padding: 0 1.625rem; }
+.store-locator-entry .autocomplete-field-submit {
+  position: absolute;
+  right: -0.0625rem;
+  top: 0;
+  height: 3.75rem;
+  width: 4.375rem;
+  border-radius: 0 3.75rem 3.75rem 0;
+  background-color: black;
+  border: 0.0625rem solid black;
+  border-left: none;
+  padding: 0;
+  cursor: pointer; }
+.store-locator-entry .autocomplete-field-submit.disabled {
+  background-color: #757575;
+  opacity: 1; }
+.store-locator-entry .store-locator-entry-icon {
+  cursor: pointer; }
+.store-locator-entry .store-locator-entry-icon .icon {
+  margin-right: 0; }
+.store-locator-entry .store-locator-entry-icon svg {
+  fill: white;
+  width: 1.5625rem;
+  height: 1.5625rem; }
+
+.contact-form {
+  text-align: center;
+}
+
+.product-single__description.oc-product-description {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  p, span, li {
+  	font-family: "Century Gothic", sans-serif !important;
+	font-size: 0.9375rem !important;
+    line-height: 1.5rem !important;
+  }
+}
+
+.oc-product-description__title {
+  font-size: 0.9375rem;
+  line-height: 1.25rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  & span { 
+   	border-bottom: 0.125rem solid #000000;
+    padding: 0.5rem;
+    display: inline-block;
+  }
+}
+
+.product-single__description {
+  padding: 0 0.5rem; 
+}
+
+.oc-bag-icon {
+  width: 15px;
+  display: inline-block;
+  vertical-align: bottom;
+  margin-right: 7px;
+}
+
+.oc-btn-section {
+  width: 14.0625rem;
+  padding: 0.8rem 2rem;
+  line-height: 21px;
+}
+
+.oc-teaser-stage__title {
+  font-size: 1.3125rem;
+  color: black;
+  margin: 0;
+  @media only screen and (min-width: 750px) {
+  	font-size: 2rem;
+  }
+}
+
+.oc-modal__wrapper {
+  background-color: white;
+  border-radius: none;
+  position: relative;
+  overflow-y: auto;
+  max-height: 100vh;
+  padding: 2rem 1rem;
+  @media only screen and (min-width: 750px) {
+  	max-height: 90vh;
+    border-radius: 0.3125rem;
+    padding: 2.5rem;
+  }
+}
+
+.oc-modal__close {
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  position: absolute;
+  @media only screen and (min-width: 750px) {
+  	top: 2.5rem;
+  	right: 2.5rem;
+  }
+}
+
+.oc-returns-modal__container {
+  max-width: 37.5rem;
+}
+
+.oc-returns-modal__content {
+  color: black;
+  .card-header {
+    margin-bottom: 10px;
+  }
+  .card-content {
+  	margin-bottom: 30px;
+  }
+}
+
+.oc-modal-open {
+	overflow: hidden;
+}
+
+#oc-modal {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 19;
+  transition: all 400ms cubic-bezier(0.29, 0.63, 0.44, 1);
+
+  .oc-modal-open & {
+  	opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+.oc-mobile-nav {
+  border: 0.0625rem solid #e5e5e5;
+  box-shadow: 0 0.0625rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  padding: 8px 11px;
+  margin: 8px 0 8px 8px;
+}
+
+.margin-btm-20 {
+  margin-bottom: 20px !important;
+}
+
+.oc-form {
+  input.error, .checkbox-input.error + .box {
+  	border: 0.0625rem solid #d70000;
+  }
+}

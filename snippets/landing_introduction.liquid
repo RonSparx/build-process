@@ -1,0 +1,78 @@
+{% if block.settings.show %}
+<div class="land_introduction_all">
+{% if block.settings.title != blank %}
+  
+<div class="land_introduction_text" data-id="{{block.id}}">
+  {% if block.settings.title != blank %}<span class="css_EN">{{ block.settings.title }}</span>{% endif %}
+  {% if block.settings.title_ar != blank %}<span class="css_AR">{{ block.settings.title_ar }}</span>{% endif %}
+  {% if block.settings.url != blank %}<a href="{{block.settings.url}}" class="land_introduction_url"></a>{% endif %}
+</div> 
+<style>
+body:not(.ar_lang) .land_introduction_text[data-id="{{block.id}}"] {background-image: url({{ block.settings.image_desktop_1 | img_url: '2048x'}});}
+{% if block.settings.image_desktop_2 != blank %}
+@media screen and (max-width: 1450px) {
+  body:not(.ar_lang) .land_introduction_text[data-id="{{block.id}}"] {background-image: url({{ block.settings.image_desktop_2 | img_url: '1450x' }});}
+}
+{% endif %}
+{% if block.settings.image_mob != blank %}
+@media screen and (max-width: 1024px) {
+  body:not(.ar_lang) .land_introduction_text[data-id="{{block.id}}"] {background-image: url({{ block.settings.image_tablet | img_url: '1024x' }});}
+}
+{% endif %}
+{% if block.settings.image_mob != blank %}
+@media screen and (max-width: 768px) {
+  body:not(.ar_lang) .land_introduction_text[data-id="{{block.id}}"] {background-image: url({{ block.settings.image_mob | img_url: '800x' }});}
+}
+{% endif %}
+
+
+.ar_lang .land_introduction_text[data-id="{{block.id}}"] {background-image: url({{ block.settings.image_desktop_1_ar | img_url: '2048x'}});}
+{% if block.settings.image_desktop_2_ar != blank %}
+@media screen and (max-width: 1450px) {
+  .ar_lang .land_introduction_text[data-id="{{block.id}}"] {background-image: url({{ block.settings.image_desktop_2_ar | img_url: '1450x' }});}
+}
+{% endif %}
+{% if block.settings.image_mob_ar != blank %}
+@media screen and (max-width: 1024px) {
+  .ar_lang .land_introduction_text[data-id="{{block.id}}"] {background-image: url({{ block.settings.image_tablet_ar | img_url: '1024x' }});}
+}
+{% endif %}
+{% if block.settings.image_mob_ar != blank %}
+@media screen and (max-width: 768px) {
+  .ar_lang .land_introduction_text[data-id="{{block.id}}"] {background-image: url({{ block.settings.image_mob_ar | img_url: '800x' }});}
+}
+{% endif %}
+</style>
+
+{% else %}
+{% comment %}NO TEXT{% endcomment %}
+<div class="land_introduction css_EN">
+  <picture>
+      <!--[if IE 9]>
+      <audio><![endif]-->
+      <!-- <source data-srcset="{{ block.settings.image_mob | img_url: '800x' }}" media="(max-width: 759px)" srcset="{{ block.settings.image_mob | img_url: '800x' }}">
+      <source data-srcset="{{ block.settings.image_tablet | img_url: '1024x' }}" media="(max-width: 1024px)" srcset="{{ block.settings.image_tablet | img_url: '1024x' }}">
+      <source data-srcset="{{ block.settings.image_desktop_2 | img_url: '1450x' }}" media="(max-width: 1449px)" srcset="{{ block.settings.image_desktop_2 | img_url: '1450x' }}">
+      <source data-srcset="{{ block.settings.image_desktop_1 | img_url: '2048x'}}" media="(max-width: 1450px)" srcset="{{ block.settings.image_desktop_1 | img_url: '2048x'}}"> -->
+      <!--[if IE 9]></audio><![endif]-->
+      <img data-src="{{ block.settings.image_desktop_1 | img_url: '2048x'}}" class="content-stage-item__image" alt="" title="">
+  </picture>
+  {% if block.settings.url != blank %}<a href="{{block.settings.url}}" class="land_introduction_url"></a>{% endif %}
+</div> 
+<div class="land_introduction css_AR">
+  <picture>
+      <!--[if IE 9]>
+      <audio><![endif]-->
+      <!-- <source data-srcset="{{ block.settings.image_mob_ar | img_url: '800x' }}" media="(max-width: 759px)" srcset="{{ block.settings.image_mob_ar | img_url: '800x' }}">
+      <source data-srcset="{{ block.settings.image_tablet_ar | img_url: '1024x' }}" media="(max-width: 1024px)" srcset="{{ block.settings.image_tablet_ar | img_url: '1024x' }}">
+      <source data-srcset="{{ block.settings.image_desktop_2_ar | img_url: '1450x' }}" media="(max-width: 1449px)" srcset="{{ block.settings.image_desktop_2_ar | img_url: '1450x' }}">
+      <source data-srcset="{{ block.settings.image_desktop_1_ar | img_url: '2048x'}}" media="(max-width: 1450px)" srcset="{{ block.settings.image_desktop_1_ar | img_url: '2048x'}}"> -->
+      <!--[if IE 9]></audio><![endif]-->
+      <img data-src="{{ block.settings.image_desktop_1_ar | img_url: '2048x'}}" class="content-stage-item__image" alt="" title="">
+  </picture>
+  {% if block.settings.url != blank %}<a href="{{block.settings.url}}" class="land_introduction_url"></a>{% endif %}
+</div> 
+{% endif %}
+
+</div> 
+{% endif %}

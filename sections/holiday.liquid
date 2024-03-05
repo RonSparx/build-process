@@ -1,0 +1,125 @@
+ 
+
+
+
+
+<div class="page-width">
+<ul class="tab-holiday">
+{% for block in section.blocks %}
+  {% if block.type == 'block-1' %}
+  <li><a href="#{{block.settings.tab | remove:' '}}">{{block.settings.tab}} <img src="https://i1.adis.ws/i/tumi/Arrow_Down" /></a></li>
+  {% elsif block.type == 'block-2' %}
+<li><a href="#{{block.settings.tab | remove:' '}}">{{block.settings.tab}} <img src="https://i1.adis.ws/i/tumi/Arrow_Down" /></a></li>
+{% endif %}
+{% endfor %}
+  </ul>
+
+{% for block in section.blocks %}
+  {% if block.type == 'block-1' %}
+    {% comment %} {% include 'holiday-image-with-text' %} {% endcomment %}
+	{% include 'holiday-left-image-with-text' %}
+{% endif %}
+ {% if block.type == 'block-2' %}
+   {% include 'holiday-right-image-with-text' %}
+{% endif %}
+{% if block.type == 'block-3' %}
+    {% include 'holiday-product-carousel' %}
+  {% endif %}
+{% endfor %}
+
+</div>
+
+
+
+
+
+ {% schema %}
+        {
+"name": "Page content",
+          "blocks": [
+            {
+              "type": "block-1",
+              "name": "Left image with text",
+              "settings": [
+                  {
+          "id": "tab",
+          "type": "text",
+       		"label": "Tab name"
+        },
+        {
+          "id": "image",
+          "type": "image_picker",
+       		"label": "Image"
+        },
+		{
+          "id": "heading",
+          "type": "text",
+       		"label": "Heading"
+        },
+		{
+          "id": "content",
+          "type": "richtext",
+       	  "label": "Content"
+        },
+		{
+          "id": "btnlabel",
+          "type": "text",
+       	  "label": "Button label"
+        },
+{
+          "id": "link",
+          "type": "url",
+       	  "label": "Button link"
+        }
+              ]
+            },
+            {
+              "type": "block-2",
+        "name": "Right image with text",
+        "settings": [
+          {
+          "id": "tab",
+          "type": "text",
+       		"label": "Tab name"
+        },
+        {
+          "id": "image",
+          "type": "image_picker",
+       		"label": "Image"
+        }, 
+		{
+          "id": "heading",
+          "type": "text",
+       		"label": "Heading"
+        },
+		{
+          "id": "content",
+          "type": "richtext",
+       	  "label": "Content"
+        },
+		{
+          "id": "btnlabel",
+          "type": "text",
+       	  "label": "Button label"
+        },
+{
+          "id": "link",
+          "type": "url",
+       	  "label": "Button link"
+        }
+        ]
+            },
+{
+              "type": "block-3",
+        "name": "Product Carousel",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "product_col",
+            "label": "Select Collection"
+          }
+        ]
+            }
+          ]
+        }
+      {% endschema %}

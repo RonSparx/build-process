@@ -1,0 +1,343 @@
+{{ 'plp-rebuild.css' | asset_url | stylesheet_tag }}
+<style>
+  .template-search .page-container {
+    overflow: unset;
+    transform: none;
+}
+  .template-search span.gf-summary {
+    opacity: 1;
+}
+ .template-search .gf-summary {
+    font-size: 15px;
+    margin-bottom: 0;
+    color: #595959;
+}
+</style>
+{% paginate search.results by 12 %}
+
+<div class="page-width">
+  {% if search.performed == false %}
+    <div class="text-center">
+      <h1 class="h2">{{ 'general.search.title' | t }}</h1>
+  {% else %}
+    <div class="text-center">
+      <h1 class="h2">
+        <span class="visually-hidden jjj">{{ 'general.search.heading' | t: count: search.results_count }}:</span>
+        
+        <span class="custom-instock"></span>RESULTS FOR "{{search.terms}}"
+        {%comment%}{{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}{%endcomment%}
+      </h1>
+  {% endif %}
+      <div class="grid">
+        <div class="grid__item medium-up--six-tenths medium-up--push-two-tenths">
+          {% if search.performed and search.results_count == 0 %}
+            <div class="rte search--no-results-found">
+              <p>{{ 'general.search.no_results' | t }}</p>
+            </div>
+          {% endif %}
+          <form action="{{ routes.search_url }}" method="get" role="search" class="search-form search-page-form">
+            <div class="input-group input-group--nowrap">
+              <div class="input-group__field input-group__field--connected search-form__input-wrapper">
+                <input
+                  type="search"
+                  name="q"
+                  value="{{ search.terms | escape }}"
+                  placeholder="{{ 'general.search.placeholder' | t }}"
+                  role="combobox"
+                  aria-autocomplete="list"
+                  aria-owns="predictive-search-results"
+                  aria-expanded="false"
+                  aria-label="{{ 'general.search.placeholder' | t }}"
+                  aria-haspopup="listbox"
+                  class="search-form__input"
+                  data-search-page-predictive-search-input
+                />
+
+                <input type="hidden" name="options[prefix]" value="last" aria-hidden="true" />
+
+                <button type="reset" class="search-form__clear-action" aria-label="{{ 'general.search.clear_search_term' | t }}" data-search-page-predictive-search-clear>
+                  {% include 'icon-close' %}
+                </button>
+
+                <div class="predictive-search-wrapper" data-predictive-search-mount="default"></div>
+              </div>
+
+              <button type="submit" class="search-form__connected-submit" aria-label="{{ 'general.search.submit' | t }}" data-search-page-predictive-search-submit>
+                {% include 'icon-search' %}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+{% if search.performed %}
+  
+  
+  <div class="page-width" id="Collection">
+    
+    {% if search.results_count > 0 %}
+      <hr aria-hidden="true" />
+    {% endif %}
+
+
+  {%- assign max_height = 494 -%}
+
+      {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+
+      <ul data-sectionId="{% if section.id %}{{section.id}}{% endif %}" data-settings='{% if section.settings %}{{section.settings | json}}{% endif %}' data-globo-filter-items class="grid grid--uniform {% if search.results_count > 0 %} grid--view-items{% endif %}">
+        {% for product in search.results %}
+          <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+           {% include 'globo.filter.product' %}
+          </li>
+        {% endfor %}
+      </ul>
+
+  
+    {% if is_empty_collection %}
+      <div class="grid__item small--text-center">
+        <p class="text-center">{{ 'collections.general.no_matches' | t }}</p>
+      </div>
+    {% endif %}
+
+    {%- if paginate.pages > 1 -%}
+      {% include 'pagination', paginate: paginate %}
+    {%- endif -%}
+  </div>
+  
+{% endif %}
+
+{% if search.results_count < 2  %}
+  <div class="search--less-than-2-results"></div>
+{% endif %}
+
+{% endpaginate %}
+ <header class="collection-header search-result hide">
+        {% assign is_filter_by_available = false %}
+        {% if section.settings.tags_enable and collection.all_tags.size > 0 %}
+        {% assign is_filter_by_available = true %}
+        {% endif %}
+  
+ <div class="selected_compair_product page-width hide">
+    <ul class="compair-grid">
+        <li class="compair-col">
+            <div class="compair-col-items">
+            <div class="product-slots" id="thumb_one">
+                <div class="image">
+                    <img class="compare-preview-image" src="https://www.tumi.sg/on/demandware.static/Sites-Tumi_SG-Site/-/default/dwf3b2e789/images/prod-comparison-blank.jpg" alt="Blank" />
+                </div>
+                <div class="product-tooltip" style="display: none;">
+                    <a href="#" class="close-tooltip"><span class="tumi-icon-og icon-x"></span></a>
+                    <div class="product-tooltip_img">
+                        <img
+                            src="https://www.tumi.sg/dw/image/v2/AAWQ_PRD/on/demandware.static/-/Sites-Tumi/default/dw084319e9/images/tu-98824/hi-res/98824_1776_hi-res_main_1.jpg?sw=300&amp;sh=364"
+                            alt="19 DEGREE ALUMINUM Extended Trip Packing Case  hi-res | TUMI"
+                        />
+                    </div>
+                    <div class="product-tooltip_img-content">
+                        <div class="tooltip-title">Item 1</div>
+                        <div class="tooltip-name">
+                            <a title="" href="#">Extended Trip Packing Case</a>
+                        </div>
+                        <div class="tooltip-collection">
+                            <a href="#">19 DEGREE ALUMINUM</a>
+                        </div>
+                    </div>
+                    <div class="product-compare_content">
+                        <p class="product-collection">VOYAGEUR</p>
+                        <p class="product-name">Valetta Medium Tote</p>
+                        <a class="close" aria-label="remove">Remove Item</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-slots" id="thumb_two">
+               <div class="product-compare">
+                        </div>
+            </div>
+            <div class="product-slots" id="thumb_three">
+               <div class="product-compare"></div>
+            </div>
+          </div>
+        </li>
+        <li class="compair-col">
+            <div class="compare-actions">
+                <input type="hidden" name="cgid" value="travel-all" />
+                <button type="submit" class="compare btn_compare btn-compare-now" style="display: inline-block;">Compare (<span class="compare_count">0</span>) </button>
+                <a href="#" class="btn-clear-all">Clear All</a>
+            </div>
+        </li>
+    </ul>
+</div>
+ </header>
+
+  
+ <script>
+
+   // sticky compare product //
+document.addEventListener("click",(e)=>{
+  if(e.target.classList.contains('checkbox-comparition') || e.target.closest('.compair-wrapper_list.checkbox')){
+    let el = e.target.classList.contains('checkbox-comparition') ? e.target : e.target.closest('.compair-wrapper_list.checkbox');
+    console.log("testing...",el.parentNode.parentNode.querySelector(".selected_compair_product"));
+    document.querySelector("header.collection-header").classList.contains("hide") ? document.querySelector("header.collection-header").classList.remove("hide") : " ";
+    document.querySelector("header.collection-header").classList.add("sticky-compare");
+    document.querySelector(".collection-header.search-result").querySelector(".selected_compair_product").classList.contains("hide") ? document.querySelector(".collection-header.search-result").querySelector(".selected_compair_product").classList.remove("hide") : " ";
+   // el.parentNode.classList.contains("checked") ? document.querySelector(".collection-header").classList.remove("hide") : document.querySelector(".collection-header").classList.add("hide");
+    
+  }
+});
+   
+  // plp product-card change image //
+
+document.addEventListener("mouseover", (e) => {
+  if (e.target.classList.contains("spf-image-wrapper-change") || e.target.closest(".spf-image-wrapper-change")) {
+   let el = e.target.classList.contains('spf-image-wrapper-change') ? e.target : e.target.closest('.spf-image-wrapper-change');
+   let sliderContent = el.querySelectorAll(".spf-product-card__image-change");   
+     for(let item of sliderContent){
+      item.addEventListener("mouseenter",()=>{
+      // dots change //
+      let dataDotEle = el.parentNode.parentNode.querySelector(`div[data-count="${e.target.dataset.imgCount}"]`);
+       let dotEle = el.parentNode.parentNode.querySelectorAll(".product-card_dot");
+        // console.log(el.parentNode.parentNode,"parenNode")
+        dotEle.forEach(dot => dot.classList.remove('active'));
+        dataDotEle.classList.add("active");
+
+       // image change //
+         let imageEle = el.parentNode.querySelector(`img[data-img-count="${e.target.dataset.imgCount}"]`);
+         let imgEleChange = el.parentNode.querySelectorAll(".spf-product-card__image");
+          imgEleChange.forEach((itemImg) => {
+             itemImg.classList.remove('spf-product-card__image-main');
+             itemImg.classList.add('spf-product-card__image-hidden');
+          });
+          imageEle.classList.contains("spf-product-card__image-hidden") ? imageEle.classList.remove("spf-product-card__image-hidden") :imageEle.classList.add("spf-product-card__image-main")
+          imageEle.classList.contains("spf-product-card__image-secondary") ? imageEle.classList.remove("spf-product-card__image-secondary") :imageEle.classList.add("spf-product-card__image-main")
+      })
+      
+     }
+  }
+});
+
+
+   // plp add to cart //
+document.addEventListener('click',(e)=>{
+    if(e.target.classList.contains('spf-product__form-btn-addtocart') || e.target.closest('.spf-product__form-btn-addtocart')){ 
+      e.preventDefault();
+      // console.log(e.target.parentNode)
+        e.target.parentNode.querySelector(".plp_addToCart").classList.add("hide");
+                  e.target.parentNode.querySelector(".loader").classList.remove("hide");
+                setTimeout(()=>{
+                 $('#miniCart').load(' #miniCart');
+                    document.querySelector("#count_cart_text").click();
+                  e.target.parentNode.querySelector(".plp_addToCart").classList.remove("hide");
+                  e.target.parentNode.querySelector(".loader").classList.add("hide");
+                },1000);
+               
+      
+              $("#miniCart").load(" #miniCart");
+              let variant_id = e.target.closest(".spf-product__form-btn-addtocart").getAttribute("data-variant");
+              let qty = 1;
+              addItemToCart(variant_id, qty);  
+
+            // update cart bubble //
+          
+            // Fetch the cart data using the Fetch API
+           $("#miniCart").load(" #miniCart");
+          setInterval(function() {
+                 fetch('/cart.js').then(res => res.json())
+                   .then(data => {
+                        if(data.item_count > 0){
+                        // document.querySelector("#CartCount span").textContent = data.item_count;
+                        document.querySelector(".cart-popup__empty").classList.add("hide");
+                        document.querySelector(".cart-popup__actions").classList.remove("hide");
+                        }
+                       })
+          }, 1000);
+                 function setCartlineItem(line_item,cartDrawerSelector) {
+      var itemPric = parseFloat(line_item.line_price / 100);
+                     itemPric = itemPric.toFixed(2);
+          var cartContent = `<div data-cart-item-index="1" class="cart-popup-item   ">
+                              <div class="cart-popup-item__image-wrapper" data-cart-popup-image-wrapper="">
+                                <div class="cart-popup-item__image cart-popup-item__image--placeholder" data-cart-popup-image-placeholder="">
+                                  <div data-placeholder-size=""> <img class="cart__image" src="${line_item.image.src}" alt="${line_item.image.alt}" data-cart-item-image=""></div>
+                                  <div class="placeholder-background placeholder-background--animation"></div>
+                                </div>
+                              </div>
+                              <div class="cart-popup-item__description">
+                                <div>
+                                  <div class="cart-popup-item__title" data-cart-popup-title="">${line_item.product.title}</div>
+								  <div class="cart-product-type"></div>
+           
+            <div class="cart-product-price">Dhs. ${itemPric}</div>
+            
+								  
+                                  <ul class="product-details" aria-label="Product details" data-cart-popup-product-details="">
+                                   <li>
+                                      <p class="minicart_remove">
+                                        <a href="/cart/change?line=1&amp;quantity=0" class="text-link text-link--accent" data-mini-cart-remove=""><span>Remove</span></a>
+                                      </p>
+                                    </li>
+                                  </ul>
+                                    
+                                </div>
+                               <div class="cart-popup-item__quantity"> 
+                                  <span class="visually-hidden" data-cart-popup-quantity-label=""></span>
+                                  <span aria-hidden="true"><span>Qty</span>: <span>1</span></span>
+                                  <span aria-hidden="true" data-cart-popup-quantity=""></span>
+                                  <div class="product-quantity__buttons" data-cart-item-quantity="3" data-mini-cart-item="1" data-mini-cart-item-handle="william-backpack">
+                                    <button aria-label="Decrease quantity William Backpack" aria-disabled="true" data-cart-quantity-action="decrease">
+                                        <span class="icon css-avaj45 ej69fo90" color="black" role="img"><svg viewBox="0 0 288 288"><path d="M0 136h288v16H0v-16z"></path></svg></span>
+                                    </button>
+                                    <button aria-label="Increase quantity William Backpack" aria-disabled="false" data-cart-quantity-action="increase" disabled="">
+                                       <span class="icon css-avaj45 ej69fo90" color="black" role="img"><svg viewBox="0 0 18 18"><path d="M8.47 8.47V0h1.06v8.47H18v1.06H9.53V18H8.47V9.53H0V8.47h8.47z"></path></svg></span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>`
+    cartDrawerSelector.appendChild(cartContent)
+            return image;
+        }
+
+       // cart update //
+
+               function renderCart(){
+                var minicartSelecter = document.querySelector('#miniCart')
+                fetch('/cart.js').then((cart)=>{
+                  minicartSelecter.innerHTML = '';
+                  cart.items.forEach(function(line_item){
+                    setCartlineItem(line_item,minicartSelecter)
+                  })
+                  // cartDrawerOpen()
+                })
+              }
+            }
+          })
+
+// cart Add to cart button //
+   function addItemToCart(variant_id, qty) {
+    data = {
+      "id": variant_id,
+      "quantity": qty,
+    }
+    jQuery.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      data: data,
+      dataType: 'json',
+      success: function() {
+      }
+    
+    });
+    
+  }
+
+   // search resultside bar js start
+setInterval(() => {
+const searchParentDiv = document.querySelector(".template-search #Collection .page-width");
+searchParentDiv.classList.add("collection-wrap");
+}, 100);
+
+</script> 
+
+ 

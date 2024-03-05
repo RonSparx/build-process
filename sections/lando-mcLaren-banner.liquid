@@ -1,0 +1,179 @@
+<style>
+  .video-conbox .btn-transparent {
+     background-color: transparent;
+     color: #fff;
+     border: 1px solid #fff;
+ }
+ .video-conbox h3 {
+     text-transform: capitalize;
+     font-weight: normal;
+     letter-spacing: 3px;
+ }
+ .video-conbox .banner-desc {
+     display: none;
+ }
+  .banner-picture img {
+    width: 100%;
+    height: auto;
+}
+  section.fullsize-video-bg .video-con {
+    top: 25%;
+}
+section.fullsize-video-bg:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(black, #22222100);
+    position: absolute;
+    opacity: .7;
+}
+
+  .video-conbox .btn-transparent {
+    min-width: 320px;
+}
+
+  .video-conbox h2 {
+    text-transform: unset;
+}
+
+
+ @media (min-width: 750px) {
+    section.fullsize-video-bg:before {
+        background-image: linear-gradient(to right, #0d0000 , TRANSPARENT);
+    }
+   div .fullsize-video-bg .video-conbox {
+      margin: 0;
+      left: 36%;
+      max-width: 686px;
+  }
+   section.fullsize-video-bg .video-con {
+      top: 50%;
+  }
+ }
+  
+ 
+ @media (min-width: 767px) {
+     .fullsize-video-bg .video-con {
+         left: 50%;
+     }
+     .video-conbox .banner-desc {
+         display: block;
+     }
+     .fullsize-video-bg .video-conbox {
+         align-items: center;
+         max-width: 500px;
+     }
+     
+ }
+ 
+ @media (min-width: 992px) {
+     .video-conbox h3 {
+         max-width: 355px;
+     }
+ }
+ 
+ @media (min-width: 1200px) {
+     .video-conbox h2 {
+         font-size: 18px;
+         margin-bottom: 16px;
+     }
+     .video-conbox h3 {
+         font-size: 50px;
+     }
+     .video-conbox .btn-transparent {
+         width: 100%;
+         max-width: 285px;
+     }
+ }
+ 
+ </style>
+ 
+ <section class="fullsize-video-bg">
+
+    <div class="banner-picture">
+      <picture>
+          <source media="(min-width:750px)" srcset="{{section.settings.mcLaren-lando_image_desktop | img_url:'master' }}">
+          <img src="{{section.settings.mcLaren-lando_image_mobile | img_url:'master' }}" alt="{{mcLaren-lando_image_mobile.alt | escape }}">
+        </picture>
+    </div>
+
+   
+ 
+     <div class="video-con">
+       <div class="video-conbox">
+         {% if section.settings.mcLaren-lando_sub_heading != blank %}
+         <h2>{{ section.settings.mcLaren-lando_sub_heading }}</h2> 
+         {% endif %}
+         {% if section.settings.mcLaren-lando_banner_sub_heading != blank %}
+         <h3>{{ section.settings.mcLaren-lando_banner_sub_heading }}</h3> 
+         {% endif %}
+       {% if section.settings.mcLaren-lando_btn != blank %}
+         <a href="{{section.settings.mcLaren-lando_btnlink | default: '#'}}" class="btn-transparent">
+           <span class="ben-text">{{section.settings.mcLaren-lando_btn}} </span>
+         </a>
+         {% endif %}
+ 
+       </div>
+     </div>
+ 
+   </section>  
+ 
+ 
+ {% schema %}
+   {
+     "name": "Lando McLaren banner",
+     "settings": [
+       {
+           "type":"image_picker",
+           "id":"mcLaren-lando_image_desktop",
+           "label":"Desktop Bnaner Image"
+       },
+       {
+           "type":"image_picker",
+           "id":"mcLaren-lando_image_mobile",
+           "label":"Mobile Bnaner Image"
+       },
+       {
+         "type": "header",
+         "content": "Content Box"
+       },
+       {
+           "type":"text",
+           "id":"mcLaren-lando_sub_heading",
+           "label":"Sub heading",
+           "default":"TUMI | McLAREN COLLECTION "
+       },
+       {
+           "type":"text",
+           "id":"mcLaren-lando_banner_sub_heading",
+           "label":"Banner Sub heading",
+           "default":"Performance with Purpose"
+       },
+
+       {
+           "type":"text",
+           "id":"mcLaren-lando_btn",
+           "label":"Button name",
+           "default":"Shop the Collection"
+       },
+       {
+           "type":"url",
+           "id":"mcLaren-lando_btnlink",
+           "label":"Button URL"
+       },
+     {
+         "type": "color",
+         "id": "mcLaren-lando_btn_color",
+         "label": "Button Color",
+         "default": "#fff"
+       },
+     {
+         "type": "color",
+         "id": "mcLaren-lando_btn_txt_color",
+         "label": "Button Text Color",
+         "default": "#000"
+       }
+   ]
+   }
+ {% endschema %}
+   

@@ -1,0 +1,182 @@
+<!-- App one -->
+    <div class="app_con app_collection row no-gutters app1" id="feature_pos" data-aos="fade">
+      <div class="custom-grid">
+        <div class="grid_seven app_img">
+          <img src="{{ section.settings.imgage_1 | img_url:'master' }}" class="img_d" />
+          <img src="{{ section.settings.imgage_mbl_1 | img_url:'master' }}" class="img_m" />
+        </div>
+        <div class="grid_five desc_box">
+          <div data-aos="fade-up" data-aos-delay="200">
+            <b>{{ section.settings.heading_1 }}</b>
+            <p>{{ section.settings.text_1 }} </p>
+          </div>
+        </div>
+      </div>
+    </div>
+              
+<!-- App two -->
+              
+  <div class="spec_con app_con row no-gutters app2" data-aos="fade">
+    <div class="custom-grid">
+      <div class="grid_five desc_box order-2 order-md-1">
+        <div class="desc_box" data-aos="fade-up" data-aos-delay="200">
+          <b>{{ section.settings.heading_2 }}</b>
+          <p>{{ section.settings.text_2 }}</p>
+        </div>
+      </div>
+      <div class="grid_seven app_img order-1 order-md-2">
+        <img src="{{ section.settings.imgage_2 | img_url:'master' }}" class="animate__slower img_d" />
+        <img src="{{ section.settings.imgage_mbl_2 | img_url:'master' }}" class="animate__slower img_m" />
+      </div>
+    </div>
+  </div>
+              
+<!-- App three -->
+
+  <div class="app_con row no-gutters app3" data-aos="fade">
+    <div class="custom-grid">
+      <div class="grid_seven app_img order-2 order-md-1">
+        <img src="{{ section.settings.imgage_3 | img_url:'master' }}" class="img_d" />
+        <img src="{{ section.settings.imgage_mbl_3 | img_url:'master' }}" class="img_m" />
+      </div>
+      <div class="desc_box grid_five order-1 order-md-2">
+        <div data-aos="fade-up" data-aos-delay="200">
+          <b>{{ section.settings.heading_3 }}</b>
+          <p>{{ section.settings.text_3 }} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+              
+<!-- app con -->
+              
+  <div class="app_con mirror_con">
+    <div class="custom-grid">
+      <div class="mirror_txt offset-medium grid_three">
+        <div>
+          <span data-aos="fade-up">{{ section.settings.heading_4 }}</span>
+          <h3 data-aos="fade-up" data-aos-delay="200">
+            <img src="{{ section.settings.title_image | img_url:'original' }}">
+          </h3>
+          <a href="{{ section.settings.button_link }}" data-aos="fade-up" data-aos-delay="400">{{ section.settings.button_label }}</a>
+        </div>
+      </div>
+      <img class="img_w case_d" src="{{ section.settings.imgage_4 | img_url:'master' }}" />
+      <img class="img_w case_m" src="{{ section.settings.imgage_mbl_4 | img_url:'master' }}" />
+    </div>
+  </div>   
+
+{% schema %}
+  {
+    "name": "banner with text",
+    "settings": [
+	{
+        "type": "header",
+        "content": "Banner 1"
+      },
+	{
+        "type": "image_picker",
+        "id": "imgage_1",
+        "label": "banner image"
+      },
+	{
+        "type": "image_picker",
+        "id": "imgage_mbl_1",
+        "label": "mobile banner image"
+      },
+	 {
+        "type": "text",
+        "id": "heading_1",
+        "label": "Heading"
+      },
+	{
+        "type": "textarea",
+        "id": "text_1",
+        "label": "text"
+      },
+	{
+        "type": "header",
+        "content": "Banner 2"
+      },
+	{
+        "type": "image_picker",
+        "id": "imgage_2",
+        "label": "banner image"
+      },
+	{
+        "type": "image_picker",
+        "id": "imgage_mbl_2",
+        "label": "mobile banner image"
+      },
+	 {
+        "type": "text",
+        "id": "heading_2",
+        "label": "Heading"
+      },
+	{
+        "type": "textarea",
+        "id": "text_2",
+        "label": "text"
+      },
+	{
+        "type": "header",
+        "content": "Banner 3"
+      },
+	{
+        "type": "image_picker",
+        "id": "imgage_3",
+        "label": "banner image"
+      },
+	{
+        "type": "image_picker",
+        "id": "imgage_mbl_3",
+        "label": "mobile banner image"
+      },
+	 {
+        "type": "text",
+        "id": "heading_3",
+        "label": "Heading"
+      },
+	{
+        "type": "textarea",
+        "id": "text_3",
+        "label": "text"
+      },
+	{
+        "type": "header",
+        "content": "Banner 4"
+      },
+	{
+        "type": "image_picker",
+        "id": "imgage_4",
+        "label": "banner image"
+      },
+	{
+        "type": "image_picker",
+        "id": "imgage_mbl_4",
+        "label": "mobile banner image"
+      },
+	 {
+        "type": "text",
+        "id": "heading_4",
+        "label": "Heading"
+      },
+	{
+        "type": "image_picker",
+        "id": "title_image",
+        "label": "title image"
+      },
+	 {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button Link"
+      },
+	 {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button Label"
+      }
+	
+]
+  }
+{% endschema %}

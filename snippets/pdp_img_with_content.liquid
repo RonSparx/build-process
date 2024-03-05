@@ -1,0 +1,41 @@
+{% if product.metafields.custom_fields["imggg"] != blank %}
+  <div class="custom-field custom-field__imggg custom-field__type--image">
+    <h3 class="custom-field--title">imggg</h3>
+    <div class="custom-field--value">  
+      {% render 'cf-image' with image: product.metafields.custom_fields["imggg"] %}
+    </div>
+  </div>
+{% endif %}
+
+{% if product.metafields.custom_fields["image_with_content"] != blank %}
+<div class="pdp-features-box">
+    <div class="features-box-row">
+        <ul class="features-box-list">
+          {% for item in product.metafields.custom_fields["image_with_content"] %}
+            <li class="features-box-item">
+              {% if item.image != blank %}
+                <div class="pdp-features-img">
+                   {% render "cf-image" with image: item.image, crop: "center", size: "380x380" %}
+                 
+                </div>
+              {% endif %} 
+                <div class="pdp-features-intro">
+                    <div class="tm-pdp-features-text">
+                      {% if item.title != blank %}
+                        <h3 class="features-title">{{ item.title }}</h3>
+                      {% endif %}
+                       {% if item.sub_title != blank %}
+                        <h4 class="features-subtitle">{{ item.sub_title }}</h4>
+                      {% endif %}
+                      {% if item.body != blank %}
+                        <p>{{ item.body }}</p>
+                      {% endif %}
+                    </div>
+                </div>
+            </li>
+          	{% endfor %}
+         </ul>
+    </div>
+</div>
+{% endif %}
+

@@ -1,0 +1,40 @@
+  <section class="container-full ashton">
+    <div class="ashton-row">
+      <div class="ashton-col ashton-img wow slideInLeft">
+        {% if section.settings.img != blank %}
+        <img src="{{section.settings.img | img_url:'600x'}}" />
+        {% else %}
+      	<img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/ashton.jpg?v=1646803820"/>
+        {% endif %}
+      </div>
+      
+      <div class="ashton-col ashton-content wow slideInRight">
+         {{section.settings.content}}
+      </div>
+      
+    </div>
+  </section>
+{% schema %}
+  {
+    "name": "Monogram image with text",
+    "settings": [
+{
+"type":"image_picker",
+"id":"img",
+"label":"Select Image"
+},
+{
+"type":"richtext",
+"id":"content",
+"label":"Content",
+"default":"<p>TUMI Ashton also comes with high-end exclusive customizable</p> <p>and replaceable accent kits, that comes available in four</p><p>different colors: Ember, Atlantic, Marigold, and White, providing</p><p>you with more personalization options to express your creativity.</p>"
+}
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

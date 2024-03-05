@@ -1,0 +1,198 @@
+
+<style>
+  .tumi_diff-black-boxesss{
+     flex: 1;
+  }
+  .black_boxes-number .separator-sm{
+    width: 30px;
+    margin: 16px auto 16px 0;
+    border-bottom: 1px solid #999;
+    height: 1px;
+  }
+  .tumi_diff-boxes .tumi_diff-black-boxes{
+    padding: 17px;
+    display: flex!important;
+    flex-direction: column;
+    justify-content: center;
+    height: 154px;
+  }
+  .tumi_diff-boxes{
+    margin-right: -30%;
+  }
+  .tumi_diff-boxes .tumi_diff-black-boxes:hover {
+    color: white;
+}
+  .tumi_diff-black-boxes{
+    color: #fff !important;
+}
+ .tumi_diff-boxes-wrapper{
+   position: relative;
+ } 
+  
+ .tumi_diff-boxes-wrapper .loading-dots {
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top:76% !important;
+        left:50%;
+        transform: translate(-50%, -50%);
+      }
+      .loading-dot {
+        animation: dot-keyframes 1.5s infinite ease-in-out;
+        background-color: #d9d1d4bd;
+        border-radius: 10px;
+        display: inline-block;
+        height: 10px;
+        width: 10px;
+        margin: 0 3px;
+        &:nth-child(2) {
+          animation-delay: 0.5s;
+        }
+        &:nth-child(3) {
+          animation-delay: 1s;
+        }
+      }
+      @keyframes dot-keyframes {
+        0% {
+          opacity: 0.4;
+          transform: scale(1, 1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2, 1.2);
+        }
+        100% {
+          opacity: 0.4;
+          transform: scale(1, 1);
+        }
+      }
+  @media only screen and (min-width: 768px) {
+    .tumi_diff-boxes .tumi_diff-black-boxes{
+      padding: 24px;
+      height: 200px;
+    }
+    .tumi_diff-boxes{
+      margin-right:-20px;
+    }
+  }
+</style>
+ 
+<div class="tumi_diff-boxes-wrapper page-width">
+     <div class="tumi_diff-boxes-content">
+       {% if section.settings.gift_guide_sub_heading != blank %}
+         <h2 class="tumi_diff-boxes-heading">{{ section.settings.gift_guide_sub_heading }}</h2> 
+       {% endif %}
+       {% if section.settings.gift_guide_banner_sub_heading != blank %}
+         <span class="tumi_diff-boxes-content-text">{{ section.settings.gift_guide_banner_sub_heading }}</span>
+       {% endif %}
+     </div>
+
+    <div class="loading-dots">
+          <div class="loading-dot"></div>
+          <div class="loading-dot"></div>
+          <div class="loading-dot"></div>
+      </div>
+     <div class="tumi_diff-boxes diff_boxes_slider  diff_black-boxes" id="black-boxes-slider" style="opacity: 0;">
+
+       {% for block in section.blocks %} 
+       <a href="{{ block.settings.text_url }}" class="tumi_diff-black-boxes"><div class="tumi_diff-black-boxesss">
+        <div class="black_boxes-number">
+           <span>{{ block.settings.black_boxes }}</span>
+           <div class="separator-sm">&nbsp;</div>
+         </div>
+         <div class="black_boxes-text">
+           <span>{{ block.settings.black_boxes_text }}</span>
+         </div>
+        
+       </div></a>
+      
+       {% endfor %}
+     </div>
+  </div>
+
+   <script>
+     var rtlView = window.Shopify.locale == "ar" ? true : false;
+     
+     $(document).ready(function(){
+      var sliderCount = 4;
+      if ($(window).width() <480) {
+          sliderCount = 3;
+        } 
+      $('.diff_boxes_slider').slick({
+        dots: false,
+        arrows:false,
+        rtl: rtlView,
+        infinite: false,
+         slidesToShow:sliderCount,
+        slidesToScroll: 1, 
+      });
+ 
+       
+      // loading content
+          setTimeout(function(){
+            jQuery('#black-boxes-slider').css('opacity',1);
+            jQuery('.loading-dots').hide();
+          }, 2000)
+
+    
+    });
+
+ 
+   </script>
+{% schema %}
+   {
+     "name": "Difference Boxes",
+     "settings": [
+       {
+        "type": "header",
+        "content": "Content Box"
+        },
+        {
+         "type":"text",
+         "id":"gift_guide_sub_heading",
+         "label":"Banner heading",
+         "default":"Premium Gifts With Premium Service "
+        },
+       
+        {
+         "type":"richtext",
+         "id":"gift_guide_banner_sub_heading",
+         "label":"Banner Text",
+         "default":"<p>Complete the gifting experience with special touches like Monogramming and gift boxing. It celebrates style and adds an elevated element to each present.</p>"
+        }
+     ],
+     "max_blocks": 4,
+     "blocks":[
+       {
+       "name":"Difference Boxes",
+       "type":"gift_banner_slider",
+       "settings":[  
+         {
+          "type": "header",
+          "content": "Black Box content"
+          },
+         {
+           "type":"number",
+           "id":"black_boxes",
+           "label":"Boxes Number"
+         },
+         
+         {
+           "type":"text",
+           "id":"black_boxes_text",
+           "label":"Box text",
+           "default":"Design Excellence"
+          },
+{
+         "type":"text",
+         "id":"text_url",
+         "label":"URL"
+        }
+         
+       ]
+       }
+     ]
+   }
+ {% endschema %}

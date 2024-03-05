@@ -1,0 +1,193 @@
+<div class="page-width">
+  <div class="thatrow customer-login">
+    <div class="row equal-height">
+
+      <div class="register-col col col-6 thatcol panel-background">
+        <div id="RecoverPasswordForm" class="hide">
+          <div class="text-center">
+            <h2 id="RecoverHeading">{{ 'customer.recover_password.title' | t }}</h2>
+            <p>{{ 'customer.recover_password.subtext' | t }}</p>
+          </div>
+
+          <div class="form-vertical">
+            {% form 'recover_customer_password' %}
+
+            {% comment %}
+            Add a hidden span to indicate the form was submitted succesfully.
+            {% endcomment %}
+            {% if form.posted_successfully? %}
+            <span class="hide reset-password-success"></span>
+            {% endif %}
+
+            <label for="RecoverEmail">{{ 'customer.recover_password.email' | t }}</label>
+            <input
+                   type="email"
+                   value=""
+                   name="email"
+                   id="RecoverEmail"
+                   class="input-full{% if form.errors %} input--error{% endif %}"
+                   autocorrect="off"
+                   autocapitalize="off"
+                   {% if form.errors %}
+                   aria-invalid="true"
+                   aria-describedby="RecoverEmail-email-error"
+                   {% endif %}
+                   >
+            {% if form.errors %}
+            <span id="RecoverEmail-email-error" class="input-error-message">
+              <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+              {% include 'icon-error' %}
+              <span>{{ form.errors.messages['form'] }}</span>
+            </span>
+            {% endif %}
+
+            <div class="text-center">
+              <p>
+                <input type="submit" class="btn" value="{{ 'customer.recover_password.submit' | t }}">
+              </p>
+
+              <a href="#LoginHeading" id="HideRecoverPasswordLink">{{ 'customer.recover_password.cancel' | t }}</a>
+            </div>
+            {% endform %}
+          </div>
+
+        </div>
+
+<!--         {% comment %}
+        If accounts are set as optional, the following will be shown as an option
+        during checkout, not on the default /login page.
+        {% endcomment %}
+        {% if cart.item_count > 0 %} 
+        {% if shop.customer_accounts_optional %}
+        <div class="text-center guet-login">
+          <hr class="hr--invisible">
+          <h2>{{ 'customer.login.guest_title' | t }}</h2>
+
+          {% form 'guest_login' %}
+          <input type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
+          {% endform %}
+        </div>
+        {% endif %}
+        {% endif %}
+ -->
+        <div id="CustomerLoginForm" class="column col2 form-vertical">
+
+          <h1 id="LoginHeading"><ly-as-275966>SIGN IN TO TUMI</ly-as-275966></h1>
+
+          <div class="custom-registerform">
+          {% form 'customer_login', novalidate: 'novalidate' %}
+
+          {% if form.errors %}
+          <div class="form-message form-message--error">
+            <h2 class="h3 form-message__title " tabindex="-1" data-form-status>{{ 'contact.form.error_heading' | t }}</h2>
+            {{ form.errors | default_errors }}
+          </div>
+          {% endif %}
+            <div class="form-row">
+          <div class="form-items-col form-validate">
+            
+            <div class="form-group">
+              
+              <div class="form-field ">
+              
+              <label for="CustomerEmail">{{ 'customer.login.email' | t }}</label>
+              <input
+                     type="email"
+                     name="customer[email]"
+                     id="CustomerEmail"
+                     autocomplete="email"
+                     autocorrect="off"
+                     autocapitalize="off"
+                     {% if form.errors contains 'form' %}
+                     class="input--error"
+                     aria-invalid="true"
+                     {% endif %}
+                     data-required="true"
+                     >
+              <span id="email-caption" class="a-caption-message custom-captionmessage">{{ 'customer.register.email-example' | t }}</span>
+</div>
+                
+              <p class="a-error-message error empty" aria-live="assertive">
+                <span class="not-valid" > {{ 'customer.register.input_errors.email' | t }} </span>
+              </p>
+            </div>
+          </div>
+            </div>
+          {% if form.password_needed %}
+            
+            <div class="form-row">
+          <div class="form-items-col form-validate">
+            <div class="form-group">
+                <div class="form-field ">
+              <label for="CustomerPassword">{{ 'customer.login.password' | t }}</label>
+              <input
+                     type="password"
+                     value=""
+                     name="customer[password]"
+                     id="CustomerPassword"
+                     {% if form.errors contains 'form' %}
+                     class="input--error"
+                     aria-invalid="true"
+                     {% endif %} 
+                     data-required="true"
+
+                     >
+              </div>
+              <p class="a-error-message error empty" aria-live="assertive">
+                <span class="not-valid">{{ 'customer.register.input_errors.password' | t }}</span>
+              </p>
+            </div>
+          </div>
+            </div>
+          {% endif %}
+
+          <div class="text-center">
+            {% if form.password_needed %}
+            <p><a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a></p>
+            {% endif %}
+
+            <input type="submit" class="btn logbtn blk-color" disabled value="{{ 'customer.login.sign_in' | t }}">
+
+
+          </div>
+
+          {% endform %}
+            </div>
+        </div>
+
+      </div>
+      <div class="client-col col col-6 thatcol2 panel-background">
+        <div class="panel account-new-client">
+          <h1 class="account-title-small margin-bottom"><ly-as-275967>NEW CLIENT</ly-as-275967></h1>
+          <div class="rich-text">
+            <p>
+              <ly-as-275968>Create an account to track and manage your orders, view all your personal information and items added to your favorites.</ly-as-275968>
+            </p>
+          </div>
+         <div class="regbtn">
+             {% if request.locale.iso_code == 'ar' %}
+            <a
+                                 class="btn blk-color"
+                                 href="/ar/account/register"
+                                 >
+            <ly-as-275969>Create an account</ly-as-275969>
+            </a>
+{% else %}
+            <a
+                                 class="btn blk-color"
+                                 href="/account/register"
+                                 >
+            <ly-as-275969>Create an account</ly-as-275969>
+            </a>
+            {% endif %}
+          
+              </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+ <script src="{{ 'login.js' | asset_url }}" ></script> 

@@ -1,0 +1,951 @@
+<div id="w-node-_83329eac-fa34-7583-0068-bbb4c39d99ed-b389d6dc" class="product-container-responsive">
+  <div class="product-top">
+    {%if settings.image-one != blank%} 
+    <img
+         src="{{settings.image-one | img_url: ''}}"
+         loading="lazy"
+         sizes="(max-width: 991px) 100vw, 40vw"
+         srcset="{{settings.image-one | img_url: ''}}"
+         alt=""
+         />
+
+    {% else %} 
+    <img
+         src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c81015415171671e9c9ed_model-backpack-30may-responsive.jpg"
+         loading="lazy"
+         sizes="(max-width: 991px) 100vw, 40vw"
+         srcset="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c81015415171671e9c9ed_model-backpack-30may-responsive.jpg"
+         alt=""
+         />
+    {%endif%}
+
+  </div>
+  <div class="product-bottom">
+    <div class="right-block-glow" style="opacity: 0;"></div>
+    <div class="right-block-wrapper">
+      <div class="right-block-product-name backpack">{{ settings.heading-one }}</div>
+      <div
+           data-delay="4000"
+           data-animation="outin"
+           class="product-slider w-slider"
+           data-autoplay="false"
+           data-easing="ease"
+           data-hide-arrows="false"
+           data-disable-swipe="false"
+           data-autoplay-limit="0"
+           data-nav-spacing="2"
+           data-duration="500"
+           data-infinite="true"
+           role="region"
+           aria-label="carousel"
+           >
+        <div class="product-slider-mask w-slider-mask" id="w-slider-mask-0">
+          <div class="product-slide w-slide" aria-label="1 of 3" role="group" style="transform: translateX(0px); opacity: 1;">
+            <div class="product-slide-wrapper">
+              <div class="product-slide-image-wrapper">
+                <img
+                     src="{%if settings.slide-img-1 != blank%} {{settings.slide-img-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286bb6f019bae3a03250e55_product-backpack2.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, (max-width: 1439px) 366.6640625px, 375.4140625px"
+                     srcset="{%if settings.slide-img-1 != blank%} {{settings.slide-img-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286bb6f019bae3a03250e55_product-backpack2.png {%endif%}"
+                     alt=""
+                     class="right-block-image backpack1"
+                     />
+                <div class="callout-backpack1"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-slide w-slide" aria-label="2 of 3" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1; visibility: hidden;">
+            <div class="product-slide-wrapper" aria-hidden="true">
+              <div class="product-slide-image-wrapper" aria-hidden="true">
+                <img
+                     src="{%if settings.slide-img-2 != blank%} {{settings.slide-img-2 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286d3c9f84e66f93b15fc77_product-backpack4.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, (max-width: 1439px) 366.6640625px, 375.4140625px"
+                     srcset="{%if settings.slide-img-2 != blank%} {{settings.slide-img-2 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286d3c9f84e66f93b15fc77_product-backpack4.png {%endif%}"
+                     alt=""
+                     class="right-block-image backpack2"
+                     aria-hidden="true"
+                     />
+                <div class="callout-backpack2" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-slide w-slide" aria-label="3 of 3" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1; visibility: hidden;">
+            <div class="product-slide-wrapper" aria-hidden="true">
+              <div class="product-slide-image-wrapper" aria-hidden="true">
+                <img
+                     src="{%if settings.slide-img-3 != blank%} {{settings.slide-img-3 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286d7a8dcafa58a17b66cf8_product-backpack3.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, (max-width: 1439px) 366.6640625px, 375.4140625px"
+                     srcset="{%if settings.slide-img-3 != blank%} {{settings.slide-img-3 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286d7a8dcafa58a17b66cf8_product-backpack3.png {%endif%}"
+                     alt=""
+                     class="right-block-image backpack1"
+                     aria-hidden="true"
+                     />
+                <div class="callout-backpack3a" aria-hidden="true"></div>
+                <div class="callout-backpack3b" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div aria-live="off" aria-atomic="true" class="w-slider-aria-label" data-wf-ignore=""></div>
+        </div>
+        <div class="product-slide-left-arrow w-slider-arrow-left" role="button" tabindex="0" aria-controls="w-slider-mask-0" aria-label="previous slide">
+          <div class="product-slide-left-arrow-icon w-icon-slider-left"></div>
+        </div>
+        <div class="product-slide-right-arrow w-slider-arrow-right" role="button" tabindex="0" aria-controls="w-slider-mask-0" aria-label="next slide">
+          <div class="product-slide-right-arrow-icon w-icon-slider-right"></div>
+        </div>
+        <div class="product-slide-slide-nav w-slider-nav">
+          <div class="w-slider-dot w-active" data-wf-ignore="" aria-label="Show slide 1 of 3" aria-pressed="true" role="button" tabindex="0" style="margin-left: 2px; margin-right: 2px;"></div>
+          <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 2 of 3" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 2px; margin-right: 2px;"></div>
+          <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 3 of 3" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 2px; margin-right: 2px;"></div>
+        </div>
+      </div>
+      <div class="right-block-bottom-wrapper">
+        <div class="right-block-icon-heading">{{ settings.capiacity-text }}</div>
+        <div class="right-block-icon-wrapper"><img src="{%if settings.slide-btm-1 != blank%} {{settings.slide-btm-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd465293a94b3_luggage-icons.jpg {%endif%}" loading="lazy" alt="" class="right-block-icons" /></div>
+      </div>
+    </div>
+  </div>
+  <div class="product-top _4">
+    {%if settings.image-two != blank%} 
+    <img
+         src="{{settings.image-two | img_url: ''}}"
+         loading="lazy"
+         sizes="(max-width: 991px) 100vw, 40vw"
+         srcset="{{settings.image-two | img_url: ''}}"
+         alt=""
+         />
+
+    {% else %} 
+    <img
+         src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c81019774391d691a2e5e_model-luggage-30may-responsive.jpg"
+         loading="lazy"
+         sizes="(max-width: 991px) 100vw, 40vw"
+         srcset="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c81019774391d691a2e5e_model-luggage-30may-responsive.jpg"
+         alt=""
+         />
+    {%endif%}
+  </div>
+  <div class="product-bottom">
+    <div class="right-block-glow" style="opacity: 0;"></div>
+    <div class="right-block-wrapper">
+      <div class="right-block-product-name">
+        {{ settings.heading-two }}
+      </div>
+      <div
+           data-delay="4000"
+           data-animation="outin"
+           class="product-slider w-slider"
+           data-autoplay="false"
+           data-easing="ease"
+           data-hide-arrows="false"
+           data-disable-swipe="false"
+           data-autoplay-limit="0"
+           data-nav-spacing="2"
+           data-duration="500"
+           data-infinite="true"
+           role="region"
+           aria-label="carousel"
+           >
+        <div class="product-slider-mask w-slider-mask" id="w-slider-mask-1">
+          <div class="product-slide w-slide" aria-label="1 of 3" role="group" style="transform: translateX(0px); opacity: 1;">
+            <div class="product-slide-wrapper">
+              <div class="product-slide-image-wrapper">
+                <img
+                     src="{%if settings.slide-imgtwo-1 != blank%} {{settings.slide-imgtwo-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/625970b16525a62c737ec2c2_product-luggage1.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, 415.3828125px"
+                     srcset="{%if settings.slide-imgtwo-1 != blank%} {{settings.slide-imgtwo-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/625970b16525a62c737ec2c2_product-luggage1.png {%endif%}"
+                     alt=""
+                     class="right-block-image luggage"
+                     />
+                <div class="callout-luggage1a"></div>
+                <div class="callout-luggage1b"></div>
+                <div class="callout-luggage1c"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-slide w-slide" aria-label="2 of 3" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1; visibility: hidden;">
+            <div class="product-slide-wrapper" aria-hidden="true">
+              <div class="product-slide-image-wrapper" aria-hidden="true">
+                <img
+                     src="{%if settings.slide-imgtwo-2 != blank%} {{settings.slide-imgtwo-2 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286dfc45ad3e537c74d0c73_product-luggage2.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, 415.3828125px"
+                     srcset="{%if settings.slide-imgtwo-2 != blank%} {{settings.slide-imgtwo-2 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286dfc45ad3e537c74d0c73_product-luggage2.png {%endif%}"
+                     alt=""
+                     class="right-block-image luggage"
+                     aria-hidden="true"
+                     />
+                <div class="callout-luggage2" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-slide w-slide" aria-label="3 of 3" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1; visibility: hidden;">
+            <div class="product-slide-wrapper" aria-hidden="true">
+              <div class="product-slide-image-wrapper" aria-hidden="true">
+                <img
+                     src="{%if settings.slide-imgtwo-3 != blank%} {{settings.slide-imgtwo-3 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286edf6717a9a578c4512f1_product-luggage3.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, 415.3828125px"
+                     srcset="{%if settings.slide-imgtwo-3 != blank%} {{settings.slide-imgtwo-3 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286edf6717a9a578c4512f1_product-luggage3.png {%endif%}"
+                     alt=""
+                     class="right-block-image luggage"
+                     aria-hidden="true"
+                     />
+                <div class="callout-luggage3a" aria-hidden="true"></div>
+                <div class="callout-luggage3b" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div aria-live="off" aria-atomic="true" class="w-slider-aria-label" data-wf-ignore=""></div>
+        </div>
+        <div class="product-slide-left-arrow w-slider-arrow-left" role="button" tabindex="0" aria-controls="w-slider-mask-1" aria-label="previous slide">
+          <div class="product-slide-left-arrow-icon w-icon-slider-left"></div>
+        </div>
+        <div class="product-slide-right-arrow w-slider-arrow-right" role="button" tabindex="0" aria-controls="w-slider-mask-1" aria-label="next slide">
+          <div class="product-slide-right-arrow-icon w-icon-slider-right"></div>
+        </div>
+        <div class="product-slide-slide-nav w-slider-nav">
+          <div class="w-slider-dot w-active" data-wf-ignore="" aria-label="Show slide 1 of 3" aria-pressed="true" role="button" tabindex="0" style="margin-left: 2px; margin-right: 2px;"></div>
+          <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 2 of 3" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 2px; margin-right: 2px;"></div>
+          <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 3 of 3" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 2px; margin-right: 2px;"></div>
+        </div>
+      </div>
+      <div class="right-block-bottom-wrapper">
+        <div class="right-block-icon-heading">{{ settings.capiacitytwo-text }}</div>
+        <div class="right-block-icon-wrapper"><img src="{%if settings.slide-btmtwo-1 != blank%} {{settings.slide-btmtwo-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd465293a94b3_luggage-icons.jpg {%endif%}" loading="lazy" alt="" class="right-block-icons" /></div>
+      </div>
+    </div>
+  </div>
+  <div class="product-top _3">
+    {%if settings.image-three != blank%} 
+    <img
+         src="{{settings.image-three | img_url: ''}}"
+         loading="lazy"
+         sizes="(max-width: 991px) 100vw, 40vw"
+         srcset="{{settings.image-three | img_url: ''}}"
+         alt=""
+         class="left-image"
+         />
+
+    {% else %} 
+    <img
+         src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c8100977439d59d1a2e5d_model-sling-30may-responsive.jpg"
+         loading="lazy"
+         sizes="(max-width: 991px) 100vw, 40vw"
+         srcset="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c8100977439d59d1a2e5d_model-sling-30may-responsive.jpg"
+         alt=""
+         class="left-image"
+         />
+    {%endif%}
+  </div>
+  <div class="product-bottom">
+    <div class="right-block-glow" style="opacity: 0;"></div>
+    <div class="right-block-wrapper">
+      <div class="right-block-product-name bottom-margin-20">{{ settings.heading-three }}</div>
+      <div
+           data-delay="4000"
+           data-animation="outin"
+           class="product-slider w-slider"
+           data-autoplay="false"
+           data-easing="ease"
+           data-hide-arrows="false"
+           data-disable-swipe="false"
+           data-autoplay-limit="0"
+           data-nav-spacing="2"
+           data-duration="500"
+           data-infinite="true"
+           role="region"
+           aria-label="carousel"
+           >
+        <div class="product-slider-mask w-slider-mask" id="w-slider-mask-2">
+          <div class="product-slide w-slide" aria-label="1 of 3" role="group" style="transform: translateX(0px); opacity: 1;">
+            <div class="product-slide-wrapper">
+              <div class="product-slide-image-wrapper">
+                <img
+                     src="{%if settings.slide-imgthree-1 != blank%} {{settings.slide-imgthree-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6287bed560828142cf6580be_product-sling1.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, 329.5234375px"
+                     srcset="{%if settings.slide-imgthree-1 != blank%} {{settings.slide-imgthree-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6287bed560828142cf6580be_product-sling1.png {%endif%}"
+                     alt=""
+                     class="right-block-image sling-2"
+                     />
+                <div class="callout-sling1a"></div>
+                <div class="callout-sling1b"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-slide w-slide" aria-label="2 of 3" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1; visibility: hidden;">
+            <div class="product-slide-wrapper" aria-hidden="true">
+              <div class="product-slide-image-wrapper" aria-hidden="true">
+                <img
+                     src="{%if settings.slide-imgthree-2 != blank%} {{settings.slide-imgthree-2 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6287592077507b514ef4a964_product-sling2.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, 329.5234375px"
+                     srcset="{%if settings.slide-imgthree-2 != blank%} {{settings.slide-imgthree-2 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6287592077507b514ef4a964_product-sling2.png {%endif%}"
+                     alt=""
+                     class="right-block-image sling"
+                     aria-hidden="true"
+                     />
+                <div class="callout-sling2 tablet-p" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-slide w-slide" aria-label="3 of 3" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1; visibility: hidden;">
+            <div class="product-slide-wrapper" aria-hidden="true">
+              <div class="product-slide-image-wrapper" aria-hidden="true">
+                <img
+                     src="{%if settings.slide-imgthree-3 != blank%} {{settings.slide-imgthree-3 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/62875bffbe5b049c76c5c8fb_product-sling3.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, 329.5234375px"
+                     srcset="{%if settings.slide-imgthree-3 != blank%} {{settings.slide-imgthree-3 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/62875bffbe5b049c76c5c8fb_product-sling3.png {%endif%}"
+                     alt=""
+                     class="right-block-image sling"
+                     aria-hidden="true"
+                     />
+                <div class="callout-sling3" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div aria-live="off" aria-atomic="true" class="w-slider-aria-label" data-wf-ignore=""></div>
+        </div>
+        <div class="product-slide-left-arrow w-slider-arrow-left" role="button" tabindex="0" aria-controls="w-slider-mask-2" aria-label="previous slide">
+          <div class="product-slide-left-arrow-icon w-icon-slider-left"></div>
+        </div>
+        <div class="product-slide-right-arrow w-slider-arrow-right" role="button" tabindex="0" aria-controls="w-slider-mask-2" aria-label="next slide">
+          <div class="product-slide-right-arrow-icon w-icon-slider-right"></div>
+        </div>
+        <div class="product-slide-slide-nav sling-margin w-slider-nav">
+          <div class="w-slider-dot w-active" data-wf-ignore="" aria-label="Show slide 1 of 3" aria-pressed="true" role="button" tabindex="0" style="margin-left: 2px; margin-right: 2px;"></div>
+          <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 2 of 3" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 2px; margin-right: 2px;"></div>
+          <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 3 of 3" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 2px; margin-right: 2px;"></div>
+        </div>
+      </div>
+      <div class="right-block-image-wrapper hide">
+        <img
+             src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd4b6bd3a949b_product-sling.png"
+             loading="lazy"
+             sizes="100vw"
+             srcset="
+                     https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd4b6bd3a949b_product-sling-p-500.png 500w,
+                     https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd4b6bd3a949b_product-sling.png       595w
+                     "
+             alt=""
+             class="right-block-image sling"
+             />
+        <div class="image-preview-wrap hide">
+          <img
+               src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624cf60b77fd452c7939346d_sling-feature2.jpg"
+               loading="lazy"
+               sizes="100vw"
+               srcset="
+                       https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624cf60b77fd452c7939346d_sling-feature2-p-500.jpeg 500w,
+                       https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624cf60b77fd452c7939346d_sling-feature2-p-800.jpeg 800w,
+                       https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624cf60b77fd452c7939346d_sling-feature2.jpg        932w
+                       "
+               alt=""
+               class="image-preview"
+               />
+        </div>
+      </div>
+      <div class="right-block-bottom-wrapper">
+        <div class="right-block-icon-heading">{{ settings.capiacitythree-text }}</div>
+        <div class="right-block-icon-wrapper"><img src="{%if settings.slide-btmthree-1 != blank%} {{settings.slide-btmthree-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd407703a94b5_sling-icons.jpg {%endif%}" loading="lazy" alt="" class="right-block-icons" /></div>
+      </div>
+    </div>
+  </div>
+  <div class="product-top _2">
+    {%if settings.image-four != blank%} 
+    <img
+         src="{{settings.image-four | img_url: ''}}"
+         loading="lazy"
+         sizes="(max-width: 991px) 100vw, 40vw"
+         srcset="{{settings.image-four | img_url: ''}}"
+         alt=""
+         class="left-image"
+         />
+
+    {% else %} 
+    <img
+         src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c810060fcbb12fae71e65_model-laptop-30may-responsive.jpg"
+         loading="lazy"
+         sizes="(max-width: 991px) 100vw, 40vw"
+         srcset="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c810060fcbb12fae71e65_model-laptop-30may-responsive.jpg"
+         alt=""
+         class="left-image"
+         />
+    {%endif%}
+
+  </div>
+  <div class="product-bottom no-bottom-margin">
+    <div class="right-block-glow" style="opacity: 0;"></div>
+    <div class="right-block-wrapper">
+      <div class="right-block-product-name laptop-cover">{{ settings.heading-four }}</div>
+      <div
+           data-delay="4000"
+           data-animation="outin"
+           class="product-slider w-slider"
+           data-autoplay="false"
+           data-easing="ease"
+           data-hide-arrows="false"
+           data-disable-swipe="false"
+           data-autoplay-limit="0"
+           data-nav-spacing="2"
+           data-duration="500"
+           data-infinite="true"
+           role="region"
+           aria-label="carousel"
+           >
+        <div class="product-slider-mask w-slider-mask" id="w-slider-mask-3">
+          <div class="product-slide w-slide" aria-label="1 of 2" role="group" style="transform: translateX(0px); opacity: 1;">
+            <div class="product-slide-wrapper">
+              <div class="product-slide-image-wrapper">
+                <img
+                     src="{%if settings.slide-imgfour-1 != blank%} {{settings.slide-imgfour-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/62577e855e6962ac365df5a4_product-laptop1.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, 375px"
+                     srcset="{%if settings.slide-imgfour-1 != blank%} {{settings.slide-imgfour-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/62577e855e6962ac365df5a4_product-laptop1.png {%endif%}"
+                     alt=""
+                     class="right-block-image laptop1"
+                     />
+                <div class="callout-laptop1"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-slide w-slide" aria-label="2 of 2" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1; visibility: hidden;">
+            <div class="product-slide-wrapper" aria-hidden="true">
+              <div class="product-slide-image-wrapper" aria-hidden="true">
+                <img
+                     src="{%if settings.slide-imgfour-2 != blank%} {{settings.slide-imgfour-2 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/628764d877507b2622f50edb_product-laptop2.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, 395px"
+                     srcset="{%if settings.slide-imgfour-2 != blank%} {{settings.slide-imgfour-2 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/628764d877507b2622f50edb_product-laptop2.png {%endif%}"
+                     alt=""
+                     class="right-block-image laptop2"
+                     aria-hidden="true"
+                     />
+                <div class="callout-laptop2a" aria-hidden="true"></div>
+                <div class="callout-laptop2b" aria-hidden="true"></div>
+                <div class="callout-laptop2c" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div aria-live="off" aria-atomic="true" class="w-slider-aria-label" data-wf-ignore=""></div>
+        </div>
+        <div class="product-slide-left-arrow w-slider-arrow-left" role="button" tabindex="0" aria-controls="w-slider-mask-3" aria-label="previous slide">
+          <div class="product-slide-left-arrow-icon w-icon-slider-left"></div>
+        </div>
+        <div class="product-slide-right-arrow w-slider-arrow-right" role="button" tabindex="0" aria-controls="w-slider-mask-3" aria-label="next slide">
+          <div class="product-slide-right-arrow-icon w-icon-slider-right"></div>
+        </div>
+        <div class="product-slide-slide-nav laptop-margin w-slider-nav">
+          <div class="w-slider-dot w-active" data-wf-ignore="" aria-label="Show slide 1 of 2" aria-pressed="true" role="button" tabindex="0" style="margin-left: 2px; margin-right: 2px;"></div>
+          <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 2 of 2" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 2px; margin-right: 2px;"></div>
+        </div>
+      </div>
+      <div class="right-block-bottom-wrapper latop-cover">
+        <div class="right-block-icon-heading">{{ settings.capiacityfour-text }}</div>
+        <div class="right-block-icon-wrapper"><img src="{%if settings.slide-btmfour-1 != blank%} {{settings.slide-btmfour-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd450d83a94b4_laptop-icons.jpg {%endif%}" loading="lazy" alt="" class="right-block-icons" /></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="left">
+  <div class="left-block">
+
+    <div class="left-wrapper-1">
+
+      {%if settings.image-one != blank%} 
+      <img
+           src="{{settings.image-one | img_url: ''}}"
+           loading="lazy"
+           sizes="(max-width: 991px) 100vw, 40vw"
+           srcset="{{settings.image-one | img_url: ''}}"
+           alt=""
+           class="left-image"
+           />
+
+      {% else %} 
+      <img
+           src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c81015415171671e9c9ed_model-backpack-30may-responsive.jpg"
+           loading="lazy"
+           sizes="(max-width: 991px) 100vw, 40vw"
+           srcset="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c81015415171671e9c9ed_model-backpack-30may-responsive.jpg"
+           alt=""
+           class="left-image"
+           />
+      {%endif%}
+
+
+    </div>
+    <div class="left-wrapper-2" style="will-change: width, height; width: 100%; height: 0%;">
+
+      {%if settings.image-two != blank%} 
+      <img
+           src="{{settings.image-two | img_url: ''}}"
+           loading="lazy"
+           sizes="(max-width: 991px) 100vw, 40vw"
+           srcset="{{settings.image-two | img_url: ''}}"
+           alt=""
+           class="left-image"
+           />
+
+      {% else %} 
+      <img
+           src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c81019774391d691a2e5e_model-luggage-30may-responsive.jpg"
+           loading="lazy"
+           sizes="(max-width: 991px) 100vw, 40vw"
+           srcset="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c81019774391d691a2e5e_model-luggage-30may-responsive.jpg"
+           alt=""
+           class="left-image"
+           />
+      {%endif%}
+
+
+
+    </div>
+    <div class="left-wrapper-3" style="will-change: width, height; width: 100%; height: 0%;">
+
+      {%if settings.image-three != blank%} 
+      <img
+           src="{{settings.image-three | img_url: ''}}"
+           loading="lazy"
+           sizes="(max-width: 991px) 100vw, 40vw"
+           srcset="{{settings.image-three | img_url: ''}}"
+           alt=""
+           class="left-image"
+           />
+
+      {% else %} 
+      <img
+           src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c8100977439d59d1a2e5d_model-sling-30may-responsive.jpg"
+           loading="lazy"
+           sizes="(max-width: 991px) 100vw, 40vw"
+           srcset="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c8100977439d59d1a2e5d_model-sling-30may-responsive.jpg"
+           alt=""
+           class="left-image"
+           />
+      {%endif%}
+
+
+
+
+    </div>
+    <div class="left-wrapper-4" style="will-change: width, height; width: 100%; height: 0%;">
+
+      {%if settings.image-four != blank%} 
+      <img
+           src="{{settings.image-four | img_url: ''}}"
+           loading="lazy"
+           sizes="(max-width: 991px) 100vw, 40vw"
+           srcset="{{settings.image-four | img_url: ''}}"
+           alt=""
+           class="left-image"
+           />
+
+      {% else %} 
+      <img
+           src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c810060fcbb12fae71e65_model-laptop-30may-responsive.jpg"
+           loading="lazy"
+           sizes="(max-width: 991px) 100vw, 40vw"
+           srcset="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/627c810060fcbb12fae71e65_model-laptop-30may-responsive.jpg"
+           alt=""
+           class="left-image"
+           />
+      {%endif%}
+
+    </div>
+
+
+  </div> 
+</div>
+
+
+
+<div class="right">
+  <div class="right-block-1">
+    <div class="right-block-glow" style="opacity: 0;"></div>
+    <div class="right-block-wrapper">
+      <div class="right-block-product-name">{{ settings.heading-one }}</div>
+      <div
+           data-delay="4000"
+           data-animation="outin"
+           class="product-slider w-slider"
+           data-autoplay="false"
+           data-easing="ease"
+           data-hide-arrows="false"
+           data-disable-swipe="false"
+           data-autoplay-limit="0"
+           data-nav-spacing="2"
+           data-duration="500"
+           data-infinite="true"
+           role="region"
+           aria-label="carousel"
+           >
+        <div class="product-slider-mask w-slider-mask" id="w-slider-mask-4">
+          <div class="product-slide w-slide" aria-label="1 of 3" role="group" style="transform: translateX(0px); opacity: 1;">
+            <div class="product-slide-wrapper">
+              <div class="product-slide-image-wrapper">
+                <img
+                     src="{%if settings.slide-img-1 != blank%} {{settings.slide-img-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286bb6f019bae3a03250e55_product-backpack2.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, (max-width: 1439px) 366.6640625px, 375.4140625px"
+                     srcset="{%if settings.slide-img-1 != blank%} {{settings.slide-img-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286bb6f019bae3a03250e55_product-backpack2.png {%endif%}"
+                     alt=""
+                     class="right-block-image backpack1"
+                     />
+                <div class="callout-backpack1"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-slide w-slide" aria-label="2 of 3" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1; visibility: hidden;">
+            <div class="product-slide-wrapper" aria-hidden="true">
+              <div class="product-slide-image-wrapper" aria-hidden="true">
+                <img
+                     src="{%if settings.slide-img-2 != blank%} {{settings.slide-img-2 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286d3c9f84e66f93b15fc77_product-backpack4.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, (max-width: 1439px) 366.6640625px, 375.4140625px"
+                     srcset="{%if settings.slide-img-2 != blank%} {{settings.slide-img-2 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286d3c9f84e66f93b15fc77_product-backpack4.png {%endif%}"
+                     alt=""
+                     class="right-block-image backpack2"
+                     aria-hidden="true"
+                     />
+                <div class="callout-backpack2" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-slide w-slide" aria-label="3 of 3" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1; visibility: hidden;">
+            <div class="product-slide-wrapper" aria-hidden="true">
+              <div class="product-slide-image-wrapper" aria-hidden="true">
+                <img
+                     src="{%if settings.slide-img-3 != blank%} {{settings.slide-img-3 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286d7a8dcafa58a17b66cf8_product-backpack3.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, (max-width: 1439px) 366.6640625px, 375.4140625px"
+                     srcset="{%if settings.slide-img-3 != blank%} {{settings.slide-img-3 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286d7a8dcafa58a17b66cf8_product-backpack3.png {%endif%}"
+                     alt=""
+                     class="right-block-image backpack1"
+                     aria-hidden="true"
+                     />
+                <div class="callout-backpack3a" aria-hidden="true"></div>
+                <div class="callout-backpack3b" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div aria-live="off" aria-atomic="true" class="w-slider-aria-label" data-wf-ignore=""></div>
+        </div>
+        <div class="product-slide-left-arrow w-slider-arrow-left" role="button" tabindex="0" aria-controls="w-slider-mask-4" aria-label="previous slide">
+          <div class="product-slide-left-arrow-icon w-icon-slider-left"></div>
+        </div>
+        <div class="product-slide-right-arrow w-slider-arrow-right" role="button" tabindex="0" aria-controls="w-slider-mask-4" aria-label="next slide">
+          <div class="product-slide-right-arrow-icon w-icon-slider-right"></div>
+        </div>
+        <div class="product-slide-slide-nav w-slider-nav">
+          <div class="w-slider-dot w-active" data-wf-ignore="" aria-label="Show slide 1 of 3" aria-pressed="true" role="button" tabindex="0" style="margin-left: 2px; margin-right: 2px;"></div>
+          <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 2 of 3" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 2px; margin-right: 2px;"></div>
+          <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 3 of 3" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 2px; margin-right: 2px;"></div>
+        </div>
+      </div>
+      <div class="right-block-bottom-wrapper">
+        <div class="right-block-icon-heading">{{ settings.capiacity-text }}</div>
+        <div class="right-block-icon-wrapper"><img src="{%if settings.slide-btm-1 != blank%} {{settings.slide-btm-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd465293a94b3_luggage-icons.jpg {%endif%}" loading="lazy" alt="" class="right-block-icons" /></div>
+      </div>
+    </div>
+  </div>
+  <div class="right-block-2">
+    <div class="right-block-glow" style="opacity: 0;"></div>
+    <div class="right-block-wrapper">
+      <div class="right-block-product-name bottom-margin-luggage">{{ settings.heading-two }}</div>
+      <div
+           data-delay="4000"
+           data-animation="outin"
+           class="product-slider w-slider"
+           data-autoplay="false"
+           data-easing="ease"
+           data-hide-arrows="false"
+           data-disable-swipe="false"
+           data-autoplay-limit="0"
+           data-nav-spacing="2"
+           data-duration="500"
+           data-infinite="true"
+           role="region"
+           aria-label="carousel"
+           >
+        <div class="product-slider-mask w-slider-mask" id="w-slider-mask-5">
+          <div class="product-slide w-slide" aria-label="1 of 3" role="group" style="transform: translateX(0px); opacity: 1;">
+            <div class="product-slide-wrapper">
+              <div class="product-slide-image-wrapper">
+                <img
+                     src="{%if settings.slide-imgtwo-1 != blank%} {{settings.slide-imgtwo-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/625970b16525a62c737ec2c2_product-luggage1.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, 415.3828125px"
+                     srcset="{%if settings.slide-imgtwo-1 != blank%} {{settings.slide-imgtwo-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/625970b16525a62c737ec2c2_product-luggage1.png {%endif%}"
+                     alt=""
+                     class="right-block-image luggage"
+                     />
+                <img src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/625c7c27bc5a9d50203573f0_luggage1a_2.gif" loading="lazy" alt="" class="callout luggage1a" />
+                <div class="callout-luggage1b"></div>
+                <div class="callout-luggage1c"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-slide w-slide" aria-label="2 of 3" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1; visibility: hidden;">
+            <div class="product-slide-wrapper" aria-hidden="true">
+              <div class="product-slide-image-wrapper" aria-hidden="true">
+                <img
+                     src="{%if settings.slide-imgtwo-2 != blank%} {{settings.slide-imgtwo-2 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286dfc45ad3e537c74d0c73_product-luggage2.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, 415.3828125px"
+                     srcset="{%if settings.slide-imgtwo-2 != blank%} {{settings.slide-imgtwo-2 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286dfc45ad3e537c74d0c73_product-luggage2.png {%endif%}"
+                     alt=""
+                     class="right-block-image luggage"
+                     aria-hidden="true"
+                     />
+                <img src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/625c79b392c3bb09dd4e0592_luggage2_1.gif" loading="lazy" alt="" class="callout luggage2" aria-hidden="true" />
+              </div>
+            </div>
+          </div>
+          <div class="product-slide w-slide" aria-label="3 of 3" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1; visibility: hidden;">
+            <div class="product-slide-wrapper" aria-hidden="true">
+              <div class="product-slide-image-wrapper" aria-hidden="true">
+                <img
+                     src="{%if settings.slide-imgtwo-3 != blank%} {{settings.slide-imgtwo-3 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286edf6717a9a578c4512f1_product-luggage3.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, 415.3828125px"
+                     srcset="{%if settings.slide-imgtwo-3 != blank%} {{settings.slide-imgtwo-3 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6286edf6717a9a578c4512f1_product-luggage3.png {%endif%}"
+                     alt=""
+                     class="right-block-image luggage"
+                     aria-hidden="true"
+                     />
+                <div class="callout-luggage3a" aria-hidden="true"></div>
+                <div class="callout-luggage3b" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div aria-live="off" aria-atomic="true" class="w-slider-aria-label" data-wf-ignore=""></div>
+        </div>
+        <div class="product-slide-left-arrow w-slider-arrow-left" role="button" tabindex="0" aria-controls="w-slider-mask-5" aria-label="previous slide">
+          <div class="product-slide-left-arrow-icon w-icon-slider-left"></div>
+        </div>
+        <div class="product-slide-right-arrow w-slider-arrow-right" role="button" tabindex="0" aria-controls="w-slider-mask-5" aria-label="next slide">
+          <div class="product-slide-right-arrow-icon w-icon-slider-right"></div>
+        </div>
+        <div class="product-slide-slide-nav w-slider-nav">
+          <div class="w-slider-dot w-active" data-wf-ignore="" aria-label="Show slide 1 of 3" aria-pressed="true" role="button" tabindex="0" style="margin-left: 2px; margin-right: 2px;"></div>
+          <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 2 of 3" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 2px; margin-right: 2px;"></div>
+          <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 3 of 3" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 2px; margin-right: 2px;"></div>
+        </div>
+      </div>
+      <div class="right-block-bottom-wrapper">
+        <div class="right-block-icon-heading">{{ settings.capiacitytwo-text }}</div>
+        <div class="right-block-icon-wrapper"><img src="{%if settings.slide-btmtwo-1 != blank%} {{settings.slide-btmtwo-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd465293a94b3_luggage-icons.jpg {%endif%}" loading="lazy" alt="" class="right-block-icons" /></div>
+      </div>
+    </div>
+  </div>
+  <div data-w-id="83329eac-fa34-7583-0068-bbb4c39d9ac9" class="right-block-3">
+    <div class="right-block-glow" style="opacity: 0;"></div>
+    <div class="right-block-wrapper">
+      <div class="right-block-product-name bottom-margin-sling">{{ settings.heading-three }}</div>
+      <div
+           data-delay="4000"
+           data-animation="outin"
+           class="product-slider w-slider"
+           data-autoplay="false"
+           data-easing="ease"
+           data-hide-arrows="false"
+           data-disable-swipe="false"
+           data-autoplay-limit="0"
+           data-nav-spacing="2"
+           data-duration="500"
+           data-infinite="true"
+           role="region"
+           aria-label="carousel"
+           >
+        <div class="product-slider-mask w-slider-mask" id="w-slider-mask-6">
+          <div class="product-slide w-slide" aria-label="1 of 3" role="group" style="transform: translateX(0px); opacity: 1;">
+            <div class="product-slide-wrapper">
+              <div class="product-slide-image-wrapper">
+                <img
+                     src="{%if settings.slide-imgthree-1 != blank%} {{settings.slide-imgthree-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6287bed560828142cf6580be_product-sling1.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, 329.5234375px"
+                     srcset="{%if settings.slide-imgthree-1 != blank%} {{settings.slide-imgthree-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6287bed560828142cf6580be_product-sling1.png {%endif%}"
+                     alt=""
+                     class="right-block-image sling-2"
+                     />
+                <div class="callout-sling1a"></div>
+                <div class="callout-sling1b"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-slide w-slide" aria-label="2 of 3" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1; visibility: hidden;">
+            <div class="product-slide-wrapper" aria-hidden="true">
+              <div class="product-slide-image-wrapper" aria-hidden="true">
+                <img
+                     src="{%if settings.slide-imgthree-2 != blank%} {{settings.slide-imgthree-2 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6287592077507b514ef4a964_product-sling2.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, 329.5234375px"
+                     srcset="{%if settings.slide-imgthree-2 != blank%} {{settings.slide-imgthree-2 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/6287592077507b514ef4a964_product-sling2.png {%endif%}"
+                     alt=""
+                     class="right-block-image sling"
+                     aria-hidden="true"
+                     />
+                <div class="callout-sling2" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-slide w-slide" aria-label="3 of 3" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1; visibility: hidden;">
+            <div class="product-slide-wrapper" aria-hidden="true">
+              <div class="product-slide-image-wrapper" aria-hidden="true">
+                <img
+                     src="{%if settings.slide-imgthree-3 != blank%} {{settings.slide-imgthree-3 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/62875bffbe5b049c76c5c8fb_product-sling3.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, 329.5234375px"
+                     srcset="{%if settings.slide-imgthree-3 != blank%} {{settings.slide-imgthree-3 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/62875bffbe5b049c76c5c8fb_product-sling3.png {%endif%}"
+                     alt=""
+                     class="right-block-image sling"
+                     aria-hidden="true"
+                     />
+                <img src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/625b66f8740b672e004788a9_sling3.gif" loading="lazy" alt="" class="callout sling3" aria-hidden="true" />
+              </div>
+            </div>
+          </div>
+          <div aria-live="off" aria-atomic="true" class="w-slider-aria-label" data-wf-ignore=""></div>
+        </div>
+        <div class="product-slide-left-arrow w-slider-arrow-left" role="button" tabindex="0" aria-controls="w-slider-mask-6" aria-label="previous slide">
+          <div class="product-slide-left-arrow-icon w-icon-slider-left"></div>
+        </div>
+        <div class="product-slide-right-arrow w-slider-arrow-right" role="button" tabindex="0" aria-controls="w-slider-mask-6" aria-label="next slide">
+          <div class="product-slide-right-arrow-icon w-icon-slider-right"></div>
+        </div>
+        <div class="product-slide-slide-nav w-slider-nav">
+          <div class="w-slider-dot w-active" data-wf-ignore="" aria-label="Show slide 1 of 3" aria-pressed="true" role="button" tabindex="0" style="margin-left: 2px; margin-right: 2px;"></div>
+          <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 2 of 3" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 2px; margin-right: 2px;"></div>
+          <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 3 of 3" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 2px; margin-right: 2px;"></div>
+        </div>
+      </div>
+      <div class="right-block-image-wrapper hide">
+        <img
+             src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd4b6bd3a949b_product-sling.png"
+             loading="lazy"
+             sizes="100vw"
+             srcset="
+                     https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd4b6bd3a949b_product-sling-p-500.png 500w,
+                     https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd4b6bd3a949b_product-sling.png       595w
+                     "
+             alt=""
+             class="right-block-image sling"
+             />
+        <div class="image-preview-wrap hide">
+          <img
+               src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624cf60b77fd452c7939346d_sling-feature2.jpg"
+               loading="lazy"
+               sizes="100vw"
+               srcset="
+                       https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624cf60b77fd452c7939346d_sling-feature2-p-500.jpeg 500w,
+                       https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624cf60b77fd452c7939346d_sling-feature2-p-800.jpeg 800w,
+                       https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624cf60b77fd452c7939346d_sling-feature2.jpg        932w
+                       "
+               alt=""
+               class="image-preview"
+               />
+        </div>
+      </div>
+      <div class="right-block-bottom-wrapper">
+        <div class="right-block-icon-heading">{{ settings.capiacitythree-text }}</div>
+        <div class="right-block-icon-wrapper"><img src="{%if settings.slide-btmthree-1 != blank%} {{settings.slide-btmthree-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd407703a94b5_sling-icons.jpg {%endif%}" loading="lazy" alt="" class="right-block-icons" /></div>
+      </div>
+    </div>
+  </div>
+  <div data-w-id="83329eac-fa34-7583-0068-bbb4c39d9aee" class="right-block-4">
+    <div class="right-block-glow" style="opacity: 0;"></div>
+    <div class="right-block-wrapper">
+      <div class="right-block-product-name">{{ settings.heading-four }}</div>
+      <div
+           data-delay="4000"
+           data-animation="outin"
+           class="product-slider w-slider"
+           data-autoplay="false"
+           data-easing="ease"
+           data-hide-arrows="false"
+           data-disable-swipe="false"
+           data-autoplay-limit="0"
+           data-nav-spacing="2"
+           data-duration="500"
+           data-infinite="true"
+           role="region"
+           aria-label="carousel"
+           >
+        <div class="product-slider-mask w-slider-mask" id="w-slider-mask-7">
+          <div class="product-slide w-slide" aria-label="1 of 2" role="group" style="transform: translateX(0px); opacity: 1;">
+            <div class="product-slide-wrapper">
+              <div class="product-slide-image-wrapper">
+                <img
+                     src="{%if settings.slide-imgfour-1 != blank%} {{settings.slide-imgfour-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/62577e855e6962ac365df5a4_product-laptop1.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, 375px"
+                     srcset="{%if settings.slide-imgfour-1 != blank%} {{settings.slide-imgfour-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/62577e855e6962ac365df5a4_product-laptop1.png {%endif%}"
+                     alt=""
+                     class="right-block-image laptop1"
+                     />
+                <div class="callout-laptop1"></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-slide w-slide" aria-label="2 of 2" role="group" aria-hidden="true" style="transform: translateX(0px); opacity: 1; visibility: hidden;">
+            <div class="product-slide-wrapper" aria-hidden="true">
+              <div class="product-slide-image-wrapper" aria-hidden="true">
+                <img
+                     src="{%if settings.slide-imgfour-2 != blank%} {{settings.slide-imgfour-2 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/628764d877507b2622f50edb_product-laptop2.png {%endif%}"
+                     loading="lazy"
+                     sizes="(max-width: 991px) 100vw, 395px"
+                     srcset="{%if settings.slide-imgfour-2 != blank%} {{settings.slide-imgfour-2 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/628764d877507b2622f50edb_product-laptop2.png {%endif%}"
+                     alt=""
+                     class="right-block-image laptop2"
+                     aria-hidden="true"
+                     />
+                <div class="callout-laptop2a" aria-hidden="true"></div>
+                <div class="callout-laptop2b" aria-hidden="true"></div>
+                <div class="callout-laptop2c" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div aria-live="off" aria-atomic="true" class="w-slider-aria-label" data-wf-ignore=""></div>
+        </div>
+        <div class="product-slide-left-arrow w-slider-arrow-left" role="button" tabindex="0" aria-controls="w-slider-mask-7" aria-label="previous slide">
+          <div class="product-slide-left-arrow-icon w-icon-slider-left"></div>
+        </div>
+        <div class="product-slide-right-arrow w-slider-arrow-right" role="button" tabindex="0" aria-controls="w-slider-mask-7" aria-label="next slide">
+          <div class="product-slide-right-arrow-icon w-icon-slider-right"></div>
+        </div>
+        <div class="product-slide-slide-nav w-slider-nav">
+          <div class="w-slider-dot w-active" data-wf-ignore="" aria-label="Show slide 1 of 2" aria-pressed="true" role="button" tabindex="0" style="margin-left: 2px; margin-right: 2px;"></div>
+          <div class="w-slider-dot" data-wf-ignore="" aria-label="Show slide 2 of 2" aria-pressed="false" role="button" tabindex="-1" style="margin-left: 2px; margin-right: 2px;"></div>
+        </div>
+      </div>
+      <div class="right-block-image-wrapper hide">
+        <img
+             src="https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd4989e3a949d_product-laptop.png"
+             loading="lazy"
+             sizes="100vw"
+             srcset="
+                     https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd4989e3a949d_product-laptop-p-500.png 500w,
+                     https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd4989e3a949d_product-laptop-p-800.png 800w,
+                     https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd4989e3a949d_product-laptop.png       917w
+                     "
+             alt=""
+             class="right-block-image laptop"
+             />
+      </div>
+      <div class="right-block-bottom-wrapper">
+        <div class="right-block-icon-heading">{{ settings.capiacityfour-text }}</div>
+        <div class="right-block-icon-wrapper"><img src="{%if settings.slide-btmfour-1 != blank%} {{settings.slide-btmfour-1 | img_url: ''}} {% else %} https://uploads-ssl.webflow.com/624a907f6b4dd470003a9477/624a907f6b4dd450d83a94b4_laptop-icons.jpg {%endif%}" loading="lazy" alt="" class="right-block-icons" /></div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,85 @@
+{{ 'tumi-diff__image-slider.css'|asset_url|stylesheet_tag }}
+<div class="image-slider-wrap diff-material-box" style="opacity:1">
+  <div class="page-width">
+     <div class="tumi-img-container ">
+       <div class="diff_material_auto_slide">
+      {% for block in section.blocks %}
+        {% if block.settings.desktop_image != blank %}
+           <img src="{{ block.settings.desktop_image | img_url:'master'}}" alt="">
+         {% else %}
+        <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/Anthony22_Tegra_graphitecarryon__black_018.jpg?v=1679292196"/>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div> 
+     <div class="content-slider-wrap ">
+       <div class="content-slide-diffs diff_material_arrow_slide ">
+        {% for block in section.blocks %}
+          <div class="content-slider-wraps">
+           <span>{{ block.settings.slider_text }}</span>
+           <div class="content-slider-head">
+             <h2 class="content-slider-subtext">{{ block.settings.slider_subtext }}</h2>
+           <div class="separator-sm">&nbsp;</div>
+           </div>
+           <p class="content-slider-des">{{ block.settings.slider_des }}</p>
+             </div>
+       {% endfor %}
+       </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+  "name": "Image with Text",
+  "settings": [],
+   "max_blocks": 1,
+  "blocks": [
+     {
+       "name": "Design Excellence Slider",
+       "type": "Image",
+       "settings": [
+          {
+            "type":"header",
+            "content":"Image with Text"
+          },
+            {
+             "type": "image_picker",
+             "id": "desktop_image",
+             "label": "Image Desktop"
+          },        
+         {
+           "type": "text",
+           "id": "slider_text",
+           "label": "Title",
+           "default": "End To End Design"
+         },
+         {
+           "type": "html",
+           "id": "slider_subtext",
+           "label": "Title",
+           "default": "Designed From </br> The Bottom Up"
+         },
+         {
+           "type": "text",
+           "id": "slider_des",
+           "label": "Description",
+           "default": "Every product ever designed by us started from an idea on a piece of paper and then engineered over and over until we are satisfied with the product we hold in our hands"
+         }
+       ]
+     }
+   ],
+  "presets":[
+        {
+         "name": "Slider"
+        }
+  ]
+}
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

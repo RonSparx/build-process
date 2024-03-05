@@ -1,0 +1,125 @@
+{{ 'tumi-diff__image-slider.css'|asset_url|stylesheet_tag }}
+<div class="image-slider-wrap diff-at-your-service-slider" style="opacity:1">
+  <div class="page-width">
+     <div class="tumi-img-container diff_service_auto_slide">
+       <div class="diff_service_auto_slide">
+      {% for block in section.blocks %}
+        {% if block.settings.desktop_image != blank %}
+           <img src="{{ block.settings.desktop_image | img_url:'master'}}" alt="">
+         {% else %}
+        <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/Anthony22_Tegra_graphitecarryon__black_018.jpg?v=1679292196"/>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div> 
+     <div class="content-slider-wrap ">
+       <div class="content-slide-diffs diff_service_arrow_slide">
+        {% for block in section.blocks %}
+          <div class="content-slider-wraps">
+           <span>{{ block.settings.slider_text }}</span>
+           <div class="content-slider-head">
+             <h2 class="content-slider-subtext">{{ block.settings.slider_subtext }}</h2>
+           <div class="separator-sm">&nbsp;</div>
+           </div>
+           <p class="content-slider-des">{{ block.settings.slider_des }}</p>
+             </div>
+       {% endfor %}
+       </div>
+    </div>
+  </div>
+</div>
+ <script>
+    // $(document).ready(function(){
+    //   $('.diff_service_auto_slide').slick({
+    //     dots: false,
+    //     arrows:false,
+    //     autoplay:true,
+    //     autoplaySpeed:2250,
+    //     slidesToShow:1,
+    //      mobileFirst: true,
+    //     slidesToScroll: 1,
+     
+    //   });
+       
+      
+    //   // loading content
+    //       setTimeout(function(){
+    //       jQuery('.diff_service_auto_slide').css('opacity',1);
+    //       jQuery('.loader_new').hide();
+    //       }, 2000)
+    // });
+   
+  // thumb slider
+$(document).ready(function(){
+    $('.diff_service_auto_slide').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+       autoplay:true,
+      fade: true,
+      asNavFor: '.diff_service_arrow_slide'
+    });
+    $('.diff_service_arrow_slide').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      asNavFor: '.diff_service_auto_slide',
+      dots: true,
+      centerMode: true,
+      focusOnSelect: true
+    });
+});
+</script> 
+{% schema %}
+  {
+  "name": "Image with Text",
+  "class":"diff-service-slider",
+  "settings": [],
+  "blocks": [
+     {
+       "name": "Design Excellence Slider",
+       "type": "Image",
+       "settings": [
+          {
+            "type":"header",
+            "content":"Image with Text"
+          },
+            {
+             "type": "image_picker",
+             "id": "desktop_image",
+             "label": "Image Desktop"
+          },        
+         {
+           "type": "text",
+           "id": "slider_text",
+           "label": "Title",
+           "default": "GLOBAL WARRANTY"
+         },
+         {
+           "type": "html",
+           "id": "slider_subtext",
+           "label": "Title",
+           "default": "Warranty"
+         },
+         {
+           "type": "text",
+           "id": "slider_des",
+           "label": "Description",
+           "default": "TUMI products are made to exceed expectations. That's why we stand behind each one.Should you experience any issues with your TUMI product, our products come with up to a five-year warranty."
+         }
+       ]
+     }
+   ],
+  "presets":[
+        {
+         "name": "Slider"
+        }
+  ]
+}
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

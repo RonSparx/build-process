@@ -1,0 +1,195 @@
+<style>
+  .degree-button .btn-transparent{
+    background-color: #000000;
+    display: inline-block;
+    padding: 15px 20px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0;
+    letter-spacing: .0125em;
+    text-decoration: none;
+    max-width: 100%;
+    width: 80%;
+  }
+  .degree-button .fa-caret-right:before{
+    content:none;
+  }
+  .degree-button .btn-transparent.btn-second{
+    margin-top:10px;
+    background-color: transparent;
+    color: #000;
+    border: 1px solid #000;
+  }
+
+@media (min-width: 750px){
+      .discover-aplha.first-video .discover-item:nth-child(odd) {
+      flex-direction: inherit;
+    }
+  }
+</style>
+
+<section  id="aplhatwo" class="degree-button">
+    <div class="page-width">
+      <div class="discover-wrap">
+        {% if section.settings.jou_heading != blank and  section.settings.jou_sub_heading != blank %}
+        <div class="header-block">
+          <span class="subtitle">{{section.settings.jou_heading}}</span>
+          <h2 class="block_title">
+            {{section.settings.jou_sub_heading}}
+          </h2>
+        </div>
+        {% endif %}
+          
+        <div class="discover-aplha first-video">
+           <div class="discover-item">
+             <div class="video-desc">
+              <div class="backpack-con">
+                <h2>{{section.settings.jou_title}}</h2>
+                {{section.settings.jou_content}}
+                
+                {% if section.settings.jou_btn != blank %}
+                <a href="{{section.settings.jou_link | default:'#'}}" class="btn-transparent">
+                  <span class="ben-text">{{section.settings.jou_btn}} </span>
+                  <i class="fas fa-caret-right" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+
+                 {% if section.settings.jou_btn-two != blank %}
+                <a href="{{section.settings.jou_link-two | default:'#'}}" class="btn-transparent btn-second">
+                  <span class="ben-text">{{section.settings.jou_btn-two}} </span>
+                  <i class="fas fa-caret-right" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+              </div>
+            </div>
+            <div class="video-col">
+              <div class="video-discover">
+                {%  if section.settings.jou_vertical_alignment_top == "image_top" %}
+                <div class="fallback-img">
+                  {% if section.settings.jou_img != blank %}
+                  	<img src="{{section.settings.jou_img | img_url:'600x'}}" />
+                  {% else %}
+                  <img src="https://cdn.media.amplience.net/i/tumi/lp-19-degree-aluminum-son" alt="img"/>
+                  {% endif %}
+                </div>
+                {%  else %}
+                  
+                 {% if section.settings.jou_video != blank %}
+                <video width="100%" height="auto" media="(min-width:650px)" autoplay muted loop>
+                  <source class="desktop_view" src="{{section.settings.jou_video}}"/>
+                </video>
+                 <video class="mobile_view" width="100%" height="auto" autoplay muted loop>
+                  <source src="{{section.settings.jou_video_mob}}"/>
+                </video>
+                   
+                {% else %}
+                <video width="100%" height="auto" autoplay muted loop>
+                  <source src="https://cdn.media.amplience.net/v/tumi/lp-built-for-the-journey-gracie/mp4_1440p"/>
+                </video>
+                {% endif %}
+                {% endif %}
+              </div>
+            </div>
+            
+          </div>
+         
+        </div>
+      </div>
+ 
+
+    </div>
+  </section>
+{% schema %}
+  {
+    "name": "Journey images with text",
+    "settings": [
+	{
+	"type":"text",
+	"id":"jou_heading",
+	"label":"Heading"
+},
+{
+	"type":"text",
+	"id":"jou_sub_heading",
+	"label":"Sub Heading"
+},
+{
+	"type":"header",
+	"content":"Block -1"
+},
+{
+  "type": "select",
+  "id": "jou_vertical_alignment",
+  "label": "Vertical alignment",
+  "options": [
+    {
+      "value": "image",
+      "label": "Image"
+    },
+    {
+      "value": "video",
+      "label": "Video"
+    }
+  ],
+  "default": "image"
+},      
+{
+	"type":"image_picker",
+	"id":"jou_img",
+	"label":"Fallback image"
+		},
+{
+	"type":"url",
+	"id":"jou_video",
+	"label":"Video URL"
+},
+      {
+	"type":"url",
+	"id":"jou_video_mob",
+	"label":"Mobile Video URL"
+},
+{
+	"type":"text",
+	"id":"jou_title",
+	"label":"Title",
+	"default":"Gracie in Paris"
+		},
+    {
+	"type":"richtext",
+	"id":"jou_content",
+	"label":"Content",
+	"default":"<p>For her tour, Gracie packed everything she needed in TEGRA-LITE® pieces. Her campaign was inspired by her song, “For Real This Time.” </p>"
+		},
+  {
+  "type":"text",
+  "id":"jou_btn",
+  "label":"Button name",
+  "default":"Shop the collection"
+  },
+  {
+  "type":"url",
+  "id":"jou_link",
+  "label":"Button URL"
+  },
+  {
+  "type":"text",
+  "id":"jou_btn-two",
+  "label":"Button name",
+  "default":"Watch Gracie's Full Video"
+  },
+  {
+  "type":"url",
+  "id":"jou_link-two",
+  "label":"Button URL"
+  }    
+        
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

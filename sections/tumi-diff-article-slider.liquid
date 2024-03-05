@@ -1,0 +1,84 @@
+{{ 'tumi-diff_tech-slider.css'|asset_url|stylesheet_tag }}
+<div class="tech-innovation-slider">
+  <div class="page-width">
+    <div class="tech-innovation-wrap tech_diff_arrow_slide">
+      {% for block in section.blocks %}
+          <div class="innovation-slider">
+              <div class="tech-image">
+                 {% if block.settings.tech_image != blank %}
+                   <img src="{{ block.settings.tech_image | img_url:'master' }}" alt="">
+                  {% else %}
+                   <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/SS23_19DExtTrip_PC_Lilac-and-19DIntlExpCO_Lilac_1965_v1_CMYK_300dpi1.jpg?v=1678256803" />
+                {% endif %}
+              </div>
+              <div class="innovation-content">
+                 <h2 class="innovation-content-title">{{ block.settings.tech_title }}</h2>
+                 <p class="innovation-content-des">{{ block.settings.tech_des }}</p>
+              </div>
+         </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<script>
+
+  $(document).ready(function(){
+      var sliderCount = 4;
+      if($(window).width() >480 && $(window).width() <1199){
+        sliderCount = 3;
+        } 
+      else if ($(window).width() <480) {
+          sliderCount = 2;
+        } 
+      $('.tech_diff_arrow_slide').slick({
+        dots: false,
+        arrows:true,
+        infinite: true,
+        speed:1300,
+        slidesToShow:sliderCount,
+        slidesToScroll: 1
+      });
+      // loading content
+          setTimeout(function(){
+          jQuery('.tech_diff_arrow_slide').css('opacity',1);
+          jQuery('.loader_new').hide();
+          }, 2000)
+    });
+
+</script>
+{% schema %}
+  {
+    "name": "Article Slider",
+    "settings": [],
+    "blocks": [
+    {
+      "name": "Article Slide",
+      "type": "slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "tech_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "tech_title",
+          "label": "Title",
+          "default": "X-Brace 45 Handle System"
+        },
+        {
+          "type": "text",
+          "id": "tech_des",
+          "label": "Description",
+          "default": "An innovative telescoping handle made from lightweight yet sturdy aircraft-grade aluminum."
+        }
+      ]
+    }
+  ],
+    "presets": [
+      {
+       "name": "Article Slider"
+      }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,74 @@
+ <!-- Sticky menu --> 
+        <nav class="sticky_menu">
+            <div class="wrapper">
+                <a class="hamburger hamburger--slider" onclick="toggleMenu();">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </a>
+                <div class="menu">
+                  {% for block in section.blocks %}
+                    <a href="{{ block.settings.link_nav }}" data-scroll>{{ block.settings.nav_text }}</a>
+                  {% endfor %}
+                </div>
+            </div>
+        </nav>
+  
+   <!-- Banner -->
+    <section class="slider_con" data-aos="fade-up">
+        <div class="slider">
+            <img src="{{ section.settings.image | img_url:'master'}}" class="ban1 ban animate__animated animate__zoomEffect" />
+            <img src="{{ section.settings.image | img_url:'master'}}" class="ban2 ban animate__animated animate__zoomEffect2 animate__delay-5s" />
+            <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/blank_slide_img.png" class="banner_bg" />
+            <img src="{{ section.settings.image_mbl | img_url:'master'}}" class="banner_m" />
+		
+            <div class="title_box">
+                <h1>{{ section.settings.title }}</h1>
+                <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/TUMI-Maclaren-Logo.png" />
+            </div>
+        
+        </div>
+    </section>
+{% schema %}
+  {
+     "name": "mclaren Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "banner image"
+      },
+	{
+        "type": "image_picker",
+        "id": "image_mbl",
+        "label": "mobile banner image"
+      },
+	 {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }
+		
+    ],
+    "blocks": [
+      {
+        "type": "nav",
+        "name": "nav",
+        "settings": [
+          {
+            "type": "text",
+            "id": "nav_text",
+            "label": "Nav text"
+          },
+          {
+          "type":"text",
+          "id":"link_nav",
+          "label":"section link"
+          }   
+        ]
+      }
+
+      
+    ]
+  }
+{% endschema %}

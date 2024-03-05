@@ -1,0 +1,79 @@
+<section class="common-vms snap-section">
+  <div class="custom-container">
+    <ul>
+      <li>
+        <div class="view-content" data-aos="fade-up">
+          <h2>{{ section.settings.heading }}</h2>
+          <p>{{ section.settings.text }}</p>
+          <a class="btn-ab" href="{{ section.settings.btnlink }}">{{ section.settings.btnlabel }}</a>
+        </div>  	
+      </li>
+      <li>
+        <div class="span-wrapper" data-aos="fade-left">
+          {%comment%}
+          <picture>
+            <source media="(min-width:1200px)" srcset="{{ section.settings.desk_img | img_url: "original"}}">            
+            <source media="(min-width:750px)" srcset="{{ section.settings.mbl_img | img_url: "original"}}">
+            <img src="{{ section.settings.mbl_img | img_url: "original"}}" alt="icon" style="width:auto;">
+          </picture>
+          {%endcomment%}
+          <video loop autoplay playsInline muted id="game_video">
+            <source src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/selfie.mp4?v=1613394631" type="video/mp4">
+            <img src="{{ section.settings.six_desk_img | img_url: "original"}}" width="100%">
+          </video>
+          {% comment %}
+          <div class="slide-gif">
+            <img src="{{ section.settings.gif_img | img_url:'original' }}" alt="gif-rotate" style="width:auto;">
+          </div>
+          {% endcomment %}
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+
+
+{% schema %}
+{
+"name": "tumi-store-6",
+"settings": [
+{
+"type": "image_picker",
+"id": "desk_img",
+"label": "Desktop Image"
+},
+{
+"type": "image_picker",
+"id": "mbl_img",
+"label": "Mobile Image"
+},
+{
+"type": "image_picker",
+"id": "gif_img",
+"label": "Gif Image"
+},
+{
+"type": "text",
+"id": "heading",
+"label": "Heading"
+},
+{
+"type": "textarea",
+"id": "text",
+"label": "text"
+},
+{
+"type": "text",
+"id": "btnlabel",
+"label": "button Label"
+},
+{
+"type": "url",
+"id": "btnlink",
+"label": "button Link"
+}
+]
+}
+{% endschema %}

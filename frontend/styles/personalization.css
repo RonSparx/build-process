@@ -1,0 +1,433 @@
+
+
+
+
+
+.monogram-page h1,
+.monogram-page h2,
+.monogram-page h3,
+.monogram-page h4,
+.monogram-page h5,
+.monogram-page h6{
+  font-family: Proxima Nova Rg;
+}
+
+
+.sec-banner {
+  margin-top: -30px;
+  position:relative;
+}
+.banner-info {
+  padding: 70px 30px;
+  text-align: center;
+}
+
+.banner-info h3, 
+.stamp-des h3
+{
+  font-size: 24px;
+  text-transform: uppercase;
+  font-weight: normal;
+  color: #333333;
+  margin-bottom: 15px;
+}
+.banner-info-des p br,
+.stamp-des p br
+{
+  margin-bottom: 14px;
+      content: " ";
+    display: block;
+}
+
+
+/* stam sec css start */
+
+.container-full {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.stamp-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.stamp-col, .stamp-card {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.stamp-row .stamp-card:last-child {
+  margin-top: 15px;
+}
+.stamp-card-img img {
+  display: block;
+}
+.stamp-info {
+  padding: 50px 0;
+}
+.stamp-info .text-light {
+  text-transform: capitalize;
+  color: #a9adaf;
+}
+.stamp-des {
+  text-align: center;
+}
+
+
+
+.stamp-card-img img {
+  width: 100%;
+  height: auto;
+}
+/* stam sec css end */
+
+
+
+
+/* customize css strat */
+.heading-block {
+  font-size: 24px;
+  font-weight: 400;
+  color: #212529;
+  margin-bottom: 50px;
+  text-align: center;
+}
+.customize-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.customize-col {
+  padding: 0 65px 50px;
+  text-align: center;
+  width: 100%;
+}
+.customize-guidline h4 {
+  margin: 20px 0;
+  font-size: 17px;
+  color: #333333;
+}
+/* customize css end */
+
+
+/* carousel css start */
+
+.carousel-sec .heading-block {
+  font-size: 24px;
+  color: #a9adaf;
+  text-transform: uppercase;
+  margin-bottom: 60px;
+      font-family: "Proxima Nova Lt";
+    font-weight: 600;
+}
+.carousel-sec .heading-block .text-light {
+  display: block;
+  text-transform: capitalize;
+}
+.carousel-text {
+  text-align: center;
+  padding: 20px 0;
+}
+.personalization-carousel {
+  padding-bottom: 30px;
+}
+.personalization-carousel .slick-dots li {
+  width: auto;
+}
+.personalization-carousel .slick-dots li button {
+  width: auto;
+  height: auto;
+  padding: 2px 40px;
+  background-color: #000;
+  opacity: .2;
+  filter: alpha(opacity=.2);
+}
+.personalization-carousel .slick-dots li.slick-active button {
+  opacity: 1;
+  filter: alpha(opacity=1);
+}
+.personalization-carousel .slick-dots li button:before {
+  display: none;
+}
+.image-citems img {
+  width: 100%;
+  height: auto;
+}
+.carousel-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.carousel-col {
+  width:100%;
+  padding-left: 15px;
+  padding-right: 15px;
+
+} 
+
+
+/* ashton css start */
+.ashton {
+  margin-top: 60px;
+}
+.ashton-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.ashton-col.ashton-content {
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+}
+.ashton-col.ashton-content p {
+  margin: 0;
+}
+.ashton-col {
+  width: 100%;
+}
+
+.ashton-col img {
+  width: 100%;
+  height: auto;
+}
+.info_col:last-child {
+  margin-bottom: 0;
+}
+
+/* info section css start */
+
+
+.info_text {
+  margin-top: 49px;
+  padding-bottom: 49px;
+  text-align: center;
+}
+.info_col h4 {
+  color: #808080;
+  font-size: 13px;
+  margin-bottom: 7px;
+}
+
+.info_col {
+  margin-bottom: 30px;
+}
+
+.info_col p {
+  color: #999999;
+}
+
+
+.banner-img {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    animation-delay: .2s;
+}
+
+.banner-img.wow.fadeInRightBig {
+       opacity: 1;
+    filter: alpha(opacity=1);
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+
+.wow{
+    opacity: 1;
+    filter: alpha(opacity=1);
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+
+
+/* media css start */
+
+
+@media all and (min-width: 768px){
+  .container-full {
+    max-width: 720px;
+  }
+  .personalization-carousel{
+    padding-left:15px;
+    padding-right:15px;
+  }
+}
+
+
+@media all and (min-width: 992px){
+  .banner-info {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    text-align: right;
+    margin: 0;
+    padding: 0;
+    max-width: 43.5vw;
+    left: 2%;
+    transform: translateY(-50%);
+    width: 41.2vw;
+  }
+
+  .banner-info h3,
+  .stamp-des h3,
+  .heading-block
+  {
+    font-size: 2.0143vw;
+  }
+  .banner-info-des p
+  {
+    font-size: 12px;
+  }
+
+
+  /* stamp css start    */
+
+  .hot-stamp {
+    margin-top: 100px;
+    margin-bottom: 200px;
+  }
+
+  .stamp-col.stamp-des {
+    order: 1;
+  }
+
+  .stamp-col.stamp-imgs {
+    order: 2;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .container-full {
+    max-width: 1200px;
+  }
+  .stamp-imgs .stamp-row {
+    margin-left: -40px;
+    margin-right: -40px;
+  }
+
+  .stamp-imgs .stamp-row .stamp-card {
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 50%;
+  }
+
+  .stamp-row .stamp-card:last-child {
+    margin-top: 0;
+  }
+  /*  stamp css end  */
+
+  .customize-col {
+    width: 33.33%;
+  }
+  .customize-img {
+    display: flex;
+    height: 160px;
+    align-items: center;
+  }
+  .customize-guidline h4 {
+    font-size: 20px;
+    min-height: 2.5em;
+  }
+  .guidline-text p {
+    font-size: 13px;
+  }
+
+
+
+  .carousel-col {
+    width: 50%;
+  }
+  .carousel-row {
+    align-items: center;
+  }
+
+/*   .carousel-item:last-child .carousel-row {
+    flex-direction: row-reverse;
+  } */
+
+
+  .carousel-sec .heading-block {
+    color: #000000;
+    font-size: 32px;
+  }
+
+  .carousel-sec .heading-block .text-light {
+    color: #a9adaf;
+    display: inline-block;
+  }
+  .customize-sec {
+    margin-top: 147px;
+    margin-bottom: 70px;
+  }
+
+  .ashton-col {
+    width: 50%;
+  }
+
+  .ashton-row {
+    align-items: center;
+  }
+  .ashton-col.ashton-content {
+    padding: 14px;
+  }
+
+}
+
+@media all and (min-width: 1200px){
+  .carousel-sec{
+  	    max-width: 800px;
+  }
+}
+
+
+@media all and (min-width: 1440px){
+  .ashton {
+    margin-top: 112px;
+    margin-bottom: 112px;
+  }
+  .info_col h4 {
+    font-size: 14px;
+  }
+}
+
+@media all and (min-width: 1600px){
+  .banner-info-des p
+  {
+    font-size: 15px;
+    line-height: initial;
+  }
+  .stamp-des p,
+  .carousel-text p
+  {
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: normal;
+  }
+  .carousel-sec .heading-block {
+    font-size: 45px;
+  }
+
+  .ashton {
+    margin-top: 147px;
+    margin-bottom: 147px;
+  }
+  .ashton-col.ashton-content p {
+    font-size: 18px;
+  }
+  .info_col h4 {
+    font-size: 17px;
+  }
+  
+  .carousel-sec{
+  	    max-width: 1200px;
+  }
+
+}

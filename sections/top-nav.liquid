@@ -1,0 +1,62 @@
+<div class="top-nav">
+  <div class="top-nav-container">
+    <a href="{{ routes.root_url }}" class="top-nav-left w-inline-block">
+      <img src="{{ 'rezar-tumi-logo.png' | asset_url  }}" loading="lazy" alt="" class="top-nav-logo" /></a>
+    <div class="top-nav-right">
+      <a data-w-id="b82f1b27-c9ab-a885-d293-131398214875" href="#" class="top-nav-link hide">{{ section.settings.choose-location }}</a>
+      <a href="#pick-your-gear" class="top-nav-link">{{ section.settings.pick-gear }}</a>
+      <a href="#shop-now" class="top-nav-link">{{ section.settings.shop-now }}</a>
+      <a href="#carry-hard" class="top-nav-link">{{ section.settings.carry-hard }}</a>
+    </div>
+  </div>
+  <div class="top-nav-container-mobile-p">
+    <div data-w-id="04224288-1ea7-c17a-9111-cc5fa75a4a37" class="top-nav-mobile-p-wrapper">
+      <div data-w-id="0b7f8f8b-7ad5-f538-ce6b-27dd09d7bc36" class="top-nav-mobile-p-links">
+        <a href="#" class="top-nav-link-mobile-p">{{ section.settings.pick-gear }}</a>
+        <a href="#shop-now" class="top-nav-link-mobile-p">{{ section.settings.shop-now }}</a>
+        <a href="#carry-hard" class="top-nav-link-mobile-p">{{ section.settings.carry-hard }}</a>
+      </div>
+    </div>
+    <a href="{{ routes.root_url }}" class="top-nav-left w-inline-block">
+      <img src="{{ 'rezar-tumi-logo.png' | asset_url  }}" loading="lazy" alt="" class="top-nav-logo" /></a>
+      <a data-w-id="d13743ea-ac29-d96c-4f43-b854346d11f5" href="#" class="top-nav-burger-link w-inline-block">
+        <div data-w-id="cadc33e7-f3fb-7cd5-d98f-f67bb6c32559" class="burger-link-top"></div>
+        <div data-w-id="58edd22e-f474-9de0-f671-31f61d6407e2" class="burger-link-bottom"></div>
+      </a>
+  </div>
+</div>  
+
+
+{% schema %}
+  {
+    "name": "Top Nav",
+    "settings": [
+		{
+			"type": "text",
+			"id": "choose-location",
+			"label": "Choose Your Location",
+			"default": "CHOOSE YOUR LOCATION"
+		},
+		{
+			"type": "text",
+			"id": "pick-gear",
+			"label": "Pick Your Gear",
+			"default": "PICK YOUR GEAR"
+		},
+		{
+			"type": "text",
+			"id": "shop-now",
+			"label": "Shop Now",
+			"default": "SHOP NOW"
+		},
+		{
+			"type": "text",
+			"id": "carry-hard",
+			"label": "Carry Hard",
+			"default": "CARRY HARD"
+		}
+	
+	]
+  }
+{% endschema %}
+

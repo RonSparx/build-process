@@ -1,0 +1,80 @@
+{% comment %}
+    Reduce below value if you need the back to the top button to appear higher up on the page.
+    That value is in pixels.
+{% endcomment %}
+{% assign vertical_offset_for_trigger = 350 %}
+
+{% comment %}
+Vertical offset from bottom of browser for the position of the button.
+{% endcomment %}
+{% assign position_from_bottom = '6em' %}
+
+<a id="BackToTop" href="#" title="Back to the top" class="back-to-top hide">
+<svg width="21" height="12" viewBox="0 0 21 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.7543 6H0" stroke="#FFFFFF"/>
+<path d="M14.9004 1L19.7548 6L14.9004 11" stroke="#FFFFFF"/>
+</svg>
+
+</a>
+
+<style>
+  .back-to-top {
+    position: fixed;
+    right: 40px;
+    bottom: 44px;
+    text-decoration: none;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    transition: .3s ease-in-out;
+    border-radius: 2px;
+    z-index: 2;
+    transition: .3s ease-in-out;
+
+}
+.back-to-top:hover{
+  background-color: #595959;
+    color: #fff;
+}
+      
+ .back-to-top  svg {
+    width: 20px;
+    height: auto;
+    align-items: center;
+    transform: rotate(-90deg);
+} 
+  
+  .hide {
+  display: none!important;
+  }
+</style>
+<script>
+(function() {
+function trackScroll() {
+    var scrolled = window.pageYOffset;
+    var coords = {{ vertical_offset_for_trigger }};
+
+    if (scrolled > coords) {
+    goTopBtn.classList.remove('hide');
+    }
+    if (scrolled < coords) {
+    goTopBtn.classList.add('hide');
+    }
+}
+
+function backToTop() {
+    if (window.pageYOffset > 0) {
+    window.scrollBy(0, -80);
+    setTimeout(backToTop, 0);
+    }
+}
+
+var goTopBtn = document.querySelector('.back-to-top');
+
+window.addEventListener('scroll', trackScroll);
+goTopBtn.addEventListener('click', backToTop);
+})();
+</script>  

@@ -1,0 +1,34 @@
+{{ 'tumi-lock.css' | asset_url | stylesheet_tag }}
+
+{% section 'tumi-lock' %} 
+
+
+<script>
+  let btnPop = document.querySelectorAll(".button-lock");
+  let bodyClass = document.querySelector("body");
+  let closeModal = document.querySelectorAll("button.close");
+
+  for(let item of btnPop) {
+    item.addEventListener("click", function(e){
+      let popupEle = e.target.closest(".inner_wrapper").nextElementSibling;
+      bodyClass.classList.add("lock-show");
+      popupEle.classList.add("show");
+      
+  })
+  }
+  for(let item of closeModal){
+    item.addEventListener("click", function(e){
+      let popupEle = e.target.closest(".tumi-pop-up");
+       bodyClass.classList.remove("lock-show");
+       popupEle.classList.remove("show");
+            
+    })
+  }
+
+  let bodyClick = document.querySelectorAll(".modal-backdrop");
+   for(let item of bodyClick){
+      item.addEventListener("click", function(e){
+        item.closest('.show').classList.remove("show");
+      })
+    }
+</script>

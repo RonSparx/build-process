@@ -1,0 +1,614 @@
+html{
+	overflow-x:hidden;
+}
+
+.form-radio input[type='radio'] {
+  display: none;
+}
+.form-radio label {
+  position: relative;
+}
+.form-radio label:before {
+      content: " ";
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    margin: 0 10px 0 0;
+    width: 15px;
+    height: 15px;
+    border-radius: 11px;
+    border: 1px solid #c1c1c1;
+    background-color: transparent;
+}
+.form-radio input[type=radio]:checked+label:after {
+      border-radius: 11px;
+    width: 9px;
+    height: 9px;
+    position: absolute;
+    top: 7px;
+    left: 4px;
+    content: " ";
+    display: block;
+    background: #44d62c;
+}
+ 
+.form-row-grid {
+  display: flex;
+}
+.form-row-grid .form-field {
+  flex: 0 0 15%;
+  padding-right: 20px;
+}
+/* .customer-register-container #RegisterForm input[type=checkbox]:checked+label:after {
+  top: 3px;
+  left: 3px;
+  width: 9px;
+  height: 9px;
+}
+ */
+.form-radio {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+
+
+ #RegisterForm input[type="checkbox"] {
+    position: absolute !important;
+    left: -999999px !important;
+}
+ #RegisterForm input[type="checkbox"] + label {
+    min-height: 0.9375rem;
+    padding-left: 1.5625rem;
+    vertical-align: middle;
+    position: relative;
+    text-transform: none;
+    line-height: 0.9375rem;
+    font-size: 0.8125rem;
+
+    cursor: pointer;
+}
+ #RegisterForm input[type="checkbox"] + label:before {
+       content: "";
+    width: 12px;
+    height: 12px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #ffffff;
+    background-color: #fff;
+}
+ #RegisterForm input[type="checkbox"]:checked + label:after {
+        position: absolute;
+    top: 3px;
+    left: 3px;
+    content: " ";
+    width: 8px;
+    height: 8px;
+    background: #44d62c;
+}
+
+
+
+
+
+.sub-cat-item {
+  flex: 0 0 16.66667%;
+  max-width: 16.66667%;
+}
+
+.forminner-row {
+  display: flex;
+  justify-content: space-between;
+  margin-left: -8px;
+  margin-right: -8px;
+}
+.forminner-row .form-inner-item {
+  padding-right: 8px;
+  padding-left: 8px;
+}
+.forminner-row .form-inner-item:first-child {
+  flex: 0 0 33%;
+  max-width: 33%;
+}
+.forminner-row .form-inner-item:last-child {
+  flex: 0 0 67%;
+  max-width: 67%;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0; 
+}
+@media all and (max-width:749px){
+  .sub-cat-item {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}  
+
+
+
+
+/* register form valideation css start  */
+
+.form-validate.not-valid [data-required="true"],
+.form-validate.not-valid .select-styled {
+  border: 1px solid red;
+}
+.custom-registerform .a-error-message {
+  color: #d0021b;
+  font-size: 12px;
+  line-height: 16px;
+  text-align:left;
+}
+.error .not-valid {
+  display: none;
+}
+.form-validate.not-valid span.not-valid {
+  display: block !important;
+  padding: 10px 0 0;
+}
+.password-not-match .error.empty.not-match span {
+  display: block !important;
+  padding: 10px 0 0;
+}
+
+.custom-registerform .form-group .form-field {
+  margin-bottom: 0;
+}
+.form-vertical .custom-registerform input,
+.form-vertical .custom-registerform select,
+.form-vertical .custom-registerform .disclosure__toggle,
+.form-vertical .custom-registerform textarea {
+  margin-bottom: 0;
+}
+.form-row .form-group {
+  margin-bottom: 20px;
+}
+span#email-caption {
+  padding: 10px 0 0;
+}
+.field-message-caption {
+  padding: 10px 0 0;
+}
+
+.form-pass .form-group {
+  margin-bottom: 0;
+}
+.form-pass {
+  margin-bottom: 20px;
+}
+.password-not-match input {
+  border: 1px solid red;
+}
+
+
+
+
+.form-pass .form-field {
+  position: relative;
+}
+
+div#toggle-password,
+div#contoggle-password
+{
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  cursor: pointer;
+  width: 30px;
+}
+
+#toggle-password span,
+#contoggle-password span
+{
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  right: 0;
+  transform: translateY(-50%);
+  left: 50%;
+  vertical-align: middle;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+#toggle-password span svg,
+#contoggle-password span svg
+{
+  height: 16px;
+  width: 16px;
+}
+
+.form-pass .form-field {
+  position: relative;
+}
+
+
+#toggle-password span.password-toggle-hide,
+#contoggle-password span.password-toggle-hide
+{
+  display: none;
+}
+
+div#toggle-password.active span.password-toggle-show,
+div#contoggle-password.active span.password-toggle-show
+{
+  display: none;
+}
+div#toggle-password.active span.password-toggle-hide,
+div#contoggle-password.active span.password-toggle-hide
+{
+  display: flex;
+}
+.form-pass input {
+  padding-right: 40px;
+}
+#toggle-password span svg path,
+#contoggle-password span svg path
+{
+  fill: #cecece;
+}
+
+.pass-conifrm-field .form-field {
+  position: relative;
+}
+
+
+body .form-message--error {
+  color: #d0021a;
+}
+body .form-message--error a,
+body .form-message--error a:hover {
+  color: #d0021a;
+}
+body .form-message--error {
+  border: none;
+  padding: 0;
+}
+
+/* password check css start */
+.form-pass.form-validate.not-valid .not-valid,
+.form-pass.form-validate.valid .not-valid
+{
+    display: flex !important;
+    flex-wrap: wrap;
+}
+
+.form-pass.form-validate.valid .not-valid{
+	padding: 10px 0 0;
+}
+    
+.form-pass .not-valid > span {
+    width: 33.33%;
+    margin-bottom: 10px;
+      position: relative;
+}
+.form-pass .not-valid > span:last-child {
+    margin-bottom: -0;
+}
+.form-pass .not-valid > span:nth-child(1) {
+    width: 46%;
+}
+.form-pass .not-valid > span:nth-child(2),
+.form-pass .not-valid > span:nth-child(3) {
+    width: 27%;
+}
+
+
+.form-pass .not-valid > span.errors:before {
+    content: "\2715";
+    padding-right: 10px;
+}
+.form-pass .not-valid > span.suceess:before {
+    content: "\2714";
+    padding-right: 10px;
+}
+
+.form-pass .not-valid > span.errors:before {
+    content: "\2715";
+    padding-right: 10px;
+}
+.form-pass .not-valid > span.suceess:before {
+    content: "\2714";
+    padding-right: 10px;
+}
+.form-pass .not-valid > span.suceess {
+    color: #28a745;
+}
+
+
+.custom-registerform ::selection{
+    background:#2196F3; color:#fff;
+}
+.pass-conifrm-field input#confirm-password {
+    padding-right: 40px;
+}
+
+
+@media all and (max-width:480px){
+  .form-pass .not-valid>span {
+      width: 50% !important;
+  }
+}
+
+
+/* password check css end */
+
+
+
+
+/* form validation css end  */
+
+
+
+.razer-signupform {
+  max-width: 400px;
+  margin-top: 20px;
+}
+.member-text-field {
+  margin-bottom: 0;
+}
+
+.signupform-heading {
+    font-size: 16px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+.signupform-subheading {
+    font-size: 13px;
+    display: inline-block;
+}
+ .razer-signupform span#email-caption {
+    display: inline-block;
+}
+ .razer-signupform .register-actions input[disabled] {
+    opacity: .2;
+    pointer-events: none;
+}
+  
+
+span.err_emaildesk,
+span.err_emailmob
+{ 
+    padding: 6px 0;
+    color: red;
+    display: inline-block ;
+}
+.email-error .valid-email {
+    display: none !important;
+}
+
+
+
+.w-webflow-badge {
+    display: none !important;
+}
+
+
+.member-container{
+	overflow-x:hidden;
+}
+
+
+
+
+/* unvail gear landing page css start */
+.product-top img {
+    height: 100%;
+    object-fit: cover;
+}
+
+/* unvail gear landing page css end */
+
+
+
+/* app form css start here */
+.app_customform .ets_cf_box {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-shadow: none;
+}
+
+.app_customform label.ets_cf_form_label.required {
+  display: none;
+}
+
+.app_customform input.ets_cf_form_control, t
+.app_customform extarea, 
+.app_customform textarea.ets_cf_form_control {
+  height: 40px;
+  margin-bottom: 0;
+  border: 1px none #000;
+  background-color: #fff;
+  font-family: "Mark simonson proxima nova 0",sans-serif;
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 400;
+}
+.app_customform form.ets_cf_form_data_contact {
+  display: flex;
+  flex-direction: row;
+}
+
+.app_customform button {
+  height: 40px !important;
+  padding: 0 23px 0 26px !important;
+  background-color: #44d62c!important;
+  font-family: "Mark simonson proxima nova 0",sans-serif;
+  color: #000!important;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  border-color: #44d62c !important;
+  border-radius: 0px;
+}
+
+.app_customform .ets_cf_box.ets_cf_only_thank {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.app_customform .ets_cf_thank_msg.ets_cf_remove_form {
+  position: relative;
+  display: flex;
+  width: auto;
+  height: auto;
+  min-width: 400px;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 40px 20px 30px;
+  flex-direction: column;
+  align-items: center;
+  background-image: none;
+  box-shadow: none;
+  outline-offset: 10px;
+  outline-style: solid;
+  outline-width: 1px;
+  transform-origin: 50% 0%;
+  width: 400px;
+  background: transparent;
+  border-left: none;
+  font-family: 'Mark simonson proxima nova 0', sans-serif;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+  flex-direction: column-reverse;
+  outline-color: #44d62c;
+}
+
+.app_customform .ets_cf_box.ets_cf_only_thank  button svg {
+  display: none;
+}
+.app_customform .ets_cf_box.ets_cf_only_thank  button i {
+  position: relative;
+}
+.app_customform .ets_cf_box.ets_cf_only_thank  button    i:before {
+  content: "CLOSE";
+  font-style: normal;
+}
+.app_customform .ets_cf_box.ets_cf_only_thank  button.ets_cf_close_thank_msg {
+  position: unset;
+  transform: none;
+  margin-top: 20px;
+}
+
+
+
+
+@media all and (max-width:767px){
+  .app_customform .ets_cf_box {
+    width: 100% !important;
+  }
+  .app_customform form.ets_cf_form_data_contact {
+    flex-direction: column;
+  }
+  .app_customform .ets_cf_content_footer {
+    text-align: left;
+  }
+  .app_customform .ets_cf_thank_msg.ets_cf_remove_form {
+      min-width: 90%;
+      max-width: 90%;
+      font-size: 18px;
+  }
+}
+
+
+
+/* app form css end here */
+
+
+
+
+/*checkbox privacy policy css start */
+.app_customform form.ets_cf_form_data_contact .ets_cf_row.ets_cf_row_1 {
+    position: absolute;
+    top: 100%;
+}
+
+.app_customform form.ets_cf_form_data_contact .ets_cf_row.ets_cf_row_1 .ets_cf_form_group {
+    display: flex;
+}
+
+.app_customform form.ets_cf_form_data_contact .ets_cf_row.ets_cf_row_1 .ets_cf_form_group .ets_cf_checkbox_item.ets_cf_checkbox_block {
+    margin-right: 6px;
+}
+
+.app_customform form.ets_cf_form_data_contact .ets_cf_row.ets_cf_row_1 .ets_cf_form_group .ets_cf_field_desc {
+    margin: 0;
+    color: #ffffff;
+}
+
+.app_customform form.ets_cf_form_data_contact .ets_cf_row.ets_cf_row_1 .ets_cf_form_group .ets_cf_field_desc a {
+    color: #44d62c;
+    text-decoration: none;
+}
+
+.app_customform form.ets_cf_form_data_contact .ets_cf_item_error {
+    display: none;
+}
+
+.notification-form-block {
+    margin-top: 0;
+}
+
+.app_customform form.ets_cf_form_data_contact .ets_cf_checkbox_item .ets_cf_checkbox_check,
+.app_customform form.ets_cf_form_data_contact .ets_cf_radio_item .ets_cf_radio_check {
+    border-radius: 0px;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+}
+
+.app_customform form.ets_cf_form_data_contact .ets_cf_checkbox_item input:checked + .ets_cf_checkbox_check {
+    background-color: #44d62c;
+    border-color: #44d62c;
+}
+
+.app_customform form.ets_cf_form_data_contact .ets_cf_checkbox_item input:checked + .ets_cf_checkbox_check:after {
+    top: 2px;
+    left: 3px;
+    width: 8px;
+    height: 4px;
+}
+
+.app_customform form.ets_cf_form_data_contact .ets_cf_row.ets_cf_row_1 .ets_cf_form_group label.ets_cf_form_label,
+.app_customform form.ets_cf_form_data_contact .ets_cf_row.ets_cf_row_1 .ets_cf_form_group .ets_cf_checkbox_title
+{
+    display: none;
+}
+
+@media all and (max-width:767px){
+.notification-frame.teaser-hero {
+    height: 49%;
+}
+  .notification-frame.top-margin-40 {
+    min-height: 260px;
+}
+  
+}
+/*checkbox privacy policy css end */
+
+
+.top-nav.fixed-nav {
+    position: fixed;
+}

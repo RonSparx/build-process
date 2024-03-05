@@ -1,0 +1,207 @@
+<style>
+ .video-conbox .btn-transparent {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+}
+.video-conbox h3 {
+    text-transform: capitalize;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+.video-conbox .banner-desc {
+    display: none;
+}
+
+@media (min-width: 767px) {
+    .fullsize-video-bg .video-con {
+        left: 50%;
+    }
+    .video-conbox .banner-desc {
+        display: block;
+    }
+    .fullsize-video-bg .video-conbox {
+        align-items: center;
+        max-width: 500px;
+    }
+}
+
+@media (min-width: 992px) {
+    .video-conbox h3 {
+        max-width: 355px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .video-conbox h2 {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+    .video-conbox h3 {
+        font-size: 50px;
+    }
+    .video-conbox .btn-transparent {
+        width: 100%;
+        max-width: 285px;
+    }
+}
+
+</style>
+
+<section class="fullsize-video-bg">
+    <div id="video-viewport" class="desktop">
+      <div class="fallback-img">
+        {% if section.settings.mclaren-hub_image_desktop != blank %}
+        <img src="{{section.settings.mclaren-hub_image_desktop | img_url:'master' }}" alt="{{mclaren-hub_image_desktop.alt | escape }}"/>
+        {% else %}
+        <img src="https://cdn.media.amplience.net/i/tumi/STAPLE-homepage-hero-desktop-fallback.jpeg" alt="img"/>
+     	{% endif %}
+      </div>
+      <video width="100%" height="auto" autoplay muted loop>
+        {% if section.settings.mclaren-hub_link_desktop != blank %}
+        <source src="{{section.settings.mclaren-hub_link_desktop}}" type="video/mp4" />
+        {% else %}
+        <source src="https://cdn.media.amplience.net/v/tumi/lp-mclaren-hub-lite-hero-desktop-v1/mp4_1440p" type="video/mp4" />
+        {% endif %}
+      </video>
+    </div>
+  
+  	<div id="video-viewport" class="mobile">
+      <div class="fallback-img">
+        {% if section.settings.mclaren-hub_image_mobile != blank %}
+        <img src="{{section.settings.mclaren-hub_image_mobile | img_url:'master' }}" alt="{{mclaren-hub_image_mobile.alt | escape }}"/>
+        {% else %}
+        <img src="https://cdn.media.amplience.net/i/tumi/STAPLE-homepage-hero-mobile-fallback.jpeg" alt="img"/>
+     	{% endif %}
+      </div>
+      <video width="100%" height="auto" autoplay muted loop>
+        {% if section.settings.mclaren-hub_link_mobile != blank %}
+        <source src="{{section.settings.mclaren-hub_link_mobile}}" type="video/mp4" />
+        {% else %}
+        <source src="https://cdn.media.amplience.net/v/tumi/lp-mclaren-hub-lite-hero-mobile-v1/mp4_720p" type="video/mp4" />
+        {% endif %}
+      </video>
+    </div>
+
+    <div class="video-con">
+      <div class="video-conbox">
+        {% if section.settings.mclaren-hub_sub_heading != blank %}
+        <h2>{{ section.settings.mclaren-hub_sub_heading }}</h2> 
+        {% endif %}
+        {% comment %}
+        {% if section.settings.content_img != blank %}
+        <img src="{{ section.settings.content_img | img_url: 'master' }}">
+        {% else %}
+        <img src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/TUMI-STAPLE-logo-lockup.png?v=1656941588">
+        {% endif %}
+        {% endcomment %}
+        {% if section.settings.mclaren-hub_banner_sub_heading != blank %}
+        <h3>{{ section.settings.mclaren-hub_banner_sub_heading }}</h3> 
+        {% endif %}
+         {% if section.settings.mclaren-hub_banner_description != blank %}
+          <div class="banner-desc">{{ section.settings.mclaren-hub_banner_description }}</div> 
+        {% endif %}
+        
+		{% if section.settings.mclaren-hub_btn != blank %}
+        <a href="{{section.settings.mclaren-hub_btnlink | default: '#'}}" class="btn-transparent">
+          <span class="ben-text">{{section.settings.mclaren-hub_btn}} </span>
+        </a>
+        {% endif %}
+
+      </div>
+    </div>
+
+  </section>  
+
+
+{% schema %}
+  {
+    "name": "Mclaren Hub Video Banner",
+    "settings": [
+	  {
+        "type": "header",
+        "content": "Background"
+      },
+      {
+        "type": "paragraph",
+        "content": "Please add Image and Video for Mobile and Desktop Devices."
+      },
+      {
+          "type":"image_picker",
+          "id":"mclaren-hub_image_desktop",
+          "label":"Video Poster Desktop"
+      },
+	  {
+          "type":"url",
+          "id":"mclaren-hub_link_desktop",
+          "label":"Video URL Desktop"
+      },
+	  {
+          "type":"image_picker",
+          "id":"mclaren-hub_image_mobile",
+          "label":"Video Poster Mobile"
+      },
+	  {
+          "type":"url",
+          "id":"mclaren-hub_link_mobile",
+          "label":"Video URL Mobile"
+      },
+      {
+        "type": "header",
+        "content": "Content Box"
+      },
+	  {
+        "type": "paragraph",
+        "content": "Add Content Box data."
+      },
+      {
+        "type": "image_picker",
+        "id": "mclaren-hub_content_img",
+        "label": "Image"
+      },
+      {
+          "type":"text",
+          "id":"mclaren-hub_sub_heading",
+          "label":"Sub heading",
+          "default":"THE DOCU-CAMPAIGN"
+      },
+      {
+          "type":"text",
+          "id":"mclaren-hub_banner_sub_heading",
+          "label":"Banner Sub heading",
+          "default":"BUILT FOR THE JOURNEY"
+      },
+      {
+          "type":"richtext",
+          "id":"mclaren-hub_banner_description",
+          "label":"Banner Description",
+          "default":"<p> Our global campaign chronicles the personal and professional journeys of four world-renowned sports and entertainment professionals, aptly known as the TUMI Crew.  </p>"
+      },
+
+      {
+          "type":"text",
+          "id":"mclaren-hub_btn",
+          "label":"Button name",
+          "default":"Shop Now"
+      },
+      {
+          "type":"url",
+          "id":"mclaren-hub_btnlink",
+          "label":"Button URL"
+      },
+	  {
+        "type": "color",
+        "id": "mclaren-hub_btn_color",
+        "label": "Button Color",
+        "default": "#fff"
+      },
+	  {
+        "type": "color",
+        "id": "mclaren-hub_btn_txt_color",
+        "label": "Button Text Color",
+        "default": "#000"
+      }
+	]
+  }
+{% endschema %}
+  

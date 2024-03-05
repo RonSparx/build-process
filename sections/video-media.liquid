@@ -1,0 +1,42 @@
+<div class="page-width" data-section-id="{{ section.id }}" data-section-type="video-section">
+  <div class="video-section">
+   
+    <video muted controls  width="100%" height="100%" preload="true"
+           {% if section.settings.cover != blank %}
+           poster="{{section.settings.cover | img_url:'original'}}"
+           {% else %}
+			poster="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/difference2.jpg"
+           {% endif %}
+           >
+      {% if section.settings.video != blank %}
+  <source src="{{section.settings.video}}" type="video/mp4"> 
+      {% else %}
+      <source src="https://cdn.shopify.com/s/files/1/0272/4233/2203/files/sample-video.mp4" type="video/mp4"> 
+      {% endif %}
+</video>
+  </div>
+  
+</div>
+{% schema %}
+  {
+    "name": "Video Media",
+    "settings": [
+		{
+			"type": "image_picker",
+			"id":"cover",
+			"label": "Video Poster"
+		},
+			{
+			"type": "url",
+			"id":"video",
+			"label": "Video URL"
+		}
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

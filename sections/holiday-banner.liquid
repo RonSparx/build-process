@@ -1,0 +1,182 @@
+
+
+<div class="{% if section.settings.img != blank%} top_holiday_banner {% else %} no_banner {% endif %}">
+  <div class="caption">
+    <div class="section-header text-center">
+      {% if section.settings.heading != blank %}
+      <h1>{{section.settings.heading}}</h1>
+      {% else %}
+      <h1>Banner Title</h1>
+      {% endif %}
+      {% if section.settings.content != blank %}
+      <strong><p>{{section.settings.content}}</p></strong>
+      {% else %}
+      <strong> <p>Lorem ipsum, or lipsum as it is sometimes known...</p></strong>
+      {% endif %}
+      
+      
+      
+	{% if section.blocks != blank %}
+     <ul class="holiday_banner holiday">
+        {% for block in section.blocks %}
+        <li>
+          <div class="img"> <img src="{{ block.settings.banner_icon | img_url:'50x' }}" /></div>
+          <p>{{ block.settings.banner_content }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+      
+      {% else %}
+      <ul class="holiday_banner holiday">
+        <li>
+          <img src="https://i1.adis.ws/i/tumi/GiftServices_Monogram_2x" />
+          <p>Lorem ipsum dummy text</p>
+        </li>
+        <li>
+          <img src="https://i1.adis.ws/i/tumi/GiftServices_Monogram_2x" />
+          <p>Lorem ipsum dummy text</p>
+        </li>
+        <li>
+          <img src="https://i1.adis.ws/i/tumi/GiftServices_Monogram_2x" />
+          <p>Lorem ipsum dummy text</p>
+        </li>
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+
+<style>
+  .bx-wrapper .bx-viewport { height:auto !important; }
+  .top_holiday_banner {position: relative;
+    width: 100%; 
+    background-color: #ebebeb;
+    overflow: hidden;
+    background: #f1f1f1 url({{section.settings.img | img_url:'1920x'}});
+    background-size: cover;
+    background-position: top; padding: 40px 0px; }
+  
+    .no_banner {position: relative;
+    width: 100%; 
+    background-color: #ebebeb;
+    overflow: hidden;
+    background: #f1f1f1;
+    background-size: cover;
+    background-position: top; padding: 40px 0px; }
+  
+/*    .top_holiday_banner { background-image:url(https://cdn.media.amplience.net/i/tumi/hol21-hero-giftlp-desktop) cover center;} */
+  .caption {
+    position: relative;
+    
+    text-align: center;
+    background-color: rgba(255, 255, 255, .75);
+    padding: 30px 0 10px 0;
+    max-width: 730px;
+    margin: 0 auto;
+  }
+  ul.holiday_banner {
+    display: flex;
+    justify-content: center;
+  }
+  .bx-wrapper {
+    background: transparent;
+    border: none;
+  }
+
+  ul.holiday_banner li {
+    margin: 0px 15px;
+  }
+
+  ul.holiday_banner li img {
+    width: 50px; margin:auto;
+  }
+  .top_holiday_banner .bx-controls.bx-has-controls-direction {
+    display: none;
+  }
+  .caption strong { margin-bottom: 25px; display: block;}
+</style>
+
+
+<script>
+  if ($(window).width() < 750){
+  $( document ).ready(function() {
+    $('.holiday').slick({
+      dots: false,
+      infinite: true,
+      autoplay:true,
+      arrows:false,
+      speed: 1500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+        
+      ]
+    });
+  });
+};
+</script>
+
+{% schema %}
+{
+"name": "Holiday Banner",
+"max_blocks":3,
+"settings": [
+{
+"type":"image_picker",
+"id":"img",
+"label":"Background image"
+},
+{
+	"type":"text",
+	"id":"heading",
+	"label":"Banner title"
+},
+{
+	"type":"textarea",
+	"id":"content",
+	"label":"Banner content"
+}
+],
+"blocks": [
+    {
+      "type": "select",
+      "name": "Image with text",
+      "settings": [
+ 		{
+          "id": "banner_icon",
+          "type": "image_picker",
+       	  "label": "Image"
+        },
+		{
+          "id": "banner_content",
+          "type": "textarea",
+       	  "label": "Content"
+        }
+
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

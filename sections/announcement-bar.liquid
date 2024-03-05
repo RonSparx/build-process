@@ -1,0 +1,127 @@
+<style>
+  .announcement ul {
+    background-color: {{ section.settings.color_bg }};
+    text-align: center;
+    padding: 7px 0;
+        min-height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .announcement ul li:not(:first-child) {
+  	display:none;
+  }
+  .announcement ul li,
+  .announcement ul li a
+  {
+    font-size: 13px;
+    color: {{ section.settings.color_text }};
+  }
+  .announcement ul li a:hover{
+  	color: {{ section.settings.color_text }};
+  }
+  
+  
+  @media(max-width:640px){
+  	.announcement ul li{
+        font-size: 11px;
+        padding: 0 10px;
+    }
+    .announcement ul li a{
+        font-size: 11px;
+    }
+  }
+  
+  
+  @media(max-width:350px){
+    .announcement ul li, 
+    .announcement ul li a
+    {
+      font-size: 9px;
+    }
+  }
+  
+
+</style>
+
+
+{% if section.blocks != blank %}
+<div class="announcement">
+    <ul>
+        {% for block in section.blocks %}
+        <li>{{block.settings.msg}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}  
+
+
+
+<script>
+//Announce bar js
+var countInt;
+var limitcount =  $(".announcement ul li").length;
+var limicount = parseInt(limitcount*3000);
+jQuery(document).ready(function () {
+  
+  
+  if($(".announcement ul") && $(".announcement ul").children() && $(".announcement ul").children().length>1){
+    $(".announcement ul li").not(":first").css("display", "none");
+    $('.announcement ul li:first').addClass('ActiveImg');
+    setInterval(cycleImages, limicount);
+  }
+    
+});
+// END announce code
+
+
+function cycleImages(){
+  var $active = $('.announcement ul .ActiveImg');
+  var $next = ($active.next().length > 0) ? $active.next() : $('.announcement ul li:first');
+  $active.fadeOut(300,function(){
+    $active.hide().removeClass('ActiveImg');
+    $next.fadeIn(300).addClass('ActiveImg');
+  });
+}
+</script> 
+
+
+{% schema %}
+{ 
+   "settings": [
+      {
+      "type": "color",
+      "id": "color_bg",
+      "label": {
+      "en": "Bar"
+      },
+      "default": "#dddddd"
+      },
+      {
+      "type": "color",
+      "id": "color_text",
+      "label": {
+      "en": "Text"
+      },
+      "default": "#000000"
+      }
+     
+       
+   ],
+   "blocks":[
+    {
+       "name": "Announcement",
+       "type": "Announcement",
+       "settings":[
+         {
+             "type":"richtext",
+             "id":"msg",
+             "label": "Message"
+         }
+
+       ]
+    }
+   ]
+}
+{% endschema %}

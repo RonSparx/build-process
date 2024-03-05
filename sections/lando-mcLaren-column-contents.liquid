@@ -1,0 +1,193 @@
+<style>
+  .sc-content-inner p{
+    font-size: 18px;
+      color: #212529;
+      text-align:center;
+  } 
+  .sc-content {
+    padding-top:1.5rem;
+    display: flex;
+    justify-content:center;
+  }
+  .images_with_content {
+      margin-top: 30px;
+    text-align:left;
+  }
+  .block--section{
+    margin-bottom: 30px; 
+  } 
+  .block--section .product-card__title{
+    text-align: left;
+  }
+  .lps-img {
+    position: relative;
+        margin-bottom: 15px;
+}
+a.lps-img-link {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+  .custom-grid-slider.slick-initialized.slick-slider .slick-list {
+      padding: 0 20% 0 0;
+  }
+
+  .custom-grid-slider.slick-initialized.slick-slider {
+      margin:30px -22px 0 -15px;
+  }
+  .custom-grid-slider.slick-initialized .slick-slide {
+      margin-right:15px;
+      margin-left:15px;
+  }
+
+  
+  @media all and (min-width: 750px){
+    .sc-content-inner{
+      width: 80%;
+    }  
+    .images_with_content{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    } 
+    .block--section {
+      width: 23.5%;
+    }
+    .block--section .lps-img{
+     margin-block: 10px;
+    }
+    
+  }
+  @media all and (max-width: 749px){
+    .sc-content-inner{
+      max-width: 400px;
+      width: 100%;
+    }  
+    .sc-content-inner p {
+      font-size: 14px;
+    }
+  }
+  @media all and (min-width:1024px){
+    div.sc-content{
+      padding-top:3.5rem;
+    } 
+  }
+  </style>
+  <div class="page-width">
+    <div class="sc-content">
+      <div class="sc-content-inner">
+  
+          {% if section.settings.hub_title_third != blank %}
+           <h3> {{ section.settings.hub_title_third }}  </h3>
+          {% else %} 
+          <h3>The Entire TUMI Crew</h3>
+          {% endif %}
+  
+  
+        
+        {% if section.settings.hub_paragraph_third != blank %}
+          {{ section.settings.hub_paragraph_third }}
+          {% else %}
+          <p>Each person’s hubrney highlights TUMI’s most loved collections with new, innovative materials and designs that stand for strength, beauty and performance luxury. Like our Crew.</p>
+          {% endif %}
+      </div>  
+    </div>
+    <div class="images_with_content custom-grid-slider">
+  
+      {% for block in section.blocks %} 
+      <div class="block--section">
+        {% if block.settings.hub_block_image != blank %}
+        <div class="lps-img">
+          {% if block.settings.hub_block_image_link != blank %}
+            <a href="{{ block.settings.hub_block_image_link }}" class="lps-img-link"></a>
+          {% endif %}
+            <img src="{{ block.settings.hub_block_image | img_url: '400x' }}">
+        </div>
+        {% endif %}
+         {% if block.settings.hub_title_block != blank %}
+        <h4 class="product-card__title">
+          {{ block.settings.hub_title_block }}
+        </h4>
+           {% endif %}
+         {% if block.settings.hub_para_block != blank %}
+        <p>{{ block.settings.hub_para_block }}</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+      
+      
+    </div>
+  </div>
+
+
+
+<script>
+    $(document).ready(function(){
+      if ($(window).width() < 767){     
+        $('.custom-grid-slider').slick({
+          dots: false,
+          arrows:false,
+          infinite: true,
+          speed:1300,
+          slidesToShow:1,
+          slidesToScroll: 1, 
+        }); 
+      }
+    });
+
+  
+</script> 
+
+    
+  
+  {% schema %}
+  {
+    "name": "lando column contents",
+    "max_blocks":4,
+    "settings": [
+      {
+        "type": "text",
+        "id": "hub_title_third",
+        "label": "title"
+      },
+      {
+        "type": "richtext",
+        "id": "hub_paragraph_third",
+        "label": "Paragraph"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "images_block",
+        "name": "Add image with text",
+        "settings": [
+          {
+             "type": "image_picker",
+             "id": "hub_block_image",
+             "label": "upload image"
+           },
+            {
+               "type": "url",
+               "id": "hub_block_image_link",
+               "label": "CTA on image"
+             },
+          {
+            "id": "hub_title_block",
+            "type": "text",
+            "label": "Add title",
+            "default": "Son Heung-min"
+          },
+          {
+            "id": "hub_para_block",
+            "type": "text",
+            "label": "Add content here",
+            "default": "He’s ready to kickstart all his hubrneys with our iconic 19 Degree Aluminum collection. This means traveling to tours, going back home and more."
+          }
+        ]
+      }
+    ]
+  
+  } 
+  {% endschema %} 

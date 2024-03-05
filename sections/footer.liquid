@@ -1,0 +1,738 @@
+
+{% assign social_icons = false %}
+{% assign inline_list = false %}
+{% assign locale_selector = false %}
+{% assign currency_selector = false %}
+{% assign show_payment_icons = false %}
+{% assign show_selectors = false %}
+
+{% if section.settings.show_currency_selector and shop.enabled_currencies.size > 1 %}
+{% assign currency_selector = true %}
+{% endif %}
+
+{% if section.settings.show_locale_selector and shop.published_locales.size > 1 %}
+{% assign locale_selector = true %}
+{% endif %}
+
+{% if section.settings.show_payment_icons %}
+{% unless shop.enabled_payment_types == empty %}
+{% assign show_payment_icons = true %}
+{% endunless %}
+{% endif %}
+
+{% if currency_selector or locale_selector %}
+{% assign show_selectors = true %}
+{% endif %}
+
+{% if
+settings.social_twitter_link != blank
+or settings.social_facebook_link != blank
+or settings.social_pinterest_link != blank
+or settings.social_instagram_link != blank
+or settings.social_tumblr_link != blank
+or settings.social_snapchat_link != blank
+or settings.social_youtube_link != blank
+or settings.social_vimeo_link != blank
+or request.page_type == 'article'
+or request.page_type == 'blog'
+%}
+{% assign social_icons = true %}
+{% endif %}
+
+{% assign payment_width_class = "one-half" %}
+{% if show_selectors %}
+{% unless social_icons %}
+{% assign payment_width_class = "" %}
+{% endunless %}
+{% endif %}
+
+{% assign copyright_show_class = "medium-up--hide" %}
+{% if social_icons %}
+{% unless show_selectors %}
+{% assign copyright_show_class = "" %}
+{% endunless %}
+{% endif %}
+
+{% case section.blocks.size %}
+{% when 1 %}
+{% assign footer_item = 'site-footer__item--full-width' %}
+{% assign inline_list = true %}
+{% when 2 %}
+{% assign footer_item = 'site-footer__item--one-half' %}
+{% assign inline_list = true %}
+{% when 3 %}
+{% assign footer_item = 'site-footer__item--one-third' %}
+{% for block in section.blocks %}
+  {% if block.type == 'newsletter' %}
+    {% assign footer_item = 'site-footer__item--one-quarter' %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+{% when 4 %}
+{% assign footer_item = 'site-footer__item--one-quarter' %}
+{% when 5 %}
+{% assign footer_item = 'site-footer__item--one-fifth' %}
+{% endcase %}
+
+{% comment %} Create an appropriate hover color based on text color and brightness {% endcomment %}
+{% assign footer_text_color = section.settings.color_footer_text %}
+{% assign footer_text_color_brightness = section.settings.color_footer_text | color_brightness %}
+{% if footer_text_color_brightness <= 26 %}
+{% assign footer_text_color_hover = footer_text_color | color_lighten: 25 %}
+{% elsif footer_text_color_brightness <= 65 %}
+{% assign footer_text_color_hover = footer_text_color | color_lighten: 15 %}
+{% else %}
+{% assign footer_text_color_hover = footer_text_color | color_darken: 10 %}
+{% endif %}
+
+<style>
+.site-footer__hr {
+border-bottom: 1px solid {{ section.settings.color_footer_bg | color_darken: 10 }};
+}
+
+.footer__nav div a:hover,
+.accordion-content ul a:hover,
+.site-footer p,
+.site-footer__linklist-item a,
+.site-footer__rte a,
+.site-footer .input-group__field,
+.site-footer h4,
+.site-footer small,
+.site-footer__copyright-content a,
+.site-footer__newsletter-error,
+.site-footer h4, .site-footer .h4, .social_heading,
+.site-footer__social-icons .social-icons__link {
+  color: {{ section.settings.color_footer_text }};
+}
+details.accordian-panel{
+  border-bottom: 1px solid {{ section.settings.color_footer_text }};
+}
+.footer__nav div{
+   position: relative;
+}
+.footer__nav div:after{
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 55%;
+    background: {{ section.settings.color_footer_text }};
+    position: absolute;
+    right: -14px;
+    transform: translateY(-50%);
+    top: 50%;
+}
+.footer__nav div:nth-child(2):before {
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 55%;
+    background: {{ section.settings.color_footer_text }};
+    position: absolute;
+    left: -14px;
+    transform: translateY(-50%);
+    top: 50%;
+}
+.site-footer .input-group__field::placeholder {
+  color: {{ section.settings.color_footer_text }};
+}
+.site-footer {
+  color: {{ section.settings.color_footer_text }};
+  background-color: {{ section.settings.color_footer_bg }};
+}
+
+.site-footer__rte a {
+  border-bottom: 1px solid {{ section.settings.color_footer_text }};
+}
+
+.site-footer__rte a:hover,
+.site-footer__linklist-item a:hover,
+.site-footer__copyright-content a:hover {
+color: {{ footer_text_color_hover }};
+border-bottom: 1px solid {{ footer_text_color_hover }};
+}
+.footer_header, .input-group{
+  border-bottom: 1px solid {{ section.settings.color_footer_text }};
+}
+.site-footer__social-icons .social-icons__link:hover {
+color: {{ footer_text_color_hover }};
+}
+
+</style>
+
+
+
+
+{% capture payment_icon_markup %}
+{% if show_payment_icons %}
+<div class="grid__item site-footer__payment-icons">
+  <span class="visually-hidden">{{ 'general.payment.method' | t }}</span>
+  <ul class="payment-icons list--inline site-footer__icon-list">
+    {% for type in shop.enabled_payment_types %}
+      <li class="payment-icon">
+        {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+{% endcapture %}
+
+<footer class="site-footer" role="contentinfo" data-section-id="{{ section.id }}" data-section-type="footer-section">
+  <div class="page-width">
+    <div class="wrapper_inner">
+      <!--start footer header section   -->
+      <div class="footer_header">
+        <div class="footer_logo">
+          <a href="{{shop.url}}">
+            <img src="{{section.settings.footer_logo | img_url: '96x25'}}" class="lazyload js">
+          </a>
+        </div>
+        <div class="footer_social">
+          <div class="social-section"> {% assign socials = "Instagram Facebook Twitter Pinterest YouTube Tumblr Snapchat  Vimeo" | split: ' ' %} {% if social_icons %} <ul class="list--inline site-footer__social-icons social-icons site-footer__icon-list"> {% for social in socials %} {% assign social_link = social | prepend: 'social_' | append: '_link' | downcase %} {% assign icon_link = social | prepend: 'icon-' | downcase %} {% if settings[social_link] != blank %} <li class="social-icons__item">
+                <a class="social-icons__link" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message" target="_blank"> {% include icon_link %} <span class="icon__fallback-text">{{ social }}</span>
+                </a>
+              </li> {% endif %} {% endfor %} {% if request.page_type == 'blog' or request.page_type == 'article' %} <li>
+                <a class="social-icons__link" href="{{ shop.url }}{{ blog.url }}.atom"> {% include 'icon-rss' %} <span class="icon__fallback-text">
+                    <ly-as-275727>RSS</ly-as-275727>
+                  </span>
+                </a>
+              </li> {% endif %} </ul> {% endif %} </div>
+        </div>
+      </div>
+      <!--End footer header section   -->
+      <!-- start middle section footer -->
+      <div class="footer_nav-content">
+        {%- for block in section.blocks -%}
+        {% case block.type %}
+            {% when 'text-Exclusives' %}
+                <div class="accordian">
+                  <!-- medium screen link set -->
+                  <accordion-item>
+                    <details class="accordian-panel">
+                      <!-- Accordian Btn -->
+                      <summary class="accordian-trigger appearance-none">
+                        <h4>{{ block.settings.exclusives_club-title }}</h4>
+                        <i class="fa fa-plus" aria-hidden="true">
+                          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 4.81641V20.8164" stroke="white" />
+                            <path d="M5.00034 12.8164H21.0003" stroke="white" />
+                          </svg>
+                        </i>
+                        <i class="fa fa-minus" aria-hidden="true">
+                          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.00034 12.8164H21.0003" stroke="white" />
+                          </svg>
+                        </i>
+                      </summary>
+                      <!-- Accordian Content -->
+                      <div class="accordion-content"> {% if block.settings.exclusives_club != blank %} {{ block.settings.exclusives_club }} {% endif %} </div>
+                    </details>
+                  </accordion-item>
+                   <!-- larger screen link set -->
+                   <div class="large_screen">
+                      <h4>{{ block.settings.exclusives_club-title }}</h4>
+                      <div class="accordion-content"> 
+                          {% if block.settings.exclusives_club != blank %} 
+                              {{ block.settings.exclusives_club }} 
+                          {% endif %} 
+                      </div>    
+                   </div>
+                </div>
+               
+        	{% when 'Navigation' %}
+              <div class="accordian">
+                <!-- medium screen link set -->
+                <accordion-item>
+                  <details class="accordian-panel">
+                    <!-- Accordian Btn -->
+                    <summary class="accordian-trigger appearance-none">
+                      <h4>{{ block.settings.nav-title }}</h4>
+                      <i class="fa fa-plus" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M13 4.81641V20.8164" stroke="white" />
+                          <path d="M5.00034 12.8164H21.0003" stroke="white" />
+                        </svg>
+                      </i>
+                      <i class="fa fa-minus" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5.00034 12.8164H21.0003" stroke="white" />
+                        </svg>
+                      </i>
+                    </summary>
+                    <!-- Accordian Content -->
+                    <div class="accordion-content">
+                      <ul aria-hidden="true"> 
+                        {% assign service_nav = block.settings.footer_links.links %} 
+                        {% for link in service_nav %} 
+                        <li>
+                          <a href="{{ link.url }}">{{ link.title }}</a>
+                        </li> 
+                        {% endfor %} 
+                      </ul>
+                    </div>
+                  </details>
+                </accordion-item>
+                <!-- larger screen link set -->
+                 <div class="large_screen">
+                    <h4>{{ block.settings.nav-title }}</h4>
+                    <div class="accordion-content"> 
+                      <ul aria-hidden="true"> 
+                        {% assign service_nav = block.settings.footer_links.links %} 
+                        {% for link in service_nav %} 
+                        <li>
+                          <a href="{{ link.url }}">{{ link.title }}</a>
+                        </li> 
+                        {% endfor %} 
+                      </ul> 
+                    </div>    
+                 </div> 
+               <!-- larger screen link set -->
+              </div> 
+            {% when 'Two-Column-Navigation' %}
+              <div class="accordian">
+                <accordion-item>
+                  <details class="accordian-panel">
+                    <!-- Accordian Btn -->
+                    <summary class="accordian-trigger appearance-none">
+                      <h4>{{ block.settings.account_links-title }}</h4>
+                      <i class="fa fa-plus" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M13 4.81641V20.8164" stroke="white" />
+                          <path d="M5.00034 12.8164H21.0003" stroke="white" />
+                        </svg>
+                      </i>
+                      <i class="fa fa-minus" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5.00034 12.8164H21.0003" stroke="white" />
+                        </svg>
+                      </i>
+                    </summary>
+                    <!-- Accordian Content -->
+                    <div class="accordion-content">
+                      <ul aria-hidden="true"> 
+                      {% assign account_nav = block.settings.account_links.links %} 
+                      {% for link in account_nav %} 
+                        <li>
+                          <a href="{{ link.url }}" >{{ link.title }}</a>
+                        </li> 
+                      {% endfor %} 
+                      </ul>
+                    </div>
+                  </details>
+                </accordion-item>
+                  <!-- larger screen link set -->
+                   <div class="large_screen">
+                      <h4>{{ block.settings.account_links-title }}</h4>
+                      <div class="accordion-content">
+                        <ul aria-hidden="true"> 
+                        {% assign account_nav = block.settings.account_links.links %} 
+                        {% for link in account_nav %} 
+                          <li>
+                            <a href="{{ link.url }}" >{{ link.title }}</a>
+                          </li> 
+                        {% endfor %} 
+                        </ul>
+                      </div>    
+                   </div> 
+                 <!-- larger screen link set -->            
+                  <accordion-item>
+                    <details class="accordian-panel">
+                      <!-- Accordian Btn -->
+                      <summary class="accordian-trigger appearance-none">
+                        <h4>{{ block.settings.about_links-title }}</h4>
+                        <i class="fa fa-plus" aria-hidden="true">
+                          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 4.81641V20.8164" stroke="white" />
+                            <path d="M5.00034 12.8164H21.0003" stroke="white" />
+                          </svg>
+                        </i>
+                        <i class="fa fa-minus" aria-hidden="true">
+                          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.00034 12.8164H21.0003" stroke="white" />
+                          </svg>
+                        </i>
+                      </summary>
+                      <!-- Accordian Content -->
+                      <div class="accordion-content">
+                        <ul aria-hidden="true"> 
+                            {% assign about_nav = block.settings.about_links.links %} 
+                            {% for link in about_nav %} 
+                              <li class="">
+                                <a href="{{ link.url }}">{{ link.title }}</a>
+                              </li> 
+                            {% endfor %} 
+                            </ul>
+                      </div>
+                    </details>
+                  </accordion-item>
+                  <!-- larger screen link set -->
+                   <div class="large_screen third_largescreen">
+                      <h4>{{ block.settings.about_links-title }}</h4>
+                      <div class="accordion-content">
+                        <ul class="" aria-hidden="true"> 
+                          {% assign about_nav = block.settings.about_links.links %} 
+                          {% for link in about_nav %} 
+                            <li>
+                                <a href="{{ link.url }}" class="">{{ link.title }}</a>
+                            </li> 
+                          {% endfor %} 
+                        </ul>
+                      </div>   
+                   </div> 
+                 <!-- larger screen link set -->             
+              </div>
+                            
+            {% when 'Newsletter' %}
+              <div class="accordian newsletter_section"> 
+                 <h4>{{ block.settings.newsletter-title }}</h4>
+                  <p>{{ block.settings.newsletter-content }}</p> 
+                  <div class="site-footer__newsletter
+                  {% if section.blocks.size == 1 %} site-footer__single-block--centered{% endif %}">
+                    <div class="input-group ">
+                      <input type="email" name="contact[email]" id="email" class="input-group__field newsletter__input" value="" placeholder="Email address" aria-label="*E-mail" aria-required="true" required="" autocorrect="off" autocapitalize="off">
+                      <span class="input-group__btn">
+                        <button type="submit" class="btn newsletter__submit" name="commit" id="button" disabled="disabled">
+                          <span class="newsletter__submit-text--large">
+                            <svg width="21" height="12" viewBox="0 0 21 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M20 5.87891H0" stroke="white" />
+                              <path d="M15.0846 0.816406L19.9994 5.8786L15.0846 10.9408" stroke="white" />
+                            </svg>
+                          </span>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </div> 
+          {% endcase %}
+        {% endfor %}
+      </div>
+      
+      <!-- End middle section footer -->
+      <div class="footer_nav__links">
+        <div class="footer__nav">
+          <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small> 
+            {% assign footer_nav = section.settings.footer_links.links %} 
+            {% for link in footer_nav %} 
+              <div>
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </div> 
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  class FooterAccordion extends HTMLElement {
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      this.accordions = document.querySelectorAll('details');
+      this.details = this.querySelector('details');
+      this.inCollection = this.dataset.collection;
+      this.summary = this.querySelector('summary');
+      this.accordionContent = this.querySelector('.accordion-content');
+
+      this.isOpening = false;
+      this.isClosing = false;
+
+      this.animation = null;
+
+      this.summary.addEventListener('click', this.onClick.bind(this));
+    }
+
+    onClick(e) {
+      e.preventDefault();
+      if (this.inCollection && window.innerWidth >= 768) return;
+      this.details.style.overflow = 'hidden';
+
+      if (this.isClosing | !this.details.open) {
+        this.open();
+      } else if (this.isOpening | this.details.open) {
+        this.close();
+      }
+    }
+
+    open() {
+      this.accordions.forEach((accordion) => {
+        accordion.open = false;
+      });
+
+      this.details.open = true;
+      window.requestAnimationFrame(() => {
+        this.isOpening = true;
+        const startHeight = `${this.summary.offsetHeight}px`;
+        const endHeight = `${this.summary.offsetHeight + this.accordionContent.offsetHeight}px`;
+
+        if (this.animation) {
+          this.animation.cancel();
+        }
+
+        this.animation = this.details.animate(
+          {
+            height: [startHeight, endHeight],
+          },
+          {
+            duration: 400,
+            easing: 'ease-out',
+          }
+        );
+
+        this.animation.onfinish = () => this.onAnimationFinish(true);
+        this.animation.onCancel = () => (this.isOpening = false);
+      });
+    }
+
+    close() {
+      this.isClosing = true;
+      const startHeight = `${this.details.offsetHeight}px`;
+      const endHeight = `${this.summary.offsetHeight}px`;
+
+      if (this.animation) {
+        this.animation.cancel();
+      }
+
+      this.animation = this.details.animate(
+        {
+          height: [startHeight, endHeight],
+        },
+        {
+          duration: 400,
+          easing: 'ease-out',
+        }
+      );
+
+      this.animation.onfinish = () => this.onAnimationFinish(false);
+      this.animation.oncancel = () => (this.isClosing = false);
+    }
+
+    onAnimationFinish(open) {
+      this.details.open = open;
+      this.animation = null;
+      this.isClosing = false;
+      this.isExpanding = false;
+      this.details.style.height = this.details.style.overflow = '';
+    }
+  }
+
+  customElements.define('accordion-item', FooterAccordion);
+
+        $(document).ready(function(){
+          const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          $(function() {
+            $('#button').attr('disabled', true);
+            $('#email').keyup(function() {
+              if (re.test($('#email').val()) != '') {
+                $('#button').attr('disabled', false);
+              } else {
+                $('#button').attr('disabled', true);
+              }
+            });
+          });
+          
+          $('#button').click(function(){
+            localStorage.setItem("emaildatasub",$('#email').val());
+            location.href = "https://www.tumi.ae/pages/newsletter";
+          })
+        });
+</script>
+
+{% schema %}
+{
+"name": {
+"da": "Sidefod",
+"de": "Fußzeile",
+"en": "Footer",
+"es": "Pie de página",
+"fi": "Alatunniste",
+"fr": "Pied de page",
+"hi": "फुटर",
+"it": "Footer",
+"ja": "フッター",
+"ko": "바닥글",
+"nb": "Footer",
+"nl": "Voettekst",
+"pt-BR": "Rodapé",
+"pt-PT": "Rodapé",
+"sv": "Sidfot",
+"th": "ส่วนท้าย",
+"zh-CN": "页脚",
+"zh-TW": "頁尾"
+},
+"max_blocks": 5,
+"settings": [
+{
+  "type": "header",
+  "content": {
+    "da": "Farve",
+    "de": "Farbe",
+    "en": "Color",
+    "es": "Color",
+    "fi": "Väri",
+    "fr": "Couleur",
+    "hi": "रंग",
+    "it": "Colore",
+    "ja": "色",
+    "ko": "색상",
+    "nb": "Farge",
+    "nl": "Kleur",
+    "pt-BR": "Cor",
+    "pt-PT": "Cor",
+    "sv": "Färg",
+    "th": "สี",
+    "zh-CN": "颜色",
+    "zh-TW": "顏色"
+  }
+},
+{
+  "type": "color",
+  "id": "color_footer_bg",
+  "label": {
+    "da": "Baggrund",
+    "de": "Hintergrund",
+    "en": "Background",
+    "es": "Fondo",
+    "fi": "Tausta",
+    "fr": "Couleur de fond",
+    "hi": "पृष्ठभूमि",
+    "it": "Sfondo",
+    "ja": "背景",
+    "ko": "배경",
+    "nb": "Bakgrunn",
+    "nl": "Achtergrond",
+    "pt-BR": "Plano de fundo",
+    "pt-PT": "Fundo",
+    "sv": "Bakgrund",
+    "th": "พื้นหลัง",
+    "zh-CN": "背景",
+    "zh-TW": "背景"
+  },
+  "default": "#f6f6f6"
+},
+{
+  "type": "color",
+  "id": "color_footer_text",
+  "label": {
+    "da": "Tekst",
+    "de": "Text",
+    "en": "Text",
+    "es": "Texto",
+    "fi": "Teksti",
+    "fr": "Texte",
+    "hi": "टेक्स्ट",
+    "it": "Testo",
+    "ja": "テキスト",
+    "ko": "텍스트",
+    "nb": "Tekst",
+    "nl": "Tekst",
+    "pt-BR": "Texto",
+    "pt-PT": "Texto",
+    "sv": "Text",
+    "th": "ข้อความ",
+    "zh-CN": "文本",
+    "zh-TW": "文字"
+  },
+  "default": "#333232"
+},
+  {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Footer Logo"
+  },
+  {
+      "type": "header",
+      "content": "Footer Copyright Navigation"
+  },
+  {
+    "type": "link_list",
+    "id": "footer_links",
+    "label":"Select Footer links"
+  }
+],
+"blocks": [
+      {
+        "type": "text-Exclusives",
+        "name": "TUMI Exclusives Content",
+        "settings":[
+            {
+                "type": "text",
+                "id": "exclusives_club-title",
+                "label": "TUMI Exclusives Title",
+                "default" :"TUMI Exclusives Club"
+            },
+            {
+                "type": "html",
+                "id": "exclusives_club",
+                "label": "TUMI Exclusives Club"
+            }
+        ]
+    },
+    {
+      "type": "Navigation",
+      "name": "TUMI Navigation",
+      "settings": [
+         {
+          "type": "text",
+          "id": "nav-title",
+          "label": "Enter Navigation Title",
+          "default" :"Customer Service"
+         },
+         {
+            "type": "link_list",
+            "id": "footer_links",
+            "label":"Select Navigation links"
+         }
+      ]
+    },
+    {
+      "type": "Two-Column-Navigation",
+      "name": "TUMI Column-2 Navigation",
+      "settings": [
+         {
+            "type": "text",
+            "id": "account_links-title",
+            "label":"My Account Title",
+            "default" :"My Account"
+          },
+          {
+            "type": "link_list",
+            "id": "account_links",
+            "label":"My Account links"
+          },
+          {
+            "type": "text",
+            "id": "about_links-title",
+            "label":"About TUMI Title",
+            "default" :"About TUMI"
+          },
+          {
+            "type": "link_list",
+            "id": "about_links",
+            "label":"About TUMI links"
+          }
+      ]
+    },
+    {
+      "type": "Newsletter",
+      "name": "TUMI Newsletter",
+      "settings": [
+         {
+          "type": "text",
+          "id": "newsletter-title",
+          "label":"Enter Newsletter Title",
+          "default" :"Get on the List"
+        },
+        {
+          "type": "text",
+          "id": "newsletter-content",
+          "label":"Enter Newsletter content",
+          "default" :"Sign up to receive notifications about new arrivals, exclusive offers and much more."
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
