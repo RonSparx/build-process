@@ -1,6 +1,27 @@
-import { defineConfig } from "vite";
+import { defineConfig, Plugin } from "vite";
 import shopify from "vite-plugin-shopify";
 import { resolve } from "node:path";
+import fs from "fs-extra";
+
+interface Bundler extends Plugin {
+  generateBundle?: {
+    sequential: boolean;
+    order: "pre" | "post";
+    handler: () => Promise<void>;
+  };
+}
+function bundleStaticAsset(): Bundler {
+  return {
+    name: "bundle-static-asset",
+    generateBundle: {
+      sequential: true,
+      order: "post",
+      async handler() {
+        await fs.copy("resources", "assets");
+      },
+    },
+  };
+}
 
 export default defineConfig({
   server: {
@@ -10,23 +31,15 @@ export default defineConfig({
   publicDir: "public",
   resolve: {
     alias: {
-      "@fonts": resolve("frontend/fonts"),
-      "@images": resolve("frontend/images"),
       "@scripts": resolve("frontend/scripts"),
       "@styles": resolve("frontend/styles"),
-      "@svg": resolve("frontend/svg"),
     },
   },
   plugins: [
     shopify({
-      additionalEntrypoints: [
-        "frontend/fonts/**/*",
-        "frontend/images/**/*",
-        "frontend/scripts/**/*",
-        "frontend/styles/**/*",
-        "frontend/svg/**/*",
-      ],
+      additionalEntrypoints: ["frontend/scripts/**/*", "frontend/styles/**/*"],
     }),
+    bundleStaticAsset(),
   ],
   build: {
     sourcemap: false,
