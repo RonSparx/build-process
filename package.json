@@ -16,7 +16,7 @@
     "theme"
   ],
   "scripts": {
-    "dev": "run-p vite:serve shopify:serve:dev",
+    "dev": "run-p vite:serve:dev shopify:serve:dev",
     "build": "vite build",
     "dev:sync": "run-p vite:serve:dev \"shopify:serve:dev -- --theme-editor-sync\"",
     "start": "cross-env NODE_ENV=production run-s vite:build shopify:serve",

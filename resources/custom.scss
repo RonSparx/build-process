@@ -393,12 +393,12 @@ $bold: 700;
 $ultrabold: 900;
 
 //TEXT VARIBALES
-// .text-capital {
-//   text-transform: capitalize;
-// }
-// .text-upper !optional {
-//   text-transform: uppercase;
-// }
+.text-capital {
+  text-transform: capitalize;
+}
+.text-upper {
+  text-transform: uppercase;
+}
 .text-center {
   text-align: center;
 }
@@ -663,7 +663,7 @@ a:focus {
   transition: none;
   box-sizing: border-box;
   letter-spacing: -0.19px;
-  @extend .text-capital !optional;
+  @extend .text-capital;
   @include font-basic-style($font-cmn-proxima-rg, $color-black, 18px, $medium);
   &:hover {
     color: $color-red-dark;
@@ -743,7 +743,7 @@ a:focus {
 .site-footer {
   h4,
   .h4 {
-    @extend .text-upper !optional;
+    @extend .text-upper;
     display: none;
     @include font-basic-style($font-cmn-proxima-rg, $color-black, 16px, $medium);
     letter-spacing: -0.17px;
@@ -772,7 +772,7 @@ a:focus {
   }
   span.input-group__btn {
     .newsletter__submit {
-      @extend .text-capital !optional;
+      @extend .text-capital;
       padding: 4px;
       @include font-basic-style($font-cmn-proxima-rg, $color-white, 16px, $regular);
       -webkit-transition: all 1s;
@@ -902,7 +902,7 @@ a:focus {
   .h1 {
     @include font-basic-style($font-cmn-proxima-rg, $color-anounce, 25px, $bold);
     letter-spacing: -0.27px;
-    @extend .text-capital !optional;
+    @extend .text-capital;
   }
 }
 dl.price.price--listing {
@@ -999,7 +999,7 @@ select,
 .product-single__title {
   @include font-basic-style($font-cmn-proxima-rg, $color-black, 32px, $medium);
   letter-spacing: -0.35px;
-  @extend .text-capital !optional;
+  @extend .text-capital;
 }
 .product-single .product__price {
   margin-top: 0px;
@@ -1096,7 +1096,7 @@ select,
   }
   .cart-product-type {
     @include font-basic-style($font-cmn-proxima-rg, $color-black, 12px, $regular);
-    @extend .text-upper !optional;
+    @extend .text-upper;
     margin-bottom: 5px;
     letter-spacing: -0.13px;
   }
@@ -1113,7 +1113,7 @@ select,
 }
 .cart-popup__dismiss {
   .cart-popup__dismiss-button {
-    @extend .text-upper !optional;
+    @extend .text-upper;
     padding: 0px;
     line-height: initial;
   }
@@ -2266,7 +2266,7 @@ span.ly-custom-1000{
   .site-footer {
     h4,
     .h4 {
-      @extend .text-upper !optional;
+      @extend .text-upper;
       display: block;
     }
   }
@@ -2311,10 +2311,10 @@ span.ly-custom-1000{
   .tahoe-inner-wrapper {
     h5 {
       @include font-basic-style($font-cmn-proxima-rg, $color-black, 16px, $bold);
-      @extend .text-upper !optional;
+      @extend .text-upper;
       a {
         @include font-basic-style($font-cmn-proxima-rg, $color-black, 16px, $medium);
-        @extend .text-capital !optional;
+        @extend .text-capital;
         text-decoration: underline;
       }
     }
@@ -2322,7 +2322,7 @@ span.ly-custom-1000{
   .shipping-calculate {
     @include font-basic-style($font-cmn-proxima-rg, $color-black, 14px, $regular);
     a {
-      @extend .text-capital !optional;
+      @extend .text-capital;
       text-decoration: underline;
     }
   }
