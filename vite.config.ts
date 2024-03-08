@@ -1,5 +1,4 @@
 import { defineConfig, Plugin } from "vite";
-import basicSsl from "@vitejs/plugin-basic-ssl";
 import shopify from "vite-plugin-shopify";
 import { resolve } from "node:path";
 import fs from "fs-extra";
@@ -26,8 +25,8 @@ function bundleStaticAsset(): Bundler {
 
 export default defineConfig({
   server: {
-    host: true,
-    port: 3000,
+    host: false,
+    port: 5173,
     proxy: {},
   },
   publicDir: "public",
@@ -38,7 +37,6 @@ export default defineConfig({
     },
   },
   plugins: [
-    basicSsl({}),
     shopify({
       additionalEntrypoints: ["frontend/scripts/**/*", "frontend/styles/**/*"],
     }),
