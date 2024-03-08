@@ -6,5 +6,66 @@
     "theme_author": "THEME_AUTHOR",
     "theme_documentation_url": "https://THEME_DOCUMENTATION_URL.com/",
     "theme_support_url": "https://THEME_SUPPORT_URL.com/"
+  },
+  {
+    "name":"Header",
+    "settings":[
+      {
+        "type":"select",
+        "label":"Announcement Bar Layout",
+      "id":"announcementBar_layout",
+        "options":[
+          {
+            "value":"announcementBar_01",
+            "label":"Layout 1"
+          },
+          {
+            "value":"announcementBar_02",
+            "label":"Layout 2"
+          },
+          {
+            "value":"announcementBar_03",
+            "label":"Layout 3"
+          },
+          {
+            "value":"announcementBar_04",
+            "label":"Layout 4"
+          },
+          {
+            "value":"none",
+            "label":"None"
+          }
+        ],
+        "default":"none"
+      },
+      {
+        "type":"select",
+        "label":"Header Layout",
+        "id":"header_layout",
+        "options":[
+          {
+            "label":"Layout 1",
+            "value":"header_01"
+          },
+          {
+            "label":"Layout 2",
+            "value":"header_02"
+          },
+          {
+            "label":"Layout 3",
+            "value":"header_03"
+          },
+          {
+            "label":"Layout 4",
+            "value":"header_04"
+          },
+          {
+            "label":"None",
+            "value":"none"
+          }
+        ],
+        "default":"none"
+      }
+    ]
   }
 ]

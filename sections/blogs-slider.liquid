@@ -1,0 +1,350 @@
+{% style %}
+  #blogs-slider-section-{{ section.id }}{
+    padding-top:{{ section.settings.margin_top_mob }}px;
+    padding-bottom:{{ section.settings.margin_bottom_mob }}px;
+  }
+  #blogs-slider-section-{{ section.id }} .wrapper{
+    padding:0 {{ section.settings.horizontal_padding_mobile }}px;
+  }
+
+  #blogs-slider-section-{{ section.id }}{
+    background-color:{{ section.settings.text_bg }}
+  }
+  @media(min-width:768px){
+    #blogs-slider-section-{{ section.id }}{
+     padding-top:{{ section.settings.margin_top_desktop }}px;
+    padding-bottom:{{ section.settings.margin_bottom_desktop }}px;
+    }
+    #blogs-slider-section-{{ section.id }} .wrapper{
+    padding-left:{{ section.settings.horizontal_padding_desktop }}px;
+    padding-right:0px;
+  }
+  }
+{% endstyle %}
+<section id="blogs-slider-section-{{ section.id }}" class="blogs-slider">
+  <div class="m-container:max-w-[1660px] m-container:mx-auto">
+    <div class="px-[20px] md:px-0 md:pl-10 wrapper">
+      <h3 class="text-[36px] font-gascogne-serial leading-[39.6px] font-light mb-10 md:mb-6">
+        {{ section.settings.section_title }}
+      </h3>
+    </div>
+    <div class="px-[20px] md:px-0 md:pl-10 wrapper ">
+      <div
+        class="flex flex-col md:flex-row gap-[32px] md:gap-0 keen-slider lg:border-t lg:border-b lg:border-[#DFDEDB]"
+        id="blog-slides-{{ section.id }}"
+      >
+        {% for block in section.blocks %}
+          {% liquid
+            assign img = block.settings.article.image
+            assign title = block.settings.article.title
+            assign description = block.settings.article.content | strip_html
+            assign url = block.settings.article.url
+            assign count = forloop.index
+            if img
+              assign ratio = img.aspect_ratio
+            else
+              assign ratio = 1
+            endif
+          %}
+          <div class="keen-slider__slide lg:!overflow-visible before:lg:absolute before:lg:right-[-10px] before:lg:top-0 before:lg:h-full before:lg:w-[1px] before:lg:bg-[#DFDEDB]">
+            <div class="relative bg-[#F8F8F8]" style="padding-bottom:{{ 1 | divided_by : ratio | times : 100 }}%">
+              {% if img != blank %}
+                <picture>
+                  <img
+                    srcset="
+                      {%- if img.width >= 165 -%}{{ img | image_url: width: 165 }} 165w,{%- endif -%}
+                      {%- if img.width >= 360 -%}{{ img | image_url: width: 360 }} 360w,{%- endif -%}
+                      {%- if img.width >= 533 -%}{{ img | image_url: width: 533 }} 533w,{%- endif -%}
+                      {%- if img.width >= 720 -%}{{ img | image_url: width: 720 }} 720w,{%- endif -%}
+                      {%- if img.width >= 940 -%}{{ img | image_url: width: 940 }} 940w,{%- endif -%}
+                      {%- if img.width >= 1066 -%}{{ img | image_url: width: 1066 }} 1066w,{%- endif -%}
+                      {{ img | image_url }} {{ img.width }}w
+                    "
+                    src="{{ img | image_url: width: 533 }}"
+                    sizes="(min-width: 1600px) {{ 1600 | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                    alt="{{ img.alt | escape }}"
+                    loading="lazy"
+                    class="absolute top-0 left-0 w-full h-full"
+                    width="{{ img.width | divided_by : 4 }}"
+                    height="{{ img.height }}"
+                  >
+                </picture>
+              {% endif %}
+            </div>
+            <div class="px-4 py-[18px] lg:pb-[7px]">
+              <h3 class="text-[26px] mb-2 font-gascogne-serial font-light leading-[28.6px]">
+                {% if title == blank %}
+                  Editorial Title
+                {% else %}
+                  {{ title }}
+                {% endif %}
+              </h3>
+              <p class="text-[16px] mb-4 font-light leading-[24px] font-shape line-clamp-2">
+                {% if description == blank %}
+                  When it comes to jewellery, our motto is go bling or go home. See how we're styling diamonds, emeralds
+                  and colour-pop stones.
+                {% else %}
+                  {{ description }}
+                {% endif %}
+              </p>
+              <a
+                href="{{ url }}"
+                class="text-[13px] font-normal uppercase font-shape border-b-[1px] border-b-[#000] pb-2"
+                >Read More</a
+              >
+            </div>
+            <a
+              href="{{ url }}"
+              class="absolute h-full w-full top-0 left-0"
+            ></a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% if section.settings.button_check %}
+      <div class="flex items-center flex-row justify-center mt-8">
+        <a
+          href="{{section.settings.rounded_button_link}}"
+          class="font-shape text-[13px] font-[500] leading-[120%] py-[13px] px-[24px] rounded-[20px] border-solid border-[1px] border-[#222] uppercase text-[#222222]"
+        >
+          {{- section.settings.rounded_button_text -}}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+<script>
+  let slide;
+  document.addEventListener('custom:keenLoaded', (e) => {
+    initializeBlogsSlider(e.detail.slider);
+  });
+  window.addEventListener('resize', () => {
+    initializeBlogsSlider(window.Slider);
+  });
+  function initializeBlogsSlider(SliderCons) {
+    function WheelControls(slider) {
+      var touchTimeout;
+      var position;
+      var wheelActive;
+
+      function dispatch(e, name) {
+        position.x -= e.deltaX;
+        position.y -= e.deltaY;
+        slider.container.dispatchEvent(
+          new CustomEvent(name, {
+            detail: {
+              x: position.x,
+              y: position.y,
+            },
+          })
+        );
+      }
+
+      function wheelStart(e) {
+        position = {
+          x: e.pageX,
+          y: e.pageY,
+        };
+        dispatch(e, 'ksDragStart');
+      }
+
+      function wheel(e) {
+        if (e.deltaY == -0) {
+          dispatch(e, 'ksDrag');
+        }
+      }
+
+      function wheelEnd(e) {
+        dispatch(e, 'ksDragEnd');
+      }
+
+      function eventWheel(e) {
+        if (!wheelActive) {
+          wheelStart(e);
+          wheelActive = true;
+        }
+        wheel(e);
+        clearTimeout(touchTimeout);
+        touchTimeout = setTimeout(() => {
+          wheelActive = false;
+          wheelEnd(e);
+        }, 50);
+      }
+
+      slider.on('created', () => {
+        slider.container.addEventListener(
+          'wheel',
+          (e) => {
+            if (e.deltaY != -0) {
+              slider.container.removeEventListener('wheel', () => {});
+            } else {
+              eventWheel(e);
+            }
+          },
+          { passive: false }
+        );
+      });
+    }
+    if (window.matchMedia('(min-width:768px)').matches) {
+      let Slider = SliderCons;
+      if (!slide) {
+        slide = new Slider(
+          '#blog-slides-{{ section.id }}',
+          {
+            loop: true,
+            breakpoints: {
+              '(min-width: 768px)': {
+                slides: {
+                  perView: 3.4,
+                  spacing: 20,
+                },
+              },
+            },
+          },
+          [WheelControls]
+        );
+      } else {
+        slide = new Slider(
+          '#blog-slides-{{ section.id }}',
+          {
+            loop: true,
+            breakpoints: {
+              '(min-width: 768px)': {
+                slides: {
+                  perView: 3.4,
+                  spacing: 20,
+                },
+              },
+            },
+          },
+          [WheelControls]
+        );
+      }
+    } else {
+      slide ? slide.destroy() : '';
+    }
+  }
+</script>
+{% schema %}
+{
+  "name": "Blogs Slider",
+  "settings": [
+    {
+      "type": "range",
+      "id": "margin_top_mob",
+      "label": "Margin From Top Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "label": "Margin From Top Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mob",
+      "label": "Margin From Bottom Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 76
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "label": "Margin From Bottom Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 49
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding_mobile",
+      "label": "Horizontal Padding Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding_desktop",
+      "label": "Padding Left Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 40
+    },
+    {
+      "type": "text",
+      "label": "Enter Section Title",
+      "id": "section_title"
+    },
+    {
+      "type": "checkbox",
+      "label": "Display button",
+      "id": "button_check"
+    },
+    {
+      "type": "text",
+      "id": "rounded_button_text",
+      "label": "Rounded Button Text",
+      "default": "View all Stories"
+    },
+    {
+      "type": "url",
+      "id": "rounded_button_link",
+      "label": "Rounded Button URL"
+    },
+    {
+      "type": "color",
+      "label": "Choose Text Background Color",
+      "id": "text_bg",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "article",
+      "name": "article",
+      "settings": [
+        {
+          "type": "article",
+          "label": "Choose Article",
+          "id": "article"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blogs Slider",
+      "settings": {
+        "section_title": "Latest Threads articles"
+      },
+      "blocks": [
+        {
+          "type": "article"
+        },
+        {
+          "type": "article"
+        },
+        {
+          "type": "article"
+        },
+        {
+          "type": "article"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

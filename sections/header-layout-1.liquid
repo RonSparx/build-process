@@ -1,0 +1,452 @@
+{% render 'vite-tag' with 'header-layout-1.js' %}
+{% style %}
+  [dir='rtl'] .mega-drop .nav-block li a:after {
+    transform-origin: right;
+  }
+  [dir='rtl'] .checkuser:before {
+    transform: scaleX(-1);
+    rotate: -45deg;
+    left: 5px;
+  }
+  #shopify-section-go-cart {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .nested-link:hover + .drop-overlay {
+      display: block !important;
+    }
+  }
+  @media (min-width: 1024px) and (max-width: 1070px) {
+    #shopify-section-popup .wishlist-wrapper::before {
+      right: 28%;
+    }
+    #shopify-section-popup .cart-wrapper::before {
+      right: 17%;
+    }
+  }
+  @media (min-width: 1024px) and (max-width: 1082px) {
+    #shopify-section-popup .account-wrapper::before {
+      right: 41%;
+    }
+  }
+{% endstyle %}
+
+{% comment %} Loaded page url to set current nav active {% endcomment %}
+{% comment %} {% assign full_url = request.path %} {% endcomment %}
+<sticky-header data-id="{{ section.id }}" hide-threshold="400" class="group lg:block">
+  {% comment %} navigation drop box overlay{% endcomment %}
+  <span
+    class="fixed top-0 left-0 w-full h-full bg-[rgba(0,0,0,.3)] hidden group-[.nav-toggle]:block z-[-1]"
+    data-role="nav-toggle"
+  ></span>
+
+  {% comment %} HEADER  {% endcomment %}
+  <header
+    header
+    class="transition-all group bg-white {% if template contains 'index' %} {% else %}is-sticky{% endif %}"
+  >
+    {% comment %} Desktop logo {% endcomment %}
+    <div class="bg-white z-[100] relative">
+      <div class="relative">
+        <div
+          class="hidden lg:flex lg:relative lg:items-center lg:justify-between self-center md:justify-center px-10 py-[27px] bg-white"
+          desk-logo
+        >
+          {% if page.type == 'index' %}<h1>{% endif %}
+          <a href="{{shop.url | append: request.locale.root_url }}">
+            {% if section.settings.header_logo_type == 'svg' %}
+              {% if section.settings.header_logo_svg_desktop != blank %}
+                <span class="hidden lg:block">{{ section.settings.header_logo_svg_desktop }}</span>
+              {% else %}
+                <h1 class="hidden lg:block">{{ shop.name }}</h1>
+              {% endif %}
+            {% else %}
+              {% if section.settings.header_logo_desktop != blank %}
+                <picture>
+                  <source
+                    media="(max-width:1024px)"
+                    srcset="{{ section.settings.header_logo_desktop | image_url: width: 0 }}"
+                  >
+                  <img src="{{ section.settings.header_logo_mobile | image_url: width: 200 }}" preload="true">
+                </picture>
+              {% else %}
+                <h1 class="text-xl font-semibold">{{ shop.name }}</h1>
+              {% endif %}
+            {% endif %}
+          </a>
+          {% if page.type == 'index' %}</h1>{% endif %}
+          {% comment %} {% render 'search-input-desktop-v2', class="hidden lg:block" %} {% endcomment %}
+          <div
+            data-role="icons"
+            class="
+              hidden lg:grid grid-cols-2 col-auto col-end-8 md:col-span-3  md:grid-cols-4 lg:grid-cols-3 lg:col-span-2 xl:col-span-2
+              md:col-end-13 lg:col-end-13 xl:col-end-13 2xl:col-end-13 gap-4 md:gap-5 row-start-1 items-center
+            "
+          >
+            <button
+              class="hidden lg:block ml-auto mr-auto group-[.nav-toggle]:opacity-0 group-[.nav-toggle]:md:opacity-100 group-[.nav-toggle]:pointer-events-none group-[.nav-toggle]:md:pointer-events-auto relative md:before:content-[''] md:before:absolute md:before:z-[103] md:before:bottom-0 md:before:left-[50%] md:before:w-3 md:before:h-3 md:before:bg-[#fff] md:before:translate-x-[-50%] md:group-[.logoDisplay]/showLogo:before:translate-y-[190%] md:before:translate-y-[172%] lg:before:translate-y-[185%] md:before:rotate-45 md:before:border-[#D8D8D8] md:before:border-[1px] md:before:opacity-0 md:hover:before:opacity-100 md:before:duration-100 md:before:hidden [&.show]:before:block [&.show]:before:opacity-100 md:before:border-b-[0px] md:before:border-r-[0px]"
+              data-action="accountLogin"
+            >
+              {% render 'icons', icon: 'icon-account', class: 'lg:w-6 lg:h-6' %}
+              {% if customer %}
+                <a href="{{ routes.account_url }}" class="absolute top-0 left-0 w-full h-full hidden lg:block"></a>
+              {% else %}
+                <a
+                  href="{{ routes.account_url }}"
+                  class="absolute top-0 left-0 w-full h-full hidden lg:block"
+                ></a>
+              {% endif %}
+            </button>
+            <a
+              href="#hero-wishlist"
+              class="flex lg:flex rtl:ml-0  md:ml-auto rtl:md:mr-auto mr-auto group-[.nav-toggle]:md:opacity-100 group-[.nav-toggle]:md:pointer-events-auto relative group/btn  md:before:content-[''] md:before:absolute md:before:z-[103] md:before:bottom-0 md:before:left-[50%] md:before:w-3 md:before:h-3 md:before:bg-[#fff] md:before:translate-x-[-50%] md:group-[.logoDisplay]/showLogo:before:translate-y-[190%] md:before:translate-y-[172%] lg:before:translate-y-[185%] md:before:rotate-45 md:before:border-[#D8D8D8] md:before:border-[1px] md:before:opacity-0 md:hover:before:opacity-100 md:before:transition-all md:before:duration-100 before:hidden [&.show]:before:block [&.show]:before:opacity-100  md:before:border-b-[0px] md:before:border-r-[0px]"
+              data-action="wishlist"
+            >
+              {% render 'icons', icon: 'icon-heart', classAttr: 'block group-[.active]/btn:hidden w-6 h-6' %}
+              {% render 'icons' with 'icon-heart-fill', classAttr: 'w-5 h-[21px] hidden group-[.active]/btn:block' %}
+              <span
+                data-role="wishlist-count"
+                class="font-shape wishlist-hero-items-count wishlist-hero-items-count-text bg-[#000] text-[#fff] aspect-1 rounded-full absolute top-[-4px] right-[-15px] w-5 h-5 text-[10px] leading-[20px] text-center hidden"
+                >(1)</span
+              >
+            </a>
+            <button
+              class="flex gap-[6px] relative ml-[-5px] rtl:ml-0 rtl:mr-[-5px] md:ml-auto rtl:md:mr-auto mr-auto  group-[.nav-toggle]:md:opacity-100 group-[.nav-toggle]:md:pointer-events-auto  md:before:content-[''] md:before:z-[103] md:before:absolute md:before:bottom-0 md:before:left-[50%] md:before:w-3 md:before:h-3 md:before:bg-[#fff] md:before:translate-x-[-50%] md:group-[.logoDisplay]/showLogo:before:translate-y-[190%] md:before:translate-y-[172%] lg:before:translate-y-[185%] md:before:rotate-45 md:before:border-[#D8D8D8] md:before:border-[1px] md:before:opacity-0 md:hover:before:opacity-100 md:before:transition-all md:before:duration-100 before:hidden [&.show]:before:block  [&.show]:before:opacity-100  md:before:border-b-[0px] md:before:border-r-[0px]"
+              data-role="mini-cart-toggle"
+            >
+              {% render 'icons', icon: 'icon-shoppingBag', class: 'h-6 w-6' %}
+              <span
+                class="text-[10px] rounded-full h-5 w-5 translate-x-2 translate-y-[-21%] absolute top-[0px] right-[0px] bg-[#000] text-[#fff] font-shape flex justify-center items-center leading-[0px] {% if cart.item_count == 0 %} hidden {% endif %}"
+                data-role="cart-count"
+              >
+                {{- cart.item_count -}}
+              </span>
+            </button>
+          </div>
+        </div>
+        <div
+          data-role="navigation"
+          class="grid grid-cols-6 px-5 lg:px-[65px] py-[13px] md:pt-[0.95rem] lg:py-0 bg-white lg:border-y-[1px] lg:border-y-[#D5D5D5] lg:border-t-[0px]"
+        >
+          <button
+            data-role="nav-toggle"
+            class="block lg:hidden group-[.nav-toggle]:row-start-1 col-start-1 relative md:col-start-1 row-start-1"
+          >
+            <span class="opacity-100 group-[.nav-toggle]:opacity-0 transition-opacity duration-300">
+              {% render 'icons',
+                icon: 'icon-hamburger',
+                classAttr: 'group-[.nav-toggle]:opacity-0 transition-opacity duration-300'
+              -%}
+            </span>
+            <span class="opacity-0 w-full py-[10px] group-[.nav-toggle]:opacity-100 font-shop absolute top-[50%] left-[50%] md:left-0 rtl:md:left-[static] rtl:md:right-0 translate-x-[-50%] md:translate-x-[0%] translate-y-[-50%]">
+              {% render 'icons', icon: 'icon-close-header' %}
+            </span>
+          </button>
+          {% comment %} Logo for mobile and tablet {% endcomment %}
+          <div class="flex lg:hidden col-span-5 row-start-1 col-start-2 justify-center gap-6">
+            <a href="{{shop.url | append: request.locale.root_url }}">
+              {% if section.settings.header_logo_type == 'svg' %}
+                {% if section.settings.header_logo_svg_mobile != blank %}
+                  <span class="lg:hidden">{{ section.settings.header_logo_svg_mobile }}</span>
+                {% else %}
+                  <h1 class="text-xl font-semibold">{{ shop.name }}</h1>
+                {% endif %}
+              {% else %}
+                {% if section.settings.header_logo_desktop != blank %}
+                  <picture>
+                    <source
+                      media="(min-width:1024px)"
+                      srcset="{{ section.settings.header_logo_desktop | image_url: width: 0 }}"
+                    >
+                    <img src="{{ section.settings.header_logo_mobile | image_url: width: 100 }}" preload="true">
+                  </picture>
+                {% else %}
+                  <h1 class="text-xl font-semibold">{{ shop.name }}</h1>
+                {% endif %}
+              {% endif %}
+            </a>
+          </div>
+          {% comment %} navigation {% endcomment %}
+          <nav class="fixed lg:relative transition-transform lg:transition-none lg:col-span-12 bg-white h-[calc(100vh-50px)] overflow-y-auto md:h-[calc(100vh-80px)] lg:h-[unset] max-w-[100vw] md:max-w-[38vw] lg:max-w-[unset] lg:max-w[100vw] w-full top-[60px] max-h-[calc(100%_-_50px)] lg:max-h-[unset] md:top-[90px] lg:top-0 left-0 rtl:left-[initial] rtl:right-0 translate-x-[-200%] rtl:translate-x-[200%] md:translate-x-[-240%] rtl:md:translate-x-[240%] lg:transform-none rtl:lg:transform-none group-[.nav-toggle]:translate-x-0 lg:px-0 border-b-[#D5D5D5] border-t-[1px] md:border-t-[0px]">
+            <ul class="flex flex-col lg:flex-row md:bg-white md:h-max overflow-auto lg:justify-center">
+              <li class="relative lg:hidden font-shape text-[14px] font-light leading-[21px] bg-[#F6F3EC] border-b-[0.5px] border-b-[#D5D5D5] py-3 px-5">
+                {% if customer %}
+                  Welcome {{ customer.first_name }}
+                  <a
+                    href="{{ routes.account_url }}"
+                    class="absolute top-0 left-0 w-full h-full"
+                  ></a>
+                {% else %}
+                  Sign In / Sign Up
+                  <a
+                    href="{{ routes.account_url }}"
+                    class="absolute top-0 left-0 w-full h-full"
+                  ></a>
+                {% endif %}
+              </li>
+              {% assign highlight_link = section.settings.highlight_link | downcase %}
+              {% for link in section.settings.link_list.links %}
+                {% liquid
+                  assign nesting = false
+                  for value in shop.metaobjects.nested_navigation['nested-navigation'].nested_navigation.value
+                    assign objParentNav = value.parent_navigation_handle
+                    if objParentNav == link.handle
+                      assign nesting = true
+                    endif
+                  endfor
+                %}
+                <li
+                  class="group/nav {% if nesting -%} peer/nested nested-nav {% endif %} nested-link {% if full_url == link.url or active == true %}is-active{% endif %} mx-5 lg:mx-0 lg:pr-6 rtl:lg:pr-0 rtl:lg:pl-3 xl:pr-[1.7rem] rtl:xl:pr-0 rtl:xl:pl-[1.7rem] border-b-[#D5D5D5] border-b-[1px] lg:border-b-[0px]"
+                >
+                  {% if nesting -%}
+                    <p
+                      class="flex lg:hidden justify-between items-center cursor-pointer group-[.is-active]/nav:lg:bg-[transparent]  py-6"
+                      data-role="nested-toggle"
+                    >
+                      <span
+                        class="text-[12px] font-shape font-normal md:text-[14px] uppercase"
+                        {% if link_title == highlight_link %}
+                          style="color:{{ section.settings.highlight_color }}"
+                        {% endif %}
+                      >
+                        {{- link.title -}}
+                      </span>
+                      <span class="block rtl:rotate-180">{% render 'icons', icon: 'icon-caret' %}</span>
+                    </p>
+                    <a
+                      href="{{ link.url }}"
+                      class="hidden  lg:flex text-[12px] font-shape font-normal md:text-[14px] lg:text-[11px] xl:text-[12px] xl:tracking-[0.5px] lg:px-0 lg:pt-5 lg:pb-4 justify-between uppercase group-[.is-active]/nav:md:bg-[#f0f0f0] group-[.is-active]/nav:lg:bg-[transparent] lg:relative after:content-[''] after:lg:absolute after:lg:w-full after:lg:h-[2px] after:lg:bottom-0 after:lg:block after:lg:bg-[#000000] after:lg:scale-0 after:transition-transform after:origin-center hover:after:scale-100 after:duration-300 py-[13px]"
+                      {% if link_title == highlight_link %}
+                        style="color:{{ section.settings.highlight_color }}"
+                      {% endif %}
+                    >
+                      {{- link.title -}}
+                      <span class="rotate-90 hidden group-hover/nav:rotate-[-90deg] transition-transform">
+                        {%- render 'icons', icon: 'icon-caret' -%}
+                      </span>
+                    </a>
+                    {% comment %} {% render 'mega-drop-v2', parent_nav: link.handle, link: link %} {% endcomment %}
+                  {%- else %}
+                    <a
+                      href="{{ link.url }}"
+                      class="text-[12px] font-shape font-normal md:text-[14px] lg:text-[11px] xl:text-[12px] lg:pt-5 lg:pb-4 flex justify-between uppercase group-[.is-active]/nav:md:bg-[#f0f0f0] group-[.is-active]/nav:lg:bg-[transparent] lg:relative after:content-[''] after:lg:absolute after:lg:w-full after:lg:h-[2px] after:lg:bottom-0 after:lg:block after:lg:bg-[#000000] after:lg:scale-0 after:transition-transform after:origin-center hover:after:scale-100 after:duration-300 py-6"
+                      {% if link_title == highlight_link %}
+                        style="color:{{ section.settings.highlight_color }}"
+                      {% endif %}
+                    >
+                      {{- link.title -}}
+                    </a>
+                  {% endif %}
+                </li>
+              {% endfor %}
+              {% comment %}overlay and white bg for desktop{% endcomment %}
+              <span
+                class="mega-bg bg-white fixed lg:left-0 lg:w-full lg:min-h-[479px] lg:z-[-2] hidden lg:peer-hover/nested:block"
+              ></span>
+              <span
+                class="drop-overlay fixed left-0 w-full h-[100vh] mt-[2.3rem] bg-[rgba(0,0,0,.3)] hidden z-[-3] lg:peer-hover/nested:block"
+              ></span>
+              {% comment %} end overlay and white bg for desktop{% endcomment %}
+            </ul>
+            {% comment %} Mobile icons {% endcomment %}
+
+            <div class="mt-4 px-5 mb-6 lg:hidden">
+              {% assign linkLs = section.settings.bottom_nav %}
+              <ul>
+                {% for link in linkLs.links %}
+                  <li class="py-3 font-shape text-[#4B5259] text-[14px] leading-[21px] font-light">
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% if section.settings.language_selector %}
+              <div class="bg-[#F8F8F8] px-5 lg:hidden">
+                <button class="flex justify-between px-5 py-6 w-full">
+                  <span class="flex items-center">
+                    {% render 'icons', icon: 'icon-flag' %}
+                    <span class="text-[12px] font-shape font-normal leading-[16px] uppercase ml-2"
+                      >United Kingdom / GBP (£)</span
+                    >
+                  </span>
+                  <span class="block">{% render 'icons', icon: 'icon-caret' %}</span>
+                </button>
+                {% if section.settings.language_selector_text %}
+                  <p class="text-[11px] font-shape leading-[17px] pb-3">
+                    {{ section.settings.language_selector_text }}
+                  </p>
+                {% endif %}
+              </div>
+            {% endif %}
+          </nav>
+
+          {% comment %} Header icons {% endcomment %}
+          <div
+            data-role="icons"
+            class="
+               md:group-[.nested-toggle]:grid grid grid-cols-2 col-auto col-end-8 lg:col-span-2 xl:col-span-2
+              lg:col-end-13 xl:col-end-13 2xl:col-end-13 gap-4  row-start-1 items-center
+               lg:max-w-[144px] lg:hidden
+            "
+          >
+            <button
+              class="hidden lg:block lg:opacity-0 lg:pointer-events-none group-[.is-sticky]:opacity-100 group-[.is-sticky]:pointer-events-auto transition-opacity ml-[-19px] rtl:ml-0 rtl:mr-[-19px] md:ml-auto rtl:md:mr-auto mr-auto group-[.nav-toggle]:opacity-0 group-[.nav-toggle]:md:opacity-100  group-[.nav-toggle]:!pointer-events-none"
+              data-action="search-input"
+            >
+              {% render 'icons', icon: 'icon-search' %}
+            </button>
+
+            <button
+              class="hidden lg:block ml-auto mr-auto group-[.nav-toggle]:opacity-0 group-[.nav-toggle]:md:opacity-100 group-[.nav-toggle]:pointer-events-none group-[.nav-toggle]:md:pointer-events-auto relative md:before:content-[''] md:before:absolute md:before:z-[103] md:before:bottom-0 md:before:left-[50%] md:before:w-3 md:before:h-3 md:before:bg-[#fff] md:before:translate-x-[-50%] md:group-[.logoDisplay]/showLogo:before:translate-y-[190%] md:before:translate-y-[172%] lg:before:translate-y-[185%] md:before:rotate-45 md:before:border-[#D8D8D8] md:before:border-[1px] md:before:opacity-0 md:hover:before:opacity-100 md:before:duration-100 md:before:hidden [&.show]:before:block [&.show]:before:opacity-100 md:before:border-b-[0px] md:before:border-r-[0px]"
+              data-action="accountLogin"
+            >
+              {% render 'icons', icon: 'icon-account' %}
+              {% if customer %}
+                <a href="{{ routes.account_url }}" class="absolute top-0 left-0 w-full h-full hidden lg:block"></a>
+              {% else %}
+                <a
+                  href="{{ routes.account_url }}"
+                  class="absolute top-0 left-0 w-full h-full hidden lg:block"
+                ></a>
+              {% endif %}
+            </button>
+            <a
+              href="#hero-wishlist"
+              class="flex lg:flex rtl:ml-0  md:ml-auto rtl:md:mr-auto mr-auto group-[.nav-toggle]:md:opacity-100 group-[.nav-toggle]:md:pointer-events-auto relative group/btn  md:before:content-[''] md:before:absolute md:before:z-[103] md:before:bottom-0 md:before:left-[50%] md:before:w-3 md:before:h-3 md:before:bg-[#fff] md:before:translate-x-[-50%] md:group-[.logoDisplay]/showLogo:before:translate-y-[190%] md:before:translate-y-[172%] lg:before:translate-y-[185%] md:before:rotate-45 md:before:border-[#D8D8D8] md:before:border-[1px] md:before:opacity-0 md:hover:before:opacity-100 md:before:transition-all md:before:duration-100 before:hidden [&.show]:before:block [&.show]:before:opacity-100  md:before:border-b-[0px] md:before:border-r-[0px]"
+              data-action="wishlist"
+            >
+              {% render 'icons', icon: 'icon-heart', classAttr: 'block group-[.active]/btn:hidden w-6 h-6' %}
+              {% render 'icons' with 'icon-heart-fill', classAttr: 'w-5 h-[21px] hidden group-[.active]/btn:block' %}
+              <span
+                data-role="wishlist-count"
+                class="wishlist-hero-items-count wishlist-hero-items-count-text font-shape bg-[#000] text-[#fff] aspect-1 rounded-full absolute right-0 bottom-0 w-[20px] h-[20px] text-[10px] translate-x-[50%] translate-y-[-38%] leading-[20px] text-center hidden"
+                >(1)</span
+              >
+            </a>
+            <button
+              class="flex gap-[6px] relative ml-[-5px] rtl:ml-0 rtl:mr-[-5px] md:ml-auto rtl:md:mr-auto mr-auto  group-[.nav-toggle]:md:opacity-100 group-[.nav-toggle]:md:pointer-events-auto  md:before:content-[''] md:before:z-[103] md:before:absolute md:before:bottom-0 md:before:left-[50%] md:before:w-3 md:before:h-3 md:before:bg-[#fff] md:before:translate-x-[-50%] md:group-[.logoDisplay]/showLogo:before:translate-y-[190%] md:before:translate-y-[172%] lg:before:translate-y-[185%] md:before:rotate-45 md:before:border-[#D8D8D8] md:before:border-[1px] md:before:opacity-0 md:hover:before:opacity-100 md:before:transition-all md:before:duration-100 before:hidden [&.show]:before:block  [&.show]:before:opacity-100  md:before:border-b-[0px] md:before:border-r-[0px]"
+              data-role="mini-cart-toggle"
+            >
+              {% render 'icons', icon: 'icon-shoppingBag', class: 'h-6 w-6' %}
+              <span
+                class=" text-[10px] rounded-full h-5 w-5 translate-x-2 translate-y-[-21%] absolute top-[0px] right-[0px] bg-[#000] text-[#fff] font-shape flex justify-center items-center leading-[0px] {% if cart.item_count == 0 %} hidden {% endif %}"
+                data-role="cart-count"
+              >
+                {{- cart.item_count -}}
+              </span>
+            </button>
+          </div>
+        </div>
+        {% comment %} {% render 'popup' %} {% endcomment %}
+      </div>
+    </div>
+  </header>
+</sticky-header>
+
+{% schema %}
+{
+  "name": "Header Layout 1",
+  "class": "z-50 sticky top-5",
+  "settings": [
+    {
+      "type": "checkbox",
+      "label": "Enable Language Selector",
+      "id": "language_selector"
+    },
+    {
+      "type": "textarea",
+      "label": "Language Selector Text",
+      "id": "language_selector_text",
+      "default": "Your order is set to ship to the United Kingdom, and the billing currency is GBP £"
+    },
+    {
+      "type": "select",
+      "label": "Header Logo Type",
+      "id": "header_logo_type",
+      "options": [
+        {
+          "value": "svg",
+          "label": "svg"
+        },
+        {
+          "value": "image",
+          "label": "image"
+        }
+      ]
+    },
+    {
+      "type": "html",
+      "label": "Header Logo Svg Mobile",
+      "id": "header_logo_svg_mobile"
+    },
+    {
+      "type": "html",
+      "label": "Header Logo Svg Desktop",
+      "id": "header_logo_svg_desktop"
+    },
+    {
+      "type": "image_picker",
+      "label": "Header Logo Mobile",
+      "id": "header_logo_mobile"
+    },
+    {
+      "type": "image_picker",
+      "label": "Header Logo Desktop",
+      "id": "header_logo_desktop"
+    },
+    {
+      "type": "range",
+      "label": "Logo desktop width",
+      "id": "logo_width_desktop",
+      "min": 60,
+      "step": 4,
+      "max": 400,
+      "default": 200
+    },
+    {
+      "type": "range",
+      "label": "Logo tablet width",
+      "id": "logo_width_tablet",
+      "min": 60,
+      "step": 4,
+      "max": 400,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "label": "Logo mobile width",
+      "id": "logo_width_mobile",
+      "min": 60,
+      "step": 4,
+      "max": 400,
+      "default": 100
+    },
+    {
+      "type": "link_list",
+      "label": "Choose navigation",
+      "id": "link_list",
+      "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Enter the link to highlight"
+    },
+    {
+      "type": "text",
+      "label": "Highlight link",
+      "id": "highlight_link"
+    },
+    {
+      "type": "color",
+      "label": "Choose highlight color",
+      "id": "highlight_color"
+    },
+    {
+      "type": "link_list",
+      "label": "Choose mobile header bottom navigation",
+      "id": "bottom_nav"
+    }
+  ],
+  "blocks": []
+}
+{% endschema %}

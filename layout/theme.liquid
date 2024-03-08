@@ -16,17 +16,22 @@
       render 'vite-tag' with 'theme.js'
       render 'vite-tag' with 'greeting.ts'
       render 'vite-tag' with 'lit-test.ts'
+      render 'vite-tag' with 'keen.js'
+      render 'vite-tag' with 'keen.css'
     -%}
 
     {{ content_for_header }}
   </head>
 
   <body>
-    <simple-greeting name="Hello"></simple-greeting>
-    <h1>Test heading</h1>
-    <p>Test paragraph 1</p>
-    <p>Test paragraph 2</p>
-
+    {% case settings.announcementBar_layout %}
+      {% when 'announcementBar_01' %}
+        {% section 'announcement-bar-layout-1' %}
+    {% endcase %}
+    {% case settings.header_layout %}
+      {% when 'header_01' %}
+        {% section 'header-layout-1' %}
+    {% endcase %}
     <main>
       {{ content_for_layout }}
     </main>

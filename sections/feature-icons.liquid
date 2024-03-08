@@ -1,0 +1,220 @@
+{% style %}
+  #store-features-section-{{ section.id }}{
+    margin-top:{{ section.settings.margin_top_mob }}px;
+    margin-bottom:{{ section.settings.margin_bottom_mob }}px;
+  }
+  @media(min-width:768px){
+    #store-features-section-{{ section.id }}{
+     margin-top:{{ section.settings.margin_top_desktop }}px;
+    margin-bottom:{{ section.settings.margin_bottom_desktop }}px;
+    }
+  }
+{% endstyle %}
+<section class="bg-[#F6F3EC] py-[12px] store-features" id="store-features-section-{{ section.id }}">
+  <div class="m-container:max-w-[1600px] mx-auto">
+    <div
+      id="store-features-{{ section.id }}"
+      class="wrapper flex flex-nowrap lg:gap-[28px] lg:justify-center items-center overflow-hidden keen-slider"
+    >
+      {%- for block in section.blocks -%}
+        <div class="keen-slider__slide flex-[0_0_100%] md:flex-[0_0_33.33%] lg:flex-[unset] max-w-full">
+          <div class="flex items-center w-full justify-center">
+            <div class="mr-4">
+              {{ block.settings.icon }}
+            </div>
+            <div>
+              <p class="font-shape text-[14px] font-[400] uppercase leading-[21px] text-[#222222]">
+                {{ block.settings.title }}
+              </p>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+<script>
+  document.addEventListener('custom:keenLoaded', (e) => {
+    function WheelControls(slider) {
+      var touchTimeout;
+      var position;
+      var wheelActive;
+
+      function dispatch(e, name) {
+        position.x -= e.deltaX;
+        position.y -= e.deltaY;
+        slider.container.dispatchEvent(
+          new CustomEvent(name, {
+            detail: {
+              x: position.x,
+              y: position.y,
+            },
+          })
+        );
+      }
+
+      function wheelStart(e) {
+        position = {
+          x: e.pageX,
+          y: e.pageY,
+        };
+        dispatch(e, 'ksDragStart');
+      }
+
+      function wheel(e) {
+        if (e.deltaY == -0) {
+          dispatch(e, 'ksDrag');
+        }
+      }
+
+      function wheelEnd(e) {
+        dispatch(e, 'ksDragEnd');
+      }
+
+      function eventWheel(e) {
+        if (!wheelActive) {
+          wheelStart(e);
+          wheelActive = true;
+        }
+        wheel(e);
+        clearTimeout(touchTimeout);
+        touchTimeout = setTimeout(() => {
+          wheelActive = false;
+          wheelEnd(e);
+        }, 50);
+      }
+
+      slider.on('created', () => {
+        slider.container.addEventListener(
+          'wheel',
+          (e) => {
+            if (e.deltaY != -0) {
+              slider.container.removeEventListener('wheel', () => {});
+            } else {
+              eventWheel(e);
+            }
+          },
+          { passive: false }
+        );
+      });
+    }
+    let Slider = e.detail.slider;
+    let slide = new Slider(
+      '#store-features-{{ section.id }}',
+      {
+        loop: true,
+        breakpoints: {
+          '(min-width: 767px)': {
+            slides: { perView: 3, spacing: 15 },
+          },
+          '(min-width: 1024px)': {
+            disabled: true,
+          },
+        },
+      },
+      [WheelControls]
+    );
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Feature icons",
+  "settings": [
+    {
+      "type": "range",
+      "id": "margin_top_mob",
+      "label": "Margin From Top Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "label": "Margin From Top Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mob",
+      "label": "Margin From Bottom Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "label": "Margin From Bottom Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon_text_block",
+      "name": "Icon Text Block",
+      "settings": [
+        {
+          "type": "text",
+          "label": "Svg Code",
+          "id": "icon"
+        },
+        {
+          "type": "text",
+          "label": "Title",
+          "id": "title",
+          "default": "Item Title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature icons",
+      "blocks": [
+        {
+          "type": "icon_text_block",
+          "settings": {
+            "icon": "<div class='h-[24px] w-[24px] bg-[#d5d5d5] rounded-full'>",
+            "title": "Free returns"
+          }
+        },
+        {
+          "type": "icon_text_block",
+          "settings": {
+            "icon": "<div class='h-[24px] w-[24px] bg-[#d5d5d5] rounded-full'>",
+            "title": "Express Delivery"
+          }
+        },
+        {
+          "type": "icon_text_block",
+          "settings": {
+            "icon": "<div class='h-[24px] w-[24px] bg-[#d5d5d5] rounded-full'>",
+            "title": "0% Finance Available"
+          }
+        },
+        {
+          "type": "icon_text_block",
+          "settings": {
+            "icon": "<div class='h-[24px] w-[24px] bg-[#d5d5d5] rounded-full'>",
+            "title": "Personal shopper team"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+{% stylesheet %}
+{% endstylesheet %}
+{% javascript %}
+{% endjavascript %}

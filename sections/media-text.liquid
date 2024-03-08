@@ -1,0 +1,440 @@
+{% style %}
+  #image-video-text-section-{{ section.id }}{
+    margin-top:{{ section.settings.margin_top_mob }}px;
+    margin-bottom:{{ section.settings.margin_bottom_mob }}px;
+  }
+  #image-video-text-section-{{ section.id }} .wrapper{
+    padding:0 {{ section.settings.horizontal_padding_mobile }}px;
+  }
+  #image-video-text-section-{{ section.id }} .text-container{
+    background-color:{{ section.settings.text_bg }}
+  }
+  @media(min-width:768px){
+    #image-video-text-section-{{ section.id }}{
+     margin-top:{{ section.settings.margin_top_desktop }}px;
+    margin-bottom:{{ section.settings.margin_bottom_desktop }}px;
+    }
+    #image-video-text-section-{{ section.id }} .wrapper{
+    padding:0 {{ section.settings.horizontal_padding_desktop }}px;
+  }
+  }
+{% endstyle %}
+<section class="image-video-text" id="image-video-text-section-{{ section.id }}">
+  <div class="m-container:max-w-[1600px] mx-auto wrapper">
+    <div
+      class="flex flex-col flex-wrap lg:flex-row lg:items-center lg:py-3"
+      style="background-color:{{ section.settings.text_bg }}"
+    >
+      <!-- Text Block -->
+      <div class="flex-1 order-2 text-container  lg:items-center lg:flex {% if section.settings.section_aligment == 'right'  %} lg:order-[-1] {% endif %}">
+        <div class=" text-center lg:text-left lg:py-[0px] lg:pl-[125px] lg:pr-[158px] py-[60px] px-[20px] ">
+          <h2 class="text-[36px] font-[300] leading-[110%] mb-[16px] font-gascogne-serial text-[#222222] capitalize">
+            {{ section.settings.heading }}
+          </h2>
+          <p class="font-shape mb-[32px] text-[14px] lg:text-[16px] font-[300] leading-[150%] text-[#222222]">
+            {{ section.settings.paragraph }}
+          </p>
+          <div class="flex items-center gap-[24px] flex-col lg:flex-row">
+            <a
+              href="{{section.settings.rounded_button_link}}"
+              class="font-shape text-[13px] font-[500] leading-[120%] py-[13px] px-[24px] rounded-[20px] border-solid border-[1px] border-[#222] uppercase text-[#222222]"
+            >
+              {{- section.settings.rounded_button_text -}}
+            </a>
+            <a
+              href="{{section.settings.underline_button_link}}"
+              class=" font-shape text-[13px] font-[400] leading-[120%] underline decoration-[#222] underline-offset-[8px] hidden uppercase text-center"
+            >
+              {{- section.settings.underline_button_text -}}
+            </a>
+          </div>
+
+          {% if section.blocks != blank %}
+            <!-- start collection block with description -->
+            <div class="w-full flex flex-col gap-4 px-5 pb-12 pt-8 lg:px-0 lg:pb-0 max-w-[428px] mx-auto lg:ml-0">
+              <p class="font-shape text-[14px] lg:text-[16px] font-light leading-[150%] text-center max-w-[400px] mx-auto lg:ml-0">
+                {{ section.settings.collection_descrition }}
+              </p>
+              <div class="w-full flex flex-row gap-2 px-5 justify-center relative lg:px-[10px]">
+                {% for block in section.blocks %}
+                  {%- capture sizes -%}
+                  (min-width: 768px) 300px, 100px
+              {%- endcapture -%}
+                  {% liquid
+                    assign ratio = 1
+                    if block.settings.image_url != blank
+                      assign ratio = block.settings.image_url.aspect_ratio
+                    endif
+                  %}
+                  <div class="w-full flex flex-col gap-1 flex-[0_0_33.33%] relative">
+                    <div
+                      class="relative overflow-hidden bg-[#F8F8F8]"
+                      style="padding-bottom:{{ 1 | divided_by : ratio | times : 100 }}%"
+                    >
+                      {% if block.settings.image_url != blank %}
+                        <picture>
+                          {{
+                            block.settings.image_url
+                            | image_url: width: 300
+                            | image_tag:
+                              loading: 'lazy',
+                              class: 'w-full absolute left-0 top-0 h-full',
+                              sizes: sizes,
+                              widths: '90, 120, 150, 180, 210, 240, 270, 300'
+                          }}
+                        </picture>
+                      {% endif %}
+                    </div>
+                    <h5 class="font-shape text-[12px] font-normal text-[#222222] capitalize leading-[135%] tracking-[0.06px]">
+                      {{ block.settings['collection-title'] }}
+                    </h5>
+                    <a
+                      href="{{ block.settings.collection_url.url }}"
+                      target="_blank"
+                      class="absolute left-0 w-full h-full"
+                    ></a>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <!-- End collection block with description -->
+          {% endif %}
+        </div>
+      </div>
+      <!-- Media Block (Image or Video) -->
+      <div class="flex-1 order-1 w-full ">
+        {% if section.settings.media_type == 'image' %}
+          {% liquid
+            assign ratio = 1
+            assign image = section.settings.image_url
+            if image != blank
+              assign ratio = image.aspect_ratio
+            endif
+          %}
+          <div class="relative bg-[#F8F8F8]" style="padding-bottom:{{ 1 | divided_by : ratio | times : 100 }}%">
+            {% if image != blank %}
+              <picture>
+                <img
+                  srcset="
+                    {%- if image.width >= 165 -%}{{ image | image_url: width: 165 }} 165w,{%- endif -%}
+                    {%- if image.width >= 360 -%}{{ image | image_url: width: 360 }} 360w,{%- endif -%}
+                    {%- if image.width >= 533 -%}{{ image | image_url: width: 533 }} 533w,{%- endif -%}
+                    {%- if image.width >= 720 -%}{{ image | image_url: width: 720 }} 720w,{%- endif -%}
+                    {%- if image.width >= 940 -%}{{ image | image_url: width: 940 }} 940w,{%- endif -%}
+                    {%- if image.width >= 1066 -%}{{ image | image_url: width: 1066 }} 1066w,{%- endif -%}
+                    {{ image | image_url }} {{ image.width }}w
+                  "
+                  src="{{ image | image_url: width: 533 }}"
+                  sizes="(min-width: 1600px) {{ 1600 | minus: 130 | divided_by: 2 }}px, (min-width: 990px) calc((100vw - 130px) / 2), (min-width: 750px) calc((100vw - 120px) / 2), 100vw"
+                  alt="{{ image.alt | escape }}"
+                  {% if section.index > 1 %}
+                    loading="lazy"
+                  {% endif %}
+                  class="absolute top-0 left-0 w-full h-full"
+                  width="{{ image.width | divided_by : 2 }}"
+                  height="{{ image.height }}"
+                >
+              </picture>
+            {% endif %}
+          </div>
+        {% elsif section.settings.media_type == 'video' %}
+          {% liquid
+            assign ratio = 1
+            assign image = section.settings.video_url.preview_image
+            assign video = section.settings.video_url
+            if image != blank
+              assign ratio = image.aspect_ratio
+            endif
+            if section.index > 1
+              assign loading = 'lazy'
+            endif
+          %}
+          <div class="relative bg-[#F8F8F8]" style="padding-bottom:{{ 1 | divided_by : ratio | times : 100 }}%">
+            <deffered-med class="group">
+              {% if image != blank %}
+                <picture>
+                  <img
+                    srcset="
+                      {%- if image.width >= 165 -%}{{ image | image_url: width: 165 }} 165w,{%- endif -%}
+                      {%- if image.width >= 360 -%}{{ image | image_url: width: 360 }} 360w,{%- endif -%}
+                      {%- if image.width >= 533 -%}{{ image | image_url: width: 533 }} 533w,{%- endif -%}
+                      {%- if image.width >= 720 -%}{{ image | image_url: width: 720 }} 720w,{%- endif -%}
+                      {%- if image.width >= 940 -%}{{ image | image_url: width: 940 }} 940w,{%- endif -%}
+                      {%- if image.width >= 1066 -%}{{ image | image_url: width: 1066 }} 1066w,{%- endif -%}
+                      {{ image | image_url }} {{ image.width }}w
+                    "
+                    src="{{ image | image_url: width: 533 }}"
+                    sizes="(min-width: 1600px) {{ 1600 | minus: 130 | divided_by: 2 }}px, (min-width: 990px) calc((100vw - 130px) / 2), (min-width: 750px) calc((100vw - 120px) / 2), 100vw"
+                    alt="{{ image.alt | escape }}"
+                    {% if section.index > 1 %}
+                      loading="lazy"
+                    {% endif %}
+                    class="absolute top-0 left-0 w-full h-full"
+                    width="{{ image.width | divided_by : 2 }}"
+                    height="{{ image.height }}"
+                  >
+                </picture>
+              {% endif %}
+              <template>
+                {{
+                  section.settings.video_url
+                  | video_tag:
+                    loop: true,
+                    muted: true,
+                    controls: false,
+                    image_size: '400x',
+                    loading: loading,
+                    class: 'absolute top-0 left-0 w-full h-full'
+                }}
+              </template>
+              <button
+                data-role="video-control"
+                class="absolute transform -translate-x-1/2 -translate-y-1/2 play-pause-btn top-1/2 left-1/2 bg-[#fff] rounded-full px-6 py-5 group-[.playing]:opacity-0 group-hover:!opacity-100 transition-opacity aspect-1"
+              >
+                <span class="group-[.playing]:hidden">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="margin:0 auto;"
+                    width="21"
+                    height="28"
+                    viewBox="0 0 21 28"
+                    fill="none"
+                  >
+                    <path d="M20 14L2 26.5L1 25.5V1.5L20 14Z" fill="black" stroke="black"/>
+                  </svg>
+                </span>
+                <span class="hidden group-[.playing]:block">
+                  <svg
+                    style="margin:0 auto;"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
+                  </svg>
+                </span>
+              </button>
+            </deffered-med>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  if (!customElements.get('deffered-med')) {
+    class DefferedMed extends HTMLElement {
+      constructor() {
+        super();
+        this.controlButton = this.querySelector('[data-role="video-control"]');
+        this.picture = this.querySelector('picture');
+        this.contentHtml = this.querySelector('template').innerHTML;
+        this.observer.observe(this);
+
+        this.controlButton.addEventListener('click', this.playPauseAction.bind(this));
+      }
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const intersecting = entry.isIntersecting;
+            this.picture.remove();
+            this.insertAdjacentHTML('afterBegin', this.contentHtml);
+            this.video = this.querySelector('video');
+            this.observer.unobserve(this);
+          });
+        },
+        { threshold: 1 }
+      );
+      playPauseAction() {
+        if (this.classList.contains('playing') && this.video) {
+          this.video.pause();
+          this.classList.remove('playing');
+        } else {
+          this.video.play();
+          this.classList.add('playing');
+        }
+      }
+    }
+    customElements.define('deffered-med', DefferedMed);
+  }
+</script>
+{% schema %}
+{
+  "name": "Media Text",
+  "settings": [
+    {
+      "type": "range",
+      "id": "margin_top_mob",
+      "label": "Margin From Top Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "label": "Margin From Top Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mob",
+      "label": "Margin From Bottom Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 76
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "label": "Margin From Bottom Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 49
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding_mobile",
+      "label": "Horizontal Padding Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding_desktop",
+      "label": "Horizontal Padding Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "radio",
+      "id": "media_type",
+      "label": "Media Type",
+      "options": [
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "radio",
+      "id": "section_aligment",
+      "label": "Section alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_url",
+      "label": "Image"
+    },
+    {
+      "type": "video",
+      "id": "video_url",
+      "label": "Choose Video"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Discover our personal Shopping experience!"
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph",
+      "label": "Paragraph",
+      "default": "Consider our Personal Shoppers your fashion fairy-godmothers, on-hand 24/7 via your favourite 1:1 chat platform to help you source and style anything you can dream of. Get in touch."
+    },
+    {
+      "type": "text",
+      "id": "rounded_button_text",
+      "label": "Rounded Button Text",
+      "default": "Chat to a personal shopper"
+    },
+    {
+      "type": "url",
+      "id": "rounded_button_link",
+      "label": "Rounded Button URL"
+    },
+    {
+      "type": "color",
+      "label": "Choose Text Background Color",
+      "id": "text_bg",
+      "default": "#F6F3EC"
+    },
+    {
+      "type": "header",
+      "content": "Collection block content"
+    },
+    {
+      "type": "text",
+      "id": "collection_descrition",
+      "label": "collection Content",
+      "default": "Don’t forget to checkout our other influencers collection:"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collections",
+      "name": "Products",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Select Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_url",
+          "label": "Mobile Image"
+        },
+        {
+          "type": "text",
+          "id": "collection-title",
+          "label": "collection Title",
+          "default": "Emily Canham"
+        },
+        {
+          "type": "collection",
+          "id": "collection_url",
+          "label": "Collection Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Media text",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

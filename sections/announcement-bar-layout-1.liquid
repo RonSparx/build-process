@@ -1,0 +1,179 @@
+{% style %}
+  .annoucement-bar {
+    z-index: 100 !important;
+  }
+  @media (min-width: 768px) {
+    .annoucement-bar {
+      z-index: 101 !important;
+    }
+  }
+{% endstyle %}
+{% if template contains 'index' or template contains 'collection' %}
+  <div
+    data-role="announcement"
+    class="sticky top-0 m-auto before:md:bg-black before:md:hidden before:md:h-[29px] before:md:w-full before:md:fixed before:md:content-[''] before:md:right-0 before:md:top-0 before:md:z-[1]"
+  >
+    <div
+      class="text-[12px] bg-black leading-[16.8px] py-[9px] z-40 flex justify-center md:justify-between md:px-5 lg:px-[65px] group-[.toggle]:max-h-0 group-[.toggle]:md:max-h-[unset]  group-[.toggle]:p-0 group-[.toggle]:md:p-[6px_20px] transition-all"
+      announcement-bar
+    >
+      <div class="md:w-1/3 opacity-0 pointer-events-none">
+        <span
+          class="hidden md:block items-center justify-center text-white cursor-pointer md:pl-[1.65rem] rtl:md:pl-0 rtl:md:pr-[1.65rem] md:w-max"
+          data-action="customerService"
+        >
+          {{- section.settings.customer_text -}}
+        </span>
+      </div>
+      <div class="w-full flex justify-center">
+        <span class="flex items-center justify-center text-white font-shape text-[11px] leading-[14px] font-medium uppercase">
+          {{- section.settings.shipping_text -}}
+        </span>
+      </div>
+      <div class="md:w-1/3 opacity-0 pointer-events-none">
+        <span class="hidden md:flex items-center justify-end text-white"
+          ><a href="" class="flex gap-[6px] items-center font-shape text-[14px] font-medium">
+            {{- section.settings.store_text }}
+          </a></span
+        >
+      </div>
+    </div>
+  </div>
+{% else %}
+  {% style %}
+    .annoucement-bar_container {
+      margin: auto;
+    }
+    .announcement-bar_wrapper {
+      font-size: 12px;
+      background-color: #000;
+      line-height: 16.8px;
+      padding-top: 9px;
+      padding-bottom: 9px;
+      z-index: 40;
+      display: flex;
+      justify-content: center;
+    }
+    .toggle .announcement-bar_wrapper {
+      max-height: 0px;
+      padding: 0px;
+      transition-property: all;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms;
+    }
+    .announcement-bar_service {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .announcement-bar_service span {
+      display: none;
+    }
+    .announcement-bar_shipping {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .announcement-bar_shipping span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-family: var(--secondary-font);
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .announcement-bar_location {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .announcement-bar_location span {
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .annoucement-bar_container::before {
+        content: '';
+        background-color: #000;
+        height: 29px;
+        width: 100%;
+        position: fixed;
+        right: 0px;
+        top: 0px;
+        z-index: 1;
+        display: none;
+      }
+      .announcement-bar_wrapper {
+        justify-content: space-between;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .toggle .announcement-bar_wrapper {
+        max-height: unset;
+      }
+      .toggle .announcement-bar_wrapper {
+        padding: 6px 20px;
+      }
+      .announcement-bar_service {
+        width: 33.333333%;
+      }
+      .announcement-bar_service span {
+        display: block;
+        padding-left: 26.4px;
+        width: max-content;
+      }
+      .announcement-bar_location {
+        width: 33.333333%;
+      }
+      .announcement-bar_location span {
+        display: flex;
+      }
+    }
+  {% endstyle %}
+  <div
+    data-role="announcement"
+    class="annoucement-bar_container wrapper_container m-auto before:md:bg-black before:md:h-[29px] before:md:w-full before:md:fixed before:md:content-[''] before:md:right-0 before:md:top-0 before:md:z-[1]"
+  >
+    <div
+      class="announcement-bar_wrapper text-[12px] bg-black leading-[16.8px] py-[9px] z-40 flex justify-center md:justify-between md:px-5 lg:px-[65px] group-[.toggle]:max-h-0 group-[.toggle]:md:max-h-[unset]  group-[.toggle]:p-0 group-[.toggle]:md:p-[6px_20px] transition-all"
+      announcement-bar
+    >
+      <div class="announcement-bar_service md:w-1/3 opacity-0 pointer-events-none">
+        <span
+          class="hidden md:block items-center justify-center text-white cursor-pointer md:pl-[1.65rem] rtl:md:pl-0 rtl:md:pr-[1.65rem] md:w-max"
+          data-action="customerService"
+        >
+          {{- section.settings.customer_text -}}
+        </span>
+      </div>
+      <div class="announcement-bar_shipping w-full flex justify-center">
+        <span class="flex items-center justify-center text-white md:pl-[37px] font-shape text-[11px] leading-[14px] font-medium uppercase">
+          {{- section.settings.shipping_text -}}
+        </span>
+      </div>
+      <div class="announcement-bar_location md:w-1/3 opacity-0 pointer-events-none">
+        <span class="hidden md:flex items-center justify-end text-white"
+          ><a href="" class="flex gap-[6px] items-center font-shape text-[14px] font-medium">
+            {%- render 'icon-v2', icon: 'icon-location', color: '#fff' -%}
+            {{- section.settings.store_text }}
+          </a></span
+        >
+      </div>
+    </div>
+  </div>
+{% endif %}
+{% comment %} {% render 'customerService-popup' %} {% endcomment %}
+{% schema %}
+{
+  "name": "Announcement Bar Layout 1",
+  "class": "group annoucement-bar",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Free Shipping",
+      "id": "shipping_text",
+      "default": "Sign up for 10% off your first Jewellery order*"
+    }
+  ]
+}
+{% endschema %}

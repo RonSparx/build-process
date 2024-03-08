@@ -1,0 +1,287 @@
+{% style %}
+  #best-sellers-section-{{ section.id }}{
+    margin-top:{{ section.settings.margin_top_mob }}px;
+    margin-bottom:{{ section.settings.margin_bottom_mob }}px;
+  }
+  #best-sellers-section-{{ section.id }}{
+    padding-left:{{ section.settings.horizontal_padding_mobile }}px;
+  }
+  @media(min-width:768px){
+    #best-sellers-section-{{ section.id }}{
+     margin-top:{{ section.settings.margin_top_desktop }}px;
+    margin-bottom:{{ section.settings.margin_bottom_desktop }}px;
+    }
+    #best-sellers-section-{{ section.id }}{
+    padding-left:{{ section.settings.horizontal_padding_desktop }}px;
+  }
+  }
+  #best-sellers-section-{{ section.id }} [data-role="scroll-bar"]{
+    width: calc(100%/{{ section.settings.collection.products.length }});
+  }
+{% endstyle %}
+<section class="best-sellers-hero-slider" id="best-sellers-section-{{ section.id }}">
+  <div class="m-container:max-w-[1600px] m-container:mx-auto">
+    <div class="flex items-start justify-between heading-view-all">
+      <h2 class="font-gascogne-serial text-[36px] font-light leading-[110%] capitalize mb-8 text-[#222222]">
+        {{ section.settings.heading }}
+      </h2>
+      <div class="view-all mr-[40px] mt-[10px] items-center justify-center hidden">
+        <a
+          class="border-[1px] border-[#222] rounded-[20px] py-[13px] px-[32px] text-[13px] font-[500] leading-[120%] font-shape uppercase"
+          href="{{ section.settings.collection.url }}"
+          >View All</a
+        >
+      </div>
+    </div>
+    <div class="relative">
+      <div
+        class="keen-slider flex flex-row {% if section.settings.collection != blank and section.settings.scroll_bar %}pb-9{% endif %}"
+        id="best-sellers-{{ section.id }}"
+      >
+        {% if section.settings.collection == blank %}
+          <div class="keen-slider__slide flex-[0_0_100%] lg:flex-[0_0_25%]">
+            {%- render 'product-card', title: 'product title', name: 'BRAND NAME', price: '$123.00' -%}
+          </div>
+          <div class="keen-slider__slide flex-[0_0_100%] lg:flex-[0_0_25%]">
+            {%- render 'product-card', title: 'product title', name: 'BRAND NAME', price: '$123.00' -%}
+          </div>
+          <div class="keen-slider__slide flex-[0_0_100%] lg:flex-[0_0_25%]">
+            {%- render 'product-card', title: 'product title', name: 'BRAND NAME', price: '$123.00' -%}
+          </div>
+          <div class="keen-slider__slide flex-[0_0_100%] lg:flex-[0_0_25%]">
+            {%- render 'product-card', title: 'product title', name: 'BRAND NAME', price: '$123.00' -%}
+          </div>
+        {% else %}
+          {% for product in collections[section.settings.collection].products limit: 10 %}
+            <div class="keen-slider__slide flex-[0_0_100%] lg:flex-[0_0_25%]">
+              {%- render 'product-card', product: product -%}
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <!-- navigation Dots code Start -->
+      {% if section.settings.collection != blank and section.settings.scroll_bar %}
+        <div
+          class="flex relative left-0 w-[calc(100%_-_20px)] bottom-0 h-1 bg-[#F8F8F8] overflow-hidden"
+          data-role="thumbs-dots"
+        >
+          <button
+            class="bg-[#000] absolute left-[0] transition-[left] [&.active]:bg-[#000] h-full [&.active]:h-1 {% if forloop.index == 1 %} active {% endif %} focus:outline-none "
+            data-role="scroll-bar"
+          ></button>
+        </div>
+      {% endif %}
+      <!-- navigation Dots code End -->
+    </div>
+    <div class="view-all mt-[46px] flex items-center justify-center">
+      <a
+        class="border-[1px] border-[#121212] rounded-[20px] py-[13px] px-[32px] text-[13px] font-[400] leading-[120%] font-shape uppercase"
+        href="{{ section.settings.collection.url }}"
+        >View All</a
+      >
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('custom:keenLoaded', (e) => {
+    function WheelControls(slider) {
+      var touchTimeout;
+      var position;
+      var wheelActive;
+
+      function dispatch(e, name) {
+        position.x -= e.deltaX;
+        position.y -= e.deltaY;
+        slider.container.dispatchEvent(
+          new CustomEvent(name, {
+            detail: {
+              x: position.x,
+              y: position.y,
+            },
+          })
+        );
+      }
+
+      function wheelStart(e) {
+        position = {
+          x: e.pageX,
+          y: e.pageY,
+        };
+        dispatch(e, 'ksDragStart');
+      }
+
+      function wheel(e) {
+        if (e.deltaY == -0) {
+          dispatch(e, 'ksDrag');
+        }
+      }
+
+      function wheelEnd(e) {
+        dispatch(e, 'ksDragEnd');
+      }
+
+      function eventWheel(e) {
+        if (!wheelActive) {
+          wheelStart(e);
+          wheelActive = true;
+        }
+        wheel(e);
+        clearTimeout(touchTimeout);
+        touchTimeout = setTimeout(() => {
+          wheelActive = false;
+          wheelEnd(e);
+        }, 50);
+      }
+
+      slider.on('created', () => {
+        slider.container.addEventListener(
+          'wheel',
+          (e) => {
+            if (e.deltaY != -0) {
+              slider.container.removeEventListener('wheel', () => {});
+            } else {
+              eventWheel(e);
+            }
+          },
+          { passive: false }
+        );
+      });
+    }
+    let Slider = e.detail.slider;
+    let thumbSlider;
+    let scrollBar = document.querySelector('#best-sellers-section-{{ section.id }} [data-role="scroll-bar"]');
+    let slide = new Slider(
+      '#best-sellers-{{ section.id }}',
+      {
+        loop: true,
+        slides: {
+          perView: 1.2,
+          spacing: 2,
+        },
+        breakpoints: {
+          '(min-width: 768px)': {
+            slides: {
+              perView: 2.6,
+              spacing: 10,
+            },
+          },
+          '(min-width: 1024px)': {
+            slides: {
+              perView: 3.6,
+              spacing: 10,
+            },
+          },
+          '(min-width: 1300px)': {
+            slides: {
+              perView: 3.8,
+              spacing: 2,
+            },
+          },
+        },
+      },
+      [
+        (slider) => {
+          slider.on('dragged', () => {
+            let progress = slider.track.details.progress;
+            let currentActive = slider.track.details.abs;
+            let maxIndex = slider.track;
+            //console.log(progress, currentActive, maxIndex);
+            if (scrollBar) {
+              progress = progress < 0 ? 0 : progress;
+              progress = progress > 1 ? 1 : progress;
+              progress > 0 ? (scrollBar.style.translateX = '-100%') : (scrollBar.style.translateX = '0%');
+              scrollBar.style.left = `${progress * 100}%`;
+            }
+          });
+          slider.on('slideChanged', () => {});
+        },
+        WheelControls,
+      ]
+    );
+  });
+</script>
+{% schema %}
+{
+  "name": "Best Sellers",
+  "settings": [
+    {
+      "type": "range",
+      "id": "margin_top_mob",
+      "label": "Margin From Top Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "label": "Margin From Top Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mob",
+      "label": "Margin From Bottom Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 76
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "label": "Margin From Bottom Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 49
+    },
+    {
+      "type": "checkbox",
+      "label": "Display Scroll Bar",
+      "id": "scroll_bar",
+      "default": false
+    },
+    {
+      "type": "text",
+      "label": "Heading",
+      "id": "heading",
+      "default": "Bestsellers"
+    },
+    {
+      "type": "collection",
+      "label": "Select your collection",
+      "id": "collection"
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding_mobile",
+      "label": "Padding Left Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding_desktop",
+      "label": "Padding Left Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best Sellers",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

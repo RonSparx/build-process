@@ -1,0 +1,135 @@
+<section class="newsletter bg-[#F8F8F8]">
+  <div class="flex items-center text-center justify-center py-[96px] px-[20px] flex-col max-w-[100%] lg:max-w-[515px] lg:m-auto">
+    <h2 class="text-[#222222] text-[26px] lg:text-[36px] font-light leading-[28.6px] lg:leading-[39.6px] mb-[16px] font-gascogne-serial capitalize">
+      {{ section.settings.heading }}
+    </h2>
+    <div class="relative w-full lg:w-[490px] mb-[24px]">
+      <newsletter-form class="group/form">
+        {% form 'customer' %}
+          {% if form.posted_successfully? %}
+            <div>
+              <p class="text-[#0092BC] font-shape text-[12px] lg:text-[16px] font-[400] leading-[150%] mb-[0px]">
+                {{ section.settings.thanku_message }}
+              </p>
+              <p class="text-[#222222] font-shape text-[12px] lg:text-[14px] font-[400] leading-[150%] mb-[0px]">
+                {{ section.settings.paragraph1 }}
+              </p>
+            </div>
+          {% else %}
+            <input
+              type="email"
+              name="contact[email]"
+              placeholder="{{ section.settings.emailPlaceholder }}"
+              class="font-shape w-full lg:w-[490px] px-[16px] py-[14px] border-solid border-[0.5px] border-[#d5d5d5] text-[14px] font-[300] leading-[135%] rounded-[20px] text-[#000] placeholder:text-[#878787] group-[&.invalid]/form:text-red-500 group-[&.invalid]/form:placeholder:text-red-500"
+            >
+            <button
+              type="submit"
+              class="font-shape absolute right-1 top-1 text-white bg-[#222] uppercase text-[13px] font-[400] leading-[13px] px-[16px] py-[13.5px] w-[82px] rounded-[20px]"
+            >
+              Submit
+            </button>
+            <p
+              data-role="error-text"
+              class="text-[12px] font-shape hidden group-[&.invalid]/form:block text-red-500 text-left mt-1"
+            >
+              Email is not valid
+            </p>
+            {% if form.posted_successfully? %}
+              <p class="text-[12px] font-shape block group-[&.invalid]/form:hidden text-green-500 text-left mt-1">
+                Form submitted successfully
+              </p>
+            {% endif %}
+            {{ form.errors | default_errors }}
+          {% endif %}
+        {% endform %}
+      </newsletter-form>
+    </div>
+    <div class="newsletter_policy text-[#222222] font-shape text-[12px] lg:text-[12px ] font-[400] leading-[16.2px] tracking-[0.5%]">
+      {{ section.settings.paragraph2 }}
+    </div>
+  </div>
+</section>
+{% style %}
+  .newsletter_policy a {
+    text-decoration: underline;
+  }
+{% endstyle %}
+
+<script>
+  class NewsletterForm extends HTMLElement {
+    constructor() {
+      super();
+      this.form = this.querySelector('form');
+      this.emailInput = this.querySelector('input[name="contact[email]"]');
+      this.errorText = this.querySelector('[data-role="error-text"]');
+
+      this.emailInput.addEventListener('input', this.validateEmail.bind(this));
+      this.form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (this.valid) this.form.submit();
+        else this.validateEmail();
+      });
+    }
+    validateEmail() {
+      let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+      this.valid = regex.test(this.emailInput.value);
+      this.valid ? this.classList.remove('invalid') : this.classList.add('invalid');
+      if (!this.valid) {
+        let parts = this.emailInput.value.split('@');
+        if (parts.length !== 2) {
+          this.errorText.textContent = 'Email is missing @ symbol';
+        } else {
+          if (parts[0].length === 0) {
+            this.errorText.textContent = 'Email is missing the username';
+          }
+          if (parts[1].length === 0) {
+            this.errorText.textContent = 'Email is missing the domain';
+          }
+        }
+      }
+    }
+  }
+  customElements.define('newsletter-form', NewsletterForm);
+</script>
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Heading",
+      "id": "heading",
+      "default": "Sign up and receive 10% off your online order!"
+    },
+    {
+      "type": "textarea",
+      "label": "Thank you messages",
+      "id": "thanku_message",
+      "default": "Thank you for signing up to our newsletter"
+    },
+    {
+      "type": "textarea",
+      "label": "Paragraph 1",
+      "id": "paragraph1",
+      "default": "Get emails you’ll *actually* want to read & receive 10% off your first online order! (T&Cs apply)"
+    },
+    {
+      "type": "text",
+      "label": "Email Placeholder",
+      "id": "emailPlaceholder",
+      "default": "Your email address"
+    },
+    {
+      "type": "richtext",
+      "label": "Paragraph 2",
+      "id": "paragraph2",
+      "default": "<p>By clicking 'submit', you agree to our Privacy Policy and Terms & Conditions.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

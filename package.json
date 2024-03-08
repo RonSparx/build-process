@@ -16,19 +16,21 @@
     "theme"
   ],
   "scripts": {
-    "dev": "run-p vite:serve shopify:serve",
+    "dev": "run-p vite:serve:dev shopify:serve:dev",
     "build": "vite build",
-    "dev:sync": "run-p vite:serve \"shopify:serve -- --theme-editor-sync\"",
+    "dev:sync": "run-p vite:serve:dev \"shopify:serve:dev -- --theme-editor-sync\"",
     "start": "cross-env NODE_ENV=production run-s vite:build shopify:serve",
-    "start:sync": "cross-env NODE_ENV=production run-s vite:build \"shopify:serve -- --theme-editor-sync\"",
+    "start:sync": "cross-env NODE_ENV=production run-s vite:build \"shopify:serve -- --theme-editor-sync --nodelete\"",
     "watch": "run-p vite:watch shopify:serve",
     "watch:sync": "run-p vite:watch \"shopify:serve -- --theme-editor-sync\"",
     "vite:build": "vite build",
+    "vite:serve:dev": "del-cli assets && mkdir assets && cpy 'resources/*' assets && vite -- --https",
     "vite:serve": "del-cli assets && vite",
     "vite:watch": "del-cli assets && cross-env VITE_WATCH=true vite build",
     "shopify:serve": "dotenv shopify theme dev",
+    "shopify:serve:dev": "dotenv shopify theme dev --nodelete",
     "shopify:push": "dotenv shopify theme push --nodelete --ignore config/settings_data.json templates/*/*.json templates/*.json locales/*.json",
-    "shopify:push:new": "dotenv shopify theme push --unpublished",
+    "shopify:push:new": "dotenv shopify theme push --unpublished --nodelete",
     "shopify:push:unsafe": "dotenv shopify theme push",
     "shopify:pull": "dotenv shopify theme pull --nodelete",
     "shopify:pull:content": "dotenv shopify theme pull --nodelete --only config/settings_data.json templates/*.json locales/*.json",
@@ -52,12 +54,16 @@
     "postcss": "^8.4.21",
     "prettier": "3.0.2",
     "prettier-plugin-tailwindcss": "^0.4.1",
+    "sass": "^1.71.1",
     "tailwindcss": "^3.3.1",
     "typescript": "^5.3.3",
     "vite": "^5.0.12",
     "vite-plugin-shopify": "^3.0.0"
   },
   "dependencies": {
+    "cpy-cli": "^5.0.0",
+    "fs-extra": "^11.2.0",
+    "keen-slider": "^6.8.6",
     "lit": "^3.1.1"
   }
 }

@@ -1,0 +1,654 @@
+{% style %}
+  #hero-banner-section-{{ section.id }}{
+    margin-top:{{ section.settings.margin_top_mob }}px;
+    margin-bottom:{{ section.settings.margin_bottom_mob }}px;
+  }
+  #hero-banner-section-{{ section.id }} .wrapper{
+    padding:0 {{ section.settings.horizontal_padding_mobile }}px;
+  };
+  @media only screen and (min-width: 768px){
+    #hero-banner-section-{{ section.id }}{
+     margin-top:{{ section.settings.margin_top_desktop }}px;
+        margin-bottom:{{ section.settings.margin_bottom_desktop }}px;
+    }
+    #hero-banner-section-{{ section.id }} .wrapper{
+        padding:0 {{ section.settings.horizontal_padding_desktop }}px;
+    };
+  }
+{% endstyle %}
+<section class="hero-banner" id="hero-banner-section-{{ section.id }}">
+  <div class="m-container:max-w-[1600px] mx-auto wrapper">
+    <div class="wrapper">
+      <div class="flex max-w-full overflow-hidden flex-nowrap keen-slider {% if section.blocks.size > 1 and section.settings.dots %} pb-7 lg:pb-0 {%  endif %}">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'image' %}
+              {% liquid
+                assign mobile_image = block.settings.mob_image
+                assign desktop_image = block.settings.desk_image
+                if mobile_image != blank
+                  assign mobile_ratio = mobile_image.aspect_ratio
+                else
+                  assign mobile_ratio = 1
+                endif
+                if desktop_image != blank
+                  assign desktop_ratio = desktop_image.aspect_ratio
+                else
+                  assign desktop_ratio = 1.5
+                endif
+              %}
+              {% style %}
+                @media(min-width:768px){ #hero-banner-section-{{ section.id }} [data-id="mob-image-{{ forloop.index }}"]{padding-bottom:{{ 1 | divided_by : desktop_ratio | times : 100 }}%!important} }
+              {% endstyle %}
+              <div class="keen-slider__slide flex-[0_0_100%]">
+                <div
+                  data-id="mob-image-{{ forloop.index }}"
+                  class="bg-[#d5d5d5] relative overflow-hidden"
+                  style="padding-bottom:{{ 1 | divided_by : mobile_ratio | times : 100 }}%"
+                >
+                  {% if mobile_image != blank and desktop_image != blank %}
+                    <picture>
+                      <source
+                        media="(min-width:768px)"
+                        srcset="
+                          {{ desktop_image | image_url: width: 800 }} 800w,
+                          {{ desktop_image | image_url: width: 1200 }} 1200w,
+                          {{ desktop_image | image_url: width: 1600 }} 1600w,
+                          {{ desktop_image | image_url: width: 1900 }} 1900w,
+                          {{ desktop_image | image_url: width: 2200 }} 2200w,
+                        "
+                      >
+                      <img
+                        class="absolute top-0 left-0 w-full h-full"
+                        srcset="
+                          {%- if mobile_image.width >= 550 -%}{{ mobile_image | image_url: width: 550 }} 550w,{%- endif -%}
+                          {%- if mobile_image.width >= 1100 -%}{{ mobile_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+                          {%- if mobile_image.width >= 1445 -%}{{ mobile_image | image_url: width: 1445 }} 1445w,{%- endif -%}
+                          {%- if mobile_image.width >= 1680 -%}{{ mobile_image | image_url: width: 1680 }} 1680w,{%- endif -%}
+                          {%- if mobile_image.width >= 2048 -%}{{ mobile_image | image_url: width: 2048 }} 2048w,{%- endif -%}
+                          {%- if mobile_image.width >= 2200 -%}{{ mobile_image | image_url: width: 2200 }} 2200w,{%- endif -%}
+                          {%- if mobile_image.width >= 2890 -%}{{ mobile_image | image_url: width: 2890 }} 2890w,{%- endif -%}
+                          {%- if mobile_image.width >= 4096 -%}{{ mobile_image | image_url: width: 4096 }} 4096w,{%- endif -%}
+                          {{ mobile_image | image_url }} {{ mobile_image.width }}w
+                        "
+                        sizes="(min-width: 750px) calc(100vw - 22rem), 1100px"
+                        src="{{ mobile_image | image_url: width: 1445 }}"
+                        alt="{{ mobile_image.alt | escape }}"
+                        {% if section.index > 1 or forloop.index > 1 %}
+                          loading="lazy"
+                        {% endif %}
+                        width="1100"
+                        height="{{ 1100 | divided_by: mobile_image.aspect_ratio | ceil }}"
+                      >
+                    </picture>
+                  {% endif %}
+                  <div class="px-5 pb-6 absolute top-0 left-0 w-full h-full flex {% if block.settings.text_position_mob == 'top' %}justify-start{% elsif block.settings.text_position_mob == 'center' %} justify-center {% else %} justify-end {% endif %}{% if block.settings.text_position_desk == 'top' %}lg:justify-start{% elsif block.settings.text_position_desk == 'center' %} lg:justify-center {% else %} lg:justify-end {% endif %} items-center flex-col">
+                    {% if block.settings.title != blank %}
+                      <h3 class="text-[36px] lg:text-[60px] font-light font-gascogne-serial leading-[40px] lg:leading-[72px] text-[#fff] text-center capitalize lg:max-w-[748px]">
+                        {{ block.settings.title }}
+                      </h3>
+                    {% endif %}
+                    {% if block.settings.desc != blank %}
+                      <p class="text-center font-shape text-[16px] font-normal leading-[24px] text-[#fff] mt-2 lg:max-w-[540px]">
+                        {{ block.settings.desc }}
+                      </p>
+                    {% endif %}
+                    {% if block.settings.btn_text != blank %}
+                      <a
+                        class="text-[13px] lg:text-[16px] font-shape bg-[#fff] text-[#121212] font-light px-[32px] py-[13px] lg:py-[15px] rounded-full mt-6 leading-[16px] lg:leading-[19px] max-h-10 lg:max-h-12"
+                        href="{{ block.settings.redirection_link }}"
+                      >
+                        {{- block.settings.btn_text -}}
+                      </a>
+                      <a
+                        class="absolute h-full w-full top-0 left-0"
+                        href="{{ block.settings.redirection_link }}"
+                      >
+                      </a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            {% when 'video' %}
+              {% liquid
+                assign mobile_video = block.settings.mob_video
+                assign desktop_video = block.settings.desk_video
+                assign mobile_image = mobile_video.preview_image
+                assign desktop_image = desktop_video.preview_image
+                if mobile_image != blank
+                  assign mobile_ratio = mobile_image.aspect_ratio
+                else
+                  assign mobile_ratio = 1
+                endif
+                if desktop_image != blank
+                  assign desktop_ratio = desktop_image.aspect_ratio
+                else
+                  assign desktop_ratio = 1.5
+                endif
+              %}
+              {% style %}
+                @media(min-width:768px){ #hero-banner-section-{{ section.id }} [data-id="mob-image-{{ forloop.index }}"]{padding-bottom:{{ 1 | divided_by : desktop_ratio | times : 100 }}%!important} }
+              {% endstyle %}
+              <div class="keen-slider__slide flex-[0_0_100%]">
+                <div
+                  data-id="mob-image-{{ forloop.index }}"
+                  class="bg-[#d5d5d5] relative overflow-hidden"
+                  style="padding-bottom:{{ 1 | divided_by : mobile_ratio | times : 100 }}%"
+                >
+                  {% if mobile_image != blank and desktop_image != blank %}
+                    <deffered-video class="absolute top-0 left-0 w-full h-full">
+                      <picture>
+                        <source
+                          media="(min-width:768px)"
+                          srcset="
+                               {{ desktop_image | image_url: width: 800 }} 800w,
+                            {{ desktop_image | image_url: width: 1200 }} 1200w,
+                            {{ desktop_image | image_url: width: 1600 }} 1600w,
+                            {{ desktop_image | image_url: width: 1900 }} 1900w,
+                            {{ desktop_image | image_url: width: 2200 }} 2200w,
+                          "
+                        >
+                        <img
+                          class="absolute top-0 left-0 w-full h-full"
+                          srcset="
+                            {%- if mobile_image.width >= 550 -%}{{ mobile_image | image_url: width: 550 }} 550w,{%- endif -%}
+                            {%- if mobile_image.width >= 1100 -%}{{ mobile_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+                            {%- if mobile_image.width >= 1445 -%}{{ mobile_image | image_url: width: 1445 }} 1445w,{%- endif -%}
+                            {%- if mobile_image.width >= 1680 -%}{{ mobile_image | image_url: width: 1680 }} 1680w,{%- endif -%}
+                            {%- if mobile_image.width >= 2048 -%}{{ mobile_image | image_url: width: 2048 }} 2048w,{%- endif -%}
+                            {%- if mobile_image.width >= 2200 -%}{{ mobile_image | image_url: width: 2200 }} 2200w,{%- endif -%}
+                            {%- if mobile_image.width >= 2890 -%}{{ mobile_image | image_url: width: 2890 }} 2890w,{%- endif -%}
+                            {%- if mobile_image.width >= 4096 -%}{{ mobile_image | image_url: width: 4096 }} 4096w,{%- endif -%}
+                            {{ mobile_image | image_url }} {{ mobile_image.width }}w
+                          "
+                          sizes="(min-width: 750px) calc(100vw - 22rem), 1100px"
+                          src="{{ mobile_image | image_url: width: 1445 }}"
+                          alt="{{ mobile_image.alt | escape }}"
+                          {% if section.index > 1 or forloop.index > 1 %}
+                            loading="lazy"
+                          {% endif %}
+                          width="1100"
+                          height="{{ 1100 | divided_by: mobile_image.aspect_ratio | ceil }}"
+                        >
+                      </picture>
+                      <div data-role="mobile-video">
+                        <template>
+                          {{-
+                            mobile_video
+                            | video_tag: autoplay: true, loop: true, muted: true, controls: true, class: 'w-full'
+                          -}}
+                        </template>
+                      </div>
+                      <div data-role="desktop-video">
+                        <template>
+                          {{-
+                            desktop_video
+                            | video_tag: autoplay: true, loop: true, muted: true, controls: true, class: 'w-full'
+                          -}}
+                        </template>
+                      </div>
+                    </deffered-video>
+                  {% endif %}
+                  <div class="px-5 pb-6 absolute top-0 left-0 w-full h-full flex {% if block.settings.text_position_mob == 'top' %}justify-start{% elsif block.settings.text_position_mob == 'center' %} justify-center {% else %} justify-end {% endif %}{% if block.settings.text_position_desk == 'top' %}lg:justify-start{% elsif block.settings.text_position_desk == 'center' %} lg:justify-center {% else %} lg:justify-end {% endif %} items-center flex-col">
+                    {% if block.settings.title != blank %}
+                      <h3 class="text-[36px] lg:text-[60px] font-light font-gascogne-serial leading-[40px] lg:leading-[60px] text-[#fff] text-center capitalize lg:max-w-[748px]">
+                        {{ block.settings.title }}
+                      </h3>
+                    {% endif %}
+                    {% if block.settings.desc != blank %}
+                      <p class="text-center font-shape text-[16px] font-normal leading-[24px] text-[#fff] mt-2 lg:max-w-[540px]">
+                        {{ block.settings.desc }}
+                      </p>
+                    {% endif %}
+                    {% if block.settings.btn_text != blank %}
+                      <a
+                        class="text-[13px] lg:text-[16px] font-shape bg-[#fff] text-[#000] font-light px-[32px] py-[13px] lg:py-[15px] rounded-full mt-6 leading-[16px] lg:leading-[19px]"
+                        href="{{ block.settings.redirection_link }}"
+                      >
+                        {{- block.settings.btn_text -}}
+                      </a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+        {% if section.blocks.size > 1 and section.settings.dots %}
+          <!-- navigation Dots code Start -->
+          <div class="flex justify-center absolute left-0 w-full gap-2 bottom-0 pb-2" data-role="thumbs-dots">
+            {% for block in section.blocks %}
+              <button
+                class="w-2 h-2 rounded-full bg-[#e7e6e3]  [&.active]:bg-[#000] lg:[&.active]:bg-[#fff] {% if forloop.index == 1 %} active {% endif %} focus:outline-none"
+              ></button>
+            {% endfor %}
+          </div>
+          <!-- navigation Dots code End -->
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  document.addEventListener('custom:keenLoaded', (e) => {
+    function WheelControls(slider) {
+      var touchTimeout;
+      var position;
+      var wheelActive;
+
+      function dispatch(e, name) {
+        position.x -= e.deltaX;
+        position.y -= e.deltaY;
+        slider.container.dispatchEvent(
+          new CustomEvent(name, {
+            detail: {
+              x: position.x,
+              y: position.y,
+            },
+          })
+        );
+      }
+
+      function wheelStart(e) {
+        position = {
+          x: e.pageX,
+          y: e.pageY,
+        };
+        dispatch(e, 'ksDragStart');
+      }
+
+      function wheel(e) {
+        if (e.deltaY == -0) {
+          dispatch(e, 'ksDrag');
+        }
+      }
+
+      function wheelEnd(e) {
+        dispatch(e, 'ksDragEnd');
+      }
+
+      function eventWheel(e) {
+        if (!wheelActive) {
+          wheelStart(e);
+          wheelActive = true;
+        }
+        wheel(e);
+        clearTimeout(touchTimeout);
+        touchTimeout = setTimeout(() => {
+          wheelActive = false;
+          wheelEnd(e);
+        }, 50);
+      }
+
+      slider.on('created', () => {
+        slider.container.addEventListener(
+          'wheel',
+          (e) => {
+            if (e.deltaY != -0) {
+              slider.container.removeEventListener('wheel', () => {});
+            } else {
+              eventWheel(e);
+            }
+          },
+          { passive: false }
+        );
+      });
+    }
+    let Slider = e.detail.slider;
+    let animationTime = Number(`{{ section.settings.animation_time | times : 1000 }}`);
+    let slide = new Slider(
+      '#hero-banner-section-{{ section.id }} .keen-slider',
+      {
+        loop: true,
+        breakpoints: {
+          '(min-width: 767px)': {
+            loop: false,
+          },
+        },
+        slides: {
+          perView: 1,
+        },
+      },
+      [
+        (slider) => {
+          let timeout;
+          let dirRt = true;
+          let mouseOver = false;
+          function clearNextTimeout() {
+            clearTimeout(timeout);
+          }
+          function nextTimeout() {
+            clearTimeout(timeout);
+            let mobileView = window.innerWidth < 768 ? true : false;
+            if (mouseOver || mobileView) return;
+            timeout = setTimeout(() => {
+              let totalLength = slider.track.details.slides.length - 1;
+              let current = slider.track.details.abs;
+              if(current == 0){
+                dirRt = true;
+              }else if(current == totalLength){
+                dirRt = false;
+              }
+              if (dirRt) {
+                slider.next();
+              } else {
+                slider.prev();
+              }
+            }, animationTime);
+          }
+          slider.on('created', () => {
+            let thumbDots = document.querySelector('#hero-banner-section-{{ section.id }} [data-role="thumbs-dots"]');
+            if (thumbDots) {
+              let thumbs = thumbDots.querySelectorAll('button');
+              thumbs.forEach((el, ind) => {
+                el.addEventListener('click', () => {
+                  slider.moveToIdx(ind);
+                });
+              });
+            }
+
+            // autoplay
+            slider.container.addEventListener('mouseover', () => {
+              mouseOver = true;
+              clearNextTimeout();
+            });
+            slider.container.addEventListener('mouseout', () => {
+              mouseOver = false;
+              nextTimeout();
+            });
+            nextTimeout();
+          });
+          slider.on('detailsChanged', () => {
+            let thumbDots = document.querySelector('#hero-banner-section-{{ section.id }} [data-role="thumbs-dots"]');
+            let activeSlide = slider.track.details.rel;
+            {% comment %} if (activeSlide > slider.track.details.slides.length - 1) {
+              activeSlide = 0;
+            } {% endcomment %}
+            if (thumbDots) {
+              let thumbs = thumbDots.querySelectorAll('button');
+              thumbs.forEach((el, ind) =>
+                ind == activeSlide ? el.classList.add('active') : el.classList.remove('active')
+              );
+            }
+          });
+          slider.on('dragStarted', clearNextTimeout);
+          slider.on('animationEnded', nextTimeout);
+          slider.on('updated', nextTimeout);
+        },
+        WheelControls
+      ]
+    );
+  });
+
+  class DefferedVideo extends HTMLElement {
+    constructor() {
+      super();
+      this.mobileContent = this.querySelector('[data-role="mobile-video"] template').innerHTML;
+      this.desktopContent = this.querySelector('[data-role="desktop-video"] template').innerHTML;
+
+      this.observer.observe(this);
+    }
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const intersecting = entry.isIntersecting;
+          if (intersecting) {
+            window.innerWidth > 768 ? (this.innerHTML = this.desktopContent) : (this.innerHTML = this.mobileContent);
+          }
+        });
+      },
+      { root: this.closest('.keen-slider') }
+    );
+  }
+  customElements.define('deffered-video', DefferedVideo);
+</script>
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Slider Animation Time "
+    },
+    {
+      "type": "range",
+      "id": "animation_time",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Slide Time",
+      "default": 2
+    },
+    {
+      "type": "checkbox",
+      "label": "Display Dots",
+      "id": "dots"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mob",
+      "label": "Margin From Top Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "label": "Margin From Top Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mob",
+      "label": "Margin From Bottom Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "label": "Margin From Bottom Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding_mobile",
+      "label": "Horizontal Padding On Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding_desktop",
+      "label": "Horizontal Padding On Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "label": "Choose Mobile Image",
+          "id": "mob_image"
+        },
+        {
+          "type": "image_picker",
+          "label": "Choose Desktop Image",
+          "id": "desk_image"
+        },
+        {
+          "type": "text",
+          "label": "Banner Title",
+          "id": "title",
+          "default": "Elevate your elegance with our luxurious rings"
+        },
+        {
+          "type": "textarea",
+          "label": "Banner Description",
+          "id": "desc",
+          "default": "Whether you're looking for something low-key or bolder, colour-pop styles, you'll find it in our edit."
+        },
+        {
+          "type": "text",
+          "label": "Button Text",
+          "id": "btn_text",
+          "default": "SHOP JWELLERY"
+        },
+        {
+          "type": "select",
+          "label": "Text Content Position Mobile",
+          "id": "text_position_mob",
+          "options": [
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            }
+          ],
+          "default": "bottom"
+        },
+        {
+          "type": "select",
+          "label": "Text Content Position Desktop",
+          "id": "text_position_desk",
+          "options": [
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "url",
+          "label": "Banner Redirection Link",
+          "id": "redirection_link"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "video",
+          "label": "Choose Mobile Video",
+          "id": "mob_video"
+        },
+        {
+          "type": "video",
+          "label": "Choose Desktop Video",
+          "id": "desk_video"
+        },
+        {
+          "type": "text",
+          "label": "Banner Title",
+          "id": "title",
+          "default": "Elevate your elegance with our luxurious rings"
+        },
+        {
+          "type": "textarea",
+          "label": "Banner Description",
+          "id": "desc",
+          "default": "Whether you're looking for something low-key or bolder, colour-pop styles, you'll find it in our edit."
+        },
+        {
+          "type": "text",
+          "label": "Button Text",
+          "id": "btn_text",
+          "default": "SHOP JWELLERY"
+        },
+        {
+          "type": "select",
+          "label": "Text Content Position Mobile",
+          "id": "text_position_mob",
+          "options": [
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            }
+          ],
+          "default": "bottom"
+        },
+        {
+          "type": "select",
+          "label": "Text Content Position Mobile",
+          "id": "text_position_desk",
+          "options": [
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "url",
+          "label": "Banner Redirection Link",
+          "id": "redirection_link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,213 @@
+{
+  "sections": {
+    "hero-banner": {
+      "type": "hero-banner",
+      "blocks": {
+        "image_jPmnRB": {
+          "type": "image",
+          "settings": {
+            "title": "Elevate your elegance with our luxurious rings",
+            "desc": "Whether you're looking for something low-key or bolder, colour-pop styles, you'll find it in our edit.",
+            "btn_text": "SHOP JWELLERY",
+            "text_position_mob": "bottom",
+            "text_position_desk": "center",
+            "redirection_link": ""
+          }
+        },
+        "image_rhFH9L": {
+          "type": "image",
+          "settings": {
+            "title": "Elevate your elegance with our luxurious rings",
+            "desc": "Whether you're looking for something low-key or bolder, colour-pop styles, you'll find it in our edit.",
+            "btn_text": "SHOP JWELLERY",
+            "text_position_mob": "bottom",
+            "text_position_desk": "center",
+            "redirection_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_jPmnRB",
+        "image_rhFH9L"
+      ],
+      "settings": {
+        "animation_time": 2,
+        "dots": false,
+        "margin_top_mob": 0,
+        "margin_top_desktop": 0,
+        "margin_bottom_mob": 0,
+        "margin_bottom_desktop": 0,
+        "horizontal_padding_mobile": 0,
+        "horizontal_padding_desktop": 0
+      }
+    },
+    "feature_icons_iiqQdL": {
+      "type": "feature-icons",
+      "blocks": {
+        "icon_text_block_eaJ3WG": {
+          "type": "icon_text_block",
+          "settings": {
+            "icon": "<div class=\"h-[24px] w-[24px] bg-[#d5d5d5] rounded-full\"><\/div>",
+            "title": "Free returns"
+          }
+        },
+        "icon_text_block_fCi6Bi": {
+          "type": "icon_text_block",
+          "settings": {
+            "icon": "<div class=\"h-[24px] w-[24px] bg-[#d5d5d5] rounded-full\"><\/div>",
+            "title": "Express Delivery"
+          }
+        },
+        "icon_text_block_VrWXEP": {
+          "type": "icon_text_block",
+          "settings": {
+            "icon": "<div class=\"h-[24px] w-[24px] bg-[#d5d5d5] rounded-full\"><\/div>",
+            "title": "0% Finance Available"
+          }
+        },
+        "icon_text_block_RWyFqr": {
+          "type": "icon_text_block",
+          "settings": {
+            "icon": "<div class=\"h-[24px] w-[24px] bg-[#d5d5d5] rounded-full\"><\/div>",
+            "title": "Personal shopper team"
+          }
+        }
+      },
+      "block_order": [
+        "icon_text_block_eaJ3WG",
+        "icon_text_block_fCi6Bi",
+        "icon_text_block_VrWXEP",
+        "icon_text_block_RWyFqr"
+      ],
+      "settings": {
+        "margin_top_mob": 0,
+        "margin_top_desktop": 20,
+        "margin_bottom_mob": 20,
+        "margin_bottom_desktop": 20
+      }
+    },
+    "collections_slider_cGXyRB": {
+      "type": "collections-slider",
+      "blocks": {
+        "collection_pdmRyH": {
+          "type": "collection",
+          "settings": {
+            "collection_url": "",
+            "title": "Clothing",
+            "description": "Euismod leo dignissim adipiscing cursus tincidunt tellus semper etiam orci quisque suspendisse."
+          }
+        },
+        "collection_f8EqMC": {
+          "type": "collection",
+          "settings": {
+            "collection_url": "",
+            "title": "Jewellery & Watches",
+            "description": "Lorem ipsum dolor sit amet consectetur. Neque purus diam aliquet scelerisque."
+          }
+        },
+        "collection_J8GRcJ": {
+          "type": "collection",
+          "settings": {
+            "collection_url": "",
+            "title": "Bags",
+            "description": "Vestibulum ipsum dolor sit aUltricies habitant ipsum vestibulum euismod bibendum"
+          }
+        }
+      },
+      "block_order": [
+        "collection_pdmRyH",
+        "collection_f8EqMC",
+        "collection_J8GRcJ"
+      ],
+      "settings": {
+        "margin_top_mob": 0,
+        "margin_top_desktop": 0,
+        "margin_bottom_mob": 76,
+        "margin_bottom_desktop": 49,
+        "horizontal_padding_mobile": 20,
+        "horizontal_padding_desktop": 0
+      }
+    },
+    "media_text_aJDcEG": {
+      "type": "media-text",
+      "settings": {
+        "margin_top_mob": 0,
+        "margin_top_desktop": 0,
+        "margin_bottom_mob": 76,
+        "margin_bottom_desktop": 49,
+        "horizontal_padding_mobile": 0,
+        "horizontal_padding_desktop": 0,
+        "media_type": "image",
+        "section_aligment": "left",
+        "heading": "Discover our personal Shopping experience!",
+        "paragraph": "Consider our Personal Shoppers your fashion fairy-godmothers, on-hand 24\/7 via your favourite 1:1 chat platform to help you source and style anything you can dream of. Get in touch.",
+        "rounded_button_text": "Chat to a personal shopper",
+        "rounded_button_link": "",
+        "text_bg": "#F6F3EC",
+        "collection_descrition": "Don’t forget to checkout our other influencers collection:"
+      }
+    },
+    "best_sellers_FfRtDn": {
+      "type": "best-sellers",
+      "settings": {
+        "margin_top_mob": 0,
+        "margin_top_desktop": 0,
+        "margin_bottom_mob": 76,
+        "margin_bottom_desktop": 49,
+        "scroll_bar": false,
+        "heading": "Bestsellers",
+        "collection": "",
+        "horizontal_padding_mobile": 20,
+        "horizontal_padding_desktop": 40
+      }
+    },
+    "shop_the_look_6ajfq6": {
+      "type": "shop-the-look",
+      "blocks": {
+        "product_pwDrq3": {
+          "type": "Product",
+          "settings": {
+            "product": "",
+            "mob_dot_range_top": 50,
+            "mob_dot_range_left": 50,
+            "dot_range_top": 50,
+            "dot_range_left": 50,
+            "tooltip_alignment": "right",
+            "title_tooltip": "MELISSA KAYE",
+            "tooltip_content": "Lola enamel diamond ring"
+          }
+        }
+      },
+      "block_order": [
+        "product_pwDrq3"
+      ],
+      "settings": {
+        "margin_top_mob": 0,
+        "margin_top_desktop": 0,
+        "margin_bottom_mob": 76,
+        "margin_bottom_desktop": 49,
+        "title": "Shop the Edit",
+        "banner_desc": "Lorem ipsum dolor sit amet consectetur. Amet nisi nisl eget sagittis rutrum vel massa cursus."
+      }
+    },
+    "newsletter_wKhFbP": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Sign up and receive 10% off your online order!",
+        "thanku_message": "Thank you for signing up to our newsletter",
+        "paragraph1": "Get emails you’ll *actually* want to read & receive 10% off your first online order! (T&Cs apply)",
+        "emailPlaceholder": "Your email address",
+        "paragraph2": "<p>By clicking 'submit', you agree to our Privacy Policy and Terms & Conditions.<\/p>"
+      }
+    }
+  },
+  "order": [
+    "hero-banner",
+    "feature_icons_iiqQdL",
+    "collections_slider_cGXyRB",
+    "media_text_aJDcEG",
+    "best_sellers_FfRtDn",
+    "shop_the_look_6ajfq6",
+    "newsletter_wKhFbP"
+  ]
+}

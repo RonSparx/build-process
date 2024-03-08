@@ -1,0 +1,137 @@
+{% liquid
+  if product.featured_media
+    if settings.card_ratio == 'adaptive'
+      assign ratio = product.featured_media.aspect_ratio
+    else
+      assign ratio = 0.87
+    endif
+    assign product_hover_image = product.images[1]
+  else
+    assign ratio = 0.87
+    assign product_hover_image = product.images[1]
+  endif
+%}
+<div class="relative block product-card group">
+  <div
+    class="relative media-block bg-[#F8F8F8] py-[50px] px-[12px] overflow-hidden after:block after:content-[''] after:w-full after:h-full after:bg-[#000] after:absolute after:contrast-[0.1] after:opacity-[.06] after:left-0 after:top-0 after:pointer-events-none"
+    style="padding-bottom:{{ 1 | divided_by: ratio | times: 100 }}%"
+  >
+    {% if product.featured_media != blank %}
+      <picture>
+        <img
+          srcset="
+            {%- if product.featured_media.width >= 165 -%}{{ product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+            {%- if product.featured_media.width >= 360 -%}{{ product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+            {%- if product.featured_media.width >= 533 -%}{{ product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+            {%- if product.featured_media.width >= 720 -%}{{ product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+            {%- if product.featured_media.width >= 940 -%}{{ product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+            {%- if product.featured_media.width >= 1066 -%}{{ product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+            {{ product.featured_media | image_url }} {{ product.featured_media.width }}w
+          "
+          src="{{ product.featured_media | image_url: width: 533 }}"
+          sizes="(min-width: 1600px) {{ 1600 | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+          alt="{{ product.featured_media.alt | escape }}"
+          {% unless lazy_load == false %}
+            loading="lazy"
+          {% endunless %}
+          class="opacity-100 transition duration-300 ease-in-out absolute inset-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-auto h-full z-1 group-hover:z-0 {% if product_hover_image != blank %} group-hover:opacity-0 {% endif %} max-w-[unset]"
+          width="{{ product.featured_media.width | divided_by : 4 }}"
+          height="{{ product.featured_media.height }}"
+        >
+      </picture>
+    {% endif %}
+    {% if product_hover_image != blank %}
+      <picture>
+        <img
+          srcset="
+            {%- if product_hover_image.width >= 165 -%}{{ product_hover_image | image_url: width: 165 }} 165w,{%- endif -%}
+            {%- if product_hover_image.width >= 360 -%}{{ product_hover_image | image_url: width: 360 }} 360w,{%- endif -%}
+            {%- if product_hover_image.width >= 533 -%}{{ product_hover_image | image_url: width: 533 }} 533w,{%- endif -%}
+            {%- if product_hover_image.width >= 720 -%}{{ product_hover_image | image_url: width: 720 }} 720w,{%- endif -%}
+            {%- if product_hover_image.width >= 940 -%}{{ product_hover_image | image_url: width: 940 }} 940w,{%- endif -%}
+            {%- if product_hover_image.width >= 1066 -%}{{ product_hover_image | image_url: width: 1066 }} 1066w,{%- endif -%}
+            {{ product_hover_image | image_url }} {{ product_hover_image.width }}w
+          "
+          src="{{ product_hover_image | image_url: width: 533 }}"
+          sizes="(min-width: 1600px) {{ 1600 | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+          alt="{{ product_hover_image.alt | escape }}"
+          loading="lazy"
+          class="opacity-0 transition duration-300 ease-in-out absolute inset-0 w-auto h-full z-0 group-hover:z-1 group-hover:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-[unset]"
+          width="{{ product_hover_image.width | divided_by : 4 }}"
+          height="{{ product_hover_image.height }}"
+        >
+      </picture>
+    {% endif %}
+    <a href="{{ product.url }}" class="absolute top-0 left-0 w-full h-full"></a>
+    <wishlist-btn
+      class="group"
+      data-productid="{{ product.id }}"
+      data-productlink="{{ product.url }}"
+      data-variantid="{{ product.selected_or_first_available_variant.id }}"
+      data-price="{{ product.selected_or_first_available_variant.price }}"
+      data-title="{{ product.title }}"
+      data-image="{{ product.featured_image | image_url : 300 }}"
+    >
+      <div class="wishlist absolute top-[12px] right-[12px] z-[1] cursor-pointer">
+        {% render 'icons', icon: 'icon-wishlist', classAttr: 'group-[&.active]:hidden' %}
+        {% render 'icons', icon: 'icon-wishlist-fill', classAttr: 'hidden group-[&.active]:block' %}
+      </div>
+    </wishlist-btn>
+    <div class="product-labels flex gap-[4px] absolute bottom-[8px] left-[8px] flex-col">
+      {% if product %}
+        {% liquid
+          assign tagList = ''
+          assign settingtags = settings.product_tags | split: ','
+          for tag in product.tags
+            assign productTag = tag | downcase
+            for sTag in settingtags
+              assign tagToDisplay = sTag | downcase
+              if productTag == tagToDisplay
+                assign tagList = tagList | append: sTag | append: ','
+              endif
+            endfor
+          endfor
+          assign tagArr = tagList | split: ','
+        %}
+        {% for tag in tagArr limit: 2 %}
+          <p class="h-[24px] flex items-center font-shape first:bg-[#F8F8F8] bg-[#F6F3EC] px-[8px] text-[12px] font-[500] leading-[135%] w-[fit-content] rounded-[4px] uppercase tracking-[0.06px] text-[#222222]">
+            {{ tag }}
+          </p>
+        {% endfor %}
+      {% else %}
+        <p class="h-[24px] flex items-center font-shape bg-[#F8F8F8] px-[8px] text-[12px] font-[500] leading-[135%] w-[fit-content] rounded-[4px] uppercase tracking-[0.06px] text-[#222222]">
+          18k gold
+        </p>
+        <p class="h-[24px] flex items-center font-shape bg-[#F6F3EC] px-[8px] text-[12px] font-[500] leading-[135%] w-[fit-content] rounded-[4px] uppercase tracking-[0.06px] text-[#222222]">
+          Made to Order
+        </p>
+      {% endif %}
+    </div>
+  </div>
+  <div class="product-info py-[12px] px-[8px]">
+    <h4 class="font-shape text-[16px] group-[&.layout-1]/collection:text-[14px] lg:group-[&.layout-1]/collection:text-[16px] font-[400] leading-[150%] uppercase text-[#222222]">
+      {% if product %}
+        {{ product.vendor }}
+      {% else %}
+        {{ name -}}
+      {%- endif %}
+    </h4>
+    <h3 class="font-shape text-[16px] group-[&.layout-1]/collection:text-[14px] lg:group-[&.layout-1]/collection:text-[16px] font-[300] capitalize leading-[150%] mb-[8px] text-[#222222] line-clamp-2">
+      <a href="{{ product.url }}">
+        {% if product %}
+          {{ product.title }}
+        {% else %}
+          {{ title -}}
+        {%- endif %}
+      </a>
+    </h3>
+    <p class="font-shape text-[16px] group-[&.layout-1]/collection:text-[14px] lg:group-[&.layout-1]/collection:text-[16px] font-[300] leading-[150%] text-[#222222]">
+      {% if product %}
+        {{ product.price | money_with_currency }}
+      {% else %}
+        {{ price -}}
+      {%- endif %}
+    </p>
+  </div>
+  <a class="absolute left-0 top-0 w-full h-full" href="{{ product.url }}"></a>
+</div>

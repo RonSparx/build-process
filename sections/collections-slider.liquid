@@ -1,0 +1,281 @@
+{% style %}
+  #collections-slider-section-{{ section.id }}{
+    margin-top:{{ section.settings.margin_top_mob }}px;
+    margin-bottom:{{ section.settings.margin_bottom_mob }}px;
+  }
+  #collections-slider-section-{{ section.id }} .wrapper{
+    padding-left:{{ section.settings.horizontal_padding_mobile }}px;
+  }
+  @media(min-width:768px){
+    #collections-slider-section-{{ section.id }}{
+     margin-top:{{ section.settings.margin_top_desktop }}px;
+    margin-bottom:{{ section.settings.margin_bottom_desktop }}px;
+    }
+    #collections-slider-section-{{ section.id }} .wrapper{
+    padding-left:{{ section.settings.horizontal_padding_desktop }}px;
+  }
+  }
+{% endstyle %}
+<section
+  id="collections-slider-section-{{ section.id }}"
+  class="collection-slider"
+>
+  <div class="m-container:max-w-[1600px] mx-auto">
+    <div class="wrapper">
+      <div class="flex keen-slider flex-nowrap" id="slider-wrap-{{ section.id }}">
+        {% for block in section.blocks %}
+          {% liquid
+            assign card_img = block.settings.image
+            assign title = block.settings.title
+            assign description = block.settings.description
+            assign link = block.settings.collection_url.url
+            if card_img
+              assign ratio = card_img.aspect_ratio
+            else
+              assign ratio = 1.2
+            endif
+          %}
+          <div class="keen-slider__slide md:flex-[0_0_calc(100%/3_-_calc(40px/3))] max-w-[92%] md:max-w-[calc(92%_-_calc(40px/3))] w-full">
+            <div class="relative bg-[#F8F8F8]" style="padding-bottom:{{ 1 | divided_by : ratio | times : 100 }}%">
+              {% if card_img %}
+                <a href="{{ link }}">
+                  <picture>
+                    <img
+                      srcset="
+                        {%- if card_img.width >= 165 -%}{{ card_img | image_url: width: 165 }} 165w,{%- endif -%}
+                        {%- if card_img.width >= 360 -%}{{ card_img | image_url: width: 360 }} 360w,{%- endif -%}
+                        {%- if card_img.width >= 533 -%}{{ card_img | image_url: width: 533 }} 533w,{%- endif -%}
+                        {%- if card_img.width >= 720 -%}{{ card_img | image_url: width: 720 }} 720w,{%- endif -%}
+                        {%- if card_img.width >= 940 -%}{{ card_img | image_url: width: 940 }} 940w,{%- endif -%}
+                        {%- if card_img.width >= 1066 -%}{{ card_img | image_url: width: 1066 }} 1066w,{%- endif -%}
+                        {{ card_img | image_url }} {{ card_img.width }}w
+                      "
+                      src="{{ card_img | image_url: width: 533 }}"
+                      sizes="(min-width: 1600px) {{ 1600 | minus: 130 | divided_by: 3 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                      alt="{{ card_img.alt | escape }}"
+                      loading="lazy"
+                      class="absolute top-0 left-0 w-full h-full"
+                      width="{{ card_img.width | divided_by : 3 }}"
+                      height="{{ card_img.height }}"
+                    >
+                  </picture>
+                </a>
+              {% endif %}
+            </div>
+            <div class="pt-4 px-3">
+              <h3 class="text-[26px] md:text-[36px] font-gascogne-serial leading-[31.2px] md:leading-[39.6px] text-center font-light capitalize mb-1 text-[#222222]">
+                <a href="{{ link }}"> {{ title }}</a>
+              </h3>
+              <p class="text-[14px] font-shape font-light text-center leading-[21px] text-[#222222]">
+                <a href="{{ link }}">{{ description }}</a>
+              </p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  document.addEventListener('custom:keenLoaded', (e) => {
+    function WheelControls(slider) {
+      var touchTimeout;
+      var position;
+      var wheelActive;
+
+      function dispatch(e, name) {
+        position.x -= e.deltaX;
+        position.y -= e.deltaY;
+        slider.container.dispatchEvent(
+          new CustomEvent(name, {
+            detail: {
+              x: position.x,
+              y: position.y,
+            },
+          })
+        );
+      }
+
+      function wheelStart(e) {
+        position = {
+          x: e.pageX,
+          y: e.pageY,
+        };
+        dispatch(e, 'ksDragStart');
+      }
+
+      function wheel(e) {
+        if (e.deltaY == -0) {
+          dispatch(e, 'ksDrag');
+        }
+      }
+
+      function wheelEnd(e) {
+        dispatch(e, 'ksDragEnd');
+      }
+
+      function eventWheel(e) {
+        if (!wheelActive) {
+          wheelStart(e);
+          wheelActive = true;
+        }
+        wheel(e);
+        clearTimeout(touchTimeout);
+        touchTimeout = setTimeout(() => {
+          wheelActive = false;
+          wheelEnd(e);
+        }, 50);
+      }
+
+      slider.on('created', () => {
+        slider.container.addEventListener(
+          'wheel',
+          (e) => {
+            if (e.deltaY != -0) {
+              slider.container.removeEventListener('wheel', () => {});
+            } else {
+              eventWheel(e);
+            }
+          },
+          { passive: false }
+        );
+      });
+    }
+    let Slider = e.detail.slider;
+    let slide = new Slider(
+      '#slider-wrap-{{ section.id }}',
+      {
+        slides: {
+          perView: 1.1,
+          spacing: 8,
+        },
+        breakpoints: {
+          '(min-width: 768px)': {
+            slides: {
+              perView: 3,
+              spacing: 20,
+            },
+          },
+        },
+      },
+      [WheelControls]
+    );
+  });
+</script>
+{% schema %}
+{
+  "name": "Collections Slider",
+  "settings": [
+    {
+      "type": "range",
+      "id": "margin_top_mob",
+      "label": "Margin From Top Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "label": "Margin From Top Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mob",
+      "label": "Margin From Bottom Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 76
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "label": "Margin From Bottom Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 49
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding_mobile",
+      "label": "Padding Left Mobile",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding_desktop",
+      "label": "Padding Left Desktop",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "collection",
+      "settings": [
+        {
+          "type": "collection",
+          "label": "Choose Collection",
+          "id": "collection_url"
+        },
+        {
+          "type": "image_picker",
+          "label": "Choose Image",
+          "id": "image"
+        },
+        {
+          "type": "text",
+          "label": "Enter Title",
+          "id": "title"
+        },
+        {
+          "type": "textarea",
+          "label": "Enter Description",
+          "id": "description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collections Slider",
+      "blocks": [
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Clothing",
+            "description": "Euismod leo dignissim adipiscing cursus tincidunt tellus semper etiam orci quisque suspendisse."
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Jewellery & Watches",
+            "description": "Lorem ipsum dolor sit amet consectetur. Neque purus diam aliquet scelerisque."
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Bags",
+            "description": "Vestibulum ipsum dolor sit aUltricies habitant ipsum vestibulum euismod bibendum"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
